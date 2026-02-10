@@ -12,12 +12,13 @@ export const EXPERIMENT_SECTIONS = {
     OBSERVATION: 'observation',
     CALCULATION: 'calculation',
     RESULT: 'result',
-    CONCLUSION: 'conclusion'
+    CONCLUSION: 'conclusion',
+    POST_LAB: 'postLab', // [NEW] Viva, Assignments
+    RESOURCES: 'resources' // [NEW] PDFs, Manuals
 };
 
 /**
  * Human-readable titles for sections.
- * Can be overridden per experiment, but these are defaults.
  */
 export const SECTION_TITLES = {
     [EXPERIMENT_SECTIONS.AIM]: 'Aim',
@@ -29,7 +30,9 @@ export const SECTION_TITLES = {
     [EXPERIMENT_SECTIONS.OBSERVATION]: 'Observations',
     [EXPERIMENT_SECTIONS.CALCULATION]: 'Calculations',
     [EXPERIMENT_SECTIONS.RESULT]: 'Results & Analysis',
-    [EXPERIMENT_SECTIONS.CONCLUSION]: 'Conclusion'
+    [EXPERIMENT_SECTIONS.CONCLUSION]: 'Conclusion',
+    [EXPERIMENT_SECTIONS.POST_LAB]: 'Post-Lab / Viva Voce',
+    [EXPERIMENT_SECTIONS.RESOURCES]: 'References & Resources'
 };
 
 /**
@@ -45,19 +48,54 @@ export const SECTION_ORDER = [
     EXPERIMENT_SECTIONS.OBSERVATION,
     EXPERIMENT_SECTIONS.CALCULATION,
     EXPERIMENT_SECTIONS.RESULT,
-    EXPERIMENT_SECTIONS.CONCLUSION
+    EXPERIMENT_SECTIONS.CONCLUSION,
+    EXPERIMENT_SECTIONS.POST_LAB,
+    EXPERIMENT_SECTIONS.RESOURCES
 ];
 
 /**
  * Allowed content block types for rich content rendering.
  */
 export const CONTENT_TYPES = {
-    TEXT: 'text',       // Standard paragraph or markdown
-    LIST: 'list',       // Ordered or unordered lists
-    IMAGE: 'image',     // Images with captions
-    TABLE: 'table',     // Data tables with headers
-    CODE: 'code',       // Code snippets with language support
-    EQUATION: 'equation' // Mathematical formulas (LaTeX)
+    TEXT: 'text',
+    LIST: 'list',
+    IMAGE: 'image',
+    TABLE: 'table',
+    CODE: 'code',
+    EQUATION: 'equation'
+};
+
+/**
+ * [NEW] Metadata Enums for Standardization
+ */
+export const EXPERIMENT_TYPE = {
+    HARDWARE: 'hardware',
+    SIMULATION: 'simulation',
+    CODE: 'code'
+};
+
+export const STATUS = {
+    GUIDE_ONLY: 'guide-only',
+    SIMULATION_ONLY: 'simulation-only',
+    GUIDE_SIMULATION: 'guide+simulation'
+};
+
+export const DIFFICULTY = {
+    EASY: 'easy',
+    MEDIUM: 'medium',
+    HARD: 'hard'
+};
+
+export const CONTENT_STATE = {
+    SKELETON: 'skeleton',
+    PARTIAL: 'partial',
+    COMPLETE: 'complete'
+};
+
+export const REVIEW_STATUS = {
+    UNREVIEWED: 'unreviewed',
+    REVIEWED: 'reviewed',
+    APPROVED: 'approved'
 };
 
 /**
@@ -70,7 +108,19 @@ export function createExperiment(id, title) {
     const experiment = {
         id,
         title,
-        status: 'Guide Only', // Default
+        status: STATUS.GUIDE_ONLY, // Deprecated legacy field, mapped to meta.status in UI
+
+        // [NEW] Top-level Metadata Object
+        meta: {
+            experimentType: EXPERIMENT_TYPE.HARDWARE, // Default
+            status: STATUS.GUIDE_ONLY,
+            difficulty: DIFFICULTY.MEDIUM,
+            estimatedTimeMinutes: null,
+            version: '1.0.0',
+            contentState: CONTENT_STATE.SKELETON,
+            reviewStatus: REVIEW_STATUS.UNREVIEWED
+        },
+
         sections: {}
     };
 
@@ -82,6 +132,11 @@ export function createExperiment(id, title) {
             isApplicable: true, // Default to true, explicit opt-out
             content: [] // Array of ContentBlocks
         };
+
+        // Add specific fields for simulation
+        if (sectionKey === EXPERIMENT_SECTIONS.SIMULATION) {
+            experiment.sections[sectionKey].route = null; // Optional external link
+        }
     });
 
     return experiment;

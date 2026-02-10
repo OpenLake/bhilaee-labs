@@ -3,6 +3,15 @@
     "title": "Verification of Kirchhoff Laws",
     "labId": "basic-electrical-engineering",
     "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "guide-only",
+        "difficulty": "easy",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "approved"
+    },
     "sections": {
         "aim": {
             "id": "aim",
@@ -76,6 +85,7 @@
             "id": "simulation",
             "title": "Simulation / Execution",
             "isApplicable": false,
+            "route": null,
             "content": []
         },
         "observation": {
@@ -135,6 +145,27 @@
                     "content": "The algebraic sum of voltages in the loop was found to be zero."
                 }
             ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "State KVL and KCL.",
+                        "What is a node and a mesh?"
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": []
         },
         "conclusion": {
             "id": "conclusion",

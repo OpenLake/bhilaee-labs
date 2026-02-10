@@ -3,6 +3,15 @@
     "title": "Transient Response of R-L-C Network",
     "labId": "control-system-lab",
     "status": "Simulation Available",
+    "meta": {
+        "experimentType": "simulation",
+        "status": "simulation-only",
+        "difficulty": "medium",
+        "estimatedTimeMinutes": 60,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "approved"
+    },
     "sections": {
         "aim": {
             "id": "aim",
@@ -76,6 +85,7 @@
             "id": "simulation",
             "title": "Simulation / Execution",
             "isApplicable": true,
+            "route": null,
             "content": [
                 {
                     "type": "text",
@@ -130,6 +140,36 @@
                 {
                     "type": "text",
                     "content": "The step response was plotted and time domain specifications were verified."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "What is the effect of damping ratio on peak overshoot?",
+                        "How does natural frequency affect rise time?"
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Control Systems Engineering by Norman Nise",
+                        "MATLAB Documentation"
+                    ]
                 }
             ]
         },
