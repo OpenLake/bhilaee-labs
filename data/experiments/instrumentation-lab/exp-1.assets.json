@@ -1,0 +1,32 @@
+{
+    "arduino-code-part1": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/arduino-code-part1.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Arduino IDE Code (Part 1: Setup and Globals)"
+    },
+    "arduino-code-part2": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/arduino-code-part2.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Arduino IDE Code (Part 2: Loop)"
+    },
+    "arduino-code-part3": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/arduino-code-part3.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Arduino IDE Code (Part 3: Send Function)"
+    },
+    "serial-monitor-output": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/serial-monitor-output.png",
+        "type": "image",
+        "role": "output-screenshot",
+        "description": "Serial Monitor Output Showing Object Detection"
+    },
+    "google-sheets-log": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/google-sheets-log.png",
+        "type": "image",
+        "role": "output-screenshot",
+        "description": "Google Sheets Showing Logged Data with Timestamp"
+    }
+}

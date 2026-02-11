@@ -531,10 +531,10 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Object Detection using an IR sensor and ESP32",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "2",
