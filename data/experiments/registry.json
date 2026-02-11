@@ -552,10 +552,10 @@
         },
         {
           "id": "4",
-          "title": "Experiment 4",
+          "title": "Detection of rain intensity through Analog and Digital rain sensors interfaced with ESP32",
           "fileName": "exp-4.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "5",
