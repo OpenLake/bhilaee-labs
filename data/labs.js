@@ -1,3 +1,4 @@
+
 import registry from './experiments/registry.json';
 
 /**
@@ -10,7 +11,8 @@ export const EXPERIMENT_STATUS = {
 };
 
 /**
- * Lab Metadata - Static details about the labs
+ * Metadata for all labs.
+ * Experiment lists are now populated dynamically from registry.json where available.
  */
 const labMetadata = [
   {
@@ -105,22 +107,21 @@ const labMetadata = [
   }
 ];
 
-/**
- * Labs data, merged with Registry for live experiment status and titles
- */
-export const labs = labMetadata.map(meta => {
-  const registryLab = registry.labs[meta.id];
-  let experiments = [];
+// Combine metadata with registry data
+export const labs = labMetadata.map(lab => {
+  const regLab = registry.labs[lab.id];
 
-  if (registryLab && registryLab.experiments) {
-    experiments = registryLab.experiments.map(exp => ({
-      id: exp.id,
-      name: exp.title, // Map registry 'title' to UI 'name'
+  let experiments;
+  if (regLab && regLab.experiments && regLab.experiments.length > 0) {
+    // Use experiments from registry
+    experiments = regLab.experiments.map(exp => ({
+      id: exp.id, // Keep as string or number as per registry (usually string "1")
+      name: exp.title, // Map 'title' from registry to 'name' for UI
       status: exp.status || EXPERIMENT_STATUS.GUIDE
     }));
   } else {
-    // Fallback if no registry data (shouldn't happen if registry is compliant)
-    experiments = Array.from({ length: meta.totalExperiments }, (_, i) => ({
+    // Fallback to placeholder generation
+    experiments = Array.from({ length: 10 }, (_, i) => ({
       id: i + 1,
       name: `Experiment ${i + 1}`,
       status: EXPERIMENT_STATUS.GUIDE
@@ -128,7 +129,7 @@ export const labs = labMetadata.map(meta => {
   }
 
   return {
-    ...meta,
+    ...lab,
     experiments
   };
 });

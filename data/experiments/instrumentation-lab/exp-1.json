@@ -1,6 +1,6 @@
 {
   "id": "exp-1",
-  "title": "IR Object Detection",
+  "title": "Object Detection using an IR sensor and ESP32",
   "labId": "instrumentation-lab",
   "status": "Guide Only",
   "meta": {

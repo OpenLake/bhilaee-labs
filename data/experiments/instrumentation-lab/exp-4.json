@@ -1,6 +1,6 @@
 {
   "id": "exp-4",
-  "title": "Rain Intensity Detection",
+  "title": "Detection of rain intensity through Analog and Digital rain sensors interfaced with ESP32",
   "labId": "instrumentation-lab",
   "status": "Guide Only",
   "meta": {

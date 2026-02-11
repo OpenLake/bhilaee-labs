@@ -1,6 +1,6 @@
 {
   "id": "exp-2",
-  "title": "Ultrasonic Distance Measurement",
+  "title": "Distance Measurement Using an Ultrasonic Sensor Interfaced with ESP32",
   "labId": "instrumentation-lab",
   "status": "Guide Only",
   "meta": {

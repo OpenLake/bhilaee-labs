@@ -1,6 +1,6 @@
 {
   "id": "exp-5",
-  "title": "Moisture Level Detection",
+  "title": "Detection of moisture levels in (1) Air, (2) Dry Soil, and (3) Wet Soil using a moisture sensor interfaced with ESP32",
   "labId": "instrumentation-lab",
   "status": "Guide Only",
   "meta": {

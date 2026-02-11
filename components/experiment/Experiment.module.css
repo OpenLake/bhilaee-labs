@@ -81,7 +81,8 @@
     background: white;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: 0.75rem 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
@@ -101,7 +102,8 @@
 /* Code Blocks */
 .codeBlock {
     margin: 1.5rem 0;
-    background: #1e1e1e; /* Dark theme default */
+    background: #1e1e1e;
+    /* Dark theme default */
     border-radius: 8px;
     overflow: hidden;
     font-family: 'Fira Code', 'Consolas', monospace;
@@ -154,7 +156,8 @@
     background: white;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
-    top: 60px; /* Below global header */
+    top: 60px;
+    /* Below global header */
     z-index: 10;
 }
 
@@ -167,12 +170,14 @@
 }
 
 .sidebar {
-    display: none; /* Hidden on mobile by default for now */
+    display: none;
+    /* Hidden on mobile by default for now */
     width: 280px;
     background: var(--bg-secondary, #f8f9fa);
     border-right: 1px solid var(--border-color);
     position: fixed;
-    top: 60px; /* Below global header */
+    top: 60px;
+    /* Below global header */
     bottom: 0;
     left: 0;
     overflow-y: auto;
@@ -215,7 +220,7 @@
 }
 
 .tocLink:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--primary-color);
 }
 
@@ -235,7 +240,8 @@
 .mainContent {
     flex: 1;
     padding: 2rem 1.5rem;
-    max-width: 800px; /* Optimal reading width */
+    max-width: 800px;
+    /* Optimal reading width */
     margin: 0 auto;
     width: 100%;
 }
@@ -271,7 +277,8 @@
 @media (min-width: 1024px) {
     .layoutContainer {
         flex-direction: row;
-        padding-top: 60px; /* Global header offset */
+        padding-top: 60px;
+        /* Global header offset */
     }
 
     .mobileNav {
@@ -280,11 +287,13 @@
 
     .sidebar {
         display: block;
-        z-index: 1; /* Ensure proper stacking */
+        z-index: 1;
+        /* Ensure proper stacking */
     }
 
     .mainContent {
-        margin-left: 280px; /* Sidebar width */
+        margin-left: 280px;
+        /* Sidebar width */
         padding: 3rem 4rem;
     }
 }
@@ -298,16 +307,28 @@
     text-transform: uppercase;
 }
 
-.status_Simulation_Available { background: #e7f5ff; color: #1c7ed6; }
-.status_Guide_Only { background: #f8f9fa; color: #868e96; }
-.status_Hardware_Oriented { background: #fff4e6; color: #fd7e14; }
+.status_Simulation_Available {
+    background: #e7f5ff;
+    color: #1c7ed6;
+}
+
+.status_Guide_Only {
+    background: #f8f9fa;
+    color: #868e96;
+}
+
+.status_Hardware_Oriented {
+    background: #fff4e6;
+    color: #fd7e14;
+}
 
 
 
 /* Sections */
 .sectionContainer {
     margin-bottom: 3rem;
-    scroll-margin-top: 100px; /* Offset for sticky header */
+    scroll-margin-top: 100px;
+    /* Offset for sticky header */
 }
 
 .sectionTitle {
@@ -342,4 +363,3 @@
     border-radius: 4px;
     text-align: center;
 }
-

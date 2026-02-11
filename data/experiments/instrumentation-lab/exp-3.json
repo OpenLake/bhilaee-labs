@@ -1,6 +1,6 @@
 {
   "id": "exp-3",
-  "title": "Ultrasonic Speed Measurement",
+  "title": "Speed Measurement using Ultrasonic Sensor interfaced with ESP32",
   "labId": "instrumentation-lab",
   "status": "Guide Only",
   "meta": {
