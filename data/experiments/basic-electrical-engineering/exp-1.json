@@ -132,7 +132,7 @@
                 },
                 {
                     "type": "equation",
-                    "latex": "V_x = V_{source} \\times \\frac{R_x}{R_{total}}"
+                    "content": "Vx = V_source × (Rx / R_total)"
                 }
             ]
         },

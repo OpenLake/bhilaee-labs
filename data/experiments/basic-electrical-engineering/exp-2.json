@@ -318,19 +318,19 @@
                 },
                 {
                     "type": "equation",
-                    "content": "R_{eq1} = \\frac{R_2 R_3}{R_2 + R_3} = \\frac{220 \\times 1000}{220 + 1000} \\approx 180.33 \\Omega"
+                    "content": "R_eq1 = (R₂ × R₃) / (R₂ + R₃)\n      = (220 × 1000) / (220 + 1000)\n      ≈ 180.33 Ω"
                 },
                 {
                     "type": "equation",
-                    "content": "R_{T1} = R_1 + R_{eq1} = 330 + 180.33 = 510.33 \\Omega"
+                    "content": "R_T1 = R₁ + R_eq1\n     = 330 + 180.33\n     = 510.33 Ω"
                 },
                 {
                     "type": "equation",
-                    "content": "I_{source1} = \\frac{V_1}{R_{T1}}"
+                    "content": "I_source1 = V₁ / R_T1"
                 },
                 {
                     "type": "equation",
-                    "content": "I_1 = I_{source1} \\times \\frac{R_2}{R_2 + R_3} \\quad \\text{(Current Divider Rule)}"
+                    "content": "I₁ = I_source1 × (R₂ / (R₂ + R₃))    [Current Divider Rule]"
                 },
                 {
                     "type": "text",
@@ -338,19 +338,19 @@
                 },
                 {
                     "type": "equation",
-                    "content": "R_{eq2} = \\frac{R_1 R_3}{R_1 + R_3} = \\frac{330 \\times 1000}{330 + 1000} \\approx 248.12 \\Omega"
+                    "content": "R_eq2 = (R₁ × R₃) / (R₁ + R₃)\n      = (330 × 1000) / (330 + 1000)\n      ≈ 248.12 Ω"
                 },
                 {
                     "type": "equation",
-                    "content": "R_{T2} = R_2 + R_{eq2} = 220 + 248.12 = 468.12 \\Omega"
+                    "content": "R_T2 = R₂ + R_eq2\n     = 220 + 248.12\n     = 468.12 Ω"
                 },
                 {
                     "type": "equation",
-                    "content": "I_{source2} = \\frac{V_2}{R_{T2}}"
+                    "content": "I_source2 = V₂ / R_T2"
                 },
                 {
                     "type": "equation",
-                    "content": "I_2 = I_{source2} \\times \\frac{R_1}{R_1 + R_3} \\quad \\text{(Current Divider Rule)}"
+                    "content": "I₂ = I_source2 × (R₁ / (R₁ + R₃))    [Current Divider Rule]"
                 },
                 {
                     "type": "text",
@@ -358,7 +358,7 @@
                 },
                 {
                     "type": "equation",
-                    "content": "I_{total(calc)} = I_1 + I_2"
+                    "content": "I_total(calc) = I₁ + I₂"
                 },
                 {
                     "type": "text",
@@ -366,7 +366,7 @@
                 },
                 {
                     "type": "equation",
-                    "content": "\\% Error = \\left| \\frac{I_{total(measured)} - I_{total(calc)}}{I_{total(calc)}} \\right| \\times 100"
+                    "content": "% Error = |(I_total(measured) - I_total(calc)) / I_total(calc)| × 100"
                 }
             ]
         },

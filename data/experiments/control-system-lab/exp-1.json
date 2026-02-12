@@ -49,8 +49,7 @@
                     "content": "The transient response of a control system exhibits damped oscillations before reaching steady state."
                 },
                 {
-                    "type": "equation",
-                    "latex": "G(s) = \\frac{\\omega_n^2}{s^2 + 2\\zeta\\omega_n s + \\omega_n^2}"
+                    "content": "G(s) = ωn² / (s² + 2ζωns + ωn²)"
                 },
                 {
                     "type": "text",

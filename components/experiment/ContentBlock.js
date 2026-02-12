@@ -135,8 +135,9 @@ function CodeBlock({ block }) {
 function EquationBlock({ block }) {
     return (
         <div className={`${styles.contentBlock} ${styles.equation}`}>
-            {/* Using a simple container for now. LaTeX rendering (KaTeX/MathJax) can be added here later */}
-            {block.latex}
+            <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', background: '#f5f5f5', padding: '1rem', borderRadius: '4px' }}>
+                {block.content || block.latex}
+            </pre>
         </div>
     );
 }
