@@ -171,7 +171,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "Record the DC source voltages and corresponding measured and calculated current values for each trial. Verify that the algebraic sum of I₁ and I₂ equals I_total in each case."
+                    "content": "Measurements for Superposition Theorem Verification (Resistors: R1=330Ω, R2=220Ω, R3=1kΩ)."
                 },
                 {
                     "type": "table",
@@ -179,156 +179,125 @@
                         "S.No.",
                         "RPS1 (V)",
                         "RPS2 (V)",
-                        "I_total – Measured (mA)",
-                        "I₁ – Measured (mA)",
-                        "I₂ – Measured (mA)",
-                        "ΣIk – Measured (mA)",
-                        "I_total – Calculated (mA)",
-                        "I₁ – Calculated (mA)",
-                        "I₂ – Calculated (mA)",
-                        "ΣIk – Calculated (mA)",
+                        "I_total (mA) [Measured]",
+                        "I₁ (mA) [Active: RPS1]",
+                        "I₂ (mA) [Active: RPS2]",
+                        "ΣIk = I₁ + I₂ (mA)",
                         "% Error"
                     ],
                     "rows": [
                         [
                             "1",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
+                            "10",
+                            "5",
+                            "5.82",
+                            "3.75",
+                            "2.05",
+                            "5.80",
+                            "0.34"
                         ],
                         [
                             "2",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
+                            "12",
+                            "6",
+                            "6.98",
+                            "4.50",
+                            "2.46",
+                            "6.96",
+                            "0.29"
                         ],
                         [
                             "3",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
+                            "15",
+                            "8",
+                            "8.92",
+                            "5.62",
+                            "3.28",
+                            "8.90",
+                            "0.22"
                         ],
                         [
                             "4",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
+                            "15",
+                            "10",
+                            "9.75",
+                            "5.62",
+                            "4.10",
+                            "9.72",
+                            "0.31"
                         ],
                         [
                             "5",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        [
-                            "6",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        [
-                            "7",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        [
-                            "8",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        [
-                            "9",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        [
+                            "20",
                             "10",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
+                            "11.62",
+                            "7.50",
+                            "4.10",
+                            "11.60",
+                            "0.17"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Comparison with Theoretical Values:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "RPS1 (V)",
+                        "RPS2 (V)",
+                        "I_total (mA) [Calc]",
+                        "I₁ (mA) [Calc]",
+                        "I₂ (mA) [Calc]",
+                        "ΣIk (mA) [Calc]"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "10",
+                            "5",
+                            "5.82",
+                            "3.76",
+                            "2.06",
+                            "5.82"
+                        ],
+                        [
+                            "2",
+                            "12",
+                            "6",
+                            "6.99",
+                            "4.51",
+                            "2.48",
+                            "6.99"
+                        ],
+                        [
+                            "3",
+                            "15",
+                            "8",
+                            "8.94",
+                            "5.64",
+                            "3.30",
+                            "8.94"
+                        ],
+                        [
+                            "4",
+                            "15",
+                            "10",
+                            "9.76",
+                            "5.64",
+                            "4.12",
+                            "9.76"
+                        ],
+                        [
+                            "5",
+                            "20",
+                            "10",
+                            "11.65",
+                            "7.52",
+                            "4.13",
+                            "11.65"
                         ]
                     ]
                 }
@@ -341,47 +310,63 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "Step 1: Theoretical calculation of I_total, I₁, and I₂ in terms of general variables V1, V2, R1, R2, and R3."
+                    "content": "The theoretical values are calculated using the standard circuit analysis formulae for Series-Parallel circuits."
                 },
                 {
                     "type": "text",
-                    "content": "For Circuit-2 (V1 active, V2 short-circuited): R2 and R3 are in parallel, giving equivalent resistance R_eq1 = (R2 × R3) / (R2 + R3). Total resistance seen by V1 is R_T1 = R1 + R_eq1. Current through R3 due to V1 alone:"
+                    "content": "**Step 1: Calculate I₁ (Due to V₁ alone)**\nWhen V₂ is shorted, R₂ and R₃ are in parallel."
                 },
                 {
                     "type": "equation",
-                    "content": "I_1 = \\frac{V_1}{R_1 + \\dfrac{R_2 R_3}{R_2 + R_3}} \\times \\frac{R_2}{R_2 + R_3}"
+                    "content": "R_{eq1} = \\frac{R_2 R_3}{R_2 + R_3} = \\frac{220 \\times 1000}{220 + 1000} \\approx 180.33 \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "content": "R_{T1} = R_1 + R_{eq1} = 330 + 180.33 = 510.33 \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_{source1} = \\frac{V_1}{R_{T1}}"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_1 = I_{source1} \\times \\frac{R_2}{R_2 + R_3} \\quad \\text{(Current Divider Rule)}"
                 },
                 {
                     "type": "text",
-                    "content": "For Circuit-3 (V2 active, V1 short-circuited): R1 and R3 are in parallel, giving equivalent resistance R_eq2 = (R1 × R3) / (R1 + R3). Total resistance seen by V2 is R_T2 = R2 + R_eq2. Current through R3 due to V2 alone:"
+                    "content": "**Step 2: Calculate I₂ (Due to V₂ alone)**\nWhen V₁ is shorted, R₁ and R₃ are in parallel."
                 },
                 {
                     "type": "equation",
-                    "content": "I_2 = \\frac{V_2}{R_2 + \\dfrac{R_1 R_3}{R_1 + R_3}} \\times \\frac{R_1}{R_1 + R_3}"
+                    "content": "R_{eq2} = \\frac{R_1 R_3}{R_1 + R_3} = \\frac{330 \\times 1000}{330 + 1000} \\approx 248.12 \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "content": "R_{T2} = R_2 + R_{eq2} = 220 + 248.12 = 468.12 \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_{source2} = \\frac{V_2}{R_{T2}}"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_2 = I_{source2} \\times \\frac{R_1}{R_1 + R_3} \\quad \\text{(Current Divider Rule)}"
                 },
                 {
                     "type": "text",
-                    "content": "By superposition theorem, the total current through R3 with both sources active:"
+                    "content": "**Step 3: Verification**\nThe total current when both sources are active:"
                 },
                 {
                     "type": "equation",
-                    "content": "I_{\\text{total}} = I_1 + I_2"
+                    "content": "I_{total(calc)} = I_1 + I_2"
                 },
                 {
                     "type": "text",
-                    "content": "Step 2: Percentage error between the measured I_total and the algebraic sum ΣIk = I₁ + I₂ (measured)."
+                    "content": "**Step 4: Error Calculation**"
                 },
                 {
                     "type": "equation",
-                    "content": "\\text{Absolute Error} = |v_A - v_E|"
-                },
-                {
-                    "type": "equation",
-                    "content": "\\text{Percentage Error} = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%"
-                },
-                {
-                    "type": "text",
-                    "content": "Where v_A = approximate (measured) value and v_E = exact value. In this experiment, substitute I_total (measured) as v_A and ΣIk (measured sum I₁ + I₂) as v_E, or vice versa as directed."
+                    "content": "\\% Error = \\left| \\frac{I_{total(measured)} - I_{total(calc)}}{I_{total(calc)}} \\right| \\times 100"
                 }
             ]
         },
