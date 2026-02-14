@@ -2,10 +2,11 @@
     "id": "exp-3",
     "title": "Experimental Verification of Thevenin's Theorem",
     "labId": "basic-electrical-engineering",
-    "status": "Guide Only",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-3",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 90,
         "version": "1.0.3",
