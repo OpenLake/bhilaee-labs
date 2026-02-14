@@ -121,19 +121,14 @@
           "role": "code-screenshot"
         },
         {
-          "type": "image",
-          "assetId": "arduino-code-part3",
-          "caption": "Arduino IDE Code (Part 3: Send Function)",
-          "role": "code-screenshot"
-        },
-        {
           "type": "text",
           "content": "Google Apps Script Code:"
         },
         {
-          "type": "text",
-          "content": "*Note: Google Apps Script screenshot was not provided.*",
-          "role": "note"
+          "type": "image",
+          "assetId": "google-apps-script",
+          "caption": "Google Apps Script Code",
+          "role": "code-screenshot"
         }
       ]
     },
@@ -164,7 +159,7 @@
         },
         {
           "type": "image",
-          "assetId": "google-sheets-log",
+          "assetId": "google-sheet-output",
           "caption": "Google Sheets Showing Logged Data with Timestamp",
           "role": "output-screenshot"
         }

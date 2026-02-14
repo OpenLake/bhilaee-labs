@@ -11,22 +11,22 @@
         "role": "code-screenshot",
         "description": "Arduino IDE Code (Part 2: Loop)"
     },
-    "arduino-code-part3": {
-        "path": "/assets/labs/instrumentation-lab/exp-1/arduino-code-part3.png",
+    "google-sheet-output": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/google-sheet-output.png",
+        "type": "image",
+        "role": "output-screenshot",
+        "description": "Google Sheets Showing Logged Data"
+    },
+    "google-apps-script": {
+        "path": "/assets/labs/instrumentation-lab/exp-1/google-apps-script.png",
         "type": "image",
         "role": "code-screenshot",
-        "description": "Arduino IDE Code (Part 3: Send Function)"
+        "description": "Google Apps Script Code"
     },
     "serial-monitor-output": {
         "path": "/assets/labs/instrumentation-lab/exp-1/serial-monitor-output.png",
         "type": "image",
         "role": "output-screenshot",
-        "description": "Serial Monitor Output Showing Object Detection"
-    },
-    "google-sheets-log": {
-        "path": "/assets/labs/instrumentation-lab/exp-1/google-sheets-log.png",
-        "type": "image",
-        "role": "output-screenshot",
-        "description": "Google Sheets Showing Logged Data with Timestamp"
+        "description": "Serial Monitor Output"
     }
 }
