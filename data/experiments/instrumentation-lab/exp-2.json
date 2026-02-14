@@ -63,8 +63,85 @@
     "theory": {
       "id": "theory",
       "title": "Theory",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1.1 Ultrasonic Sensing Principle**"
+        },
+        {
+          "type": "text",
+          "content": "The HC-SR04 ultrasonic sensor operates on the time-of-flight principle. It emits a burst of sound waves at 40 kHz through its transmitter and listens for the echo reflected from an object. The time between emission and reception is used to determine how far away the object is."
+        },
+        {
+          "type": "text",
+          "content": "The fundamental distance formula is derived from the relationship between speed, time, and distance:"
+        },
+        {
+          "type": "equation",
+          "value": "d = \\frac{v_s \\times t_{echo}}{2}"
+        },
+        {
+          "type": "text",
+          "content": "Here, $v_s \\approx 343$ m/s is the speed of sound in air at standard room temperature, and $t_{echo}$ is the total round-trip pulse duration. The factor of 2 in the denominator accounts for the fact that the sound wave must travel to the target and return to the sensor."
+        },
+        {
+          "type": "text",
+          "content": "**1.2 HC-SR04 Trigger and Echo Timing**"
+        },
+        {
+          "type": "text",
+          "content": "To initiate a measurement, the ESP32 applies a HIGH pulse of minimum 10 µs duration to the TRIG pin of the HC-SR04. The sensor responds by transmitting eight ultrasonic pulses and simultaneously raising the ECHO pin HIGH. The ECHO pin remains HIGH for a duration directly proportional to the round-trip travel time. The ESP32 measures this pulse width using its internal microsecond timer via the pulseIn() function."
+        },
+        {
+          "type": "text",
+          "content": "The HC-SR04 operates effectively within a range of approximately 2 cm to 400 cm, with a typical accuracy of ±3 mm under controlled conditions. Objects positioned beyond this range or at steep angles to the sensor axis may produce no detectable echo, causing pulseIn() to return zero after its timeout period."
+        },
+        {
+          "type": "text",
+          "content": "**1.3 ESP32 Microcontroller and Timer Capability**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 is a dual-core 32-bit microcontroller capable of running at up to 240 MHz. It incorporates built-in Wi-Fi (IEEE 802.11 b/g/n) and Bluetooth radios, making it well suited for IoT applications. In this experiment, the ESP32 utilises its 1 µs resolution hardware timer to capture the ECHO pulse width. The resulting measurement uncertainty in distance due to timer quantisation is:"
+        },
+        {
+          "type": "equation",
+          "value": "\\delta d = \\frac{v_s \\times \\delta t}{2}"
+        },
+        {
+          "type": "text",
+          "content": "where $\\delta t = 1$ µs is the timer resolution. This yields a quantisation-limited distance uncertainty of approximately 0.017 cm, which is negligible for practical measurements."
+        },
+        {
+          "type": "text",
+          "content": "**1.4 Wi-Fi Communication in Station Mode**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 connects to a local Wi-Fi access point in Station (STA) mode and acquires a dynamic IP address through DHCP. Once connected, it sends distance data to a Google Apps Script web application using HTTP GET requests. The measurement value is passed as a URL query parameter. The Apps Script endpoint receives each request, parses the distance value, and appends a new row to a designated Google Sheet, automatically generating a server-side timestamp for each entry."
+        },
+        {
+          "type": "text",
+          "content": "The total time for a single cloud log operation can be expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "T_{log} = T_{DNS} + T_{TCP} + T_{TLS} + T_{HTTP} + T_{script}"
+        },
+        {
+          "type": "text",
+          "content": "Under normal network conditions, $T_{log}$ typically falls between 300 ms and 2 s. The firmware sampling interval should be configured to exceed $T_{log}$ to avoid overlapping HTTP requests and ensure every measurement is individually recorded."
+        },
+        {
+          "type": "text",
+          "content": "**1.5 End-to-End Data Pipeline**"
+        },
+        {
+          "type": "text",
+          "content": "The complete measurement and logging chain in this experiment is as follows: the HC-SR04 transducer captures the reflected echo and outputs a pulse on the ECHO pin. The ESP32 GPIO reads and times this pulse, computes the corresponding distance value, and displays it on the Serial Monitor via UART. Simultaneously, the computed value is packaged into an HTTP GET request and transmitted over Wi-Fi to the Google Apps Script web application, which writes the value and timestamp into Google Sheets for persistent cloud storage and analysis."
+        }
+      ]
     },
     "preLab": {
       "id": "preLab",
@@ -216,8 +293,27 @@
     "postLab": {
       "id": "postLab",
       "title": "Post-Lab / Viva Voce",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The following questions are designed to assess conceptual understanding and applied reasoning based on the experiment."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** Explain why the echo time is divided by 2 in the distance formula. What would be the practical consequence if this division were omitted in the firmware?\n\n**A:** The ultrasonic pulse travels from the sensor to the object and then back to the receiver, meaning the recorded echo time represents the total round-trip duration. The actual one-way distance is therefore half this value multiplied by the speed of sound. If the division by 2 were omitted, every computed distance would be twice the true value, introducing a consistent factor-of-2 systematic error across all readings. This would not average out over repeated measurements since both readings in any pair would be equally overestimated.",
+            "**Q:** The HC-SR04 has a stated maximum range of 400 cm. What physical factors limit this range, and how should the firmware handle a measurement attempt when an object is beyond this distance?\n\n**A:** At long distances, the emitted ultrasonic beam diverges and the reflected signal attenuates significantly, eventually falling below the receiver's detection threshold. Additionally, the sensor applies an internal echo timeout of approximately 38 ms. If no echo is received within this window, the ECHO pin is never raised, and pulseIn() returns 0. Firmware must explicitly check for a zero return value and discard that sample rather than passing it into the distance calculation, since using it would yield a spurious distance of 0 cm and corrupt any subsequent analysis.",
+            "**Q:** What is the role of the Google Apps Script in this experiment, and why is the timestamp generated server-side rather than on the ESP32?\n\n**A:** The Google Apps Script acts as a serverless HTTP endpoint that receives data from the ESP32 and writes it into Google Sheets. The timestamp is generated server-side because the ESP32 does not have a battery-backed real-time clock and loses time reference on power cycles or resets. The server always has an accurate system clock. However, this approach introduces a latency offset between the actual measurement time and the logged timestamp equal to the network round-trip delay, which can range from a few hundred milliseconds to over a second depending on network conditions.",
+            "**Q:** If two consecutive distance readings are $d_1 = 45.2$ cm and $d_2 = 38.7$ cm, taken with a sampling interval of 200 ms, what is the computed approach speed of the object?\n\n**A:** The speed is computed as the magnitude of the change in distance divided by the time interval: $v = |d_2 - d_1| / \\Delta t = |38.7 - 45.2| / 0.2 = 6.5 / 0.2 = 32.5$ cm/s. This represents the radial speed of the object along the sensor axis. It does not account for any transverse component of motion, which the sensor cannot detect.",
+            "**Q:** A student notices that the Serial Monitor shows consistent distance readings but no data appears in Google Sheets. List three possible causes and the corresponding diagnostic steps.\n\n**A:** First, the Wi-Fi credentials entered in the firmware may be incorrect or the network may be unavailable — the student should check the Serial Monitor for a Wi-Fi connection confirmation message and verify that the SSID and password match the access point. Second, the Google Apps Script may not have been deployed as a web application with public access permissions — the student should re-open the Apps Script editor, check deployment settings, and ensure access is set to 'Anyone'. Third, the web application URL hardcoded in the ESP32 program may be outdated or contain a typographical error — the student should copy the URL again from the current deployment and re-upload the firmware.",
+            "**Q:** How does the angle between the object's surface and the sensor axis affect measurement accuracy, and is this error random or systematic?\n\n**A:** The HC-SR04 only measures the radial distance along its acoustic axis. If the reflecting surface is tilted at an angle relative to this axis, a significant portion of the sound energy is reflected away from the receiver rather than back toward it. This reduces echo signal strength and can cause intermittent missed detections, introducing random errors when readings drop out. For objects moving at an angle to the axis, the measured rate of change of distance corresponds to only the radial velocity component $v\\cos\\theta$, systematically underestimating the true speed. The geometric error is systematic while the signal-loss effect is stochastic.",
+            "**Q:** Why is it important to set the firmware sampling interval longer than the expected HTTP request completion time $T_{log}$?\n\n**A:** If the sampling interval is shorter than $T_{log}$, a new HTTP GET request is initiated before the previous one has completed. Since the ESP32 runs the Arduino loop on a single core in its default configuration, this can cause the pending request to be abandoned or for the TCP stack to become congested, resulting in dropped data points, Wi-Fi disconnections, or watchdog timer resets. Setting the sampling interval greater than $T_{log}$ ensures that each HTTP transaction fully completes before the next measurement cycle begins, maintaining reliable one-to-one correspondence between measurements and logged rows.",
+            "**Q:** What modification to the experiment setup and firmware would be required to also log acceleration in addition to distance?\n\n**A:** To compute acceleration, at least three consecutive distance measurements are required. Using a central difference approximation, instantaneous speed can first be estimated between pairs of readings, and then acceleration computed as $a = (v_3 - v_1)/(2\\Delta t)$ where $v_1$ and $v_3$ are speeds derived from successive distance pairs. The firmware must maintain a rolling buffer of the last three distance readings, compute both speed and acceleration after each new sample, and include the acceleration value as an additional query parameter in the HTTP GET request. The Apps Script must be updated to extract this parameter and write it into a dedicated column in the Google Sheet. No additional hardware is needed."
+          ]
+        }
+      ]
     },
     "resources": {
       "id": "resources",
