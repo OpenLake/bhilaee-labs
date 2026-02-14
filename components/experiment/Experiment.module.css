@@ -37,6 +37,10 @@
     margin-bottom: 0.5rem;
 }
 
+.qaListItem {
+    margin-bottom: 2rem;
+}
+
 /* Images */
 .imageContainer {
     margin: 2rem 0;
@@ -130,6 +134,16 @@
 }
 
 /* Equations */
+.questionText {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: rgb(240, 245, 255);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
 .equation {
     margin: 1.5rem 0;
     padding: 1rem;

@@ -62,8 +62,126 @@
     "theory": {
       "id": "theory",
       "title": "Theory",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1.1 Rain Sensor Working Principle**"
+        },
+        {
+          "type": "text",
+          "content": "A rain sensor module consists of a printed circuit board with an interdigitated copper trace pattern acting as the sensing surface, paired with a control board housing the signal conditioning circuitry. When rainwater bridges the exposed traces, it forms a conductive path between them. The electrical resistance of this path depends on the amount of water present — a sparse drizzle leaves isolated droplets with high inter-trace resistance, while heavy rainfall creates a continuous water film with significantly lower resistance."
+        },
+        {
+          "type": "text",
+          "content": "The control board contains a voltage divider where the sensor pad resistance $R_{pad}$ acts as the variable element. The analog output voltage is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{out} = V_{cc} \\cdot \\frac{R_{fixed}}{R_{fixed} + R_{pad}}"
+        },
+        {
+          "type": "text",
+          "content": "As rainfall increases, $R_{pad}$ decreases and $V_{out}$ rises. This continuous voltage represents the analog output (AO) of the sensor, which reflects rain intensity quantitatively."
+        },
+        {
+          "type": "text",
+          "content": "**1.2 Digital Output and LM393 Comparator**"
+        },
+        {
+          "type": "text",
+          "content": "The control board includes an LM393 voltage comparator that compares $V_{out}$ against a user-adjustable reference voltage $V_{ref}$ set via an onboard potentiometer. The digital output (DO) is determined as:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{DO} = \\begin{cases} \\text{LOW} & \\text{if } V_{out} \\geq V_{ref} \\quad \\text{(Rain Detected)} \\\\ \\text{HIGH} & \\text{if } V_{out} < V_{ref} \\quad \\text{(No Rain)} \\end{cases}"
+        },
+        {
+          "type": "text",
+          "content": "The DO pin thus provides a simple binary wet/dry indicator, while the AO pin provides a graduated analog signal proportional to rain intensity. Both outputs are available simultaneously, making the module suitable for both threshold-based triggering and quantitative intensity measurement."
+        },
+        {
+          "type": "text",
+          "content": "**1.3 ESP32 ADC and Signal Acquisition**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 microcontroller reads the analog output of the rain sensor through its built-in 12-bit Successive Approximation Register (SAR) ADC. The ADC maps the input voltage range 0–3.3 V to integer codes 0–4095:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{ADC\\_code} = \\left\\lfloor \\frac{V_{in} \\times 4095}{3.3} \\right\\rfloor"
+        },
+        {
+          "type": "text",
+          "content": "The voltage resolution per least significant bit (LSB) is:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{LSB} = \\frac{3.3}{4095} \\approx 0.806 \\text{ mV}"
+        },
+        {
+          "type": "text",
+          "content": "It is important to note that the ESP32 ADC exhibits nonlinearity near 0 V and 3.3 V. For reliable readings, the sensor's operating output should be kept within 0.15–3.1 V. The digital output of the rain sensor is read directly on a GPIO pin configured as a digital input, requiring no ADC conversion."
+        },
+        {
+          "type": "text",
+          "content": "**1.4 Rain Intensity Classification**"
+        },
+        {
+          "type": "text",
+          "content": "The raw ADC value from the analog output can be mapped to descriptive intensity levels based on empirically determined thresholds for the specific sensor module. A typical classification scheme is:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "ADC Range",
+            "Intensity Level"
+          ],
+          "rows": [
+            [
+              "3500 – 4095",
+              "Dry / No Rain"
+            ],
+            [
+              "2500 – 3499",
+              "Light Rain"
+            ],
+            [
+              "1500 – 2499",
+              "Moderate Rain"
+            ],
+            [
+              "0 – 1499",
+              "Heavy Rain"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "These thresholds are indicative and must be calibrated for each individual sensor unit and deployment environment, as trace geometry, surface oxidation, and water mineral content all affect the absolute resistance values."
+        },
+        {
+          "type": "text",
+          "content": "**1.5 Wi-Fi Connectivity and Cloud Data Logging**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 connects to a Wi-Fi network in Station (STA) mode using the IEEE 802.11 b/g/n protocol. Once connected and assigned an IP address via DHCP, it sends the sensor data to a Google Apps Script web application using HTTP GET requests, with sensor values encoded as URL query parameters. The Apps Script function appends each received record as a new row in a Google Sheet, along with a server-side timestamp."
+        },
+        {
+          "type": "text",
+          "content": "The end-to-end round-trip latency for each log entry is:"
+        },
+        {
+          "type": "equation",
+          "value": "T_{total} = T_{TCP} + T_{TLS} + T_{HTTP\\_req} + T_{script\\_exec} + T_{HTTP\\_resp}"
+        },
+        {
+          "type": "text",
+          "content": "Under typical network conditions, $T_{total}$ ranges from 300 ms to 2 s. The sampling interval configured in the ESP32 firmware must always exceed $T_{total}$ to prevent overlapping requests and ensure each reading is logged correctly. The complete data flow is: Rain Sensor → ESP32 ADC/GPIO → Wi-Fi → Internet → Google Apps Script → Google Sheets."
+        }
+      ]
     },
     "preLab": {
       "id": "preLab",
@@ -213,8 +331,29 @@
     "postLab": {
       "id": "postLab",
       "title": "Post-Lab / Viva Voce",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are concept- and application-based, ranging from medium to hard difficulty."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The rain sensor produces both an analog and a digital output simultaneously. Explain the internal circuit mechanism that generates each, and why they originate from the same sensing element.\n\n**A:** Both outputs originate from the same resistive sensor pad. The pad resistance $R_{pad}$ forms a voltage divider with $R_{fixed}$ on the control board, producing $V_{out}$ which is the AO directly. This same $V_{out}$ is fed into an LM393 comparator alongside a potentiometer-set reference $V_{ref}$. The comparator's open-collector output switches LOW when $V_{out} \\geq V_{ref}$, producing the DO. The AO thus reflects continuous intensity while DO reflects whether a set intensity threshold has been crossed — both derived from one physical measurement.",
+            "**Q:** A student notices that the analog ADC reading changes even when there is no new rainfall. What are two plausible physical reasons for this drift, and how can each be addressed?\n\n**A:** First, residual water evaporating slowly from the sensor surface causes $R_{pad}$ to gradually increase, shifting the ADC reading back toward dry values — this is expected transient behaviour and not a fault. Second, electrolytic corrosion of the copper traces due to prolonged current flow through the conductive water layer oxidises the anode trace, permanently increasing its contact resistance and causing a long-term upward drift in dry-state readings. The first is addressed by allowing sufficient drying time between tests; the second is mitigated by using pulsed power to the sensor (applying $V_{cc}$ only during sampling) to limit electrochemical reaction time.",
+            "**Q:** Why is the relationship between ADC reading and actual rain intensity non-linear, even though the sensor appears to follow a simple voltage divider formula?\n\n**A:** The voltage divider itself introduces a hyperbolic non-linearity: $V_{out} = V_{cc} \\cdot R_{fixed} / (R_{fixed} + R_{pad})$, so equal decrements in $R_{pad}$ produce diminishing increments in $V_{out}$ as $R_{pad}$ approaches zero. Beyond the circuit, the physics of water bridging the traces is inherently non-linear — the first few droplets create isolated conductive paths with disproportionately large resistance drops, while additional water beyond surface saturation contributes less incrementally. Dissolved mineral content and surface contamination further shift the resistance independently of water volume.",
+            "**Q:** The digital output threshold is set using the onboard potentiometer. What are the practical consequences of setting $V_{ref}$ too high versus too low for a rain detection alarm system?\n\n**A:** Setting $V_{ref}$ too high means the comparator triggers only when $V_{out}$ is very large, i.e., only under heavy rainfall — light or moderate rain goes undetected, causing missed alerts. Setting $V_{ref}$ too low means the comparator triggers even for minimal moisture such as humidity condensation on the sensor surface, causing false alarms. The correct setting requires empirical calibration: expose the sensor to the minimum rainfall intensity considered actionable, observe $V_{out}$ on the Serial Monitor, and set the potentiometer so $V_{ref}$ sits just below that value.",
+            "**Q:** The ESP32 ADC is known to be nonlinear near 0 V and 3.3 V. Under what rain conditions does this become a practical problem, and what can be done in firmware to compensate?\n\n**A:** Near 0 V (dry sensor, high $R_{pad}$) and near 3.3 V (heavily saturated sensor, very low $R_{pad}$), the SAR ADC exhibits ±10–20 LSB integral nonlinearity, making readings unreliable at both extremes. This means very light rain and very heavy rain — the two conditions most important to distinguish — are the least accurately measured. Firmware compensation: apply Espressif's esp_adc_cal_characterize() API with factory eFuse calibration coefficients to correct for device-specific offset and gain error; additionally, restrict the intensity classification thresholds to the reliable ADC range of approximately 200–3900 codes.",
+            "**Q:** Compare what information is lost when only the digital output is logged versus logging both analog and digital outputs over a 30-minute rain event.\n\n**A:** The digital output only records the moments the rain crossed the set threshold — it produces a binary time series (0 or 1) that indicates rain presence but carries no information about whether it was drizzling or pouring, how intensity evolved over time, or when a peak occurred. Logging only DO over 30 minutes would show, for example, a single continuous LOW with no internal structure. The analog output logged alongside reveals the full intensity profile: onset ramp, peak intensity, fluctuations during the event, and the gradual recession as rain eases — all of which are lost with DO-only logging.",
+            "**Q:** Google Apps Script imposes daily execution quotas. How would you design the ESP32 firmware to handle quota exhaustion gracefully without losing any sensor readings?\n\n**A:** The firmware should check the HTTP response code after every transmission. A 429 or 503 response, or a connection timeout, indicates the endpoint is unavailable. On such failure, the firmware should: store the failed reading along with its locally-acquired timestamp in the ESP32's SPIFFS file system as a buffered entry; enter an exponential back-off before retrying; and once successful transmission resumes, flush all buffered entries to Google Sheets in chronological order before returning to normal operation. The sampling interval should also be set conservatively to avoid approaching the quota ceiling during extended experiments.",
+            "**Q:** The Google Sheet timestamps are generated server-side by Apps Script. Why might these timestamps be inaccurate for scientific analysis, and how would you implement more precise timestamping?\n\n**A:** Server-side timestamps record when Google's servers processed the HTTP request, not when the physical rain measurement was taken. Variable network latency (0.3–2 s per request), Wi-Fi reconnection delays, and buffered retransmissions all introduce temporal offsets between the actual measurement event and its recorded time. For precise timestamping: synchronise the ESP32's internal RTC with an NTP server at boot using configTime() pointing to pool.ntp.org; record the local time via time() at the exact instant the ADC sample is taken; and embed this acquisition timestamp as a parameter in the HTTP GET request so it is stored in the sheet independently of server processing time.",
+            "**Q:** If two identical rain sensor modules from the same batch are tested side by side under the same rainfall, their ADC readings differ by 200 counts. What are the likely causes, and how should this be handled in a multi-sensor deployment?\n\n**A:** Unit-to-unit variation arises from: differences in copper trace surface oxidation state affecting baseline resistance; slight differences in the onboard $R_{fixed}$ resistor tolerance (typically ±5%); and variation in the LM393 input offset voltage affecting DO threshold. In a multi-sensor deployment, each sensor must be independently calibrated by recording its individual dry-state and wet-state ADC codes and computing intensity using its own calibration pair: Intensity (%) = $(ADC_{dry,i} - ADC_{measured,i}) / (ADC_{dry,i} - ADC_{wet,i}) \\times 100$. Applying a single global calibration across uncalibrated sensors will produce systematically incorrect readings for all but the reference unit.",
+            "**Q:** Explain why the rain sensor should not be left powered continuously between experiments, and what specific damage mechanism is responsible.\n\n**A:** With continuous DC power applied across the wet sensor traces, electrolysis occurs in the conductive water layer. The positive trace (anode) undergoes oxidation — copper ions dissolve into solution — while the negative trace (cathode) accumulates deposited ions. Over repeated wet exposures with sustained power, the anode trace gradually thins and its resistance increases permanently, raising the dry-state baseline and compressing the usable dynamic range of the sensor. This is not recoverable by cleaning. The mitigation is to power the sensor only during sampling windows using a GPIO-controlled transistor switch or by leveraging the ESP32 deep-sleep cycle, keeping the average duty cycle below 5%."
+          ]
+        }
+      ]
     },
     "resources": {
       "id": "resources",

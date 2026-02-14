@@ -29,49 +29,60 @@ export default function ContentBlock({ block, assets }) {
 
 const processRichText = (text) => {
     if (!text) return null;
+
+    // Check if this is a Q&A format (heuristic: contains "**Q:**" or "Q:")
+    const isQA = text.includes("**Q:**") || text.startsWith("Q:");
+
     // Split by newlines first
-    return text.split('\n').map((line, i) => (
-        <span key={i}>
-            {/* 
-               Regex explanation:
-               1. \[([^\]]+)\]\(([^)]+)\) -> Matches [text](url)
-               2. (\*\*.*?\*\*) -> Matches **bold**
-               3. (\*.*?\*) -> Matches *italic*
-               4. (\$[^\$]+\$) -> Matches $inline math$
-            */}
-            {line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*|\$[^\$]+\$)/g).map((part, j) => {
-                // Link: [text](url)
-                const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-                if (linkMatch) {
-                    return (
-                        <a
-                            key={j}
-                            href={linkMatch[2]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: '#228be6', textDecoration: 'underline' }}
-                        >
-                            {linkMatch[1]}
-                        </a>
-                    );
-                }
-                // Bold: **text**
-                if (part.startsWith('**') && part.endsWith('**')) {
-                    return <strong key={j}>{part.slice(2, -2)}</strong>;
-                }
-                // Italic: *text*
-                if (part.startsWith('*') && part.endsWith('*')) {
-                    return <em key={j}>{part.slice(1, -1)}</em>;
-                }
-                // Inline Math: $latex$
-                if (part.startsWith('$') && part.endsWith('$')) {
-                    return <InlineMath key={j} math={part.slice(1, -1)} />;
-                }
-                return part;
-            })}
-            {i < text.split('\n').length - 1 && <br />}
-        </span>
-    ));
+    return text.split('\n').map((line, i) => {
+        // Special styling for Question lines
+        const isQuestionLine = line.trim().startsWith("**Q:**") || line.trim().startsWith("Q:");
+
+        const content = (
+            <span key={i} className={isQuestionLine ? styles.questionText : undefined}>
+                {/* 
+                   Regex explanation:
+                   1. \[([^\]]+)\]\(([^)]+)\) -> Matches [text](url)
+                   2. (\*\*.*?\*\*) -> Matches **bold**
+                   3. (\*.*?\*) -> Matches *italic*
+                   4. (\$[^\$]+\$) -> Matches $inline math$
+                */}
+                {line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*|\$[^\$]+\$)/g).map((part, j) => {
+                    // Link: [text](url)
+                    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                    if (linkMatch) {
+                        return (
+                            <a
+                                key={j}
+                                href={linkMatch[2]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#228be6', textDecoration: 'underline' }}
+                            >
+                                {linkMatch[1]}
+                            </a>
+                        );
+                    }
+                    // Bold: **text**
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={j}>{part.slice(2, -2)}</strong>;
+                    }
+                    // Italic: *text*
+                    if (part.startsWith('*') && part.endsWith('*')) {
+                        return <em key={j}>{part.slice(1, -1)}</em>;
+                    }
+                    // Inline Math: $latex$
+                    if (part.startsWith('$') && part.endsWith('$')) {
+                        return <InlineMath key={j} math={part.slice(1, -1)} />;
+                    }
+                    return part;
+                })}
+                {i < text.split('\n').length - 1 && <br />}
+            </span>
+        );
+
+        return content;
+    });
 };
 
 function RichText({ block }) {
@@ -88,11 +99,25 @@ function ListBlock({ block }) {
         <div className={styles.contentBlock}>
             {block.style === 'ordered' ? (
                 <ol className={`${styles.list} ${listClass}`}>
-                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{processRichText(item)}</li>)}
+                    {block.items.map((item, i) => {
+                        const isQAItem = typeof item === 'string' && (item.trim().startsWith('Q:') || item.trim().startsWith('**Q:**'));
+                        return (
+                            <li key={i} className={`${styles.listItem} ${isQAItem ? styles.qaListItem : ''}`}>
+                                {processRichText(item)}
+                            </li>
+                        );
+                    })}
                 </ol>
             ) : (
                 <ul className={`${styles.list} ${listClass}`}>
-                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{processRichText(item)}</li>)}
+                    {block.items.map((item, i) => {
+                        const isQAItem = typeof item === 'string' && (item.trim().startsWith('Q:') || item.trim().startsWith('**Q:**'));
+                        return (
+                            <li key={i} className={`${styles.listItem} ${isQAItem ? styles.qaListItem : ''}`}>
+                                {processRichText(item)}
+                            </li>
+                        );
+                    })}
                 </ul>
             )}
         </div>
