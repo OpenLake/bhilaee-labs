@@ -2,10 +2,11 @@
     "id": "exp-4",
     "title": "Transient Response of Series RL, RC and RLC Circuits",
     "labId": "basic-electrical-engineering",
-    "status": "Guide Only",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-4",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.0.0",
@@ -40,51 +41,51 @@
                     "rows": [
                         [
                             "1",
-                            "Digital Storage Oscilloscope (DSO)",
+                            "Bread board",
                             "-",
-                            "-"
+                            "1"
                         ],
                         [
                             "2",
-                            "Function Generator / AC Supply",
-                            "-",
-                            "-"
+                            "Resistor",
+                            "1 kΩ",
+                            "1"
                         ],
                         [
                             "3",
-                            "Resistor",
-                            "-",
-                            "-"
+                            "Inductor",
+                            "10 mH",
+                            "1"
                         ],
                         [
                             "4",
-                            "Inductor",
-                            "-",
-                            "-"
+                            "Capacitor",
+                            "0.1 μF",
+                            "1"
                         ],
                         [
                             "5",
-                            "Capacitor",
+                            "Digital Storage Oscilloscope (DSO)",
                             "-",
-                            "-"
+                            "1"
                         ],
                         [
                             "6",
-                            "Bread Board",
-                            "-",
-                            "-"
+                            "Function Generator / AC Supply",
+                            "0–20 V, 1 Hz – 1 MHz",
+                            "1"
                         ],
                         [
                             "7",
-                            "Connecting Wires",
+                            "CRO Probes",
                             "-",
-                            "-"
+                            "2"
                         ],
                         [
                             "8",
-                            "CRO Probes",
+                            "Connecting wires",
                             "-",
-                            "-"
+                            "As per need"
                         ]
                     ]
                 }
