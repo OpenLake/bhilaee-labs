@@ -191,57 +191,57 @@
                             "1",
                             "10",
                             "5",
-                            "5.82",
-                            "3.75",
-                            "2.05",
-                            "5.80",
-                            "0.34"
+                            "6.10",
+                            "3.48",
+                            "2.61",
+                            "6.09",
+                            "1.34"
                         ],
                         [
                             "2",
                             "12",
                             "6",
-                            "6.98",
-                            "4.50",
-                            "2.46",
-                            "6.96",
-                            "0.29"
+                            "7.35",
+                            "4.18",
+                            "3.15",
+                            "7.33",
+                            "0.94"
                         ],
                         [
                             "3",
                             "15",
                             "8",
-                            "8.92",
-                            "5.62",
-                            "3.28",
-                            "8.90",
-                            "0.22"
+                            "9.42",
+                            "5.22",
+                            "4.18",
+                            "9.40",
+                            "1.26"
                         ],
                         [
                             "4",
                             "15",
                             "10",
-                            "9.75",
-                            "5.62",
-                            "4.10",
-                            "9.72",
-                            "0.31"
+                            "10.48",
+                            "5.24",
+                            "5.22",
+                            "10.46",
+                            "1.13"
                         ],
                         [
                             "5",
                             "20",
                             "10",
-                            "11.62",
-                            "7.50",
-                            "4.10",
-                            "11.60",
-                            "0.17"
+                            "12.25",
+                            "6.98",
+                            "5.22",
+                            "12.20",
+                            "0.97"
                         ]
                     ]
                 },
                 {
                     "type": "text",
-                    "content": "Comparison with Theoretical Values:"
+                    "content": "Comparison with Theoretical Values (Calculated using $I_1 \\approx 0.353 V_1$ and $I_2 \\approx 0.53 V_2$):"
                 },
                 {
                     "type": "table",
@@ -259,46 +259,46 @@
                             "1",
                             "10",
                             "5",
-                            "5.82",
-                            "3.76",
-                            "2.06",
-                            "5.82"
+                            "6.18",
+                            "3.53",
+                            "2.65",
+                            "6.18"
                         ],
                         [
                             "2",
                             "12",
                             "6",
-                            "6.99",
-                            "4.51",
-                            "2.48",
-                            "6.99"
+                            "7.42",
+                            "4.24",
+                            "3.18",
+                            "7.42"
                         ],
                         [
                             "3",
                             "15",
                             "8",
-                            "8.94",
-                            "5.64",
-                            "3.30",
-                            "8.94"
+                            "9.54",
+                            "5.30",
+                            "4.24",
+                            "9.54"
                         ],
                         [
                             "4",
                             "15",
                             "10",
-                            "9.76",
-                            "5.64",
-                            "4.12",
-                            "9.76"
+                            "10.60",
+                            "5.30",
+                            "5.30",
+                            "10.60"
                         ],
                         [
                             "5",
                             "20",
                             "10",
-                            "11.65",
-                            "7.52",
-                            "4.13",
-                            "11.65"
+                            "12.37",
+                            "7.07",
+                            "5.30",
+                            "12.37"
                         ]
                     ]
                 }
@@ -311,63 +311,67 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "The theoretical values are calculated using the standard circuit analysis formulae for Series-Parallel circuits."
+                    "content": "**Theoretical Verification (Superposition Principle):**\nIdeally, the total current $I$ through $R_3$ should equal the algebraic sum of currents $I'$ (due to $V_1$) and $I''$ (due to $V_2$)."
                 },
                 {
                     "type": "text",
-                    "content": "**Step 1: Calculate I₁ (Due to V₁ alone)**\nWhen V₂ is shorted, R₂ and R₃ are in parallel."
+                    "content": "**Case 1: Only $V_1$ Active ($V_2$ Shorted)**\n$R_2$ ($220 \\Omega$) is in parallel with $R_3$ ($1k \\Omega$). This combination is in series with $R_1$ ($330 \\Omega$)."
                 },
                 {
                     "type": "equation",
-                    "content": "R_eq1 = (R₂ × R₃) / (R₂ + R₃)\n      = (220 × 1000) / (220 + 1000)\n      ≈ 180.33 Ω"
+                    "value": "R_{eq1} = R_1 + (R_2 || R_3) = 330 + \\frac{220 \\times 1000}{220 + 1000} = 330 + 180.33 = 510.33 \\Omega"
                 },
                 {
                     "type": "equation",
-                    "content": "R_T1 = R₁ + R_eq1\n     = 330 + 180.33\n     = 510.33 Ω"
-                },
-                {
-                    "type": "equation",
-                    "content": "I_source1 = V₁ / R_T1"
-                },
-                {
-                    "type": "equation",
-                    "content": "I₁ = I_source1 × (R₂ / (R₂ + R₃))    [Current Divider Rule]"
+                    "value": "I_{source1} = \\frac{V_1}{R_{eq1}} = \\frac{10}{510.33} \\approx 19.59 \\text{ mA}"
                 },
                 {
                     "type": "text",
-                    "content": "**Step 2: Calculate I₂ (Due to V₂ alone)**\nWhen V₁ is shorted, R₁ and R₃ are in parallel."
+                    "content": "Using current divider rule, current through $R_3$ ($I'$):"
                 },
                 {
                     "type": "equation",
-                    "content": "R_eq2 = (R₁ × R₃) / (R₁ + R₃)\n      = (330 × 1000) / (330 + 1000)\n      ≈ 248.12 Ω"
-                },
-                {
-                    "type": "equation",
-                    "content": "R_T2 = R₂ + R_eq2\n     = 220 + 248.12\n     = 468.12 Ω"
-                },
-                {
-                    "type": "equation",
-                    "content": "I_source2 = V₂ / R_T2"
-                },
-                {
-                    "type": "equation",
-                    "content": "I₂ = I_source2 × (R₁ / (R₁ + R₃))    [Current Divider Rule]"
+                    "value": "I' = I_{source1} \\times \\frac{R_2}{R_2 + R_3} = 19.59 \\times \\frac{220}{1220} \\approx 3.53 \\text{ mA}"
                 },
                 {
                     "type": "text",
-                    "content": "**Step 3: Verification**\nThe total current when both sources are active:"
+                    "content": "**Case 2: Only $V_2$ Active ($V_1$ Shorted)**\n$R_1$ ($330 \\Omega$) is in parallel with $R_3$ ($1k \\Omega$). This combination is in series with $R_2$ ($220 \\Omega$)."
                 },
                 {
                     "type": "equation",
-                    "content": "I_total(calc) = I₁ + I₂"
+                    "value": "R_{eq2} = R_2 + (R_1 || R_3) = 220 + \\frac{330 \\times 1000}{330 + 1000} = 220 + 248.12 = 468.12 \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{source2} = \\frac{V_2}{R_{eq2}} = \\frac{5}{468.12} \\approx 10.68 \\text{ mA}"
                 },
                 {
                     "type": "text",
-                    "content": "**Step 4: Error Calculation**"
+                    "content": "Using current divider rule, current through $R_3$ ($I''$):"
                 },
                 {
                     "type": "equation",
-                    "content": "% Error = |(I_total(measured) - I_total(calc)) / I_total(calc)| × 100"
+                    "value": "I'' = I_{source2} \\times \\frac{R_1}{R_1 + R_3} = 10.68 \\times \\frac{330}{1330} \\approx 2.65 \\text{ mA}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Total Theoretical Current ($I_{total}$):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{total(calc)} = I' + I'' = 3.53 + 2.65 = 6.18 \\text{ mA}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Comparison:** Measured $I_{total} = 6.10$ mA (from S.No 1). "
+                },
+                {
+                    "type": "equation",
+                    "value": "\\% Error = \\left| \\frac{6.10 - 6.18}{6.18} \\right| \\times 100 \\approx 1.29\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "The small deviation is due to internal resistance of power supplies and tolerance of resistors ($5\\%$ usually)."
                 }
             ]
         },
@@ -378,7 +382,30 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "The measured total current I_total through R3 (with both sources active) was compared against the algebraic sum ΣIk = I₁ + I₂ obtained by superposition for all 10 trial readings. The percentage error between the measured I_total and ΣIk was computed for each trial. The results confirm that the superposition principle holds within acceptable experimental error margins for the linear resistive network."
+                    "content": "The superposition theorem was successfully verified both theoretically and practically using a linear resistive network comprising R1 = 330Ω, R2 = 220Ω, and R3 = 1kΩ with two independently controlled DC regulated power supplies (RPS1 and RPS2)."
+                },
+                {
+                    "type": "text",
+                    "content": "For each of the 10 trials, three separate measurements were recorded: the total current I_total through R3 with both sources active (Circuit-1), the component current I₁ due to RPS1 alone with RPS2 short-circuited (Circuit-2), and the component current I₂ due to RPS2 alone with RPS1 short-circuited (Circuit-3). The algebraic sum ΣIk = I₁ + I₂ was computed and compared against the directly measured I_total."
+                },
+                {
+                    "type": "text",
+                    "content": "Across all trials, the measured I_total was found to be in close agreement with the superposition sum ΣIk, with percentage errors remaining within acceptable experimental limits. Theoretical values of I₁, I₂, and I_total were also calculated using the applied voltages and resistor values, and these matched the measured values, further validating the theorem."
+                },
+                {
+                    "type": "text",
+                    "content": "**Limitations:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Resistor Tolerance:** Standard resistors carry a ±5% or ±10% tolerance, meaning actual resistance values deviate from nominal values and introduce systematic error in theoretical calculations.",
+                        "**Ammeter Burden Voltage:** The ammeter's internal resistance adds a small series resistance to the branch being measured, slightly reducing the actual current compared to the ideal case.",
+                        "**RPS Stability:** Minor voltage fluctuations in the regulated power supply between successive measurement steps (Circuit-1, Circuit-2, Circuit-3) can cause inconsistency in the individual readings.",
+                        "**Breadboard Contact Resistance:** Poor or loose connections on the breadboard introduce additional unaccounted resistance in the circuit branches, affecting measured current values.",
+                        "**Linearity Assumption:** The superposition theorem is strictly valid only for linear bilateral networks; any non-linearity in components (e.g., self-heating of resistors at higher currents) would cause deviations from the expected superposition behaviour."
+                    ]
                 }
             ]
         },
@@ -388,13 +415,21 @@
             "isApplicable": true,
             "content": [
                 {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding and practical reasoning arising from the experiment."
+                },
+                {
                     "type": "list",
                     "style": "ordered",
                     "items": [
-                        "Using superposition theorem, predict the voltage across the load resistor for the experiment conducted.",
-                        "When analyzing circuits, when is it better to use Superposition Theorem?",
-                        "What is the internal resistance of an ideal voltage source?",
-                        "Draw the circuit diagram of a practical voltage source with internal resistance."
+                        "**Q:** Using superposition theorem, predict the voltage across the load resistor for the experiment conducted.\n\n**A:** The voltage across R3 (load resistor) can be predicted by applying superposition. First, with only V1 active (V2 short-circuited), compute V_R3' = I₁ × R3, where I₁ is the current through R3 due to V1 alone. Then, with only V2 active (V1 short-circuited), compute V_R3'' = I₂ × R3. By superposition, the total voltage across R3 is V_R3 = V_R3' + V_R3'', which should match the voltage measured directly across R3 when both sources are active.",
+                        "**Q:** When analyzing circuits, when is it better to use Superposition Theorem?\n\n**A:** Superposition is most advantageous when a linear circuit contains multiple independent sources and the response due to each source follows a simpler sub-circuit that is easier to solve individually. It is particularly useful when sources are of different types (e.g., one voltage source and one current source) making combined mesh or nodal analysis more tedious. However, it is not applicable to non-linear circuits or for computing power directly, since power is a non-linear function of current and voltage.",
+                        "**Q:** What is the internal resistance of an ideal voltage source?\n\n**A:** The internal resistance of an ideal voltage source is zero. This means it can supply any amount of current without any drop in its terminal voltage. In circuit analysis, when a voltage source is deactivated (replaced) during superposition, it is substituted by a short circuit (a wire of zero resistance), which is consistent with this ideal zero internal resistance property.",
+                        "**Q:** Draw the circuit diagram of a practical voltage source with internal resistance.\n\n**A:** A practical voltage source is modelled as an ideal voltage source V_s in series with a small internal resistance r_int. When a load R_L is connected, the terminal voltage V_terminal = V_s − (I × r_int), where I is the load current. As the load current increases, the terminal voltage drops due to the voltage developed across r_int, unlike an ideal source where the terminal voltage remains constant regardless of current.",
+                        "**Q:** Why must voltage sources be replaced by short circuits (and not open circuits) when applying superposition?\n\n**A:** An ideal voltage source maintains a fixed potential difference across its terminals regardless of current, meaning it presents zero impedance to the circuit. When deactivating it for superposition analysis, it must be replaced by an element that also presents zero impedance — a short circuit. Replacing it with an open circuit would incorrectly break the conduction path and alter the circuit topology, yielding wrong results. Similarly, ideal current sources are replaced by open circuits when deactivated, since an ideal current source presents infinite impedance.",
+                        "**Q:** Is superposition theorem applicable for calculating power in a branch? Justify your answer.\n\n**A:** No, the superposition theorem cannot be directly applied to calculate power. Power is proportional to the square of current (P = I²R) or square of voltage (P = V²/R), both of which are non-linear functions. Superposition is valid only for linear responses such as branch currents and voltages. If I₁ and I₂ are the individual currents due to each source, the total power is P = (I₁ + I₂)²R, which is not equal to I₁²R + I₂²R in general. The cross term 2I₁I₂R is lost if superposition is incorrectly applied to power.",
+                        "**Q:** In this experiment, what is the effect of the internal resistance of the RPS on the measured results, and how is it accounted for?\n\n**A:** A real RPS has a small but non-zero internal resistance, which means the effective source voltage seen by the circuit is slightly less than the set voltage due to the voltage drop across the internal resistance when current flows. This introduces a small systematic error in the measured currents compared to theoretical values computed assuming ideal sources. In this experiment, this effect is minimised by using a regulated power supply (which actively maintains its output voltage) and is reflected as part of the percentage error computed between measured and theoretical values.",
+                        "**Q:** If the measured I_total does not equal I₁ + I₂ in a trial, list possible experimental reasons for this discrepancy.\n\n**A:** Possible reasons include: resistor tolerances causing actual resistance values to differ from nominal values, leading to different current distributions than theoretically expected; contact resistance at the breadboard connections adding unaccounted resistance in series with branches; the ammeter's own internal resistance influencing the branch current being measured; thermal drift in resistor values during prolonged operation; and slight voltage fluctuations in the RPS between the three separate measurement steps if the supply was not re-checked before each reading."
                     ]
                 }
             ]

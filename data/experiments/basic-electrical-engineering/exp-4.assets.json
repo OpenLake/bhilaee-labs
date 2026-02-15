@@ -1,0 +1,14 @@
+{
+    "fig1-rc-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+        "description": "Series RC Circuit Diagram"
+    },
+    "fig2-rl-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig2-rl-circuit.png",
+        "description": "Series RL Circuit Diagram"
+    },
+    "fig3-rlc-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig3-rlc-circuit.png",
+        "description": "Series RLC Circuit Diagram"
+    }
+}

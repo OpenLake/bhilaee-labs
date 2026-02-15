@@ -1,3 +1,5 @@
+import fs from 'fs/promises';
+import path from 'path';
 import { createExperiment } from './experiment_schema';
 import registry from './experiments/registry.json';
 
@@ -25,26 +27,26 @@ export async function getExperiment(labSlug, experimentId) {
 
     // Try to load content file if available
     try {
-        // Dynamic import based on registry filename
-        // Note: adjustments might be needed for path resolution in production builds
-        // Next.js handles this well if paths are static-analyzable, but here it's dynamic.
-        // We'll see if we need to map paths explicitly.
-        const content = await import(`./experiments/${labSlug}/${experimentMeta.fileName}`);
+        // Use fs instead of import() to avoid Webpack context issues with new files
+        const contentPath = path.join(process.cwd(), 'data', 'experiments', labSlug, experimentMeta.fileName);
+
+        // Check if file exists (optional, readFile throws anyway)
+        const fileContent = await fs.readFile(contentPath, 'utf-8');
+        const content = JSON.parse(fileContent);
 
         // Merge content into skeleton
-        // We assume content file follows schema, but we can be defensive
-        if (content.default) {
-            experiment = { ...experiment, ...content.default };
-        } else {
-            experiment = { ...experiment, ...content };
-        }
+        experiment = { ...experiment, ...content };
 
         // Try to load asset registry if available (sidecar file)
         try {
             // Assuming fileName is like 'exp-1.json', we want 'exp-1.assets.json'
             const assetFileName = experimentMeta.fileName.replace('.json', '.assets.json');
-            const assets = await import(`./experiments/${labSlug}/${assetFileName}`);
-            experiment.assets = assets.default || assets;
+            const assetPath = path.join(process.cwd(), 'data', 'experiments', labSlug, assetFileName);
+
+            const assetContent = await fs.readFile(assetPath, 'utf-8');
+            const assets = JSON.parse(assetContent);
+
+            experiment.assets = assets;
         } catch (assetError) {
             // No assets file found, ignore
         }

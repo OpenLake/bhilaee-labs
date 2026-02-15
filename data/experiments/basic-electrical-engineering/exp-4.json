@@ -1,0 +1,427 @@
+{
+    "id": "exp-4",
+    "title": "Transient Response of Series RL, RC and RLC Circuits",
+    "labId": "basic-electrical-engineering",
+    "status": "Guide Only",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the transient response of a series RL, RC and RLC circuit and understand the time constant concept with square and sinusoidal AC power supply."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Instrument",
+                        "Range",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Digital Storage Oscilloscope (DSO)",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "2",
+                            "Function Generator / AC Supply",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "3",
+                            "Resistor",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "4",
+                            "Inductor",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "5",
+                            "Capacitor",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "6",
+                            "Bread Board",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "7",
+                            "Connecting Wires",
+                            "-",
+                            "-"
+                        ],
+                        [
+                            "8",
+                            "CRO Probes",
+                            "-",
+                            "-"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Transient Response:**\nWhen a circuit's state is changed, typically by applying or removing a voltage or current source, the circuit response changes over time before reaching a steady state. This change is known as the transient response."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Time Constant (τ):**\nIt is a measure of time required for certain changes in voltages and currents in RC and RL circuits. Generally, when the elapsed time exceeds five time constants (5τ) after switching has occurred, the currents and voltages have reached their final value, which is also called steady-state response."
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "For an RC circuit, the time constant τ is given by **τ = RC**, where R is the resistance and C is the capacitance.",
+                        "For an RL circuit, the time constant τ is given by **τ = L/R**, where L is the inductance.",
+                        "For an RLC circuit, the time constant depends on the damping factor and is more complex to calculate."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Ensure all circuit connections are secure before applying power.",
+                        "Do not exceed the voltage and current ratings of the components.",
+                        "Be cautious when handling the power supply to avoid electric shock."
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Circuit Diagrams for RC, RL, and RLC series circuits are provided below. Applying KVL to the series RLC circuit (Fig. 3):"
+                },
+                {
+                    "type": "equation",
+                    "value": "v(t) = Ri(t) + L\\frac{di(t)}{dt} + \\frac{1}{C}\\int i(t)\\,dt"
+                },
+                {
+                    "type": "text",
+                    "content": "Taking Laplace transform on both sides of the above equation:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V(s) = RI(s) + L[sI(s) - i(0^-)] + \\frac{I(s)}{sC} + \\frac{v_c(0^-)}{s}"
+                },
+                {
+                    "type": "text",
+                    "content": "With all initial conditions set equal to zero, i.e., $i(0^-) = 0$ and $v_c(0^-) = 0$, the equation becomes:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V(s) = I(s)\\left[R + sL + \\frac{1}{sC}\\right]"
+                },
+                {
+                    "type": "text",
+                    "content": "Here, $v(t) = u(t)$, therefore $V(s) = 1/s$."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-rc-circuit",
+                    "caption": "Fig. 1: Series RC Circuit",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-rl-circuit",
+                    "caption": "Fig. 2: Series RL Circuit",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-rlc-circuit",
+                    "caption": "Fig. 3: Series RLC Circuit",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**For RC Circuit (refer Fig. 1):**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make sure that the switch is in off position and no power supply is provided to the circuit from the function generator or AC supply.",
+                        "Circuit Assembly: Connect a resistor and capacitor in series on a breadboard or the test bench for 230V AC application.",
+                        "Power Supply Connection: Attach the function generator or AC supply across the RC series combination.",
+                        "Switch the main switch on so that the function generator or AC supply will get connected to the RC circuit.",
+                        "For breadboard circuit: Apply the square wave of 2Vpp voltage and frequency corresponding to τ, 5τ, and 15τ through the function generator, where τ = RC. For AC setup: Apply 0–230V, 50 Hz supply to the circuit.",
+                        "Measurement Setup: Connect the oscilloscope (DSO) across the function generator/AC supply and capacitor to measure voltage and the response.",
+                        "Observe the transient response (exponentially rising) on DSO till the steady state is achieved.",
+                        "Press RUN/STOP switch of DSO to hold the response shown on the DSO screen.",
+                        "Capture the response in any USB 2.0 type storage device."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**For RL Circuit (refer Fig. 2):**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make sure that the switch is in off position and no power supply is provided to the circuit from the function generator or AC supply.",
+                        "Circuit Assembly: Connect a resistor and inductor in series on a breadboard or the test bench for 230V AC application.",
+                        "Power Supply Connection: Attach the function generator or AC supply across the RL series combination.",
+                        "Switch the main switch on so that the function generator or AC supply will get connected to the RL circuit.",
+                        "For breadboard circuit: Apply the square wave of 2Vpp voltage and frequency corresponding to τ, 5τ, and 15τ through the function generator, where τ = L/R. For AC setup: Apply 0–230V, 50 Hz supply to the circuit.",
+                        "Connect DSO across the inductor.",
+                        "Observe the transient response (firstly sudden increase in voltage and then exponentially decaying) on DSO. Press RUN/STOP switch of DSO to hold the response.",
+                        "Capture the response in any USB 2.0 storage device."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**For RLC Circuit (refer Fig. 3):**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make sure that the switch is in off position and no power supply is provided to the circuit from the function generator or AC supply.",
+                        "Circuit Assembly: Connect a resistor, inductor, and capacitor in series.",
+                        "Power Supply Connection: Attach the function generator or AC supply across the RLC series combination. Switch the toggle switch upward so that DC supply connects to the circuit.",
+                        "Connect DSO across the capacitor.",
+                        "Observe the transient response (exponentially rising) on DSO till the steady state is achieved.",
+                        "Toggle switch in downward direction so that resistor R will short with capacitor C and inductor L.",
+                        "Observe the response (exponentially decaying) till it reaches the reference level of DSO. Press RUN/STOP switch of DSO to hold the response.",
+                        "Capture the response in any USB 2.0 type storage device."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulate the circuit to verify the transient response."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Record the transient response waveforms captured from the DSO for each circuit configuration (RC, RL, RLC) at the three frequency settings corresponding to τ, 5τ, and 15τ. Paste or attach DSO screenshots in the space below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Circuit",
+                        "Time Constant (τ)",
+                        "d Applied Frequency (f = 1/τ)",
+                        "Applied Frequency (f = 1/5τ)",
+                        "Applied Frequency (f = 1/15τ)",
+                        "Observed Response"
+                    ],
+                    "rows": [
+                        [
+                            "RC",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "RL",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "RLC",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Time Constant Formulas:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{RC} = RC"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{RL} = \\frac{L}{R}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Transfer Function (Series RLC):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "H(s) = \\frac{V_C(s)}{V_{in}(s)} = \\frac{1/sC}{R + sL + 1/sC} = \\frac{1}{s^2LC + sRC + 1}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Step Response:**\nFor a unit step input $V_{in}(s) = \\frac{1}{s}$:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_C(s) = H(s) \\cdot \\frac{1}{s} = \\frac{1}{s(s^2LC + sRC + 1)}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sample Calculation (Typical Values):**\nLet $R = 1 k\\Omega$, $C = 0.1 \\mu F$, $L = 10 mH$."
+                },
+                {
+                    "type": "text",
+                    "content": "1. **RC Time Constant:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{RC} = R \\times C = 10^3 \\times 0.1 \\times 10^{-6} = 10^{-4} \\text{ s} = 0.1 \\text{ ms}"
+                },
+                {
+                    "type": "text",
+                    "content": "2. **RL Time Constant:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{RL} = \\frac{L}{R} = \\frac{10 \\times 10^{-3}}{10^3} = 10^{-5} \\text{ s} = 10 \\mu \\text{s}"
+                },
+                {
+                    "type": "text",
+                    "content": "3. **RLC Damping:**\nCharacteristic Equation: $s^2 + \\frac{R}{L}s + \\frac{1}{LC} = 0$."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The transient responses of the RC, RL, and RLC circuits are to be analysed from the DSO waveforms captured during the experiment. The following observations are expected:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**RC Circuit:** The voltage across the capacitor rises exponentially during charging and decays exponentially during discharging with time constant τ = RC.",
+                        "**RL Circuit:** The voltage across the inductor shows a sudden rise followed by an exponential decay with time constant τ = L/R.",
+                        "**RLC Circuit:** The response may be underdamped (oscillatory), critically damped, or overdamped depending on the component values and the resulting damping factor."
+                    ]
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding and analytical reasoning arising from the transient response experiment on series RL, RC, and RLC circuits."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is meant by the transient response of a circuit, and when does it occur?\n\n**A:** The transient response is the behaviour of a circuit from the moment its state is disturbed — by switching a source on or off — until it settles into a new steady state. It occurs because energy-storage elements (inductors and capacitors) cannot change their stored energy instantaneously. The transient response decays to zero once all stored energy has been redistributed, after which only the steady-state response remains.",
+                        "**Q:** Define the time constant τ for an RC circuit and explain its physical significance.\n\n**A:** For an RC circuit, the time constant is τ = RC, where R is the resistance in ohms and C is the capacitance in farads. Physically, τ represents the time required for the capacitor voltage to rise to approximately 63.2% of its final value during charging, or to fall to approximately 36.8% of its initial value during discharging. After five time constants (5τ), the voltage is considered to have reached its steady-state value (within ~1% of the final value).",
+                        "**Q:** Derive the expression for the time constant of a series RL circuit and compare it with that of an RC circuit.\n\n**A:** Applying KVL to a series RL circuit: V = Ri(t) + L·di(t)/dt. The solution gives i(t) = (V/R)(1 − e^(−Rt/L)). The time constant is τ = L/R, where L is in henries and R is in ohms. Comparing with the RC circuit (τ = RC): in both cases τ governs the rate of exponential change, but in an RL circuit a larger inductance or smaller resistance slows the response, whereas in an RC circuit a larger resistance or larger capacitance slows the response.",
+                        "**Q:** In the RL circuit experiment, why does the inductor voltage show a sudden spike followed by exponential decay rather than a gradual rise like the capacitor voltage in an RC circuit?\n\n**A:** An inductor opposes instantaneous changes in current. At the moment the switch is closed, the current is zero and the entire source voltage appears across the inductor (V_L = L·di/dt is maximum). As current builds up exponentially, the rate of change di/dt decreases, so V_L decays exponentially. In contrast, a capacitor opposes instantaneous changes in voltage, so its voltage rises gradually from zero. The two elements are duals of each other in this sense.",
+                        "**Q:** For an RLC circuit, what are the three possible types of transient response? State the condition for each in terms of circuit parameters.\n\n**A:** The three response types depend on the discriminant of the characteristic equation s² + (R/L)s + 1/LC = 0, where α = R/(2L) is the damping coefficient and ω₀ = 1/√(LC) is the natural frequency:\n• Overdamped (α > ω₀, i.e., R > 2√(L/C)): response decays without oscillation, two distinct real roots.\n• Critically damped (α = ω₀, i.e., R = 2√(L/C)): fastest non-oscillatory decay, two equal real roots.\n• Underdamped (α < ω₀, i.e., R < 2√(L/C)): response oscillates with exponentially decaying amplitude, two complex conjugate roots.",
+                        "**Q:** If R = 1 kΩ and C = 10 μF in a series RC circuit, calculate the time constant τ and the frequency of the square wave that should be applied to observe exactly one complete charge–discharge cycle on the DSO.\n\n**A:** τ = RC = 1×10³ × 10×10⁻⁶ = 10×10⁻³ s = 10 ms. For one complete charge–discharge cycle to be clearly visible, the period T of the square wave should equal approximately 10τ (5τ for charging + 5τ for discharging), giving T = 10 × 10 ms = 100 ms. The corresponding frequency is f = 1/T = 1/0.1 = 10 Hz.",
+                        "**Q:** Why is a square wave (rather than a sinusoidal wave) preferred as the input signal when studying the transient response of RC and RL circuits on a DSO?\n\n**A:** A square wave alternates abruptly between two fixed voltage levels, effectively simulating repeated step inputs. Each rising edge triggers a new charging transient and each falling edge triggers a discharging transient, allowing the complete exponential response to be observed repetitively and stably on the DSO screen. A sinusoidal input, being continuously varying, superimposes the steady-state sinusoidal response on the transient, making it difficult to isolate and measure the time constant directly.",
+                        "**Q:** In the RLC circuit experiment, if the observed DSO waveform shows a damped oscillation, how would you determine the natural frequency ω₀ and damping coefficient α from the waveform?\n\n**A:** For an underdamped RLC circuit, the response is v_C(t) = A·e^(−αt)·cos(ω_d·t + φ), where ω_d = √(ω₀² − α²) is the damped natural frequency. From the DSO waveform: (1) measure the period T_d of the oscillation to find ω_d = 2π/T_d; (2) measure the amplitudes of two successive peaks V_n and V_(n+1) and compute the logarithmic decrement δ = ln(V_n / V_(n+1)) = α·T_d, from which α = δ/T_d; (3) the natural frequency is then recovered as ω₀ = √(ω_d² + α²)."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The transient behavior of series RL, RC, and RLC circuits was successfully studied. The time constant concept was verified by observing the charging and discharging waveforms on the DSO."
+                }
+            ]
+        }
+    }
+}
