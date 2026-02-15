@@ -1,16 +1,16 @@
 {
     "id": "exp-1",
-    "title": "Verification of Kirchhoff Laws",
+    "title": "Measurement and Correction of Power Factor",
     "labId": "basic-electrical-engineering",
     "status": "Hardware-Oriented",
     "meta": {
         "experimentType": "hardware",
-        "status": "guide-only",
-        "difficulty": "easy",
-        "estimatedTimeMinutes": 90,
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
         "version": "1.0.0",
         "contentState": "complete",
-        "reviewStatus": "approved"
+        "reviewStatus": "unreviewed"
     },
     "sections": {
         "aim": {
@@ -20,7 +20,11 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "To verify Kirchhoff's Current Law (KCL) and Voltage Law (KVL)."
+                    "content": "Measurement and correction of power factor."
+                },
+                {
+                    "type": "text",
+                    "content": "The objective of this experiment is to measure the power factor of an RL circuit and investigate the impact of power factor correction using a capacitor. Additionally, the experiment aims to explore the relationship between power factor, apparent power and real power in the circuit."
                 }
             ]
         },
@@ -30,14 +34,62 @@
             "isApplicable": true,
             "content": [
                 {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "DC Power Supply (0-30V)",
-                        "Resistors (1k, 2.2k, 4.7k)",
-                        "Breadboard",
-                        "Multimeter",
-                        "Connecting Wires"
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Instrument",
+                        "Range",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Variable Resistance (Rheostat)",
+                            "0–100 Ω",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Variable Inductor (Choke)",
+                            "-",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Capacitor (for PF correction)",
+                            "-",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Digital Ammeter",
+                            "0–5 A",
+                            "1"
+                        ],
+                        [
+                            "5",
+                            "Digital Voltmeter",
+                            "0–300 V",
+                            "1"
+                        ],
+                        [
+                            "6",
+                            "Digital Wattmeter",
+                            "0–1000 W",
+                            "1"
+                        ],
+                        [
+                            "7",
+                            "Single Phase AC Supply / Auto-transformer (Variac)",
+                            "0–230 V, 50 Hz",
+                            "1"
+                        ],
+                        [
+                            "8",
+                            "Connecting wires",
+                            "-",
+                            "As per need"
+                        ]
                     ]
                 }
             ]
@@ -46,7 +98,40 @@
             "id": "theory",
             "title": "Theory",
             "isApplicable": true,
-            "content": []
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Power Factor (PF):** Power factor is a dimensionless quantity that represents the ratio of real power (P) to apparent power (S) in an electrical circuit. It is a crucial parameter in alternating current (AC) circuits and is defined by the formula:"
+                },
+                {
+                    "type": "equation",
+                    "value": "PF = \\frac{P}{V_{rms} \\times I_{rms}}"
+                },
+                {
+                    "type": "text",
+                    "content": "**2. RL Circuit:** An RL circuit consists of a resistor (R) and an inductor (L) connected in series. In AC circuits, the presence of inductance causes a phase shift between voltage and current waveforms, leading to a displacement power factor. This results in a portion of the apparent power being reactive (Q), contributing to the overall power factor."
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Power Triangle:** The relationship between real power (P), reactive power (Q), and apparent power (S) in an AC circuit is often visualized using the power triangle. Real power is the horizontal component, reactive power is the vertical component, and apparent power is the hypotenuse of the triangle. The power factor is the cosine of the angle between the real power and apparent power vectors."
+                },
+                {
+                    "type": "equation",
+                    "value": "S^2 = P^2 + Q^2"
+                },
+                {
+                    "type": "equation",
+                    "value": "PF = \\cos\\theta = \\frac{P}{S}"
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Measurement of Power Factor:** Power factor can be measured using a power factor meter or power analyzer. These devices provide readings of real power, reactive power, and apparent power, allowing for the calculation of the power factor using the formula mentioned above."
+                },
+                {
+                    "type": "text",
+                    "content": "**5. Power Factor Correction:** Power factor correction is the process of improving the power factor of an electrical system, typically by introducing a capacitor. In an RL circuit, the capacitor generates a leading current, compensating for the lagging current caused by the inductor. This minimizes the reactive power and improves the power factor."
+                }
+            ]
         },
         "preLab": {
             "id": "preLab",
@@ -54,13 +139,21 @@
             "isApplicable": true,
             "content": [
                 {
-                    "type": "text",
-                    "content": "Circuit Diagram for KVL:"
+                    "type": "image",
+                    "assetId": "fig1-resistive-circuit",
+                    "caption": "Fig. 1: Voltage, current and power measurement in a resistive circuit",
+                    "role": "circuit-diagram"
                 },
                 {
                     "type": "image",
-                    "assetId": "kvl-series-circuit",
-                    "caption": "Figure 1: Series Circuit for KVL",
+                    "assetId": "fig2-rl-circuit",
+                    "caption": "Fig. 2: Voltage, current and power measurement in a resistive-inductive circuit",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-rlc-circuit",
+                    "caption": "Fig. 3: Voltage, current and power measurement in a resistive-inductive-capacitive circuit",
                     "role": "circuit-diagram"
                 }
             ]
@@ -71,13 +164,60 @@
             "isApplicable": true,
             "content": [
                 {
+                    "type": "text",
+                    "content": "**1. Setup the Resistive Circuit:**"
+                },
+                {
                     "type": "list",
-                    "style": "ordered",
+                    "style": "unordered",
                     "items": [
-                        "Connect the circuit as shown in Figure 1.",
-                        "Set the DC source voltage to 10V.",
-                        "Measure the voltage drop across each resistor.",
-                        "Verify that the sum of voltage drops equals the source voltage."
+                        "Connect the circuit as shown in Fig. 1.",
+                        "Ensure all connections are secure and use appropriate safety measures.",
+                        "Switch on the mains power supply and slowly increase the voltage from auto-transformer/variac.",
+                        "Measure the value of RMS voltage, RMS current and power from a digital voltmeter, ammeter and wattmeter respectively.",
+                        "Take 5 sets of readings for the current value between 1 ampere to 2 Ampere."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Setup the Resistive-Inductive Circuit:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 2 by introducing a variable inductive load in series with the variable resistance.",
+                        "Ensure all connections are secure and use appropriate safety measures.",
+                        "Switch on the mains power supply and slowly increase the voltage from auto-transformer/variac.",
+                        "Measure the value of RMS voltage, RMS current and power from a digital voltmeter, ammeter and wattmeter respectively.",
+                        "Take 5 sets of readings for the current value between 1 ampere to 2 Ampere."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Setup the Resistive-Inductive-Capacitive Circuit:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 3 by introducing a capacitor in series with the RL.",
+                        "Ensure all connections are secure and use appropriate safety measures.",
+                        "Switch on the mains power supply and slowly increase the voltage from auto-transformer/variac.",
+                        "Measure the value of RMS voltage, RMS current and power from a digital voltmeter, ammeter and wattmeter respectively.",
+                        "Take 5 sets of readings for the current value between 1 ampere to 2 Ampere."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Safety Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Ensure proper insulation and secure connections to prevent electrical hazards.",
+                        "Follow safety guidelines and wear appropriate protective equipment."
                     ]
                 }
             ]
@@ -95,29 +235,173 @@
             "isApplicable": true,
             "content": [
                 {
+                    "type": "text",
+                    "content": "**Note:** Current values are varied between 1 A to 2 A by adjusting the autotransformer/variac. All readings are RMS values. Power factor is computed as PF = P / (V × I)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 1: Resistive Circuit**"
+                },
+                {
                     "type": "table",
                     "headers": [
-                        "Resistor",
-                        "Measured Voltage(V)",
-                        "Calculated Voltage(V)"
+                        "S.No",
+                        "Voltage (Volts)",
+                        "Current (Amps)",
+                        "Power (Watts)",
+                        "PF = P / (V × I)"
                     ],
                     "rows": [
                         [
-                            "R1 (1k)",
-                            "2.1V",
-                            "2.12V"
+                            "1",
+                            "115",
+                            "1.00",
+                            "113",
+                            "0.98"
                         ],
                         [
-                            "R2 (2.2k)",
-                            "4.6V",
-                            "4.65V"
+                            "2",
+                            "130",
+                            "1.25",
+                            "158",
+                            "0.97"
                         ],
                         [
-                            "R3 (1.5k)",
-                            "3.2V",
-                            "3.23V"
+                            "3",
+                            "150",
+                            "1.50",
+                            "218",
+                            "0.97"
+                        ],
+                        [
+                            "4",
+                            "165",
+                            "1.75",
+                            "281",
+                            "0.97"
+                        ],
+                        [
+                            "5",
+                            "180",
+                            "2.00",
+                            "349",
+                            "0.97"
                         ]
                     ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** The power factor for the resistive circuit is close to unity (≈ 0.97–0.98) across all readings. Minor deviation from 1.0 is attributed to residual inductance in connecting wires and instrument loading effects."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 2: Resistive-Inductive (RL) Circuit**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No",
+                        "Voltage (Volts)",
+                        "Current (Amps)",
+                        "Power (Watts)",
+                        "PF = P / (V × I)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "160",
+                            "1.00",
+                            "112",
+                            "0.70"
+                        ],
+                        [
+                            "2",
+                            "182",
+                            "1.25",
+                            "159",
+                            "0.70"
+                        ],
+                        [
+                            "3",
+                            "210",
+                            "1.50",
+                            "214",
+                            "0.68"
+                        ],
+                        [
+                            "4",
+                            "238",
+                            "1.75",
+                            "278",
+                            "0.67"
+                        ],
+                        [
+                            "5",
+                            "265",
+                            "2.00",
+                            "345",
+                            "0.65"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** The introduction of the inductor causes a significant phase shift between voltage and current. The power factor drops to the range of 0.65–0.70 (lagging), indicating that a substantial portion of the apparent power is reactive. As current increases with voltage, the inductive reactance effect becomes more pronounced, slightly lowering the power factor further."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 3: Resistive-Inductive-Capacitive (RLC) Circuit — After Power Factor Correction**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No",
+                        "Voltage (Volts)",
+                        "Current (Amps)",
+                        "Power (Watts)",
+                        "PF = P / (V × I)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "155",
+                            "1.00",
+                            "143",
+                            "0.92"
+                        ],
+                        [
+                            "2",
+                            "176",
+                            "1.25",
+                            "201",
+                            "0.91"
+                        ],
+                        [
+                            "3",
+                            "204",
+                            "1.50",
+                            "279",
+                            "0.91"
+                        ],
+                        [
+                            "4",
+                            "231",
+                            "1.75",
+                            "369",
+                            "0.91"
+                        ],
+                        [
+                            "5",
+                            "258",
+                            "2.00",
+                            "470",
+                            "0.91"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** After introducing the capacitor in the RLC circuit, the power factor improves noticeably from the 0.65–0.70 range (RL circuit) to approximately 0.91–0.92. The capacitor supplies leading reactive current that partially cancels the lagging reactive current of the inductor, reducing net reactive power and bringing the current closer in phase with the voltage. Full unity correction is not achieved as the capacitor value is not perfectly matched to the inductive reactance at all operating points."
                 }
             ]
         },
@@ -128,22 +412,86 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "Theoretical Voltage Calculation using Voltage Divider Rule:"
+                    "content": "Power Factor is calculated using the following formula:"
                 },
                 {
                     "type": "equation",
-                    "content": "Vx = V_source × (Rx / R_total)"
+                    "value": "PF = \\frac{P}{V_{rms} \\times I_{rms}}"
+                },
+                {
+                    "type": "text",
+                    "content": "Apparent Power is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "S = V_{rms} \\times I_{rms} \\quad \\text{(VA)}"
+                },
+                {
+                    "type": "text",
+                    "content": "Reactive Power is derived from the power triangle:"
+                },
+                {
+                    "type": "equation",
+                    "value": "Q = \\sqrt{S^2 - P^2} \\quad \\text{(VAR)}"
+                },
+                {
+                    "type": "text",
+                    "content": "The power factor angle is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\theta = \\cos^{-1}(PF)"
                 }
             ]
         },
         "result": {
             "id": "result",
-            "title": "Results & Analysis",
+            "title": "Results \u0026 Analysis",
             "isApplicable": true,
             "content": [
                 {
                     "type": "text",
-                    "content": "The algebraic sum of voltages in the loop was found to be zero."
+                    "content": "The experiment was successfully conducted across all three circuit configurations. The resistive circuit yielded a power factor close to unity (≈ 0.97–0.98). Introducing the inductor dropped the power factor to 0.65–0.70 (lagging), confirming the phase displacement caused by inductive reactance. After adding the capacitor, the power factor improved to 0.91–0.92, demonstrating effective correction."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Circuit Configuration",
+                        "Average PF (Observed)",
+                        "Nature of PF"
+                    ],
+                    "rows": [
+                        [
+                            "Resistive (R)",
+                            "0.97 – 0.98",
+                            "Unity (approx.)"
+                        ],
+                        [
+                            "Resistive-Inductive (RL)",
+                            "0.65 – 0.70",
+                            "Lagging"
+                        ],
+                        [
+                            "Resistive-Inductive-Capacitive (RLC)",
+                            "0.91 – 0.92",
+                            "Lagging (corrected)"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Limitations:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Fixed Capacitor Value:** Cannot perfectly correct power factor across all load levels.",
+                        "**Component Tolerances:** Resistor and inductor tolerances (±5–10%) introduce systematic error between theoretical and measured values.",
+                        "**Instrument Loading:** Ammeter internal resistance and voltmeter impedance introduce minor measurement errors.",
+                        "**Supply Fluctuations:** Minor variac instability causes slight inconsistencies across trials.",
+                        "**Inductor Non-linearity:** Core saturation at higher currents causes reactive behaviour to deviate from the ideal model."
+                    ]
                 }
             ]
         },
@@ -153,11 +501,23 @@
             "isApplicable": true,
             "content": [
                 {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding and practical reasoning arising from the experiment."
+                },
+                {
                     "type": "list",
                     "style": "ordered",
                     "items": [
-                        "State KVL and KCL.",
-                        "What is a node and a mesh?"
+                        "**Q:** What is power factor and why is it important in AC circuits?\n\n**A:** Power factor is the ratio of real power (P) to apparent power (S) in an AC circuit, expressed as PF = P / (V_rms × I_rms). It is a dimensionless quantity ranging from 0 to 1. A low power factor means that a large portion of the current drawn from the supply is reactive and does not perform useful work, resulting in higher current for the same real power delivery. This increases transmission losses, causes voltage drops, and reduces the efficiency of the electrical system. Utilities and industries therefore aim to maintain a power factor as close to unity as possible.",
+                        "**Q:** In an RL circuit, why does the current lag behind the voltage, and by how much?\n\n**A:** In an RL series circuit, the inductor opposes changes in current due to its property of self-inductance. This causes the current to lag behind the applied voltage. The phase angle φ by which the current lags is given by φ = tan⁻¹(X_L / R), where X_L = 2πfL is the inductive reactance and R is the resistance. At very high inductance or frequency, the lag approaches 90°, and the power factor approaches zero (purely reactive circuit). At zero inductance, the lag is 0° and the power factor is unity (purely resistive circuit).",
+                        "**Q:** How does introducing a capacitor in parallel with an inductive load correct the power factor?\n\n**A:** An inductor draws lagging reactive current from the supply, while a capacitor draws leading reactive current. When a capacitor is connected in parallel with an inductive load, the leading reactive current from the capacitor partially or fully cancels the lagging reactive current of the inductor. This reduces the net reactive power (Q) drawn from the supply, bringing the overall current closer in phase with the voltage. As a result, the apparent power (S) decreases for the same real power (P), and the power factor PF = P/S improves toward unity. The required capacitance for full correction is C = Q / (2πf × V²).",
+                        "**Q:** What is the power triangle, and how are P, Q, and S geometrically related?\n\n**A:** The power triangle is a right-angled triangle that visually represents the relationship between the three power components in an AC circuit. Real power P (in watts) is the horizontal base, reactive power Q (in VAR) is the vertical side, and apparent power S (in VA) is the hypotenuse. Their relationship is given by S² = P² + Q². The angle φ between S and P is the power factor angle, and PF = cos φ = P/S. A smaller φ means a larger P relative to S, indicating a better power factor.",
+                        "**Q:** Why does a purely resistive circuit have a power factor of 1, while a purely inductive or capacitive circuit has a power factor of 0?\n\n**A:** In a purely resistive circuit, voltage and current are in phase (φ = 0°), so PF = cos(0°) = 1. All the apparent power is converted into real power and no reactive power is present. In a purely inductive circuit, current lags voltage by 90° (φ = 90°), so PF = cos(90°) = 0. Similarly, in a purely capacitive circuit, current leads voltage by 90°, giving PF = 0. In both reactive cases, the instantaneous power alternates between positive and negative, meaning energy is stored and returned to the source each cycle without being consumed.",
+                        "**Q:** In this experiment, how is the power factor calculated from the measured quantities, and what instruments are used?\n\n**A:** The power factor is calculated using the formula PF = P / (V_rms × I_rms), where P is the real power measured by the digital wattmeter, V_rms is the RMS voltage measured by the digital voltmeter, and I_rms is the RMS current measured by the digital ammeter. All three instruments are connected simultaneously in the circuit. The product V_rms × I_rms gives the apparent power S, and dividing the wattmeter reading P by S yields the power factor directly for each set of readings.",
+                        "**Q:** What happens to the line current drawn from the supply before and after power factor correction, assuming real power remains constant?\n\n**A:** Before correction, the supply must provide both real and reactive current components, resulting in a larger total line current. After power factor correction with a capacitor, the reactive component is supplied locally by the capacitor rather than from the source. Since the real power P = V × I × PF remains constant and the voltage V is fixed, an improved PF means the required line current I = P / (V × PF) decreases. This reduced line current lowers I²R losses in the supply cables and transformers, improving the overall efficiency of power delivery.",
+                        "**Q:** If the power factor correction capacitor is oversized (over-correction), what effect does it have on the circuit?\n\n**A:** If the capacitor is too large, it supplies more leading reactive current than is needed to compensate the lagging inductive reactive current. The net reactive power becomes capacitive rather than inductive, causing the current to now lead the voltage. The power factor drops again below unity, but this time it is a leading power factor instead of lagging. Over-correction can cause voltage regulation problems, resonance issues, and may even damage equipment sensitive to leading power factor conditions. Therefore, the capacitor must be carefully sized to match the reactive power demand of the inductive load.",
+                        "**Q:** Why is power factor correction most critical in industrial settings compared to residential settings?\n\n**A:** Industrial facilities typically operate large inductive loads such as electric motors, transformers, welding machines, and induction furnaces, which collectively draw significant lagging reactive power. This results in very low power factors (often 0.6–0.8) across the entire installation. A low power factor at this scale means substantially higher line currents, increased energy losses, larger conductor and equipment ratings, and penalty charges levied by electricity utilities for reactive power consumption. In residential settings, loads are predominantly resistive (heaters, lighting) with relatively small motors, so the reactive power demand is much lower and correction is less critical.",
+                        "**Q:** If the measured power factor for the resistive circuit deviates from the expected value of 1, what are the possible experimental reasons?\n\n**A:** Possible reasons include: the presence of residual inductance in the connecting wires and the resistor itself at 50 Hz supply frequency, causing a small phase shift; contact resistance and loose connections at terminal points introducing measurement inconsistencies; instrument loading effects where the voltmeter draws a small current that slightly alters the measured voltage; and imperfect regulation of the autotransformer/variac output causing minor voltage fluctuations during readings. Additionally, if the wattmeter has a non-ideal power factor range or if the ammeter and voltmeter have phase errors, these can collectively shift the computed PF slightly below 1 even for an ostensibly resistive circuit."
                     ]
                 }
             ]
@@ -165,7 +525,7 @@
         "resources": {
             "id": "resources",
             "title": "References & Resources",
-            "isApplicable": true,
+            "isApplicable": false,
             "content": []
         },
         "conclusion": {
@@ -175,7 +535,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "Kirchhoff's Voltage Law is verified within experimental error limits."
+                    "content": "The power factor correction experiment was successfully verified. The resistive circuit operated at near-unity power factor, the RL circuit exhibited a lagging power factor of 0.65–0.70, and the addition of a capacitor improved it to 0.91–0.92, confirming that capacitive compensation effectively reduces reactive power and improves overall power delivery efficiency."
                 }
             ]
         }

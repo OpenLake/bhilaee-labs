@@ -6,7 +6,7 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Verification of Kirchhoff Laws",
+          "title": "Measurement and Correction of Power Factor",
           "fileName": "exp-1.json",
           "status": "Hardware-Oriented",
           "completeness": 1

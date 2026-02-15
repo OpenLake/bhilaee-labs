@@ -75,33 +75,40 @@ export default function ExperimentLayout({ experiment, children }) {
 
                         return (
                             experiment.status === 'Simulation Available' && (
-                                <a
-                                    href={`${process.env.NEXT_PUBLIC_SIMULATOR_URL}?expId=${experiment.meta?.simulationId || experiment.id}&newSession=true`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        marginTop: '1.5rem',
-                                        padding: '0.6rem 1.2rem',
-                                        backgroundColor: '#228be6', // Blue-500
-                                        color: 'white',
-                                        borderRadius: '6px',
-                                        textDecoration: 'none',
-                                        fontWeight: 600,
-                                        fontSize: '0.95rem',
-                                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                                        transition: 'background-color 0.2s'
-                                    }}
-                                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1c7ed6'}
-                                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#228be6'}
-                                >
-                                    <svg style={{ width: '1.2rem', height: '1.2rem', marginRight: '0.6rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Launch Simulator
-                                </a>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                    <a
+                                        href={`${process.env.NEXT_PUBLIC_SIMULATOR_URL}?expId=${experiment.meta?.simulationId || experiment.id}&newSession=true`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            marginTop: '1.5rem',
+                                            padding: '0.6rem 1.2rem',
+                                            backgroundColor: '#228be6', // Blue-500
+                                            color: 'white',
+                                            borderRadius: '6px',
+                                            textDecoration: 'none',
+                                            fontWeight: 600,
+                                            fontSize: '0.95rem',
+                                            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                                            transition: 'background-color 0.2s'
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1c7ed6'}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#228be6'}
+                                    >
+                                        <svg style={{ width: '1.2rem', height: '1.2rem', marginRight: '0.6rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Launch Simulator
+                                    </a>
+                                    {experiment.title.toLowerCase().includes('transient') && (
+                                        <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#666' }}>
+                                            Running this experiment? Please set the simulation type to <strong>Transient</strong>.
+                                        </p>
+                                    )}
+                                </div>
                             )
                         );
                     })()}

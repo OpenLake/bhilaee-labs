@@ -1,8 +1,14 @@
 {
-    "kvl-series-circuit": {
-        "path": "/assets/labs/basic-electrical-engineering/exp-1/kvl-series-circuit.png",
-        "type": "image",
-        "role": "circuit-diagram",
-        "description": "Circuit diagram showing a series DC circuit with three resistors for KVL verification"
+    "fig1-resistive-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-1/fig1-resistive-circuit.png",
+        "description": "Fig. 1: Voltage, current and power measurement in a resistive circuit"
+    },
+    "fig2-rl-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-1/fig2-rl-circuit.png",
+        "description": "Fig. 2: Voltage, current and power measurement in a resistive-inductive circuit"
+    },
+    "fig3-rlc-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-1/fig3-rlc-circuit.png",
+        "description": "Fig. 3: Voltage, current and power measurement in a resistive-inductive-capacitive circuit"
     }
 }
