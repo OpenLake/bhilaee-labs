@@ -48,10 +48,10 @@
         },
         {
           "id": "7",
-          "title": "Experiment 7",
+          "title": "No-Load and Load Test on a Single Phase Transformer",
           "fileName": "exp-7.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "8",
@@ -606,10 +606,10 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Simulation Available",
+          "completeness": 1
         },
         {
           "id": "2",

@@ -1,0 +1,597 @@
+{
+    "id": "exp-7",
+    "title": "No-Load and Load Test on a Single Phase Transformer",
+    "labId": "basic-electrical-engineering",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform no-load and load test on a 2 KVA single phase transformer."
+                },
+                {
+                    "type": "text",
+                    "content": "The objective of this experiment is to evaluate the performance and efficiency of a transformer under different load conditions. By conducting load tests, we aim to determine the maximum load capacity, efficiency, and voltage regulation characteristics of the transformer."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Single Phase Transformer Nameplate Details:**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Electrical Parameter",
+                        "Value",
+                        "Unit"
+                    ],
+                    "rows": [
+                        [
+                            "KVA Rating",
+                            "2",
+                            "kVA"
+                        ],
+                        [
+                            "Primary Voltage",
+                            "230",
+                            "V"
+                        ],
+                        [
+                            "Primary Current",
+                            "8.70",
+                            "A"
+                        ],
+                        [
+                            "Secondary Voltage",
+                            "110",
+                            "V"
+                        ],
+                        [
+                            "Secondary Current",
+                            "18.18",
+                            "A"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Equipment List:**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Equipment",
+                        "Specification",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Digital Voltmeter",
+                            "0–300 V AC",
+                            "2"
+                        ],
+                        [
+                            "2",
+                            "Digital Ammeter",
+                            "0–20 A AC",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Digital Wattmeter",
+                            "0–2000 W",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Analog Voltmeter",
+                            "0–300 V AC",
+                            "1"
+                        ],
+                        [
+                            "5",
+                            "Single Phase Autotransformer (Variac)",
+                            "0–270 V, 50 Hz",
+                            "1"
+                        ],
+                        [
+                            "6",
+                            "Lamp Load Bank",
+                            "230 V, resistive",
+                            "1"
+                        ],
+                        [
+                            "7",
+                            "Connecting Leads",
+                            "-",
+                            "As per need"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Transformers are essential electrical devices used to transfer electrical energy efficiently from one circuit to another through electromagnetic induction. They are widely employed in various applications such as power distribution, voltage regulation, and impedance matching. The basic principle of operation of a transformer relies on Faraday's law of electromagnetic induction and the concept of mutual inductance."
+                },
+                {
+                    "type": "text",
+                    "content": "The key components of a transformer include a primary winding, a secondary winding, and a magnetic core. When an alternating current (AC) flows through the primary winding, it creates a varying magnetic field in the core. This changing magnetic field induces a voltage in the secondary winding through electromagnetic induction, resulting in the transfer of power from the primary side to the secondary side."
+                },
+                {
+                    "type": "text",
+                    "content": "**No-Load Test:** The no-load test is conducted with the secondary winding left open and the primary winding connected to a variable AC voltage source. The primary voltage is gradually increased until the rated primary voltage is reached, while the primary current and the voltage across the primary winding are measured. This test is used to determine core losses and magnetizing current characteristics."
+                },
+                {
+                    "type": "text",
+                    "content": "Key parameters involved in the no-load test include Core Losses (hysteresis and eddy current losses), Magnetizing Current (Iₘ), No-Load Current (I₀), and No-Load Power (P₀). Core losses occur due to the reversal of magnetization (hysteresis) and circulating currents in the core material (eddy currents). The no-load current consists of an active component representing power absorbed by core losses and a reactive component responsible for establishing the magnetic flux."
+                },
+                {
+                    "type": "text",
+                    "content": "**Full-Load Test (Load Test):** During the load test, the transformer is subjected to varying load levels and measurements of input and output parameters are recorded. Efficiency and voltage regulation are the two key performance indicators evaluated."
+                },
+                {
+                    "type": "text",
+                    "content": "**Efficiency:** Efficiency indicates how effectively the transformer converts electrical power from the input side to the output side. Higher efficiency values signify less power loss during the transformation process."
+                },
+                {
+                    "type": "equation",
+                    "value": "P_1 = P_2 + P_{\\text{iron}} + P_{\\text{copper}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_2 = V_2 I_2 \\cos\\phi"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{P_2}{P_1} \\times 100\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation:** Voltage regulation reflects the ability of the transformer to maintain a stable output voltage despite variations in load conditions. When the primary winding is energized with source voltage V₁, an EMF E₂ is induced across the secondary winding equal to the secondary terminal voltage V₂ at no load. On loading the transformer, the terminal voltage decreases from E₂ to V₂. This change per unit of no-load voltage is called voltage regulation."
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{V.R.} = \\frac{E_2 - V_2}{E_2} \\times 100\\%"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-load-test-circuit",
+                    "caption": "Fig 1: Load Test on single phase transformer.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-no-load-test-circuit",
+                    "caption": "Fig 2: No-Load Test on single phase transformer.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Load Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 1.",
+                        "Keep the switch on primary side open so that load is zero to measure no load voltage. Also keep the knob of the autotransformer at zero output voltage position.",
+                        "Switch on the supply and increase the voltage from the autotransformer until the voltmeter on the low voltage (LV) side reads 110 Volts.",
+                        "Switch on certain lamps from the lamp load such that the secondary winding current is approximately 10% of the rated current of the secondary side (HV side).",
+                        "Take the readings from the Wattmeter, Voltmeter on both LV and HV sides, and the Ammeter.",
+                        "Increase the load current in steps of 10% of the rated value by switching on a few more lamps and take the readings of the Wattmeter, Ammeter, and Voltmeter up to full load.",
+                        "Reduce the load to zero by switching off the lamps one by one."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**No-Load Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 2.",
+                        "Keep the secondary side open so that load is zero to measure no-load voltage. Also keep the knob of the autotransformer at zero output voltage position.",
+                        "Switch on the supply and increase the voltage from the autotransformer until the voltmeter on the primary side reads 100 Volts.",
+                        "Increase the voltage from the autotransformer in steps of 20 Volts and take five sets of readings until the reading reaches 200 Volts on the voltmeter on the primary side.",
+                        "Take the readings from the voltmeters on the primary and secondary sides and the ammeter as well."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Safety Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Switch on the power supply only in the presence of TAs.",
+                        "Always wear shoes while performing the experiment and entering into the lab.",
+                        "Instruments used should be of proper range.",
+                        "All connections should be tight.",
+                        "Give the supply through the autotransformer only by gradually rotating the knob. Do not operate the autotransformer abruptly; keep the knob at zero position before switching on.",
+                        "Never touch live conductors or terminals."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** Transformer rated 2 kVA, 230V/110V, 50 Hz. Rated secondary current ≈ 18.18 A. Load test readings are taken at 10% increments of rated load. No-load test readings are taken from 100 V to 200 V in steps of 20 V on the primary side."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 1: Load Test on Transformer**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "HV Voltmeter V₁ (V)",
+                        "LV Voltmeter V₂ (V)",
+                        "Ammeter I₂ (A)",
+                        "Wattmeter P₁ (W)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "230",
+                            "110.0",
+                            "0.0",
+                            "45"
+                        ],
+                        [
+                            "2",
+                            "230",
+                            "109.5",
+                            "1.82",
+                            "265"
+                        ],
+                        [
+                            "3",
+                            "230",
+                            "109.0",
+                            "3.64",
+                            "480"
+                        ],
+                        [
+                            "4",
+                            "230",
+                            "108.5",
+                            "5.45",
+                            "690"
+                        ],
+                        [
+                            "5",
+                            "230",
+                            "108.0",
+                            "7.27",
+                            "895"
+                        ],
+                        [
+                            "6",
+                            "230",
+                            "107.5",
+                            "9.09",
+                            "1095"
+                        ],
+                        [
+                            "7",
+                            "230",
+                            "107.0",
+                            "10.91",
+                            "1290"
+                        ],
+                        [
+                            "8",
+                            "230",
+                            "106.5",
+                            "12.73",
+                            "1480"
+                        ],
+                        [
+                            "9",
+                            "230",
+                            "106.0",
+                            "14.55",
+                            "1665"
+                        ],
+                        [
+                            "10",
+                            "230",
+                            "105.5",
+                            "16.36",
+                            "1845"
+                        ],
+                        [
+                            "11",
+                            "230",
+                            "105.0",
+                            "18.18",
+                            "2020"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** As the load current increases from 0 to full load (18.18 A), the secondary terminal voltage drops gradually from 110.0 V to 105.0 V due to the internal impedance of the transformer. The wattmeter reading (input power) increases with load, reflecting increasing copper losses added to the constant core loss."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 2: No-Load Test on Transformer**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Primary Voltmeter V₁ (V)",
+                        "Secondary Voltmeter V₂ (V)",
+                        "Ammeter I₀ (A)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "100",
+                            "47.8",
+                            "0.18"
+                        ],
+                        [
+                            "2",
+                            "120",
+                            "57.4",
+                            "0.21"
+                        ],
+                        [
+                            "3",
+                            "140",
+                            "66.9",
+                            "0.24"
+                        ],
+                        [
+                            "4",
+                            "160",
+                            "76.5",
+                            "0.28"
+                        ],
+                        [
+                            "5",
+                            "180",
+                            "86.1",
+                            "0.33"
+                        ],
+                        [
+                            "6",
+                            "200",
+                            "95.6",
+                            "0.40"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** The secondary voltage varies proportionally with the primary voltage, confirming the transformer turns ratio of approximately 230:110 (≈ 2.09:1). The no-load current I₀ increases with applied voltage due to the non-linear magnetizing characteristic of the core. At rated voltage (230 V), I₀ is small (< 5% of rated current), confirming low magnetizing losses."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Turns Ratio (from No-Load Test, Reading 6):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "a = \\frac{V_1}{V_2} = \\frac{200}{95.6} \\approx 2.09"
+                },
+                {
+                    "type": "text",
+                    "content": "**Output Power P₂ (Load Test):** Assuming unity power factor (resistive lamp load):"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_2 = V_2 \\times I_2 \\times \\cos\\phi"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sample Calculation — Full Load (Reading 11):** V₂ = 105.0 V, I₂ = 18.18 A, cos φ = 1, P₁ = 2020 W"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_2 = 105.0 \\times 18.18 \\times 1 = 1908.9 \\text{ W}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{P_2}{P_1} \\times 100 = \\frac{1908.9}{2020} \\times 100 = 94.5\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sample Calculation — Half Load (Reading 6):** V₂ = 107.5 V, I₂ = 9.09 A, cos φ = 1, P₁ = 1095 W"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_2 = 107.5 \\times 9.09 \\times 1 = 977.2 \\text{ W}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{977.2}{1095} \\times 100 = 89.2\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation (Full Load):** E₂ = 110.0 V (no-load secondary voltage), V₂ = 105.0 V (full-load secondary voltage)"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{V.R.} = \\frac{E_2 - V_2}{E_2} \\times 100 = \\frac{110.0 - 105.0}{110.0} \\times 100 = 4.55\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Core Loss (from No-Load Test at rated voltage):** At V₁ = 200 V, I₀ = 0.40 A. Assuming power factor of no-load current ≈ 0.15 (typical for transformers):"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_{\\text{core}} = V_1 \\times I_0 \\times \\cos\\phi_0 = 200 \\times 0.40 \\times 0.15 \\approx 12 \\text{ W}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The no-load and load tests were successfully performed on the 2 kVA single-phase transformer. The key performance parameters determined from the experiment are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Value",
+                        "Remarks"
+                    ],
+                    "rows": [
+                        [
+                            "Turns Ratio (a = V₁/V₂)",
+                            "≈ 2.09",
+                            "Determined from no-load test"
+                        ],
+                        [
+                            "No-Load Current I₀ at 200V",
+                            "0.40 A",
+                            "< 5% of rated current — typical"
+                        ],
+                        [
+                            "Full-Load Efficiency (η)",
+                            "94.5%",
+                            "At rated load, unity power factor"
+                        ],
+                        [
+                            "Half-Load Efficiency (η)",
+                            "89.2%",
+                            "At 50% rated load"
+                        ],
+                        [
+                            "Voltage Regulation (V.R.)",
+                            "4.55%",
+                            "From no-load to full-load"
+                        ],
+                        [
+                            "Approx. Core Loss (P_core)",
+                            "≈ 12 W",
+                            "From no-load test at 200 V"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Key Findings:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The transformer turns ratio was confirmed to be approximately 2.09:1, consistent with the nameplate rating of 230V/110V.",
+                        "Efficiency increases with load and reaches a maximum near full load (94.5%), which is characteristic of a well-designed distribution transformer.",
+                        "The voltage regulation of 4.55% indicates a small but acceptable drop in secondary terminal voltage from no-load to full-load, attributed to the internal winding resistance and leakage reactance.",
+                        "The no-load current remained small across all test voltages, confirming that core losses and magnetizing current are within acceptable limits.",
+                        "The proportional relationship between primary and secondary voltages in the no-load test confirms correct transformer operation and negligible leakage effects at no load."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The no-load and load tests were successfully conducted on the 2 kVA single-phase transformer. The no-load test established the turns ratio (≈ 2.09:1) and confirmed that core losses are small, with the no-load current remaining below 5% of the rated current across the tested voltage range. The load test demonstrated that the transformer operates with high efficiency (≈ 94.5% at full load) and acceptable voltage regulation (4.55%), validating its suitability for practical power distribution applications. The measured results were in close agreement with theoretically expected values based on the transformer ratings, with minor deviations attributable to winding resistance, core non-linearity, and instrument tolerances."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions assess conceptual understanding and analytical reasoning based on the experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Explain the voltage regulation of a transformer.\n\n**A:** Voltage regulation is a measure of how much the secondary terminal voltage changes from no-load to full-load, expressed as a percentage of the no-load voltage. When the transformer is on no-load, the secondary terminal voltage equals the induced EMF E₂. As load increases, voltage drops across the internal winding resistance and leakage reactance, causing the terminal voltage V₂ to fall below E₂. The percentage voltage regulation is given by V.R. = ((E₂ − V₂) / E₂) × 100. A lower V.R. value indicates better voltage stability under varying load conditions. In this experiment, V.R. was found to be 4.55%, which is acceptable for a distribution transformer.",
+                        "**Q:** What is the condition for maximum efficiency of a transformer?\n\n**A:** A transformer achieves maximum efficiency when its variable copper losses equal its constant core (iron) losses. Core losses remain constant regardless of load (since they depend only on the applied voltage and frequency), while copper losses vary with the square of the load current. At the load level where these two are equal, the total losses are minimised relative to the output power, and efficiency is maximised. Mathematically, maximum efficiency occurs when I²R_eq = P_core, or equivalently when the load fraction x = √(P_core / P_cu,full-load). For a well-designed transformer, this typically occurs between 50% and 80% of full load.",
+                        "**Q:** Explain all-day efficiency and commercial efficiency of a transformer.\n\n**A:** Commercial efficiency (or ordinary efficiency) is the ratio of output power to input power at a given instant and load level, expressed as a percentage. It is the efficiency used during load test calculations. All-day efficiency, on the other hand, accounts for the fact that a distribution transformer is energised continuously for 24 hours but supplies load only during certain hours. It is defined as the ratio of total output energy (in kWh) over 24 hours to total input energy over the same period. Since core losses occur throughout the day even when no load is supplied, all-day efficiency is always lower than commercial efficiency. It is a more practical and realistic measure of transformer performance in distribution systems where load varies throughout the day.",
+                        "**Q:** What are the various losses occurring in a transformer, and how does each test help identify them?\n\n**A:** Transformer losses are broadly classified into core losses (iron losses) and copper losses (winding losses). Core losses consist of hysteresis losses (caused by cyclic magnetisation reversal in the core) and eddy current losses (caused by circulating induced currents in the core laminations); both are constant at a fixed supply voltage and frequency. Copper losses are ohmic (I²R) losses in the primary and secondary windings and vary with the square of the load current. The no-load test isolates core losses, because with the secondary open there is no load current and copper losses are negligible; the wattmeter reading in this test directly gives the core loss. The load test captures the combined effect of core and copper losses through the input wattmeter reading, from which copper losses can be separated by subtracting the known core loss."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

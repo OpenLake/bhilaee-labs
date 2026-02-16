@@ -1,0 +1,10 @@
+{
+    "fig1-load-test-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-7/fig1-load-test-circuit.png",
+        "description": "Load Test Circuit Diagram"
+    },
+    "fig2-no-load-test-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-7/fig2-no-load-test-circuit.png",
+        "description": "No-Load Test Circuit Diagram"
+    }
+}
