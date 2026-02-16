@@ -2,10 +2,12 @@
     "id": "exp-5",
     "title": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
     "labId": "basic-electrical-engineering",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-5",
+        "simulationType": "AC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "2.0",
@@ -295,9 +297,14 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
-            "content": []
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulate the circuit to verify the open circuit and short circuit test results."
+                }
+            ]
         },
         "observation": {
             "id": "observation",

@@ -36,7 +36,7 @@
           "id": "5",
           "title": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
           "fileName": "exp-5.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {
