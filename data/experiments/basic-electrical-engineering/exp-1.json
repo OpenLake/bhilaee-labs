@@ -236,7 +236,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "**Note:** Current values are varied between 1 A to 2 A by adjusting the autotransformer/variac. All readings are RMS values. Power factor is computed as PF = P / (V × I)."
+                    "content": "**Note:** Current values are varied between 1 A to 2 A by adjusting the autotransformer/variac. All readings are RMS values. Power factor is computed as PF = P / (V × I). The following fixed circuit parameters were used for this experiment: **R = 60 Ω**, **L = 0.2 H**, **C = 100 µF**."
                 },
                 {
                     "type": "text",
@@ -254,37 +254,37 @@
                     "rows": [
                         [
                             "1",
-                            "115",
+                            "60",
                             "1.00",
-                            "113",
-                            "0.98"
+                            "58",
+                            "0.97"
                         ],
                         [
                             "2",
-                            "130",
+                            "75",
                             "1.25",
-                            "158",
+                            "91",
                             "0.97"
                         ],
                         [
                             "3",
-                            "150",
+                            "90",
                             "1.50",
-                            "218",
-                            "0.97"
+                            "133",
+                            "0.98"
                         ],
                         [
                             "4",
-                            "165",
+                            "105",
                             "1.75",
-                            "281",
+                            "179",
                             "0.97"
                         ],
                         [
                             "5",
-                            "180",
+                            "120",
                             "2.00",
-                            "349",
+                            "232",
                             "0.97"
                         ]
                     ]
@@ -309,44 +309,44 @@
                     "rows": [
                         [
                             "1",
-                            "160",
+                            "87",
                             "1.00",
-                            "112",
-                            "0.70"
+                            "62",
+                            "0.71"
                         ],
                         [
                             "2",
-                            "182",
+                            "109",
                             "1.25",
-                            "159",
+                            "95",
                             "0.70"
                         ],
                         [
                             "3",
-                            "210",
+                            "131",
                             "1.50",
-                            "214",
+                            "134",
                             "0.68"
                         ],
                         [
                             "4",
-                            "238",
+                            "152",
                             "1.75",
-                            "278",
-                            "0.67"
+                            "183",
+                            "0.69"
                         ],
                         [
                             "5",
-                            "265",
+                            "174",
                             "2.00",
-                            "345",
-                            "0.65"
+                            "236",
+                            "0.68"
                         ]
                     ]
                 },
                 {
                     "type": "text",
-                    "content": "**Observation:** The introduction of the inductor causes a significant phase shift between voltage and current. The power factor drops to the range of 0.65–0.70 (lagging), indicating that a substantial portion of the apparent power is reactive. As current increases with voltage, the inductive reactance effect becomes more pronounced, slightly lowering the power factor further."
+                    "content": "**Observation:** The introduction of the inductor causes a significant phase shift between voltage and current. The power factor drops to the range of 0.68–0.71 (lagging), indicating that a substantial portion of the apparent power is reactive."
                 },
                 {
                     "type": "text",
@@ -364,44 +364,44 @@
                     "rows": [
                         [
                             "1",
-                            "155",
+                            "67",
                             "1.00",
-                            "143",
-                            "0.92"
+                            "61",
+                            "0.91"
                         ],
                         [
                             "2",
-                            "176",
+                            "84",
                             "1.25",
-                            "201",
-                            "0.91"
+                            "94",
+                            "0.90"
                         ],
                         [
                             "3",
-                            "204",
+                            "101",
                             "1.50",
-                            "279",
-                            "0.91"
+                            "135",
+                            "0.89"
                         ],
                         [
                             "4",
-                            "231",
+                            "117",
                             "1.75",
-                            "369",
-                            "0.91"
+                            "183",
+                            "0.89"
                         ],
                         [
                             "5",
-                            "258",
+                            "134",
                             "2.00",
-                            "470",
-                            "0.91"
+                            "238",
+                            "0.89"
                         ]
                     ]
                 },
                 {
                     "type": "text",
-                    "content": "**Observation:** After introducing the capacitor in the RLC circuit, the power factor improves noticeably from the 0.65–0.70 range (RL circuit) to approximately 0.91–0.92. The capacitor supplies leading reactive current that partially cancels the lagging reactive current of the inductor, reducing net reactive power and bringing the current closer in phase with the voltage. Full unity correction is not achieved as the capacitor value is not perfectly matched to the inductive reactance at all operating points."
+                    "content": "**Observation:** After introducing the capacitor in the RLC circuit, the power factor improves noticeably from the 0.68–0.71 range (RL circuit) to approximately 0.89–0.91. The capacitor supplies leading reactive current that partially cancels the lagging reactive current of the inductor."
                 }
             ]
         },
@@ -451,7 +451,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "The experiment was successfully conducted across all three circuit configurations. The resistive circuit yielded a power factor close to unity (≈ 0.97–0.98). Introducing the inductor dropped the power factor to 0.65–0.70 (lagging), confirming the phase displacement caused by inductive reactance. After adding the capacitor, the power factor improved to 0.91–0.92, demonstrating effective correction."
+                    "content": "The experiment was successfully conducted across all three circuit configurations. The resistive circuit yielded a power factor close to unity (≈ 0.97–0.98). Introducing the inductor dropped the power factor to 0.68–0.71 (lagging). After adding the capacitor, the power factor improved to 0.89–0.91, demonstrating effective correction."
                 },
                 {
                     "type": "table",
@@ -468,12 +468,12 @@
                         ],
                         [
                             "Resistive-Inductive (RL)",
-                            "0.65 – 0.70",
+                            "0.68 – 0.71",
                             "Lagging"
                         ],
                         [
                             "Resistive-Inductive-Capacitive (RLC)",
-                            "0.91 – 0.92",
+                            "0.89 – 0.91",
                             "Lagging (corrected)"
                         ]
                     ]
@@ -535,7 +535,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "The power factor correction experiment was successfully verified. The resistive circuit operated at near-unity power factor, the RL circuit exhibited a lagging power factor of 0.65–0.70, and the addition of a capacitor improved it to 0.91–0.92, confirming that capacitive compensation effectively reduces reactive power and improves overall power delivery efficiency."
+                    "content": "The power factor correction experiment was successfully verified. The resistive circuit operated at near-unity power factor, the RL circuit exhibited a lagging power factor of 0.68–0.71, and the addition of a capacitor improved it to 0.89–0.91, confirming that capacitive compensation effectively reduces reactive power and improves overall power delivery efficiency."
                 }
             ]
         }
