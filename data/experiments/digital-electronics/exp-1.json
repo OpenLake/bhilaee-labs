@@ -81,14 +81,7 @@
                 {
                     "type": "text",
                     "content": "In Verilog HDL (Hardware Description Language), each gate can be described using dataflow modelling with the assign statement and bitwise operators. The simulation is then used to verify the truth table of each gate by applying all possible input combinations and observing the output waveform."
-                }
-            ]
-        },
-        "preLab": {
-            "id": "preLab",
-            "title": "Pre-Lab / Circuit Diagram",
-            "isApplicable": true,
-            "content": [
+                },
                 {
                     "type": "text",
                     "content": "The following truth tables summarize the expected output of each logic gate for all input combinations."
@@ -147,6 +140,12 @@
                     ]
                 }
             ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
         },
         "procedure": {
             "id": "procedure",

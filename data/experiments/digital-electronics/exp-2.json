@@ -1,0 +1,358 @@
+{
+    "id": "2",
+    "title": "Design and Implementation of 2-bit OR Gate on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a 2-bit OR gate on the FPGA board."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "An OR gate is a basic digital logic gate that implements logical disjunction. It produces a high output (1) if at least one of its inputs is high (1). If all inputs are low (0), the output is low (0)."
+                },
+                {
+                    "type": "text",
+                    "content": "The Boolean expression for a 2-input OR gate is **Y = A + B**. In Verilog HDL, this is implemented using the bitwise OR operator `|`."
+                },
+                {
+                    "type": "text",
+                    "content": "The truth table for a 2-input OR gate is:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "Y = A + B"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1: Setting up the Project in Xilinx ISE/Vivado**\n1.  **Launch Software:** Open Xilinx ISE Design Suite or Vivado from the desktop.\n2.  **New Project:** Go to `File > New Project`. Enter a name (e.g., `OR_Gate_Exp2`) and select a location.\n3.  **Device Settings:** Select your target FPGA family (e.g., Spartan-6 or Artix-7), Device, Package, and Speed. Ensure 'Simulator' is set to ISim/Vivado Simulator and 'Preferred Language' is **Verilog**.\n4.  **Finish:** Click Next/Finish to create the empty project."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2: Creating the Verilog Module**\n1.  **Add Source:** Right-click on the project hierarchy (or `Project > New Source`). Select **Verilog Module**.\n2.  **Naming:** Name the file (e.g., `or_gate`). Click Next.\n3.  **Define Ports:** In the wizard, define inputs (`a`, `b`) and output (`y`). Click Next -> Finish.\n4.  **Write Code:** The editor will open. Inside the module, write the assign statement (see Simulation section).\n5.  **Save:** Press `Ctrl+S` to save the file."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3: Simulation**\n1.  **Switch View:** Change the 'Design' view from 'Implementation' to **Simulation**.\n2.  **Select Module:** Click on your Verilog file (`or_gate.v`) in the hierarchy.\n3.  **Run Simulation:** In the 'Processes' pane, expand **ISim Simulator** and double-click **Simulate Behavioral Model**.\n4.  **Verify:** A waveform window will open. Use the toolbar to force values on inputs `a` and `b` (or write a testbench) and observe `y`."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 4: FPGA Implementation**\n1.  **Synthesize:** Switch back to Implementation view. Double-click **Synthesize - XST** to check for errors.\n2.  **Constraints:** Add a User Constraints File (.ucf/.xdc) to map ports `a`, `b`, `y` to physical switches P22, P21, P30 (or confirming to your board).\n3.  **Generate Bitstream:** Run 'Generate Programming File'.\n4.  **Program:** Connect the FPGA board via USB and use iMPACT/Hardware Manager to flash the bitstream."
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for 2-bit OR Gate:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = a | b;"
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File (UCF):**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"a\" LOC = P22;\nNET \"b\" LOC = P21;\nNET \"y\" LOC = P30;"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Hardware implementation was performed on the FPGA board. The two rightmost switches represent inputs A and B respectively, while the third switch position represents the output Y (LED). All four input combinations were tested."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "A",
+                        "B",
+                        "Output Y (Observed)",
+                        "Expected Y"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "0 (LED OFF)",
+                            "0"
+                        ],
+                        [
+                            "2",
+                            "0",
+                            "1",
+                            "1 (LED ON)",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "1",
+                            "0",
+                            "1 (LED ON)",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "1",
+                            "1",
+                            "1 (LED ON)",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Detailed Test Cases:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp02-hw-case1",
+                    "caption": "Case 1: A=0, B=0 — Output Y=0 (LED off).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp02-hw-case2",
+                    "caption": "Case 2: A=0, B=1 — Output Y=1 (LED on).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp02-hw-case3",
+                    "caption": "Case 3: A=1, B=0 — Output Y=1 (LED on).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp02-hw-case4",
+                    "caption": "Case 4: A=1, B=1 — Output Y=1 (LED on).",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The Boolean expression verification:"
+                },
+                {
+                    "type": "equation",
+                    "value": "Y = A + B"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "A + B (Boolean)",
+                        "Observed Output"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0 + 0 = 0",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "0 + 1 = 1",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "1 + 0 = 1",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1 + 1 = 1",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results \u0026 Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The 2-bit OR gate was successfully designed in Verilog and implemented on the FPGA board. The hardware output for all four input combinations matched the expected truth table values. The LED output correctly reflected the OR logic: output is high whenever at least one input is high."
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The design and implementation of a 2-bit OR gate on the FPGA board successfully demonstrated the application of basic digital logic principles. By utilizing Verilog for hardware description and synthesizing the design, the functionality was verified through on-board testing."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the role of the User Constraints File (UCF) in FPGA implementation?\n\n**A:** The User Constraints File (UCF) maps the logical port names defined in the Verilog module to physical pin locations on the FPGA device. It also allows specification of timing constraints, voltage standards, and I/O standards.",
+                        "**Q:** What is the difference between simulation and hardware implementation in FPGA design?\n\n**A:** Simulation verifies the logical correctness of a design in software before committing to hardware. Hardware implementation involves synthesizing the Verilog code into a gate-level netlist and generating a bitstream that is downloaded to the physical FPGA device.",
+                        "**Q:** What is a Look-Up Table (LUT) in the context of FPGAs?\n\n**A:** A Look-Up Table (LUT) is the fundamental programmable logic element inside an FPGA. It effectively stores the truth table of a combinational function, allowing any combinational logic function of n inputs to be implemented using a single LUT.",
+                        "**Q:** Why is Verilog described as a Hardware Description Language rather than a programming language?\n\n**A:** Unlike software programming languages where code executes sequentially, Verilog describes hardware structure and concurrent behaviour. In Verilog, multiple assign statements execute simultaneously (in parallel), mirroring the parallel nature of physical digital circuits.",
+                        "**Q:** What is the significance of the assign statement in Verilog?\n\n**A:** The assign statement is used for continuous combinational logic, where the output immediately reflects any change in the input expression.",
+                        "**Q:** How would you implement a 3-input OR gate in Verilog?\n\n**A:** A 3-input OR gate in Verilog would be written as: `assign y = a | b | c;`. The output y is high whenever at least one of the three inputs is high.",
+                        "**Q:** What are the advantages of using FPGAs over fixed-function logic ICs?\n\n**A:** FPGAs offer reprogrammability, meaning the hardware can be reconfigured. They support high gate densities and allow rapid prototyping, unlike fixed-function ICs which are dedicated to one function."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References \u0026 Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** This manual covers all experiments for the Digital Electronics course."
+                }
+            ]
+        }
+    }
+}

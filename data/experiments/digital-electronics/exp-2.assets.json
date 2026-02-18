@@ -1,0 +1,19 @@
+{
+    "exp02-or-gate-block-diagram": null,
+    "exp02-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-2/case1.png",
+        "description": "Hardware verification: A=0, B=0 -> Y=0"
+    },
+    "exp02-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-2/case2.png",
+        "description": "Hardware verification: A=0, B=1 -> Y=1"
+    },
+    "exp02-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-2/case3.png",
+        "description": "Hardware verification: A=1, B=0 -> Y=1"
+    },
+    "exp02-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-2/case4.png",
+        "description": "Hardware verification: A=1, B=1 -> Y=1"
+    }
+}
