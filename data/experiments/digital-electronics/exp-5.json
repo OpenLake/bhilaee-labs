@@ -1,0 +1,461 @@
+{
+    "id": "5",
+    "title": "Design and Implementation of Full Subtractor Circuit on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a full subtractor circuit on the FPGA board."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A full subtractor is a combinational circuit that performs the subtraction of two 1-bit binary numbers while also taking into account a borrow-in bit from the previous bit position. It has three inputs: A (minuend), B (subtrahend), and Bin (borrow-in), and two outputs: Difference (D) and Borrow-out (Bout)."
+                },
+                {
+                    "type": "text",
+                    "content": "The Difference output is high when an odd number of inputs are high, which is identical to the XOR of all three inputs — the same expression as the Sum in a full adder. The Borrow-out is high when the minuend A is smaller than the effective subtrahend (B + Bin), indicating that a borrow must be taken from the next higher bit position."
+                },
+                {
+                    "type": "text",
+                    "content": "The Boolean expressions for Difference and Borrow are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Difference} = A \\oplus B \\oplus B_{in}"
+                },
+                {
+                    "type": "equation",
+                    "value": "B_{out} = (\\overline{A} \\cdot B) + (B \\cdot B_{in}) + (B_{in} \\cdot \\overline{A})"
+                },
+                {
+                    "type": "text",
+                    "content": "The truth table for a full subtractor is given below:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "Bin",
+                        "Difference",
+                        "Bout"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "0",
+                            "1",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "0",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "1",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Open Xilinx ISE and create a new project targeting the appropriate FPGA device.",
+                        "Create a new Verilog source file and write the full subtractor module using the assign statement for Difference (XOR of all inputs) and Borrow (using AND-OR with complements).",
+                        "Create the User Constraints File (UCF) mapping the three input ports (a, b, c) and two output ports (Difference, Borrow) to the designated FPGA pin locations.",
+                        "**Hardware Layout:** Map `a` (minuend), `b` (subtrahend), `c` (borrow-in) to the toggle switches and `Difference`, `Borrow` to the LEDs.",
+                        "Run the behavioural simulation in ISim by applying all 8 input combinations and verifying the outputs match the truth table.",
+                        "Synthesize and implement the design in Xilinx ISE.",
+                        "Generate the programming bitstream and download to the FPGA board.",
+                        "Test all six representative input combination cases using the toggle switches and observe the LED outputs."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for Full Subtractor Implementation:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module FullSubtractor(\n  input a,\n  input b,\n  input c,\n  output Difference,\n  output Borrow\n);\n  assign Difference = a ^ b ^ c;\n  assign Borrow = ((~a) & b) | (b & c) | (c & (~a));\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File for Full Subtractor:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"a\"          LOC = \"P22\";\nNET \"b\"          LOC = \"P21\";\nNET \"c\"          LOC = \"P17\";\nNET \"Difference\" LOC = \"P29\";\nNET \"Borrow\"     LOC = \"P27\";"
+                },
+                {
+                    "type": "text",
+                    "content": "Note: The input c in the code represents the borrow-in (Bin). The Difference is computed using triple XOR, identical to the Sum in a full adder. The Borrow is computed using the complement of A with AND-OR expressions reflecting when a borrow must be generated."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-fullsubtractor-simulation-waveform",
+                    "caption": "Simulation waveform for Full Subtractor: outputs Difference and Borrow match the truth table for all 8 input combinations.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "text",
+                    "content": "From the simulation waveform, the outputs Difference and Borrow exactly match the truth table. Borrow is high only when the minuend A is smaller than the effective subtrahend (B + Bin). When all inputs are 1, both outputs are also 1."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Hardware implementation was verified on the FPGA board. The following 6 representative cases were successfully captured and verified against the truth table."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Input (A B Bin)",
+                        "Difference (Obs.)",
+                        "Bout (Obs.)",
+                        "Expected Diff.",
+                        "Expected Bout",
+                        "Status"
+                    ],
+                    "rows": [
+                        [
+                            "0 0 0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "Verified"
+                        ],
+                        [
+                            "0 1 0",
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "Verified"
+                        ],
+                        [
+                            "0 1 1",
+                            "0",
+                            "1",
+                            "0",
+                            "1",
+                            "Verified"
+                        ],
+                        [
+                            "1 0 0",
+                            "1",
+                            "0",
+                            "1",
+                            "0",
+                            "Verified"
+                        ],
+                        [
+                            "1 0 1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "Verified"
+                        ],
+                        [
+                            "1 1 1",
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "Verified"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case1",
+                    "caption": "Input 000: Difference=0, Bout=0",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case5",
+                    "caption": "Input 010: Difference=1, Bout=1",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case2",
+                    "caption": "Input 011: Difference=0, Bout=1",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case3",
+                    "caption": "Input 100: Difference=1, Bout=0",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case6",
+                    "caption": "Input 101: Difference=0, Bout=0",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp05-hw-case4",
+                    "caption": "Input 111: Difference=1, Bout=1",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Verification of Boolean expressions for representative test cases:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Difference} = A \\oplus B \\oplus B_{in}"
+                },
+                {
+                    "type": "equation",
+                    "value": "B_{out} = (\\overline{A} \\cdot B) + (B \\cdot B_{in}) + (B_{in} \\cdot \\overline{A})"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "Bin",
+                        "Difference",
+                        "Bout"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0",
+                            "0⊕0⊕0 = 0",
+                            "(1·0)+(0·0)+(0·1) = 0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "1",
+                            "0⊕1⊕1 = 0",
+                            "(1·1)+(1·1)+(1·1) = 1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "1⊕0⊕0 = 1",
+                            "(0·0)+(0·0)+(0·0) = 0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1",
+                            "1⊕1⊕1 = 1",
+                            "(0·1)+(1·1)+(1·0) = 1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The Full Subtractor experiment provided the following insights:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Implementation Verification:** The Verilog module using `assign` statements was successfully synthesized and downloaded to the FPGA.",
+                        "**Truth Table Validation:** All 8 input combinations were verified in simulation. The hardware test cases confirmed that the Difference output follows the XOR parity logic (similar to Full Adder Sum) and the Borrow output is generated correctly whenever the subtrahend exceeds the minuend.",
+                        "**Subtraction Logic:** The experiment highlighted the role of the borrow bit in cascading subtraction operations across multiple bits."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, the implementation of a full subtractor on the FPGA board was successfully completed. Both software simulation and hardware implementation were performed and verified against the respective truth table. Different cases that produce similar output combinations were identified. The experiment demonstrates that the Difference output expression is identical to that of the full adder Sum, while the Borrow expression uses the complement of the minuend A — highlighting the structural relationship between addition and subtraction in combinational arithmetic circuits."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the difference between a half subtractor and a full subtractor?\n**A:** Half subtractor handles 2 inputs (A, B) and no borrow-in. Full subtractor handles 3 inputs (A, B, Bin) to support multi-bit cascading.",
+                        "**Q:** Why is the Difference expression in a full subtractor identical to the Sum expression in a full adder?\n**A:** Both use XOR logic (odd parity) for the result bit. The difference lies only in the carry/borrow generation logic.",
+                        "**Q:** When does Borrow-out become high?\n**A:** When Minuend < Subtrahend (effectively). Boolean: `Bout = (~A&B) | (B&Bin) | (Bin&~A)`.",
+                        "**Q:** How is subtraction typically done in processors?\n**A:** Using 2's complement addition. A - B is equal to A + (~B + 1). This allows the same Adder hardware to perform subtraction.",
+                        "**Q:** Comparison of Adder vs Subtractor Truth Tables?\n**A:** Sum and Difference columns are identical. Carry and Borrow columns differ based on the majority vs borrowing logic."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                }
+            ]
+        }
+    }
+}

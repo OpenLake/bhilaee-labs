@@ -1,0 +1,32 @@
+{
+    "exp05-fullsubtractor-simulation-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-5/sim_output.png",
+        "description": "Simulation Output: Waveforms for all 8 input combinations"
+    },
+    "exp05-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_000.png",
+        "description": "Case 1: Inputs 000 -> Difference=0, Bout=0"
+    },
+    "exp05-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_011.png",
+        "description": "Case 2: Inputs 011 -> Difference=0, Bout=1"
+    },
+    "exp05-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_100.png",
+        "description": "Case 3: Inputs 100 -> Difference=1, Bout=0"
+    },
+    "exp05-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_111.png",
+        "description": "Case 4: Inputs 111 -> Difference=1, Bout=1"
+    },
+    "exp05-hw-case5": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_010.png",
+        "description": "Case 5: Inputs 010 -> Difference=1, Bout=1"
+    },
+    "exp05-hw-case6": {
+        "path": "/assets/labs/digital-electronics/exp-5/case_101.png",
+        "description": "Case 6: Inputs 101 -> Difference=0, Bout=0"
+    },
+    "exp05-hw-case7": null,
+    "exp05-hw-case8": null
+}

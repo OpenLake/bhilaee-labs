@@ -109,10 +109,10 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Design and Implementation of Full Subtractor Circuit on FPGA Board",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "6",
