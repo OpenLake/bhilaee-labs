@@ -2,10 +2,12 @@
     "id": "exp-6",
     "title": "Investigation of Star-Star, Delta-Delta, Star-Delta and Delta-Star Connections using Three Single-Phase Transformers",
     "labId": "basic-electrical-engineering",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-6",
+        "simulationType": "AC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.0.0",
@@ -295,9 +297,14 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
-            "content": []
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulate the star/delta connections to verify voltage and current relationships."
+                }
+            ]
         },
         "observation": {
             "id": "observation",
