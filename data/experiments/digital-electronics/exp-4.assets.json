@@ -1,0 +1,22 @@
+{
+    "exp04-fulladder-simulation-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-4/sim_output.png",
+        "description": "Simulation Output: Waveforms for all 8 input combinations"
+    },
+    "exp04-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-4/case1_000.png",
+        "description": "Case 1: Inputs 000 -> Sum=0, Cout=0"
+    },
+    "exp04-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-4/case2_001.png",
+        "description": "Case 2: Inputs 001 -> Sum=1, Cout=0"
+    },
+    "exp04-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-4/case3_110.png",
+        "description": "Case 3: Inputs 110 -> Sum=0, Cout=1"
+    },
+    "exp04-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-4/case4_111.png",
+        "description": "Case 4: Inputs 111 -> Sum=1, Cout=1"
+    }
+}

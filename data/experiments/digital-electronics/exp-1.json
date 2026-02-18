@@ -305,12 +305,21 @@
         },
         "result": {
             "id": "result",
-            "title": "Results \u0026 Analysis",
+            "title": "Results & Analysis",
             "isApplicable": true,
             "content": [
                 {
                     "type": "text",
-                    "content": "The simulation results confirm the correct logic functionality of all seven gates. The waveforms obtained from the Xilinx ISim simulator (shown in the Observations section) align perfectly with the standard truth tables presented in the Pre-Lab section. For instance, the AND gate output was observed to be high only when both inputs were high, and the XOR gate output was high only when the inputs were different. This validates the Verilog implementation of basic logic gates."
+                    "content": "The fundamental logic gates were successfully verified. Key observations from the simulation include:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**AND / OR / NOT:** Basic boolean operations matched theoretical truth tables exactly.",
+                        "**NAND / NOR:** Confirmed as universal gates by producing inverted outputs of AND/OR respectively.",
+                        "**XOR vs XNOR:** XOR produced high output for distinct inputs (inequality detector), while XNOR produced high output for identical inputs (equality detector)."
+                    ]
                 }
             ]
         },
@@ -321,7 +330,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "In this experiment, all seven fundamental logic gates were successfully designed and simulated using Xilinx software. The Verilog implementations using bitwise operators produced waveforms that exactly matched the expected truth tables for each gate. While simulating the logic gates in software provides a convenient and quick way to observe their behaviour, the same logic can be implemented in hardware. By using an FPGA board, these gates can be physically realized, allowing the same operations to be performed in real-time."
+                    "content": "This experiment established the foundation of digital design by implementing fundamental logic blocks in Verilog. By validating these gates using dataflow modelling, we confirmed that hardware behavior can be accurately described using high-level language constructs before physical deployment."
                 }
             ]
         },

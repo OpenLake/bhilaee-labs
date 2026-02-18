@@ -299,12 +299,21 @@
         },
         "result": {
             "id": "result",
-            "title": "Results \u0026 Analysis",
+            "title": "Results & Analysis",
             "isApplicable": true,
             "content": [
                 {
                     "type": "text",
-                    "content": "The 2-bit OR gate was successfully designed in Verilog and implemented on the FPGA board. The hardware output for all four input combinations matched the expected truth table values. The LED output correctly reflected the OR logic: output is high whenever at least one input is high."
+                    "content": "The FPGA implementation process yielded the following specific results:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Synthesis:** The Verilog HDL was correctly synthesized into a gate-level netlist without errors.",
+                        "**Pin Mapping:** The UCF file successfully routed logical ports `a`, `b` (inputs) and `y` (output) to physical toggle switches and LEDs.",
+                        "**Hardware Verification:** On-board testing confirmed the OR logic: Output LED turned ON for inputs 01, 10, and 11, and remained OFF for 00."
+                    ]
                 }
             ]
         },
@@ -315,7 +324,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "The design and implementation of a 2-bit OR gate on the FPGA board successfully demonstrated the application of basic digital logic principles. By utilizing Verilog for hardware description and synthesizing the design, the functionality was verified through on-board testing."
+                    "content": "Implementing a simple OR gate provided a complete walkthrough of the FPGA design flow—from HDL entry to bitstream generation. It demonstrated how logical abstractions are physically realized using Look-Up Tables (LUTs) within the FPGA fabric, bridging the gap between software simulation and physical hardware behavior."
                 }
             ]
         },

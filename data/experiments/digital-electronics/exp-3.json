@@ -353,12 +353,20 @@
         },
         "result": {
             "id": "result",
-            "title": "Results \u0026 Analysis",
+            "title": "Results & Analysis",
             "isApplicable": true,
             "content": [
                 {
                     "type": "text",
-                    "content": "Both parts of the experiment were successfully completed. The 4:1 multiplexer correctly forwarded the selected input to the output based on the select line combination. The OR gate implemented using a 2:1 MUX configuration produced outputs that exactly matched the OR truth table for all input combinations."
+                    "content": "The multiplexer experiments demonstrated two distinct capabilities:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Data Routing (4:1 MUX):** The Select lines (`Sel`) functioned as a digital address, accurately passing the corresponding input data (`I0`-`I3`) to the single output line `Y`. No crosstalk was observed between unselected channels.",
+                        "**Universal Logic (OR via MUX):** By fixing data inputs (`I0=B`, `I1=1`) and using `A` as a selector, the 2:1 MUX successfully replicated the truth table of an OR gate, verifying the universality of multiplexers."
+                    ]
                 }
             ]
         },
@@ -369,7 +377,7 @@
             "content": [
                 {
                     "type": "text",
-                    "content": "In this experiment, a 4:1 multiplexer was successfully designed and implemented on the FPGA board. The functionality was also verified with a simulation. Additionally, an OR gate was implemented using a 2:1 multiplexer, demonstrating the versatility of multiplexers in implementing arbitrary logic functions."
+                    "content": "This experiment highlighted the versatility of Multiplexers as not just data selectors, but as universal function generators. The ability to implement an OR gate using a 2:1 MUX underscores the principle that any Boolean function can be realized using multiplexers, a concept central to how FPGAs implement logic using LUTs."
                 }
             ]
         },

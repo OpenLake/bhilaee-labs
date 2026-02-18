@@ -1,0 +1,439 @@
+{
+    "id": "4",
+    "title": "Design and Implementation of Full Adder Circuit on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a full adder circuit on the FPGA board."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A full adder is a combinational arithmetic circuit with three inputs and two outputs, used to add binary numbers with more than 1 bit. The three inputs are the two current bits to be added (A and B) and a carry-in bit (Cin) from the addition of the previous bit position. The two outputs are the Sum bit and the Carry-out bit (Cout), which serves as the carry-in for the next higher bit position."
+                },
+                {
+                    "type": "text",
+                    "content": "The Sum output is high when an odd number of the inputs are high, which is equivalent to the XOR of all three inputs. The Carry-out is high when two or more inputs are high, which is the majority function of the three inputs."
+                },
+                {
+                    "type": "text",
+                    "content": "The Boolean expressions for Sum and Carry are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Sum} = A \\oplus B \\oplus C_{in}"
+                },
+                {
+                    "type": "equation",
+                    "value": "C_{out} = (A \\cdot B) + (B \\cdot C_{in}) + (C_{in} \\cdot A)"
+                },
+                {
+                    "type": "text",
+                    "content": "The truth table for a full adder is given below:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "Cin",
+                        "Sum",
+                        "Cout"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "0",
+                            "1",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Open Xilinx ISE and create a new project targeting the appropriate FPGA device.",
+                        "Create a new Verilog source file and write the full adder module using the assign statement for Sum (XOR of all inputs) and Carry (majority function).",
+                        "Create the User Constraints File (UCF) mapping the three input ports (a, b, c) and two output ports (Sum, Carry) to the designated FPGA pin locations.",
+                        "**Hardware Layout:** Typically, map `a`, `b`, `c` to the rightmost toggle switches and `Sum`, `Carry` to the adjacent LEDs.",
+                        "Run the behavioural simulation in ISim by applying all 8 input combinations and verifying the outputs match the truth table.",
+                        "Synthesize and implement the design in Xilinx ISE.",
+                        "Generate the programming bitstream and download to the FPGA board.",
+                        "Test all relevant input combinations using the toggle switches and observe the LED outputs."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for Full Adder Implementation:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module Fulladder(\n  input a,\n  input b,\n  input c,\n  output Sum,\n  output Carry\n);\n  assign Sum   = a ^ b ^ c;\n  assign Carry = (a & b) | (b & c) | (c & a);\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File for Full Adder:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"a\"     LOC = \"P22\";\nNET \"b\"     LOC = \"P21\";\nNET \"c\"     LOC = \"P17\";\nNET \"Sum\"   LOC = \"P29\";\nNET \"Carry\" LOC = \"P27\";"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp04-fulladder-simulation-waveform",
+                    "caption": "Simulation waveform for Full Adder: outputs Sum and Carry match the truth table for all 8 input combinations.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "text",
+                    "content": "From the simulation waveform, the outputs Sum and Carry exactly match the expected outputs from the truth table. Initially all inputs are set to 0 and both outputs are low. Carry is high only when more than one input is high. When all inputs are 1, both outputs are also 1."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Hardware implementation was verified on the FPGA board. Four representative cases were tested to cover all key output scenarios."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "A",
+                        "B",
+                        "Cin",
+                        "Sum",
+                        "Cout",
+                        "Expected Sum",
+                        "Expected Cout"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "2",
+                            "0",
+                            "0",
+                            "1",
+                            "1",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "3",
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp04-hw-case1",
+                    "caption": "Case 1: Inputs 000 — Sum=0, Cout=0.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp04-hw-case2",
+                    "caption": "Case 2: Inputs 001 — Sum=1, Cout=0.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp04-hw-case3",
+                    "caption": "Case 3: Inputs 110 — Sum=0, Cout=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp04-hw-case4",
+                    "caption": "Case 4: Inputs 111 — Sum=1, Cout=1.",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Verification of Boolean expressions for all four test cases:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Sum} = A \\oplus B \\oplus C_{in}"
+                },
+                {
+                    "type": "equation",
+                    "value": "C_{out} = (A \\cdot B) + (B \\cdot C_{in}) + (C_{in} \\cdot A)"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "A",
+                        "B",
+                        "Cin",
+                        "Sum",
+                        "Cout"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0",
+                            "0⊕0⊕0 = 0",
+                            "0+0+0 = 0"
+                        ],
+                        [
+                            "0",
+                            "0",
+                            "1",
+                            "0⊕0⊕1 = 1",
+                            "0+0+0 = 0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "0",
+                            "1⊕1⊕0 = 0",
+                            "1+0+0 = 1"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1",
+                            "1⊕1⊕1 = 1",
+                            "1+1+1 = 1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The Full Adder design yielded the following observations:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Logic Verification:** The Sum output correctly followed the parity of the inputs (XOR operation), identifying odd numbers of high inputs.",
+                        "**Carry Generation:** The Carry output correctly identified when two or more inputs were high, satisfying the majority function.",
+                        "**Consistency:** Hardware results for all 8 input combinations (represented by the 4 key cases above) were consistent with the specific boolean equations derived from the truth table."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "This experiment bridged the gap between boolean algebra and arithmetic circuits. By implementing the Full Adder, we demonstrated how potentially complex arithmetic operations (like multi-bit addition) can be broken down into fundamental logic gates (XOR, AND, OR) and realized physically on an FPGA."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the difference between a half adder and a full adder?\n**A:** A half adder adds two bits and produces Sum and Carry but has no Carry-in input. A full adder adds three bits (A, B, Cin) and handles the carry from a previous stage.",
+                        "**Q:** How can a 4-bit ripple carry adder be built using full adders?\n**A:** By cascading four full adders. The Cout of each stage is connected to the Cin of the next stage. The LSB Stage has Cin=0.",
+                        "**Q:** Why is XOR used for Sum and AND-OR used for Carry?\n**A:** XOR (odd function) naturally implements binary addition sum logic (1+0=1, 1+1=0). The AND-OR structure implements the Majority logic required for a carry bit.",
+                        "**Q:** What is the significance of Cout in a multi-bit adder?\n**A:** Cout propagates the overflow to the next bit position. Ignoring it in the MSB results in an overflow error if the sum exceeds the bit-width capacity.",
+                        "**Q:** What are the outputs when all inputs are 1?\n**A:** Inputs 1, 1, 1 result in Sum=1 and Cout=1 (Binary 11, Decimal 3)."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                }
+            ]
+        }
+    }
+}
