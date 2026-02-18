@@ -81,10 +81,10 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Design of Basic Logic Gates using Xilinx Software",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Software-Oriented",
+          "completeness": 1
         },
         {
           "id": "2",
@@ -531,9 +531,9 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Measurement and Correction of Power Factor",
+          "title": "Object Detection using an IR sensor and ESP32",
           "fileName": "exp-1.json",
-          "status": "Simulation Available",
+          "status": "Hardware-Oriented",
           "completeness": 1
         },
         {

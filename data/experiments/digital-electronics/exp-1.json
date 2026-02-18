@@ -1,0 +1,365 @@
+{
+    "id": "exp-1",
+    "title": "Design of Basic Logic Gates using Xilinx Software",
+    "labId": "digital-electronics",
+    "status": "Software-Oriented",
+    "meta": {
+        "experimentType": "simulation",
+        "status": "active",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design basic logic gates using Xilinx software and observe their functionality through simulations."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus \u0026 Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Software",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Xilinx ISE / Vivado",
+                            "HDL design entry and simulation"
+                        ],
+                        [
+                            "2",
+                            "ISim / XSim Simulator",
+                            "Functional simulation of logic gates"
+                        ],
+                        [
+                            "3",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Logic gates are the fundamental building blocks of all digital circuits. They perform basic logical operations on one or more binary inputs to produce a single binary output. Each gate implements a specific Boolean function. The seven fundamental logic gates explored in this experiment are described below."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "AND Gate: Output is high only when all inputs are high. Boolean expression: Y = A\u00b7B",
+                        "OR Gate: Output is high if at least one input is high. Boolean expression: Y = A+B",
+                        "NOT Gate: Output is the complement of the input; high when input is low and vice versa. Boolean expression: Y = A'",
+                        "NAND Gate: Output is high when at least one input is low; low only when all inputs are high. Boolean expression: Y = (A\u00b7B)'",
+                        "NOR Gate: Output is high only when all inputs are low; if any input is high, output is low. Boolean expression: Y = (A+B)'",
+                        "XOR Gate: Output is high if and only if an odd number of inputs are high; for two inputs, output is high when exactly one input is high. Boolean expression: Y = A\u2295B",
+                        "XNOR Gate: Output is high if and only if all inputs are the same (both high or both low). Boolean expression: Y = (A\u2295B)'"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "In Verilog HDL (Hardware Description Language), each gate can be described using dataflow modelling with the assign statement and bitwise operators. The simulation is then used to verify the truth table of each gate by applying all possible input combinations and observing the output waveform."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The following truth tables summarize the expected output of each logic gate for all input combinations."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Gate",
+                        "Inputs",
+                        "Output Y",
+                        "Boolean Expression"
+                    ],
+                    "rows": [
+                        [
+                            "AND",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "0 | 0 | 0 | 1",
+                            "Y = A\u00b7B"
+                        ],
+                        [
+                            "OR",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "0 | 1 | 1 | 1",
+                            "Y = A+B"
+                        ],
+                        [
+                            "NOT",
+                            "X=0 | X=1",
+                            "1 | 0",
+                            "Y = X'"
+                        ],
+                        [
+                            "NAND",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "1 | 1 | 1 | 0",
+                            "Y = (A\u00b7B)'"
+                        ],
+                        [
+                            "NOR",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "1 | 0 | 0 | 0",
+                            "Y = (A+B)'"
+                        ],
+                        [
+                            "XOR",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "0 | 1 | 1 | 0",
+                            "Y = A\u2295B"
+                        ],
+                        [
+                            "XNOR",
+                            "A=0,B=0 | A=0,B=1 | A=1,B=0 | A=1,B=1",
+                            "1 | 0 | 0 | 1",
+                            "Y = (A\u2295B)'"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1: Setting up the Project in Xilinx ISE/Vivado**\n1.  **Launch Software:** Open Xilinx ISE Design Suite or Vivado from the desktop.\n2.  **New Project:** Go to `File > New Project`. Enter a name (e.g., `LogicGates_Exp1`) and select a location.\n3.  **Device Settings:** Select your target FPGA family (e.g., Spartan-6 or Artix-7), Device, Package, and Speed. Ensure 'Simulator' is set to ISim/Vivado Simulator and 'Preferred Language' is **Verilog**.\n4.  **Finish:** Click Next/Finish to create the empty project."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2: Creating the Verilog Module**\n1.  **Add Source:** Right-click on the project hierarchy (or `Project > New Source`). Select **Verilog Module**.\n2.  **Naming:** Name the file (e.g., `and_gate`). Click Next.\n3.  **Define Ports:** In the wizard, define inputs (`a`, `b`) and output (`y`). Click Next -> Finish.\n4.  **Write Code:** The editor will open. Inside the module, write the assign statement (see Simulation section).\n5.  **Save:** Press `Ctrl+S` to save the file."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3: Simulation**\n1.  **Switch View:** Change the 'Design' view from 'Implementation' to **Simulation**.\n2.  **Select Module:** Click on your Verilog file (`and_gate.v`) in the hierarchy.\n3.  **Run Simulation:** In the 'Processes' pane, expand **ISim Simulator** and double-click **Simulate Behavioral Model**.\n4.  **Verify:** A waveform window will open. Use the toolbar to force values on inputs `a` and `b` (or write a testbench) and observe `y`."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 4: FPGA Implementation (Optional)**\n1.  **Synthesize:** Switch back to Implementation view. Double-click **Synthesize - XST** to check for errors.\n2.  **Constraints:** Add a User Constraints File (.ucf/.xdc) to map ports `a`, `b`, `y` to physical switches and LEDs on the board.\n3.  **Generate Bitstream:** Run 'Generate Programming File'.\n4.  **Program:** Connect the FPGA board via USB and use iMPACT/Hardware Manager to flash the bitstream."
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The core Verilog syntax used for each gate using dataflow modelling is provided below:"
+                },
+                {
+                    "type": "text",
+                    "content": "**AND Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = a & b;"
+                },
+                {
+                    "type": "text",
+                    "content": "**OR Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = a | b;"
+                },
+                {
+                    "type": "text",
+                    "content": "**NOT Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = ~x;"
+                },
+                {
+                    "type": "text",
+                    "content": "**NAND Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = ~(a & b);"
+                },
+                {
+                    "type": "text",
+                    "content": "**NOR Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = ~(a | b);"
+                },
+                {
+                    "type": "text",
+                    "content": "**XOR Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = a ^ b;"
+                },
+                {
+                    "type": "text",
+                    "content": "**XNOR Gate**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "assign y = ~(a ^ b);"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulations were performed in Xilinx ISim for each gate. The output waveforms confirmed the expected truth table behaviour for all gates."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-and-gate-waveform",
+                    "caption": "Simulation waveform for AND gate: output y is high only when both a and b are high.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-or-gate-waveform",
+                    "caption": "Simulation waveform for OR gate: output y is high when at least one input is high.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-not-gate-waveform",
+                    "caption": "Simulation waveform for NOT gate: output is complement of input.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-nand-gate-waveform",
+                    "caption": "Simulation waveform for NAND gate: output is low only when both inputs are high.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-nor-gate-waveform",
+                    "caption": "Simulation waveform for NOR gate: output is high only when both inputs are low.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-xor-gate-waveform",
+                    "caption": "Simulation waveform for XOR gate: output is high only when inputs differ.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp01-xnor-gate-waveform",
+                    "caption": "Simulation waveform for XNOR gate: output is high only when both inputs are equal.",
+                    "role": "simulation-screenshot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": false,
+            "content": []
+        },
+        "result": {
+            "id": "result",
+            "title": "Results \u0026 Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The simulation results confirm the correct logic functionality of all seven gates. The waveforms obtained from the Xilinx ISim simulator (shown in the Observations section) align perfectly with the standard truth tables presented in the Pre-Lab section. For instance, the AND gate output was observed to be high only when both inputs were high, and the XOR gate output was high only when the inputs were different. This validates the Verilog implementation of basic logic gates."
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, all seven fundamental logic gates were successfully designed and simulated using Xilinx software. The Verilog implementations using bitwise operators produced waveforms that exactly matched the expected truth tables for each gate. While simulating the logic gates in software provides a convenient and quick way to observe their behaviour, the same logic can be implemented in hardware. By using an FPGA board, these gates can be physically realized, allowing the same operations to be performed in real-time."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a universal gate, and why are NAND and NOR referred to as universal gates?\n\n**A:** A universal gate is one that can be used to implement any Boolean function without using any other type of gate. NAND and NOR are called universal gates because any logic gate \u2014 AND, OR, NOT, XOR, XNOR, etc. \u2014 can be constructed entirely using either NAND gates alone or NOR gates alone. This property makes them extremely useful in digital circuit design, as it reduces the variety of gate types required in fabrication.",
+                        "**Q:** What is the difference between XOR and XNOR gates?\n\n**A:** An XOR (Exclusive OR) gate produces a high output only when the number of high inputs is odd \u2014 for a two-input gate, output is high when inputs are different. An XNOR (Exclusive NOR) gate is the complement of XOR; it produces a high output when both inputs are the same (both high or both low). Their Boolean expressions are Y = A\u2295B for XOR and Y = (A\u2295B)' for XNOR.",
+                        "**Q:** What is the purpose of the assign statement in Verilog, and in which modelling style is it used?\n\n**A:** The assign statement is used for continuous assignment in Verilog. It is part of the dataflow modelling style, where the output is continuously driven by the specified expression. Whenever any variable on the right-hand side changes, the output is immediately updated. It is typically used to describe combinational logic without explicitly declaring always blocks or gate primitives.",
+                        "**Q:** How can a NOT gate be implemented using a NAND gate?\n\n**A:** A NOT gate can be implemented using a single NAND gate by connecting both inputs of the NAND gate together and feeding the same signal to both. When the single input A is applied to both inputs, the NAND output is (A\u00b7A)' = A', which is the complement of A \u2014 identical to a NOT gate.",
+                        "**Q:** What is the difference between combinational and sequential logic circuits?\n\n**A:** Combinational logic circuits produce outputs that depend solely on the current input values, with no memory element. Logic gates, adders, multiplexers, and decoders are examples. Sequential logic circuits, on the other hand, have outputs that depend on both current inputs and past states (memory). Flip-flops, registers, and counters are examples of sequential circuits. The experiment covers combinational logic.",
+                        "**Q:** What is meant by propagation delay in a logic gate?\n\n**A:** Propagation delay is the time taken for a change in the input of a logic gate to produce a corresponding change at the output. It is caused by the physical capacitance and resistance of transistors within the gate. In simulation, ideal gates have zero propagation delay, but in real hardware implementations on FPGA or ASIC, propagation delay affects the maximum operating frequency of the circuit.",
+                        "**Q:** Why is the XNOR gate also known as an equivalence gate?\n\n**A:** The XNOR gate is known as an equivalence gate because its output is high (1) if and only if both its inputs are equal \u2014 either both 0 or both 1. It effectively performs a logical equivalence check between two binary signals, making it useful in comparator circuits where equality detection is required."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** This manual covers all experiments for the Digital Electronics course."
+                }
+            ]
+        }
+    }
+}

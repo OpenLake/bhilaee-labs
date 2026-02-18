@@ -1,0 +1,30 @@
+{
+    "exp01-and-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/and_gate.png",
+        "description": "Simulation waveform for AND gate"
+    },
+    "exp01-or-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/or_gate.png",
+        "description": "Simulation waveform for OR gate"
+    },
+    "exp01-not-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/not_gate.png",
+        "description": "Simulation waveform for NOT gate"
+    },
+    "exp01-nand-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/nand_gate.png",
+        "description": "Simulation waveform for NAND gate"
+    },
+    "exp01-nor-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/nor_gate.png",
+        "description": "Simulation waveform for NOR gate"
+    },
+    "exp01-xor-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/xor_gate.png",
+        "description": "Simulation waveform for XOR gate"
+    },
+    "exp01-xnor-gate-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-1/xnor_gate.png",
+        "description": "Simulation waveform for XNOR gate"
+    }
+}
