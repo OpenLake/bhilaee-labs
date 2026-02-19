@@ -1,0 +1,483 @@
+{
+    "id": "6",
+    "title": "Design and Implementation of 3:8 Decoder Circuit on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a 3:8 decoder circuit on the FPGA board."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A decoder is a combinational circuit that converts a binary code at its inputs into a unique output line. It activates exactly one output for each possible input combination, with all other outputs remaining inactive. A decoder with n input lines has a maximum of 2^n output lines, though some decoders may have fewer outputs — in such cases at least one output pattern will be repeated."
+                },
+                {
+                    "type": "text",
+                    "content": "A 3:8 decoder has 3 input lines (I0, I1, I2) and 8 output lines (Y0–Y7). For each of the 8 possible 3-bit input combinations, exactly one output line is set high while all others remain low. The active output corresponds to the decimal value of the 3-bit binary input."
+                },
+                {
+                    "type": "text",
+                    "content": "In Verilog, I and Y are represented as bit-vectors (buses). The case statement assigns a unique one-hot output to Y for every input combination, with exactly one bit of Y set to 1 in each assignment."
+                },
+                {
+                    "type": "text",
+                    "content": "The truth table for the 3:8 decoder is given below:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "I2",
+                        "I1",
+                        "I0",
+                        "Y7",
+                        "Y6",
+                        "Y5",
+                        "Y4",
+                        "Y3",
+                        "Y2",
+                        "Y1",
+                        "Y0"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "1",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Open Xilinx ISE and create a new project targeting the appropriate FPGA device.",
+                        "Create a new Verilog source file and write the 3:8 decoder module using an always block and a case statement to assign the appropriate one-hot output for each 3-bit input combination.",
+                        "Create the User Constraints File (UCF) mapping I[0]–I[2] and Y[0]–Y[7] to their designated FPGA pin locations.",
+                        "**Hardware Layout:** The FPGA board switch layout for the 3:8 decoder is as follows: the rightmost switch is input I0, followed by I1, then I2. The output switches/LEDs follow in order Y0 through Y7, increasing from right to left.",
+                        "Run the behavioural simulation in ISim by sweeping through all 8 input combinations and verifying that only the corresponding output bit is high.",
+                        "Synthesize and implement the design in Xilinx ISE.",
+                        "Generate the programming bitstream and download to the FPGA board.",
+                        "Test the four representative input cases on the board using toggle switches.",
+                        "Observe the LED outputs and verify that only one LED is on for each input combination."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for 3:8 Decoder Implementation:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module Decoder(\n  input  [2:0] I,\n  output reg [7:0] Y\n);\n  always@(I)\n  begin\n    case(I)\n      3'b000: Y = 8'b00000001;\n      3'b001: Y = 8'b00000010;\n      3'b010: Y = 8'b00000100;\n      3'b011: Y = 8'b00001000;\n      3'b100: Y = 8'b00010000;\n      3'b101: Y = 8'b00100000;\n      3'b110: Y = 8'b01000000;\n      3'b111: Y = 8'b10000000;\n    endcase\n  end\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "In the code above, I and Y are bit-vectors (buses). The case statement assigns a unique one-hot value to Y for each input combination, ensuring exactly one bit of Y is set to 1 in every case."
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File for 3:8 Decoder:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"I[0]\" LOC=\"P22\";\nNET \"I[1]\" LOC=\"P21\";\nNET \"I[2]\" LOC=\"P17\";\nNET \"Y[0]\" LOC=\"P29\";\nNET \"Y[1]\" LOC=\"P27\";\nNET \"Y[2]\" LOC=\"P26\";\nNET \"Y[3]\" LOC=\"P24\";\nNET \"Y[4]\" LOC=\"P23\";\nNET \"Y[5]\" LOC=\"P138\";\nNET \"Y[6]\" LOC=\"P143\";\nNET \"Y[7]\" LOC=\"P142\";"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp06-decoder-simulation-waveform",
+                    "caption": "Simulation waveform for 3:8 Decoder: only one output bit Yi is high for each input combination across all 8 input values.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "text",
+                    "content": "From the simulation waveform, the output bits Yi exactly match the expected outputs from the truth table for every input combination. It can also be verified that only 1 bit of Y is high in all cases, which is the defining characteristic of a decoder."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Hardware implementation was verified on the FPGA board. Four representative input cases were tested to demonstrate the one-hot output shifting behaviour."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "I2",
+                        "I1",
+                        "I0",
+                        "Active Output (Observed)",
+                        "Expected Active Output"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "Y0 = 1, all others 0",
+                            "Y0"
+                        ],
+                        [
+                            "2",
+                            "0",
+                            "1",
+                            "0",
+                            "Y2 = 1, all others 0",
+                            "Y2"
+                        ],
+                        [
+                            "3",
+                            "1",
+                            "0",
+                            "1",
+                            "Y5 = 1, all others 0",
+                            "Y5"
+                        ],
+                        [
+                            "4",
+                            "1",
+                            "1",
+                            "1",
+                            "Y7 = 1, all others 0",
+                            "Y7"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp06-hw-case1",
+                    "caption": "Case 1: I=000 — Y0 active (high), all others low.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp06-hw-case2",
+                    "caption": "Case 2: I=010 — Y2 active (high), all others low.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp06-hw-case3",
+                    "caption": "Case 3: I=101 — Y5 active (high), all others low.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp06-hw-case4",
+                    "caption": "Case 4: I=111 — Y7 active (high), all others low.",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Verification of active output for representative test cases using the decoder mapping:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Input I[2:0] (Binary)",
+                        "Decimal Value",
+                        "Active Output Line"
+                    ],
+                    "rows": [
+                        [
+                            "000",
+                            "0",
+                            "Y0"
+                        ],
+                        [
+                            "001",
+                            "1",
+                            "Y1"
+                        ],
+                        [
+                            "010",
+                            "2",
+                            "Y2"
+                        ],
+                        [
+                            "011",
+                            "3",
+                            "Y3"
+                        ],
+                        [
+                            "100",
+                            "4",
+                            "Y4"
+                        ],
+                        [
+                            "101",
+                            "5",
+                            "Y5"
+                        ],
+                        [
+                            "110",
+                            "6",
+                            "Y6"
+                        ],
+                        [
+                            "111",
+                            "7",
+                            "Y7"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The 3:8 decoder was successfully designed in Verilog and implemented on the FPGA board. "
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Software Verification:** The simulation results matched the truth table for all 8 input combinations.",
+                        "**Hardware Verification:** The hardware implementation confirmed that exactly one output LED is lit for each input combination, and the active output correctly corresponds to the decimal value of the binary input.",
+                        "**One-Hot Behavior:** The active bit shifts one position left as the input increments by 1."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, the implementation of a 3:8 decoder on the FPGA board was successfully completed. Both software simulation and hardware implementation were performed and verified. The simulation results matched the expected outputs from the truth table, confirming the proper functionality of the implementation. The one-hot output behaviour was clearly demonstrated on the hardware, with the active LED shifting from Y0 to Y7 as the binary input incremented from 0 to 7. The Verilog `case` statement provided an efficient and clear method for describing the decoder logic."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a decoder, and what is the general relationship between the number of input and output lines?\n**A:** A decoder converts n binary input lines into up to 2^n unique output lines. It activates exactly one output for each unique input combination.",
+                        "**Q:** What is a one-hot encoding, and why is it associated with decoder outputs?\n**A:** One-hot encoding has exactly one bit high (1) with all others low (0). Decoder outputs are inherently one-hot as only one output is valid at a time.",
+                        "**Q:** How can a 3:8 decoder be used to implement any Boolean function of 3 variables?\n**A:** By using the decoder outputs as minterms and summing (OR-ing) the required minterms to implement the function.",
+                        "**Q:** What is the difference between a decoder and a demultiplexer?\n**A:** A decoder has no data input (outputs depend only on select lines). A DEMUX has a data input routed to one of the outputs based on select lines. A decoder with an Enable input acts as a DEMUX.",
+                        "**Q:** Why is the case statement preferred over if-else for implementing a decoder in Verilog?\n**A:** It lists all input combinations explicitly, avoids implied priority, and is more readable for fully enumerated logic.",
+                        "**Q:** How would you expand a 3:8 decoder to a 4:16 decoder using only 3:8 decoders and additional gates?\n**A:** Use two 3:8 decoders. Connect the 3 LSBs to both. Use the MSB (I3) to enable the first decoder (when 0) and the second (when 1) using an inverter."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                }
+            ]
+        }
+    }
+}

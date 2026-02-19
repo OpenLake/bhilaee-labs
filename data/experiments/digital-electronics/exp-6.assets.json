@@ -1,0 +1,22 @@
+{
+    "exp06-decoder-simulation-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-6/sim_output.png",
+        "description": "Simulation Output: Waveforms for all 8 input combinations"
+    },
+    "exp06-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-6/case_000.png",
+        "description": "Case 1: Inputs 000 -> Y0 active (High)"
+    },
+    "exp06-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-6/case_010.png",
+        "description": "Case 2: Inputs 010 -> Y2 active (High)"
+    },
+    "exp06-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-6/case_101.png",
+        "description": "Case 3: Inputs 101 -> Y5 active (High)"
+    },
+    "exp06-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-6/case_111.png",
+        "description": "Case 4: Inputs 111 -> Y7 active (High)"
+    }
+}

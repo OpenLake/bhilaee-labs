@@ -116,10 +116,10 @@
         },
         {
           "id": "6",
-          "title": "Experiment 6",
+          "title": "Design and Implementation of 3:8 Decoder Circuit on FPGA Board",
           "fileName": "exp-6.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "7",
