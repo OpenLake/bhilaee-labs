@@ -147,3 +147,18 @@ export function getLabBySlug(slug) {
 export function getAllLabSlugs() {
   return labs.map(lab => lab.id);
 }
+
+/**
+ * Get a flat list of every experiment across all labs,
+ * each decorated with its parent lab metadata.
+ */
+export function getAllExperiments() {
+  return labs.flatMap(lab =>
+    lab.experiments.map(exp => ({
+      ...exp,
+      labId: lab.id,
+      labName: lab.name,
+      labCode: lab.code
+    }))
+  );
+}
