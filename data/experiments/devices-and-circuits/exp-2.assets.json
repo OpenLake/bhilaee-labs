@@ -1,37 +1,37 @@
 {
     "fig1-cs-amplifier-circuit": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/fig1-cs-amplifier-circuit.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/fig1-cs-amplifier-circuit.png",
         "description": "Common Source MOSFET (2N7000) amplifier circuit diagram"
     },
     "sim-cs-ltspice-peak": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/sim-cs-ltspice-peak.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/sim-cs-ltspice-peak.png",
         "description": "LTspice simulation showing peak mid-band gain"
     },
     "sim-cs-ltspice-bandwidth": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/sim-cs-ltspice-bandwidth.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/sim-cs-ltspice-bandwidth.png",
         "description": "LTspice simulation showing bandwidth"
     },
     "obs-cs-osc-100hz": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/obs-cs-osc-100hz.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/obs-cs-osc-100hz.png",
         "description": "Oscilloscope output at 100 Hz"
     },
     "obs-cs-osc-500hz": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/obs-cs-osc-500hz.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/obs-cs-osc-500hz.png",
         "description": "Oscilloscope output at 500 Hz"
     },
     "obs-cs-osc-50khz": {
         "type": "image",
-        "path": "/assets/devices-and-circuits-lab/exp-2/obs-cs-osc-50khz.png",
+        "path": "/assets/labs/devices-and-circuits/exp-2/obs-cs-osc-50khz.png",
         "description": "Oscilloscope output at 50 kHz"
     },
     "obs-cs-bode-hardware": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Hardware Bode plot (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-2/obs-cs-bode-hardware.png",
+        "description": "Hardware Bode plot generated from readings"
     }
 }
