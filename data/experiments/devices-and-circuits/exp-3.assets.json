@@ -1,0 +1,77 @@
+{
+    "fig1-hwrect-no-filter": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-3/fig1-hwrect-no-filter.png",
+        "description": "Half wave rectifier without filter circuit diagram"
+    },
+    "fig2-hwrect-with-filter": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-3/fig2-hwrect-with-filter.png",
+        "description": "Half wave rectifier with filter circuit diagram"
+    },
+    "fig3-fwrect-no-filter": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-3/fig3-fwrect-no-filter.png",
+        "description": "Full wave bridge rectifier without filter circuit diagram"
+    },
+    "fig4-fwrect-with-filter": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-3/fig4-fwrect-with-filter.png",
+        "description": "Full wave bridge rectifier with filter circuit diagram"
+    },
+    "fig5-clipper": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-3/fig5-clipper.png",
+        "description": "Clipper circuit diagram"
+    },
+    "sim-hwrect-no-filter": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "LTspice simulation: Half wave rectifier without filter (placeholder)"
+    },
+    "sim-hwrect-with-filter": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "LTspice simulation: Half wave rectifier with filter (placeholder)"
+    },
+    "sim-fwrect-no-filter": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "LTspice simulation: Full wave rectifier without filter (placeholder)"
+    },
+    "sim-fwrect-with-filter": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "LTspice simulation: Full wave rectifier with filter (placeholder)"
+    },
+    "sim-clipper": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "LTspice simulation: Clipper circuit (placeholder)"
+    },
+    "obs-hwrect-no-filter-osc": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Half wave rectifier without filter (placeholder)"
+    },
+    "obs-hwrect-with-filter-osc": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Half wave rectifier with filter (placeholder)"
+    },
+    "obs-fwrect-no-filter-osc": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Full wave rectifier without filter (placeholder)"
+    },
+    "obs-fwrect-with-filter-osc": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Full wave rectifier with filter (placeholder)"
+    },
+    "obs-clipper-osc": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Clipper circuit (placeholder)"
+    }
+}

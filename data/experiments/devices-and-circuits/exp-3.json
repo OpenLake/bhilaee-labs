@@ -1,0 +1,634 @@
+{
+    "id": "exp-3",
+    "title": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.1.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study diode applications in half wave rectifier, full wave rectifier, and clipper/limiter circuits."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design half wave and full wave rectifiers using a diode with and without filter capacitor.",
+                        "Design a clipper circuit.",
+                        "Study the response of circuits (1) and (2) using LTspice software and hardware implementation."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Diode (IN4006)",
+                            "4"
+                        ],
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "DC Supply",
+                            "1"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "-"
+                        ],
+                        [
+                            "1 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "1 µF Capacitor",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Software:** LTspice XVII (using 1N4007 model for simulation, .tran analysis)."
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**A. Half Wave Rectifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "In half wave rectification, when AC supply is applied at the input, only the positive half cycle appears across the load — the negative half cycle is suppressed. During the positive half-cycle of the input voltage, diode D1 is forward biased and conducts through the load resistor RL. The current produces an output voltage across RL with the same shape as the positive half-cycle of the input. During the negative half-cycle, the diode is reverse biased and no current flows — the voltage across RL is zero. The net result is that only the positive half-cycle appears at the output."
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{rms} = \\frac{V_m}{2}, \\quad V_{DC} = \\frac{V_m}{\\pi}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\sqrt{\\left(\\frac{V_{rms}}{V_{DC}}\\right)^2 - 1} \\approx 1.21 \\quad (\\text{without filter})"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\frac{1}{2\\sqrt{3}\\,f C R_L} \\quad (\\text{with filter})"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{P_{dc}}{P_{input}} \\approx 40.6\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Full Wave Rectifier (Bridge)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The DC level obtained from a sinusoidal input can be improved 100% using full-wave rectification. The bridge rectifier uses four diodes in a bridge configuration. During the positive half cycle, diodes D3 and D4 conduct while D1 and D2 are OFF. During the negative half cycle, D1 and D2 conduct while D3 and D4 are OFF. Over a full cycle, both half-cycles of the input are converted to positive output pulses — the negative half-cycle is inverted (not removed). The dashed waveform is the unfiltered output; the bold waveform is the filtered output with capacitor."
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{rms} = \\frac{V_m}{\\sqrt{2}}, \\quad V_{DC} = \\frac{2V_m}{\\pi}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\sqrt{\\left(\\frac{V_{rms}}{V_{DC}}\\right)^2 - 1} \\approx 0.482 \\quad (\\text{without filter})"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\frac{1}{4\\sqrt{3}\\,f C R_L} \\quad (\\text{with filter})"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta \\approx 81.2\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**C. Filter Capacitor**"
+                },
+                {
+                    "type": "text",
+                    "content": "A capacitor connected in parallel with the load reduces the ripple in the rectified output. During the conducting half-cycle, the capacitor charges to the peak voltage Vm. When the diode stops conducting, the capacitor discharges slowly through the load resistor, maintaining the output voltage and filling in the voltage gaps between peaks. A larger capacitance or higher RL results in slower discharge and lower ripple."
+                },
+                {
+                    "type": "text",
+                    "content": "**D. Clipper Circuit**"
+                },
+                {
+                    "type": "text",
+                    "content": "There are a variety of diode networks called clippers that have the ability to clip off a portion of the input signal without distorting the remaining part. The half-wave rectifier is the simplest form of clipper. Depending on the diode orientation, the positive or negative region is clipped. There are two general categories: series clippers (diode in series with load) and parallel clippers (diode in a branch parallel to the load). A biased clipper uses a DC reference voltage to set the clipping level — the output follows the input within the allowed range and is clamped at the reference level outside it."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-hwrect-no-filter",
+                    "caption": "Fig 1: Half wave rectifier without filter (D-IN4006, RL = 1 kΩ).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-hwrect-with-filter",
+                    "caption": "Fig 2: Half wave rectifier with filter capacitor (D-IN4006, RL = 1 kΩ, C = 1 µF).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-fwrect-no-filter",
+                    "caption": "Fig 3: Full wave bridge rectifier without filter (4 × D-IN4006, RL = 1 kΩ).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-fwrect-with-filter",
+                    "caption": "Fig 4: Full wave bridge rectifier with filter capacitor (4 × D-IN4006, RL = 1 kΩ, C = 1 µF).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig5-clipper",
+                    "caption": "Fig 5: Clipper circuit — series configuration (D-IN4006, R = 1 kΩ, DC reference voltage V). Output is clipped at reference level V.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**LTspice Simulation:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Simulate the half wave rectifier circuit (Fig 1) in LTspice using the 1N4007 diode model. Set input: SINE(0 5 1k), RL = 1 kΩ. Use .tran 10 directive. Observe input and output waveforms and calculate Vdc and ripple factor.",
+                        "Add a 1 µF filter capacitor (Fig 2 configuration) and re-run the simulation. Observe the smoothed output and calculate the new ripple factor.",
+                        "Simulate the full wave bridge rectifier (Fig 3) using four 1N4007 diodes. Set SINE(0 5 1k), RL = 1 kΩ, .tran 5ms. Record Vdc and ripple factor.",
+                        "Add the 1 µF filter capacitor to the full wave rectifier (Fig 4) and observe the smoothed output.",
+                        "Simulate the clipper circuit (Fig 5) with R = 1 kΩ, DC reference V = 3 V, and SINE(0 5 1k). Observe the clipped output."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Hardware Implementation:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the half wave rectifier (without filter) on the breadboard. Set AC input: Vin = 10 Vpp, f = 1 kHz. Connect oscilloscope to observe both input and output simultaneously. Record Vm, Vdc, Vrms, ripple factor, and efficiency.",
+                        "Add the 1 µF filter capacitor across RL and repeat all measurements. Compare with the unfiltered case.",
+                        "Assemble the full wave bridge rectifier using four IN4006 diodes. Apply the same input and record all output parameters.",
+                        "Add the filter capacitor to the full wave rectifier and repeat measurements.",
+                        "Assemble the clipper circuit. Set the DC reference voltage to 3 V. Apply a sinusoidal input and observe the clipped output on the oscilloscope."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": null,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "All rectifier and clipper circuits were simulated in LTspice using the 1N4007 diode model. Input signal: SINE(0 5 1k). Transient analysis (.tran 10 for HWR, .tran 5ms for FWR and clipper) was used to observe time-domain waveforms."
+                },
+                {
+                    "type": "text",
+                    "content": "**Half Wave Rectifier — Without Filter:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-hwrect-no-filter",
+                    "caption": "LTspice simulation: Half wave rectifier without filter. Input SINE(0 5 1k), D1 = 1N4007, R1 = 1 kΩ, .tran 10. Green = input; blue = rectified output. Negative half-cycles are suppressed.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Half Wave Rectifier — With Filter:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-hwrect-with-filter",
+                    "caption": "LTspice simulation: Half wave rectifier with filter (C1 = 1 µF). Input SINE(0 5 1k), D1 = 1N4007, R1 = 1 kΩ, .tran 10. Output is smoothed by the capacitor — ripple is significantly reduced.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Full Wave Rectifier — Without Filter:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-fwrect-no-filter",
+                    "caption": "LTspice simulation: Full wave bridge rectifier without filter. 4 × 1N4007, RL = 1 kΩ, .tran 5ms. Green = input; red = rectified output. Both half-cycles appear as positive pulses at the output.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Full Wave Rectifier — With Filter:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-fwrect-with-filter",
+                    "caption": "LTspice simulation: Full wave bridge rectifier with filter (C1 = 1 µF). 4 × 1N4007, RL = 1 kΩ, .tran 5ms. Output is smoothed; ripple is reduced compared to the unfiltered full wave case.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Clipper Circuit:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-clipper",
+                    "caption": "LTspice simulation: Clipper circuit with R1 = 1 kΩ, D1 = 1N4007, DC reference DV2 = 3 V, SINE(0 5 1k), .tran 5ms. Green = input; blue = clipped output. Positive peaks are clipped at the 3 V reference level.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "In all simulations, the output waveforms closely matched the hardware observations, confirming correct circuit operation. The 1N4007 model introduces a ~0.7 V forward voltage drop, accounting for the difference between ideal and measured peak values."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Half-Wave Rectifier Without Filter**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Vin (Vpp)",
+                        "Vm (Peak)",
+                        "Vdc",
+                        "Vrms",
+                        "Ripple Factor (Theoretical)",
+                        "Ripple Factor (Experimental)",
+                        "Efficiency (Theoretical)",
+                        "Efficiency (Experimental)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "4.4",
+                            "0.96",
+                            "1.6",
+                            "1.21",
+                            "1.33",
+                            "40.52%",
+                            "36.11%"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-hwrect-no-filter-osc",
+                    "caption": "Oscilloscope — HWR without filter: Vpp = 10.6 V (input), Peak = 4.49 V (output), Freq ≈ 994 Hz. Yellow = input sine wave; blue = rectified half-wave output. Negative half-cycle is removed.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "From both the simulation and oscilloscope, the negative half-cycle of the input is removed. The output is non-zero for only the positive half-cycle and zero for the negative half-cycle, verifying half-wave rectifier operation."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Half-Wave Rectifier With Filter**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Vin (Vpp)",
+                        "Vm (Peak)",
+                        "Vdc",
+                        "Vrms",
+                        "Ripple Factor (Theoretical)",
+                        "Ripple Factor (Experimental)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "4.4",
+                            "1.8",
+                            "0.667",
+                            "0.288",
+                            "0.37"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-hwrect-with-filter-osc",
+                    "caption": "Oscilloscope — HWR with filter: RMS = 600 mV, Peak-Peak = 2.20 V, Freq = 1 kHz. Yellow = input; blue = filtered rectified output. Output is smoothed with significantly reduced ripple compared to unfiltered case.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "With the filter capacitor, the output is smoothed. The ripple factor drops from 1.33 (without filter) to 0.37 (with filter), confirming effective filtering action by the capacitor."
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Full-Wave Rectifier Without Filter**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Vin (Vpp)",
+                        "Vm (Peak)",
+                        "Vdc",
+                        "Vrms",
+                        "Ripple Factor (Theoretical)",
+                        "Ripple Factor (Experimental)",
+                        "Efficiency (Theoretical)",
+                        "Efficiency (Experimental)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "5.04",
+                            "1.6",
+                            "1.84",
+                            "0.482",
+                            "0.567",
+                            "81.2%",
+                            "75.67%"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-fwrect-no-filter-osc",
+                    "caption": "Oscilloscope — FWR without filter: Amplitude = 4.60 V (output), Mean ≈ −14.5 mV. Blue/cyan = input sine wave; yellow/red = full-wave rectified output. Both half-cycles appear as positive pulses — negative half-cycle is inverted, not removed.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The negative half-cycle of the input is inverted rather than removed. The output is non-zero for both half-cycles, verifying full-wave bridge rectifier operation."
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Full-Wave Rectifier With Filter**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Vin (Vpp)",
+                        "Vm (Peak)",
+                        "Vdc",
+                        "Vrms",
+                        "Ripple Factor (Theoretical)",
+                        "Ripple Factor (Experimental)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "4.4",
+                            "0.640",
+                            "0.653",
+                            "0.144",
+                            "0.202"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-fwrect-with-filter-osc",
+                    "caption": "Oscilloscope — FWR with filter: Mean = −7.43 mV, Peak-Peak = 2.32 V, RMS = 673 mV. The output is smoothed; ripple is significantly reduced compared to the unfiltered full-wave case (experimental ripple factor: 0.202 vs 0.567).",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The output is further smoothed with the capacitor filter. The ripple factor drops from 0.567 (without filter) to 0.202 (with filter), demonstrating the effectiveness of capacitor filtering in full-wave rectifiers."
+                },
+                {
+                    "type": "text",
+                    "content": "**5. Clipper Circuit**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-clipper-osc",
+                    "caption": "Oscilloscope — Clipper circuit (DC reference = 3 V): Amplitude = 6.80 V (input), output clipped at ≈ 3 V reference level. The positive peaks above the reference are removed while the remainder of the waveform (below 3 V, including the full negative half-cycle) passes through undistorted.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The output closely follows the input waveform except that the portion above the 3 V DC reference level is clipped off. The clipping level is adjustable by varying the DC reference voltage."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Half-Wave Rectifier — Theoretical (Vm = 4.4 V):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{DC} = \\frac{V_m}{\\pi} = \\frac{4.4}{\\pi} \\approx 1.40\\,V"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{rms} = \\frac{V_m}{2} = \\frac{4.4}{2} = 2.2\\,V"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\sqrt{\\left(\\frac{V_{rms}}{V_{DC}}\\right)^2 - 1} = \\sqrt{\\left(\\frac{2.2}{1.40}\\right)^2 - 1} \\approx 1.21"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta \\approx 40.52\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Half-Wave Rectifier With Filter — Theoretical Ripple Factor (f = 1 kHz, C = 1 µF, RL = 1 kΩ):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\frac{1}{2\\sqrt{3}\\,f C R_L} = \\frac{1}{2\\sqrt{3} \\times 1000 \\times 10^{-6} \\times 1000} \\approx 0.288"
+                },
+                {
+                    "type": "text",
+                    "content": "**Full-Wave Rectifier — Theoretical (Vm = 5.04 V):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{DC} = \\frac{2V_m}{\\pi} = \\frac{2 \\times 5.04}{\\pi} \\approx 3.21\\,V"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{rms} = \\frac{V_m}{\\sqrt{2}} = \\frac{5.04}{\\sqrt{2}} \\approx 3.56\\,V"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\sqrt{\\left(\\frac{V_{rms}}{V_{DC}}\\right)^2 - 1} = \\sqrt{\\left(\\frac{3.56}{3.21}\\right)^2 - 1} \\approx 0.482"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta \\approx 81.2\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Full-Wave Rectifier With Filter — Theoretical Ripple Factor:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Ripple Factor} = \\frac{1}{4\\sqrt{3}\\,f C R_L} = \\frac{1}{4\\sqrt{3} \\times 1000 \\times 10^{-6} \\times 1000} \\approx 0.144"
+                },
+                {
+                    "type": "text",
+                    "content": "**Error Analysis:** Deviations between theoretical and experimental values are primarily attributed to: (1) the non-ideal diode forward voltage drop (~0.7 V for each IN4006), which reduces effective Vm — in the bridge rectifier, two diodes conduct simultaneously, causing a 2 × 0.7 V = 1.4 V drop from the peak; (2) resistive losses in connecting wires; (3) oscilloscope measurement tolerances."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The diode rectifier and clipper circuits were successfully implemented and analysed. Key results are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Circuit",
+                        "Ripple Factor (Theoretical)",
+                        "Ripple Factor (Experimental)",
+                        "Efficiency (Theoretical)",
+                        "Efficiency (Experimental)"
+                    ],
+                    "rows": [
+                        [
+                            "HWR without filter",
+                            "1.21",
+                            "1.33",
+                            "40.52%",
+                            "36.11%"
+                        ],
+                        [
+                            "HWR with filter",
+                            "0.288",
+                            "0.37",
+                            "—",
+                            "—"
+                        ],
+                        [
+                            "FWR without filter",
+                            "0.482",
+                            "0.567",
+                            "81.2%",
+                            "75.67%"
+                        ],
+                        [
+                            "FWR with filter",
+                            "0.144",
+                            "0.202",
+                            "—",
+                            "—"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The half-wave rectifier removed the negative half-cycle of the input, producing a pulsating positive DC output with a high ripple factor of 1.33 (experimental).",
+                        "The addition of a filter capacitor significantly reduced the ripple factor — from 1.33 to 0.37 (HWR) and from 0.567 to 0.202 (FWR) — confirming effective smoothing by the capacitor.",
+                        "The full-wave bridge rectifier inverted the negative half-cycle, resulting in a lower ripple factor (0.567) and higher efficiency (75.67%) compared to the half-wave rectifier (36.11%).",
+                        "The clipper circuit successfully clipped the input waveform at the set DC reference of 3 V. The clipping level is adjustable by changing the DC reference voltage."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment successfully demonstrated the design and operation of half-wave and full-wave bridge rectifiers (with and without filter capacitors) and a clipper circuit. The filtering action of the capacitor was clearly observed through reduction in ripple factor in both circuit types. The full-wave bridge rectifier exhibited superior performance over the half-wave rectifier, achieving higher efficiency and lower ripple. LTspice simulations using the 1N4007 model were conducted for all circuits using transient analysis, and the simulated waveforms closely matched the hardware oscilloscope observations. Minor deviations in measured Vdc and efficiency were attributed to the non-ideal forward voltage drop of practical diodes (~0.7 V per diode, ~1.4 V total for the bridge) and measurement tolerances."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is ripple factor and what does a lower value indicate?\n\n**A:** Ripple factor (γ) is the ratio of the RMS value of the AC ripple component to the DC (average) value of the rectifier output: γ = Vrms,ac / Vdc = √[(Vrms/Vdc)² − 1]. A lower ripple factor indicates a smoother, more stable DC output. For an ideal DC source, γ = 0. The half-wave rectifier has γ ≈ 1.21 (high ripple), the full-wave rectifier has γ ≈ 0.48 (lower ripple), and both are further improved with filter capacitors.",
+                        "**Q:** Why does the full-wave rectifier have higher efficiency than the half-wave rectifier?\n\n**A:** The full-wave bridge rectifier utilises both half-cycles of the AC input by inverting the negative half-cycle using four diodes in a bridge configuration. Power is delivered to the load during the entire input cycle. The half-wave rectifier uses only one half-cycle and blocks the other, wasting half the available input power. The theoretical efficiencies are ≈81.2% (FWR) vs ≈40.6% (HWR), which were experimentally confirmed as 75.67% and 36.11% respectively.",
+                        "**Q:** How does a filter capacitor reduce ripple in a rectifier circuit?\n\n**A:** During the conducting half-cycle, the capacitor charges to the peak voltage Vm. During the non-conducting interval, the capacitor discharges slowly through RL, maintaining the output voltage. This fills in the gaps between voltage peaks, smoothing the DC output. The theoretical ripple with filter is: Vr ≈ 1/(2√3·f·C·RL) for HWR and 1/(4√3·f·C·RL) for FWR. In this experiment (f = 1 kHz, C = 1 µF, RL = 1 kΩ), this gives 0.288 (HWR) and 0.144 (FWR).",
+                        "**Q:** What is a clipper circuit and how does it differ from a clamper circuit?\n\n**A:** A clipper circuit removes the portion of the input waveform that exceeds a set reference voltage level, without affecting the rest of the signal. The output follows the input within the allowed range and is clipped at the reference level outside it. A clamper circuit, in contrast, shifts the entire DC level of the waveform up or down without changing its shape — it adds a DC offset so the signal peak or trough is clamped at a specific voltage. Clippers alter amplitude; clampers shift position.",
+                        "**Q:** What is the effect of the diode forward voltage drop on the rectifier output?\n\n**A:** A practical silicon diode has a forward voltage drop of ≈0.6–0.7 V. This reduces the effective peak output voltage by this amount per conducting diode. In a bridge rectifier, two diodes conduct simultaneously, so the output is reduced by ≈2 × 0.7 = 1.4 V from the peak input. This explains why measured Vdc and efficiency are lower than theoretical values calculated assuming ideal diodes. In this experiment, the effective Vm in the full-wave case (5.04 V) reflects this voltage reduction.",
+                        "**Q:** What are the advantages of a bridge rectifier over a centre-tap full-wave rectifier?\n\n**A:** The bridge rectifier does not require a centre-tapped transformer, reducing cost and complexity. The Peak Inverse Voltage (PIV) across each diode is only Vm (vs 2Vm for centre-tap), so lower-rated diodes can be used. The transformer utilisation factor is also better. The only drawback is the use of four diodes (vs two), causing double the forward voltage drop in the conduction path.",
+                        "**Q:** What is Peak Inverse Voltage (PIV) and why is it important in rectifier diode selection?\n\n**A:** PIV is the maximum reverse voltage a diode must withstand when it is not conducting. In a half-wave rectifier, PIV = Vm. In a bridge rectifier, PIV = Vm. In a centre-tap rectifier, PIV = 2Vm. The diode's reverse breakdown voltage rating must exceed the PIV — otherwise the diode will break down in reverse, destroying the circuit. PIV is therefore a critical specification when selecting diodes for any rectifier design."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
