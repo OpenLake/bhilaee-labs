@@ -29,11 +29,11 @@ const labMetadata = [
     id: "digital-electronics",
     name: "Digital Electronics",
     code: "EEP210",
-    description: "Logic gates, combinational and sequential circuits, and digital system design",
-    focus: "Digital logic and system design",
-    nature: "Design & Simulation",
-    prerequisites: "Basic Electronics",
-    totalExperiments: 10
+    description: "Design and implementation of logic gates and combinational circuits using Xilinx software and FPGA boards",
+    focus: "Combinational logic synthesis & FPGA implementation",
+    nature: "Hardware Implementation",
+    prerequisites: "ECL101 (Basic Electronics Engineering), EEL203 (Digital Circuits)",
+    totalExperiments: 8
   },
   {
     id: "devices-and-circuits",

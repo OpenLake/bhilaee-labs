@@ -134,20 +134,6 @@
           "fileName": "exp-8.json",
           "status": "Hardware-Oriented",
           "completeness": 1
-        },
-        {
-          "id": "9",
-          "title": "Experiment 9",
-          "fileName": "exp-9.json",
-          "status": "Guide Only",
-          "completeness": 0.1
-        },
-        {
-          "id": "10",
-          "title": "Experiment 10",
-          "fileName": "exp-10.json",
-          "status": "Guide Only",
-          "completeness": 0.1
         }
       ]
     },
