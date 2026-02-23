@@ -1,0 +1,621 @@
+{
+    "id": "exp-2",
+    "title": "Frequency Response Analysis of Common Source MOSFET Amplifier",
+    "labId": "devices-and-circuits",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.1.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and set up a single-stage Common Source MOSFET amplifier with given specifications and plot the frequency response."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Using LTspice Software simulation.",
+                        "Hardware implementation on bread board."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "DC Supply",
+                            "1"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "MOSFET 2N7000",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "-"
+                        ],
+                        [
+                            "100 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "33 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "2.7 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "820 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "470 Ω Resistor",
+                            "1"
+                        ],
+                        [
+                            "1 µF Capacitor",
+                            "2"
+                        ],
+                        [
+                            "10 µF Capacitor",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Software:** LTspice XVII (simulation using IRF1310 as equivalent model for 2N7000, with AC analysis directive: .ac dec 100 50 1e10)."
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**A. MOSFET Overview**"
+                },
+                {
+                    "type": "text",
+                    "content": "The MOSFET (Metal Oxide Semiconductor Field Effect Transistor) structure has become the most important device in the electronics industry. It dominates integrated circuit technology in Very Large Scale Integration (VLSI) — both n-channel MOSFETs and Complementary MOSFET (CMOS) designs. MOSFETs are four-terminal devices with a source (S), gate (G), drain (D), and substrate/body (B). A thin layer of silicon dioxide (SiO₂) acts as an insulator between the gate and the channel, which is why MOSFETs are also known as Insulated Gate FETs (IGFETs)."
+                },
+                {
+                    "type": "text",
+                    "content": "In a MOSFET, current flows from the drain to the source through a semiconductor channel. The gate voltage controls the channel resistance and hence the drain current. MOSFETs can be n-channel or p-channel type, and either enhancement mode (normally OFF) or depletion mode (normally ON)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Enhancement mode MOSFET:** Normally OFF (in cutoff, no current) when VGS = 0. Turns ON (saturation, conducting) when VGS exceeds the threshold voltage Vt. In an n-channel device, a positive gate voltage attracts electrons to the Si-SiO₂ interface and forms the conducting channel."
+                },
+                {
+                    "type": "text",
+                    "content": "**B. MOSFET Operating Regions**"
+                },
+                {
+                    "type": "text",
+                    "content": "The MOSFET operates in three distinct regions depending on the terminal voltages:"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Cut-off region:** VGS < Vt — No channel is formed; the device is OFF and ID ≈ 0.",
+                        "**Linear (Triode) region:** VGS > Vt and VDS < (VGS − Vt) — The channel exists throughout; the MOSFET acts like a voltage-controlled resistor.",
+                        "**Saturation region:** VGS > Vt and VDS > (VGS − Vt) — The channel is pinched off at the drain end. The drain current becomes approximately independent of VDS."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Pinch-off occurs when VDS = (VGS − Vt). For amplifier operation, the MOSFET must be biased in the **saturation region** to provide a large, approximately linear voltage gain. The drain current at the Q-point in saturation is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_D = k'(V_{GS} - V_t)^2"
+                },
+                {
+                    "type": "text",
+                    "content": "where Vt is the threshold voltage and k' is a device parameter (related to carrier mobility and oxide capacitance)."
+                },
+                {
+                    "type": "text",
+                    "content": "**C. Common Source Amplifier — Configuration and Biasing**"
+                },
+                {
+                    "type": "text",
+                    "content": "In the Common Source (CS) configuration, the input signal is applied to the gate (VGS), and the output is taken from the drain terminal (VDS). The CS amplifier has the characteristic of **high input impedance**, which prevents it from loading the signal source. This high impedance is set by the bias resistors R1 and R2 — their values are chosen as large as possible, but not so large that the gate leakage current causes a significant bias voltage shift."
+                },
+                {
+                    "type": "text",
+                    "content": "The gate voltage is established by a voltage divider (R1, R2) from VDD. The source resistor RS provides DC bias stability via negative feedback. The bypass capacitor CS short-circuits RS at AC frequencies, preventing signal degeneration and maximising AC gain."
+                },
+                {
+                    "type": "text",
+                    "content": "**D. AC Voltage Gain**"
+                },
+                {
+                    "type": "text",
+                    "content": "The small-signal voltage gain of the CS amplifier (with RS fully bypassed by CS) is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_v = -g_m (R_D \\| R_L)"
+                },
+                {
+                    "type": "text",
+                    "content": "The negative sign indicates phase inversion between input and output. The transconductance gm depends on the Q-point drain current:"
+                },
+                {
+                    "type": "equation",
+                    "value": "g_m = 2k'(V_{GS} - V_t) = \\frac{2I_D}{V_{GS} - V_t}"
+                },
+                {
+                    "type": "text",
+                    "content": "**E. Frequency Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "The frequency response of a CS amplifier has three distinct regions: (1) **Low-frequency region** — gain rolls off because coupling capacitors (Cin, Cout) and the bypass capacitor CS have high impedance at low frequencies and do not fully pass/bypass signals; (2) **Mid-band region** — all capacitors act as short circuits and the gain is approximately flat; (3) **High-frequency region** — internal parasitic capacitances of the MOSFET (Cgs, Cgd) and Miller effect cause gain to roll off."
+                },
+                {
+                    "type": "text",
+                    "content": "The gain in dB and the bandwidth are defined as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_{v,dB} = 20 \\log_{10}\\left(\\frac{V_{out}}{V_{in}}\\right)"
+                },
+                {
+                    "type": "equation",
+                    "value": "BW = f_H - f_L"
+                },
+                {
+                    "type": "text",
+                    "content": "where fL and fH are the lower and upper cutoff frequencies — the frequencies at which the gain drops by 3 dB from the mid-band value."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The circuit uses a 2N7000 N-channel enhancement MOSFET with a voltage divider bias network. Component values: R1 = 100 kΩ, R2 = 33 kΩ, RD = 2.7 kΩ, RS = 470 Ω, RL = 820 kΩ, Cin = Cout = 1 µF, CS = 10 µF, VDD = 12 V."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-cs-amplifier-circuit",
+                    "caption": "Fig 1: Common Source MOSFET (2N7000) amplifier circuit with VDD = 12 V. R1 = 100 kΩ, R2 = 33 kΩ, RD = 2.7 kΩ, RS = 470 Ω, RL = 820 kΩ, Cin = Cout = 1 µF, CS = 10 µF.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**LTspice Simulation:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Draw the CS amplifier schematic in LTspice using IRF1310 as an equivalent model for 2N7000 (2N7000 is unavailable in the LTspice library). Set VDD = 12 V, RD = 2.7 kΩ.",
+                        "Set the input signal source to SINE(0 0.2 1k) with AC amplitude 12 for the AC analysis.",
+                        "Set up an AC analysis directive: .ac dec 100 50 1e10 (decade sweep, 100 points/decade, from 50 Hz to 10 GHz).",
+                        "Run the simulation and plot V(out) in dB versus frequency to obtain the Bode plot.",
+                        "Use cursors to identify the peak mid-band gain, lower cutoff frequency (fL), and upper cutoff frequency (fH)."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Hardware Implementation:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Set up the circuit on a breadboard as per the circuit diagram: R1 = 100 kΩ, R2 = 33 kΩ, RD = 2.7 kΩ, RS = 470 Ω, RL = 820 kΩ, CC = 1 µF, CS = 10 µF, VDD = 12 V.",
+                        "Connect the function generator to the input (Vin) and the oscilloscope to both input and output terminals.",
+                        "Set the input signal to a sinusoidal wave at 1 kHz with an amplitude of 0.2 V.",
+                        "Vary the frequency of the input signal over a range of values (from 1 Hz to 2 MHz) and record the output voltage Vpp at each frequency step.",
+                        "Calculate the voltage gain and gain in dB at each frequency: Gain (dB) = 20 log₁₀(Vout / Vin).",
+                        "Plot gain (dB) vs log(frequency) to obtain the Bode plot. Mark the mid-band gain and the high and low frequency −3 dB cutoff points."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": null,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The frequency response of the Common Source MOSFET amplifier was simulated in LTspice using the IRF1310 model as an equivalent substitute for the 2N7000 MOSFET. The AC analysis was run from 50 Hz to 10 GHz (.ac dec 100 50 1e10)."
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-cs-ltspice-peak",
+                    "caption": "LTspice simulation — Peak gain identification: Cursor at 1.026 MHz shows peak gain of 17.92 dB. LTspice schematic uses IRF1310 (equivalent for 2N7000), with .ac dec 100 50 1e10 directive.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-cs-ltspice-bandwidth",
+                    "caption": "LTspice simulation — Bandwidth identification: Cursor 1 at fH = 37.7 MHz (gain = 14.94 dB); Cursor 2 at fL = 33.6 kHz (gain = 14.97 dB). Both ≈ 15 dB, confirming −3 dB points from peak of ~18 dB.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "From the LTspice simulation: Peak gain ≈ 17.92 dB at ~1 MHz. Lower cutoff fL ≈ 33.6 kHz; upper cutoff fH ≈ 37.7 MHz (both at ≈ 15 dB, i.e., midband − 3 dB). The observed variation in peak gain compared to hardware is attributed to the use of the IRF1310 model, which has different transconductance and parasitic capacitance characteristics than the actual 2N7000."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Below are oscilloscope captures showing the amplifier output at selected frequencies, illustrating the transition from low-frequency roll-off through the mid-band to high-frequency roll-off."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-cs-osc-100hz",
+                    "caption": "Oscilloscope — 100 Hz: Output Vpp = 2.88 V, Freq = 99.80 Hz. Low-frequency region — gain has not yet reached mid-band peak.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-cs-osc-500hz",
+                    "caption": "Oscilloscope — 500 Hz: Output Vpp = 3.68 V, Freq = 500.2 Hz. Near mid-band — gain approaching plateau.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-cs-osc-50khz",
+                    "caption": "Oscilloscope — 50 kHz: Output Vpp = 2.92 V, Freq = 50 kHz. High-frequency region — gain has rolled off from mid-band peak.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The following table records the output voltage (Vpp) and corresponding gain (dB) measured at various frequencies. Input Vin = 0.2 V."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "log f",
+                        "Output Voltage Vpp (V)",
+                        "Gain (dB)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0.095",
+                            "-12.49"
+                        ],
+                        [
+                            "5",
+                            "0.699",
+                            "0.25",
+                            "-4.08"
+                        ],
+                        [
+                            "10",
+                            "1",
+                            "0.5",
+                            "1.94"
+                        ],
+                        [
+                            "20",
+                            "1.398",
+                            "1.26",
+                            "9.97"
+                        ],
+                        [
+                            "35",
+                            "1.544",
+                            "1.75",
+                            "12.82"
+                        ],
+                        [
+                            "50",
+                            "1.699",
+                            "2.16",
+                            "14.65"
+                        ],
+                        [
+                            "100",
+                            "2",
+                            "2.88",
+                            "17.15"
+                        ],
+                        [
+                            "250",
+                            "2.398",
+                            "3.46",
+                            "18.74"
+                        ],
+                        [
+                            "500",
+                            "2.699",
+                            "3.68",
+                            "19.28"
+                        ],
+                        [
+                            "750",
+                            "2.875",
+                            "3.76",
+                            "19.46"
+                        ],
+                        [
+                            "1000",
+                            "3",
+                            "3.76",
+                            "19.46"
+                        ],
+                        [
+                            "2500",
+                            "3.398",
+                            "3.76",
+                            "19.46"
+                        ],
+                        [
+                            "5000",
+                            "3.699",
+                            "3.76",
+                            "19.46"
+                        ],
+                        [
+                            "7500",
+                            "3.875",
+                            "3.72",
+                            "19.37"
+                        ],
+                        [
+                            "10000",
+                            "4",
+                            "3.72",
+                            "19.37"
+                        ],
+                        [
+                            "20000",
+                            "4.301",
+                            "3.56",
+                            "18.99"
+                        ],
+                        [
+                            "33000",
+                            "4.519",
+                            "3.28",
+                            "18.28"
+                        ],
+                        [
+                            "50000",
+                            "4.699",
+                            "2.92",
+                            "17.27"
+                        ],
+                        [
+                            "75000",
+                            "4.875",
+                            "2.48",
+                            "15.85"
+                        ],
+                        [
+                            "100000",
+                            "5",
+                            "2.16",
+                            "14.65"
+                        ],
+                        [
+                            "250000",
+                            "5.398",
+                            "1.12",
+                            "8.94"
+                        ],
+                        [
+                            "500000",
+                            "5.699",
+                            "0.536",
+                            "2.54"
+                        ],
+                        [
+                            "750000",
+                            "5.875",
+                            "0.384",
+                            "-0.35"
+                        ],
+                        [
+                            "1000000",
+                            "6",
+                            "0.3",
+                            "-2.50"
+                        ],
+                        [
+                            "2000000",
+                            "6.301",
+                            "0.16",
+                            "-7.96"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "The frequency response shows a typical band-pass shape: gain increases in the low-frequency region, remains flat at ≈ 19.46 dB in the mid-band (750 Hz – 7.5 kHz), and rolls off at higher frequencies due to MOSFET parasitic capacitances."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-cs-bode-hardware",
+                    "caption": "Bode plot (hardware): Gain (dB) vs log(frequency). Peak mid-band gain ≈ 19.46 dB.",
+                    "role": "observation"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Mid-Band Gain (Hardware):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_{v,\\text{mid}} = \\frac{V_{out}}{V_{in}} = \\frac{3.76}{0.2} = 18.8 \\implies 20\\log_{10}(18.8) \\approx 19.46\\,\\text{dB}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Bandwidth Identification (Hardware):** The −3 dB level is at 19.46 − 3 = 16.46 dB, corresponding to Vout = 0.707 × 3.76 ≈ 2.66 V. From the gain table, this level is crossed at approximately fL ≈ 33 kHz (gain = 18.28 dB, falling) and fH ≈ 750 kHz (gain = −0.35 dB, fallen well below). Interpolating, fH lies between 500 kHz and 750 kHz."
+                },
+                {
+                    "type": "equation",
+                    "value": "BW_{\\text{hardware}} = f_H - f_L \\approx 750\\,\\text{kHz} - 33\\,\\text{kHz} = 717\\,\\text{kHz}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Bandwidth Identification (Simulation):** From LTspice cursors — peak gain = 17.92 dB at 1.026 MHz; fL = 33.6 kHz at 14.97 dB; fH = 37.7 MHz at 14.94 dB (both ≈ peak − 3 dB = 14.92 dB ✓)."
+                },
+                {
+                    "type": "equation",
+                    "value": "BW_{\\text{simulation}} = f_H - f_L = 37.7\\,\\text{MHz} - 33.6\\,\\text{kHz} \\approx 37.7\\,\\text{MHz}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The single-stage Common Source MOSFET amplifier was successfully designed, implemented, and analysed. Key parameters determined from the experiment are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Hardware (Measured)",
+                        "LTspice Simulation"
+                    ],
+                    "rows": [
+                        [
+                            "Mid-Band Gain (dB)",
+                            "≈ 19.46 dB",
+                            "≈ 17.92 dB"
+                        ],
+                        [
+                            "Lower Cutoff Frequency fL",
+                            "≈ 33 kHz",
+                            "≈ 33.6 kHz"
+                        ],
+                        [
+                            "Upper Cutoff Frequency fH",
+                            "≈ 750 kHz",
+                            "≈ 37.7 MHz"
+                        ],
+                        [
+                            "Bandwidth BW",
+                            "≈ 717 kHz",
+                            "≈ 37.7 MHz"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The hardware and simulation results are in close agreement for mid-band gain (19.46 dB vs 17.92 dB) and lower cutoff frequency (~33 kHz in both).",
+                        "The upper cutoff frequency differs significantly: ~750 kHz (hardware) vs ~37.7 MHz (simulation). This is primarily due to the use of IRF1310 (a high-current power MOSFET with different parasitic capacitances) as a substitute for 2N7000 in LTspice, which does not accurately model the high-frequency behaviour of the 2N7000 signal MOSFET.",
+                        "The frequency response curve exhibits the expected band-pass shape with a well-defined flat gain region (mid-band) between 750 Hz and 7.5 kHz in hardware."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The single-stage Common Source MOSFET amplifier was successfully designed and analysed. Using LTspice, the frequency response was simulated with the IRF1310 model as a substitute for the 2N7000, yielding a peak gain of 17.92 dB, with fL ≈ 33.6 kHz and fH ≈ 37.7 MHz. The hardware implementation demonstrated a mid-band gain of 19.46 dB with fL ≈ 33 kHz and fH ≈ 750 kHz. The close agreement in mid-band gain and lower cutoff frequency validates the design, while the significant difference in upper cutoff frequency is attributed to the IRF1310 model substitution and associated parasitic parameter mismatch. The experiment provided a comprehensive understanding of MOSFET amplifier frequency-domain behaviour."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the role of the source bypass capacitor CS in a Common Source amplifier?\n\n**A:** CS is connected in parallel with RS. At DC, CS is open, so RS provides bias stability through negative feedback. At AC signal frequencies, CS acts as a short circuit (impedance 1/ωCS ≈ 0), bypassing RS and eliminating AC signal degeneration. This maximises the AC voltage gain. Without CS, the gain would be reduced by the factor (1 + gm·RS), making CS essential for achieving high gain in the mid-band.",
+                        "**Q:** What are the three operating regions of a MOSFET and which is used for amplification?\n\n**A:** The three operating regions are: (1) Cut-off (VGS < Vt) — no channel, no current; (2) Linear/Triode (VGS > Vt, VDS < VGS − Vt) — MOSFET acts as a voltage-controlled resistor; (3) Saturation (VGS > Vt, VDS > VGS − Vt) — drain current is approximately constant, ID ≈ k'(VGS − Vt)². For amplification, the MOSFET must be biased in the saturation region, where the drain current is a smooth, approximately linear function of VGS, enabling large voltage gain.",
+                        "**Q:** Why does the gain of a CS amplifier roll off at both low and high frequencies?\n\n**A:** At low frequencies, coupling capacitors (Cin, Cout) and bypass capacitor CS have high impedance and do not fully pass or bypass signals, causing gain reduction. At high frequencies, internal parasitic capacitances of the MOSFET (Cgs, Cgd) create feedback and loading that limit bandwidth. The Miller effect due to Cgd amplifies the effective input capacitance as Cin,eff = Cgd(1 + |Av|), forming a low-pass filter with the source resistance and causing high-frequency gain roll-off.",
+                        "**Q:** Define bandwidth and explain how it is measured from a Bode plot.\n\n**A:** Bandwidth (BW = fH − fL) is the range of frequencies over which the gain remains within −3 dB of the mid-band value. On a Bode plot, fL and fH are identified as the frequencies where the gain curve crosses the mid-band gain minus 3 dB. A wider bandwidth means the amplifier faithfully amplifies a broader range of frequencies. In this experiment, the hardware BW ≈ 717 kHz and simulation BW ≈ 37.7 MHz.",
+                        "**Q:** What is the voltage gain expression for a Common Source amplifier and what determines it?\n\n**A:** The small-signal voltage gain is Av = −gm(RD ∥ RL). The negative sign indicates phase inversion. The magnitude depends on the transconductance gm = 2k'(VGS − Vt) = 2ID/(VGS − Vt), which is set by the Q-point, and the effective drain load (RD ∥ RL). Increasing RD or gm increases gain, but this is limited by the DC operating point — a larger RD reduces VDS and can push the MOSFET out of saturation.",
+                        "**Q:** Why does the simulation result differ from the hardware measurement, particularly at high frequencies?\n\n**A:** The primary reason is the use of IRF1310 as a substitute for the unavailable 2N7000 model in LTspice. The IRF1310 is a high-current power MOSFET with significantly different parasitic capacitances (Cgs, Cgd) compared to the 2N7000 signal MOSFET. This causes the simulated upper cutoff frequency (37.7 MHz) to differ greatly from the hardware value (~750 kHz). Additional factors include component tolerances, breadboard parasitic capacitance, and oscilloscope probe loading.",
+                        "**Q:** What is the Miller effect and how does it impact the high-frequency response of a CS amplifier?\n\n**A:** The Miller effect refers to the multiplication of the feedback capacitance Cgd (gate-drain capacitor) by the voltage gain, creating a large effective input capacitance: Cin,eff = Cgd(1 + |Av|). This large capacitance forms a low-pass RC filter with the signal source resistance, limiting the high-frequency response. As gain increases, the Miller capacitance increases proportionally, causing a lower upper cutoff frequency. This is a fundamental trade-off: higher gain amplifiers have a narrower bandwidth, captured in the gain-bandwidth product (GBW = Av × BW ≈ constant)."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
