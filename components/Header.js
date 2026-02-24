@@ -7,7 +7,7 @@ export default function Header() {
             <div className={styles.container}>
                 <Link href="/" className={styles.logo}>
                     <span className={styles.logoIcon}>⚡</span>
-                    <span className={styles.logoText}>Basic Labs Guide</span>
+                    <span className={styles.logoText}>Bhilai EE Labs</span>
                 </Link>
                 <nav className={styles.nav}>
                     <span className={styles.badge}>Electrical Engineering</span>

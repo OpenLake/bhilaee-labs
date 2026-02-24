@@ -1,7 +1,7 @@
 {
     "id": "exp-3",
     "title": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
-    "labId": "devices-and-circuits-lab",
+    "labId": "devices-and-circuits",
     "status": "Simulation Available",
     "meta": {
         "simulationId": "devices_and_circuits-exp3",
