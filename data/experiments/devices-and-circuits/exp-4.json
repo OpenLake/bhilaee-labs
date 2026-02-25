@@ -1,0 +1,896 @@
+{
+    "id": "exp-4",
+    "title": "Mathematical Operations with Op-Amps",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.1.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To realise and study mathematical operation circuits using operational amplifiers (Op-Amps)."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Summing Amplifier",
+                        "Differential Amplifier",
+                        "Integrator and Differentiator",
+                        "Log and Antilog Amplifiers"
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "DC Supply",
+                            "3"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "0.1 µF Capacitor",
+                            "1"
+                        ],
+                        [
+                            "10 kΩ Resistor",
+                            "4"
+                        ],
+                        [
+                            "µA741 Op-Amp",
+                            "1"
+                        ],
+                        [
+                            "47 kΩ Resistor",
+                            "2"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Software:** LTspice XVII (used for simulation verification of all sub-circuits)."
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "An operational amplifier (Op-Amp) is a high-gain differential amplifier with very high input impedance and very low output impedance. When used with external feedback components, it can perform various linear and non-linear mathematical operations on input signals."
+                },
+                {
+                    "type": "text",
+                    "content": "**1. Summing Amplifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "This is one of the linear applications of the Op-Amp. A circuit whose output is the sum of several input signals is called a summer. The inverting summing amplifier output is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_0 = -\\left[\\frac{R_f}{R_1}V_1 + \\frac{R_f}{R_2}V_2\\right]"
+                },
+                {
+                    "type": "text",
+                    "content": "When Rf = R1 = R2, then V₀ = −(V1 + V2): the output is the inverted sum of the inputs. Different weightings can be assigned by varying individual input resistors relative to Rf."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Differential Amplifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "The differential amplifier amplifies the difference between two voltages, making it a subtractor unlike the summing amplifier. When all resistors are equal (R1 = R2 = Rf = R3), the output is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_0 = V_2 - V_1"
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Integrating Amplifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "The integrator circuit (Fig. 3) is essentially a low-pass RC filter. It works as an integrator when the time constant RC is very large. For that case, the output is the mathematical integral of the input:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out} = -\\frac{1}{RC}\\int V_{in}\\,dt"
+                },
+                {
+                    "type": "text",
+                    "content": "For a sine input: ∫sin(ωt)dt = −(1/ω)cos(ωt). Since the Op-Amp is in inverting mode, the output is a positive cosine — a 90° phase-shifted version of the sine input. For a square wave input, the integral of a constant is a ramp, producing a triangular output."
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Differentiating Amplifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "The differentiator is a high-pass RC filter that becomes a differentiator at low values of time constant. The output is the mathematical derivative of the input, and also out of phase by 180° with respect to the input:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out} = -RC\\frac{dV_{in}}{dt}"
+                },
+                {
+                    "type": "text",
+                    "content": "For a sine input: d/dt sin(ωt) = ω cos(ωt) — a cosine output. For a square wave input, the derivative is non-zero only at the transitions (rising and falling edges), producing sharp impulse-like spikes at each switching edge."
+                },
+                {
+                    "type": "text",
+                    "content": "**5. Log and Antilog Amplifiers**"
+                },
+                {
+                    "type": "text",
+                    "content": "Log amplifiers are widely used for analog signal compression. When a diode in the feedback loop of an Op-Amp is forward biased by a constant current vi/R, it develops a potential across it given by the diode equation:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_D = V_T \\ln\\left(\\frac{v_i}{R I_0}\\right)"
+                },
+                {
+                    "type": "text",
+                    "content": "Since the input voltage and diode voltage are related logarithmically, the output voltage is the logarithm of the input. The base-emitter junction of a BJT (with collector and base shorted) can also be used as the feedback diode. The antilog amplifier is designed by reversing the arrangement of diode and resistor — the diode is placed at the input and the feedback is resistive, giving an exponential output. Both log and antilog operations are single-quadrant (require single polarity input to forward bias the diode)."
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out,\\text{log}} = -V_T \\ln\\left(\\frac{V_{in}}{I_s R}\\right)"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out,\\text{antilog}} = -R I_s\\, e^{V_{in}/V_T}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-summing-amp",
+                    "caption": "Fig 1: Summing amplifier — µA741, R1 = R2 = Rf = 10 kΩ, supply ±15 V. For weighted sum Vo2 = V1 + 4.7·V2: Rf = 47 kΩ, R1 = 47 kΩ, R2 = 10 kΩ.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-differential-amp",
+                    "caption": "Fig 2: Differential amplifier — µA741, R1 = R2 = Rf = R3 = 10 kΩ, supply ±15 V. Vo = V2 − V1.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-integrator",
+                    "caption": "Fig 3: Integrator — µA741, R = 10 kΩ (series input), C = 0.1 µF (feedback), supply ±15 V.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-differentiator",
+                    "caption": "Fig 4: Differentiator — µA741, C at input in series with R, Rf in feedback, supply ±15 V.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig5-log-amp",
+                    "caption": "Fig 5: Log amplifier — µA741, R = 100 kΩ series input, diode in feedback path. Vo = −VT·ln(Vi / R·I0).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig6-antilog-amp",
+                    "caption": "Fig 6: Antilog amplifier — µA741, diode at input, Rf = 100 kΩ in feedback. Vo = −R·Is·e^(Vin/VT).",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Summing Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the summing amplifier circuit (Fig 1) with R1 = R2 = Rf = 10 kΩ. Apply two DC input voltages V1 and V2 and measure Vout = −(V1 + V2) for the combinations given in the observation table.",
+                        "Modify the circuit to realise Vo2 = V1 + 4.7·V2 by selecting Rf = 47 kΩ, R1 = 47 kΩ, R2 = 10 kΩ. Measure Vout for the same input combinations and compare with theoretical values."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Differential Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the differential amplifier circuit (Fig 2) with R1 = R2 = Rf = R3 = 10 kΩ. Apply two DC voltages and verify Vo3 = V1 − V2 for the combinations in the observation table."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Integrator:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the integrator circuit (Fig 3) with R = 10 kΩ and C = 0.1 µF. Apply a sine wave (10 kHz, 2 Vpp) and observe the 90° phase-shifted cosine output.",
+                        "Apply a square wave (100 Hz, 10 ms period, 2 Vpp) and observe the triangular output. Justify the choice of RC (time constant = 10 kΩ × 0.1 µF = 1 ms, much smaller than the 10 ms period). Calculate gain in each case."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Differentiator:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the differentiator circuit (Fig 4). Apply a sine wave (10 kHz, 2 Vpp) and observe the cosine output (note: output is 180° out of phase due to inverting configuration).",
+                        "Apply a square wave (100 Hz, 2 Vpp) and observe the impulse-like spikes at each rising and falling edge. Record the output waveform."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**5. Log Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the log amplifier (Fig 5). Set supply to ±12 V. Set Vin = 1 V and record the output voltage across the diode.",
+                        "Increase Vin in steps of 1 V up to 20 V. Record output at each step. Plot input-output characteristics."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**6. Antilog Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the antilog amplifier (Fig 6). Set Vin = 100 mV and record the output across the resistor (note the negative sign).",
+                        "Increase Vin in steps of 50 mV up to 500 mV, then larger steps. Record output at each step. Plot input-output characteristics and note the saturation voltage."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": null,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Summing Amplifier — LTspice DC simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-summing-v2-05",
+                    "caption": "LTspice simulation — Summing amp: V1 = 2 V, V2 = 0.5 V → Vout = −2.4975 V (theoretical: −2.5 V). Flat DC output confirms correct inverting summation.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Differential Amplifier — LTspice DC simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-diff-v2-v1",
+                    "caption": "LTspice simulation — Differential amp: V1 = 2 V, V2 = 1 V → Vout = −997.5 mV ≈ −1 V (theoretical: V2 − V1 = −1 V). Confirms subtractor operation.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Integrator — LTspice transient simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-integrator-sine",
+                    "caption": "LTspice simulation — Integrator with sine wave input (green, V(n002)): output (blue, V(output)×3, amplified for visibility) is a cosine — 90° phase shift confirms integration. Frequency = ~700 Hz.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-integrator-square",
+                    "caption": "LTspice simulation — Integrator with square wave input (green, V(n003)): output (blue, V(output)) is a triangular wave. Integration of constant = ramp; alternating ramps produce triangle. Period = 10 ms.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Differentiator — LTspice transient simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-differentiator-sine",
+                    "caption": "LTspice simulation — Differentiator with sine input (green, V(n003)): output (blue, V(op)×5, amplified) is a cosine — differentiation of sine = cosine. Note 180° phase inversion due to inverting configuration.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-differentiator-square",
+                    "caption": "LTspice simulation — Differentiator with square wave input (green, V(n003)): output (magenta, V(op)) shows sharp impulse spikes at each rising and falling edge transition, confirming differentiation of a square wave.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Log Amplifier — LTspice DC simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-log-amp",
+                    "caption": "LTspice simulation — Log amp: Vin = 4 V → Vout = −457.47 mV. Flat DC line confirms steady-state log operation. Matches hardware observation of −457 mV at Vin = 4 V.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Antilog Amplifier — LTspice DC simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-antilog-amp",
+                    "caption": "LTspice simulation — Antilog amp: Output V(op) saturates at −11.6 V (green trace, supply-limited) for high input voltage. Input V(n003) shown in blue. Matches hardware saturation observation.",
+                    "role": "simulation-output"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Summing Amplifier**"
+                },
+                {
+                    "type": "text",
+                    "content": "Configuration (a): Vo1 = −(V1 + V2) with R1 = R2 = Rf = 10 kΩ. Configuration (b): Vo2 = −(V1 + 4.7·V2) with Rf = 47 kΩ, R1 = 47 kΩ, R2 = 10 kΩ."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "V1 (V)",
+                        "V2 (V)",
+                        "V01 = −(V1+V2) Measured (V)",
+                        "V02 = −(V1+4.7V2) Measured (V)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "1",
+                            "-2.07",
+                            "-5.73"
+                        ],
+                        [
+                            "2",
+                            "0.5",
+                            "-2.56",
+                            "-4.37"
+                        ],
+                        [
+                            "1",
+                            "0.2",
+                            "-1.25",
+                            "-1.94"
+                        ],
+                        [
+                            "2",
+                            "2",
+                            "-4.06",
+                            "-11.48"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-summing-osc",
+                    "caption": "Oscilloscope — Summing amp: Mean = 2.56 V (displayed positive due to probe reversal; actual output = −2.56 V for V1=2, V2=0.5). Confirms correct summation with ~0.06 V error from ideal −2.5 V.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "There is a slight deviation of ~0.05 V from ideal values in all cases due to non-ideal Op-Amp behaviour and component tolerances. The negative sign in measured outputs indicates the inverting configuration; oscilloscope probe reversal caused positive display readings."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Differential Amplifier**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "V1 (V)",
+                        "V2 (V)",
+                        "V03 = V1 − V2 Measured"
+                    ],
+                    "rows": [
+                        [
+                            "2",
+                            "1",
+                            "1.02 V"
+                        ],
+                        [
+                            "2",
+                            "0.5",
+                            "1.52 V"
+                        ],
+                        [
+                            "2",
+                            "2",
+                            "13.7 mV"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-diff-osc-1v",
+                    "caption": "Oscilloscope — Differential amp: Mean = 1.02 V for V1 = 2 V, V2 = 1 V (theoretical: 1 V). Error ≈ 0.02 V, attributed to wire resistance and non-ideal Op-Amp.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-diff-osc-stats",
+                    "caption": "Oscilloscope statistics screen — Differential amp V1 = V2 = 2 V case: Mean = −5.73 V channel reading, Pk-Pk = 400 mV. The near-zero output (13.7 mV measured) confirms common-mode rejection — when both inputs are equal, the difference output approaches zero.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "Error of ≈0.02 V is observed in the subtraction results. When V1 = V2 = 2 V, the output is 13.7 mV (ideally 0 V), indicating the non-ideal common-mode rejection of the circuit due to slight resistor mismatches."
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Integrator**"
+                },
+                {
+                    "type": "text",
+                    "content": "**a) Sine wave input (10 kHz, 2 Vpp):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-integrator-sine-osc",
+                    "caption": "Oscilloscope — Integrator with sine input: yellow = input (Vpp = 2.16 V, 9.99 kHz); cyan = output showing 90° phase-shifted cosine. Confirms integration: ∫sin(ωt)dt = cos(ωt) in inverting mode.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The output is a cosine wave (90° phase lead relative to the input sine wave). Since the Op-Amp operates in inverting mode, the −cos from integration is negated to +cos. Output is amplified for visibility."
+                },
+                {
+                    "type": "text",
+                    "content": "**b) Square wave input (~100 Hz):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-integrator-square-osc",
+                    "caption": "Oscilloscope — Integrator with square wave input: triangular output waveform obtained. Mean = 5.10 mV, Peak-Peak = 872 mV, Freq ≈ 1.01 kHz. Integration of alternating constants yields positive and negative ramps forming a triangle.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Differentiator**"
+                },
+                {
+                    "type": "text",
+                    "content": "**a) Sine wave input (10 kHz, 2 Vpp):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-differentiator-sine-osc",
+                    "caption": "Oscilloscope — Differentiator with sine input: yellow = input (Vpp = 2.16 V, 10.06 kHz); cyan = output showing cosine waveform. The output should be −cosine (inverting differentiator), but appears as +cosine due to reversed probe connection. Simulation confirms correct −cos output.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "**b) Square wave input (~100 Hz):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-differentiator-square-osc",
+                    "caption": "Oscilloscope — Differentiator with square wave input: cyan = input square wave; yellow = output showing sharp positive and negative spikes at every rising and falling edge transition. Mean = 39.7 mV, Peak-Peak = 3.84 V. Confirms differentiation: d/dt of a step = impulse.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "**5. Log Amplifier**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Input Voltage (V)",
+                        "Output Voltage (mV)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "-420"
+                        ],
+                        [
+                            "2",
+                            "-431"
+                        ],
+                        [
+                            "3",
+                            "-446"
+                        ],
+                        [
+                            "4",
+                            "-457"
+                        ],
+                        [
+                            "5",
+                            "-467"
+                        ],
+                        [
+                            "6",
+                            "-475"
+                        ],
+                        [
+                            "7",
+                            "-482"
+                        ],
+                        [
+                            "8",
+                            "-488"
+                        ],
+                        [
+                            "9",
+                            "-492"
+                        ],
+                        [
+                            "10",
+                            "-498"
+                        ],
+                        [
+                            "12",
+                            "-502"
+                        ],
+                        [
+                            "14",
+                            "-511"
+                        ],
+                        [
+                            "16",
+                            "-518"
+                        ],
+                        [
+                            "18",
+                            "-522"
+                        ],
+                        [
+                            "20",
+                            "-527"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-log-amp-osc",
+                    "caption": "Oscilloscope — Log amp: Mean = 457 mV displayed (positive due to probe reversal; actual output = −457 mV for Vin = 4 V). Matches LTspice simulation value of −457.47 mV and table entry. Output does not exceed diode breakdown voltage.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The output voltage decreases logarithmically with increasing input voltage and does not exceed the diode breakdown voltage, confirming correct log amplifier behaviour. Positive readings on oscilloscope are due to reversed probe connection."
+                },
+                {
+                    "type": "text",
+                    "content": "**6. Antilog Amplifier**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Input Voltage (V)",
+                        "Output Voltage (V)"
+                    ],
+                    "rows": [
+                        [
+                            "0.05",
+                            "-0.0023"
+                        ],
+                        [
+                            "0.075",
+                            "-0.0154"
+                        ],
+                        [
+                            "0.1",
+                            "-0.0158"
+                        ],
+                        [
+                            "0.15",
+                            "-0.017"
+                        ],
+                        [
+                            "0.2",
+                            "-0.023"
+                        ],
+                        [
+                            "0.25",
+                            "-0.0414"
+                        ],
+                        [
+                            "0.3",
+                            "-0.1111"
+                        ],
+                        [
+                            "0.35",
+                            "-0.37"
+                        ],
+                        [
+                            "0.4",
+                            "-1.35"
+                        ],
+                        [
+                            "0.45",
+                            "-4.58"
+                        ],
+                        [
+                            "0.5",
+                            "-11.5"
+                        ],
+                        [
+                            "0.6",
+                            "-11.6"
+                        ],
+                        [
+                            "0.8",
+                            "-11.6"
+                        ],
+                        [
+                            "4",
+                            "-11.6"
+                        ],
+                        [
+                            "10",
+                            "-11.6"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-antilog-amp-osc",
+                    "caption": "Oscilloscope — Antilog amp saturation: Mean = −11.6 V (Ch2), confirming output is clamped at the negative supply rail. Supply = ±12 V; Op-Amp output saturates at ≈ −(Vcc − 0.4) = −11.6 V. Matches simulation.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "The output increases exponentially with input voltage until saturating at −11.6 V (limited by the ±12 V supply). Beyond saturation, the output remains constant regardless of further increase in input voltage."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Summing Amplifier — Component selection for Vo2 = −(V1 + 4.7·V2):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{02} = -\\left(\\frac{R_f}{R_1}V_1 + \\frac{R_f}{R_2}V_2\\right) = -\\left(\\frac{47k}{47k}V_1 + \\frac{47k}{10k}V_2\\right) = -(V_1 + 4.7\\,V_2)"
+                },
+                {
+                    "type": "text",
+                    "content": "Verification for V1 = 1 V, V2 = 1 V: Vo2 = −(1 + 4.7) = −5.7 V. Measured: −5.73 V. Error = 0.03 V ≈ 0.5%."
+                },
+                {
+                    "type": "text",
+                    "content": "**Differential Amplifier — for V1 = 2 V, V2 = 1 V (all R = 10 kΩ):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{03} = V_1 - V_2 = 2 - 1 = 1\\,V \\quad (\\text{Measured: }1.02\\,V, \\text{ error} = 0.02\\,V)"
+                },
+                {
+                    "type": "text",
+                    "content": "**Integrator — Gain and time constant (R = 10 kΩ, C = 0.1 µF, f = 10 kHz):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau = RC = 10 \\times 10^3 \\times 0.1 \\times 10^{-6} = 1\\,\\text{ms}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Gain at 10 kHz} = \\frac{1}{\\omega RC} = \\frac{1}{2\\pi \\times 10^4 \\times 10^{-3}} \\approx 0.016"
+                },
+                {
+                    "type": "text",
+                    "content": "For square wave integration (period = 10 ms >> τ = 1 ms): the RC time constant is chosen much smaller than the input period so that the capacitor charges and discharges fully, producing a clean triangular output."
+                },
+                {
+                    "type": "text",
+                    "content": "**Log Amplifier — Output at Vin = 4 V (theoretical, VT ≈ 26 mV, IS ≈ 10 nA, R = 100 kΩ):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out} = -V_T \\ln\\left(\\frac{V_{in}}{I_s R}\\right) = -0.026\\ln\\left(\\frac{4}{10^{-8} \\times 10^5}\\right) = -0.026\\ln(400) \\approx -0.026 \\times 5.99 \\approx -156\\,\\text{mV}"
+                },
+                {
+                    "type": "text",
+                    "content": "Note: Actual Is and VT of the physical diode differ from standard values, accounting for the larger measured output of −457 mV at Vin = 4 V."
+                },
+                {
+                    "type": "text",
+                    "content": "**Antilog Amplifier — Saturation voltage:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{out,\\text{sat}} \\approx -(V_{cc} - 0.4) = -(12 - 0.4) = -11.6\\,V"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "All six Op-Amp mathematical operation circuits were successfully implemented and verified using both hardware and LTspice simulation."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Circuit",
+                        "Expected Behaviour",
+                        "Observed Behaviour",
+                        "Error / Notes"
+                    ],
+                    "rows": [
+                        [
+                            "Summing (equal weights)",
+                            "Vout = −(V1+V2)",
+                            "−2.07 V (for V1=V2=1 V)",
+                            "~0.07 V error"
+                        ],
+                        [
+                            "Summing (weighted)",
+                            "Vout = −(V1+4.7V2)",
+                            "−5.73 V (for V1=V2=1 V)",
+                            "~0.03 V error"
+                        ],
+                        [
+                            "Differential",
+                            "Vout = V1−V2",
+                            "1.02 V (V1=2 V, V2=1 V)",
+                            "~0.02 V error"
+                        ],
+                        [
+                            "Integrator (sine 10 kHz)",
+                            "90° phase-shifted cosine",
+                            "Cosine output confirmed",
+                            "Probe reversal caused sign flip"
+                        ],
+                        [
+                            "Integrator (square wave)",
+                            "Triangular output",
+                            "Triangular waveform, Vpp=872 mV",
+                            "—"
+                        ],
+                        [
+                            "Differentiator (sine 10 kHz)",
+                            "−cos output (inverting)",
+                            "Cosine observed (probe reversed)",
+                            "Simulation confirms −cos"
+                        ],
+                        [
+                            "Differentiator (square wave)",
+                            "Impulse spikes at transitions",
+                            "Spikes observed, Vpp=3.84 V",
+                            "—"
+                        ],
+                        [
+                            "Log Amplifier",
+                            "Logarithmic output, limited by diode",
+                            "−527 mV at Vin=20 V",
+                            "Output saturates near diode forward drop"
+                        ],
+                        [
+                            "Antilog Amplifier",
+                            "Exponential output, limited by supply",
+                            "Saturates at −11.6 V",
+                            "Matches ±12 V supply limit"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Small errors of ±0.02–0.07 V in summing and differential amplifiers are due to non-ideal Op-Amp offset voltages and component tolerances (typical ±5%).",
+                        "The integrator and differentiator correctly transformed waveforms as expected: sine→cosine (90° shift), square→triangle (integrator), square→impulses (differentiator).",
+                        "Sign inversions observed in hardware (log amp, integrator, differentiator) are due to reversed oscilloscope probe connections, confirmed by simulation.",
+                        "The log amplifier output confirmed logarithmic compression of the input, limited by the diode forward voltage characteristics.",
+                        "The antilog amplifier output saturated at −11.6 V (≈ Vcc − 0.4 V), consistent with Op-Amp output saturation limits for a ±12 V supply."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment successfully demonstrated the implementation and verification of summing amplifiers (equal and weighted), differential amplifiers, integrators, differentiators, and log/antilog amplifiers using the µA741 Op-Amp. LTspice simulations were performed for all sub-circuits and the results closely matched hardware measurements. The weighted summing amplifier demonstrated the effect of feedback resistance on output weighting (Rf/R2 = 47k/10k = 4.7). The integrator confirmed integration operations by converting sine to cosine (90° shift) and square waves to triangular waveforms. The differentiator confirmed differentiation by producing cosine from sine and impulse spikes from square wave transitions. Input-output characteristics were obtained for both log and antilog amplifiers, confirming logarithmic compression and exponential output limited by the supply voltage. Minor deviations from ideal behaviour were attributed to non-ideal Op-Amp parameters (input offset voltage, bias currents), component tolerances, and oscilloscope probe reversal."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a virtual ground in an inverting Op-Amp configuration, and why does it occur?\n\n**A:** Virtual ground is the condition where the inverting input (−) is at 0 V (same as the grounded non-inverting input), even though it is not physically connected to ground. This occurs because the Op-Amp's very high open-loop gain forces the feedback network to make both inputs equal. For the non-inverting input at 0 V, the feedback drives the inverting input to ≈ 0 V. While no current flows into the high-impedance input, current flows through the input and feedback resistors as if the node were grounded — hence the term 'virtual' ground.",
+                        "**Q:** How does changing the feedback resistor Rf in a summing amplifier affect the output?\n\n**A:** In the inverting summing amplifier, Vout = −Rf(V1/R1 + V2/R2). Increasing Rf increases the gain on all inputs, scaling up the sum. When Rf ≠ R1 or Rf ≠ R2, different weights are assigned (weighted summing). For example, Rf = 47 kΩ with R2 = 10 kΩ gives coefficient 4.7 to V2. Rf controls overall scaling; individual input resistors control relative weighting.",
+                        "**Q:** What input-output relationships are observed for the integrator with sine and square wave inputs?\n\n**A:** For sine input Vin = A sin(ωt): Vout = −(1/RC)∫A sin(ωt)dt = (A/ωRC)cos(ωt) — a cosine (90° phase shift). Since the Op-Amp is inverting, the − sign cancels and the output is +cos. For a square wave input, ∫constant dt = ramp. As the square alternates ±V, the output alternates between positive and negative ramps, producing a triangular waveform. The RC time constant must be much smaller than the input period for proper triangular output.",
+                        "**Q:** Why does the output of an antilog amplifier saturate at a voltage close to the supply voltage?\n\n**A:** The antilog output grows exponentially: Vout = −R·Is·e^(Vin/VT). As Vin increases, the exponential demand exceeds the Op-Amp's physical output capability — the output is limited by the power supply rails (Vcc − 1 to 2 V). In this experiment (±12 V supply), the saturation occurs at ≈ −11.6 V (= −(12 − 0.4) V). Any further increase in Vin cannot increase the output beyond this clamped level.",
+                        "**Q:** What is the key difference between an ideal differentiator and an ideal integrator in terms of frequency response?\n\n**A:** The ideal integrator has transfer function H(s) = −1/(RCs), meaning gain ∝ 1/f — it is a low-pass filter that attenuates high frequencies. The ideal differentiator has H(s) = −RCs, meaning gain ∝ f — it is a high-pass filter that amplifies high-frequency noise. In practice, a resistor is added in series with the input capacitor of the differentiator to limit high-frequency gain and improve stability.",
+                        "**Q:** Why is a log amplifier useful in signal processing applications?\n\n**A:** Log amplifiers compress large dynamic ranges into a smaller manageable range, since Vout ∝ ln(Vin). Signals varying over several orders of magnitude are mapped to a small output range. Applications include: audio processing (human hearing is logarithmic), radar/sonar signal processing, measurement instruments handling wide-range signals, and as building blocks for analog multiplication (log A + log B = log AB) using summing amplifiers followed by an antilog stage.",
+                        "**Q:** What causes errors in a differential amplifier, and how can they be minimised?\n\n**A:** Error sources: (1) Resistor mismatches — unequal R1, R2, R3, Rf cause incomplete common-mode cancellation, producing a finite output when V1 = V2 (as seen: 13.7 mV instead of 0 V). (2) Op-Amp input offset voltage — inherent DC error amplified to the output. (3) Bias current imbalance — unequal currents at ± inputs add offset. Minimisation: use precision resistors (0.1% tolerance), Op-Amps with low offset voltage (e.g., OP07), and add trimming potentiometers to null residual offset."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
