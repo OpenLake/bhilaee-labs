@@ -1,0 +1,117 @@
+{
+    "fig1-summing-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig1-summing-amp.png",
+        "description": "Summing amplifier circuit diagram"
+    },
+    "fig2-differential-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig2-differential-amp.png",
+        "description": "Differential amplifier circuit diagram"
+    },
+    "fig3-integrator": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig3-integrator.png",
+        "description": "Integrator circuit diagram"
+    },
+    "fig4-differentiator": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig4-differentiator.png",
+        "description": "Differentiator circuit diagram"
+    },
+    "fig5-log-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig5-log-amp.png",
+        "description": "Log amplifier circuit diagram"
+    },
+    "fig6-antilog-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/fig6-antilog-amp.png",
+        "description": "Antilog amplifier circuit diagram"
+    },
+    "sim-summing-v2-05": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-summing-v2-05.png",
+        "description": "LTspice simulation: Summing amp V2=0.5V"
+    },
+    "sim-diff-v2-v1": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-diff-v2-v1.png",
+        "description": "LTspice simulation: Differential amp"
+    },
+    "sim-integrator-sine": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-integrator-sine.png",
+        "description": "LTspice simulation: Integrator sine input"
+    },
+    "sim-integrator-square": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-integrator-square.png",
+        "description": "LTspice simulation: Integrator square wave input"
+    },
+    "sim-differentiator-sine": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-differentiator-sine.png",
+        "description": "LTspice simulation: Differentiator sine input"
+    },
+    "sim-differentiator-square": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-differentiator-square.png",
+        "description": "LTspice simulation: Differentiator square wave input"
+    },
+    "sim-log-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-log-amp.png",
+        "description": "LTspice simulation: Log amp"
+    },
+    "sim-antilog-amp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/sim-antilog-amp.png",
+        "description": "LTspice simulation: Antilog amp"
+    },
+    "obs-summing-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-summing-osc.png",
+        "description": "Oscilloscope: Summing amp"
+    },
+    "obs-diff-osc-1v": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-diff-osc-1v.png",
+        "description": "Oscilloscope: Differential amp 1V output"
+    },
+    "obs-diff-osc-stats": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Differential amp CMRR stats (placeholder)"
+    },
+    "obs-integrator-sine-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-integrator-sine-osc.png",
+        "description": "Oscilloscope: Integrator sine input"
+    },
+    "obs-integrator-square-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-integrator-square-osc.png",
+        "description": "Oscilloscope: Integrator square wave input"
+    },
+    "obs-differentiator-sine-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-differentiator-sine-osc.png",
+        "description": "Oscilloscope: Differentiator sine input"
+    },
+    "obs-differentiator-square-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-differentiator-square-osc.png",
+        "description": "Oscilloscope: Differentiator square wave input"
+    },
+    "obs-log-amp-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-log-amp-osc.png",
+        "description": "Oscilloscope: Log amp"
+    },
+    "obs-antilog-amp-osc": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-4/obs-antilog-amp-osc.png",
+        "description": "Oscilloscope: Antilog amp saturation"
+    }
+}
