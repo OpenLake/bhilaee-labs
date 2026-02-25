@@ -357,7 +357,7 @@
                 {
                     "type": "image",
                     "assetId": "sim-differentiator-square",
-                    "caption": "LTspice simulation — Differentiator with square wave input (green, V(n003)): output (magenta, V(op)) shows sharp impulse spikes at each rising and falling edge transition, confirming differentiation of a square wave.",
+                    "caption": "LTspice simulation — Differentiator with square wave input (green, V(n003)): output (magenta, V(op)) shows sharp impulse spikes at each rising and falling edge transition. confirming differentiation of a square wave.",
                     "role": "simulation-output"
                 },
                 {
@@ -461,11 +461,6 @@
                             "2",
                             "0.5",
                             "1.52 V"
-                        ],
-                        [
-                            "2",
-                            "2",
-                            "13.7 mV"
                         ]
                     ]
                 },
@@ -476,14 +471,8 @@
                     "role": "observation"
                 },
                 {
-                    "type": "image",
-                    "assetId": "obs-diff-osc-stats",
-                    "caption": "Oscilloscope statistics screen — Differential amp V1 = V2 = 2 V case: Mean = −5.73 V channel reading, Pk-Pk = 400 mV. The near-zero output (13.7 mV measured) confirms common-mode rejection — when both inputs are equal, the difference output approaches zero.",
-                    "role": "observation"
-                },
-                {
                     "type": "text",
-                    "content": "Error of ≈0.02 V is observed in the subtraction results. When V1 = V2 = 2 V, the output is 13.7 mV (ideally 0 V), indicating the non-ideal common-mode rejection of the circuit due to slight resistor mismatches."
+                    "content": "Error of ≈0.02 V is observed in the subtraction results. The slight deviation is attributed to wire resistance and non-ideal characteristics of the µA741 Op-Amp."
                 },
                 {
                     "type": "text",

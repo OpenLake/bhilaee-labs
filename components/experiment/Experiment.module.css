@@ -48,26 +48,35 @@
 }
 
 .imageWrapper {
-    max-width: 100%;
+    width: 100%;
+    max-width: 550px; /* Forces all images to exactly the same column width */
+    margin: 0 auto;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 0.5rem;
+    padding: 0.75rem;
     background: white;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers everything */
 }
 
 .image {
-    max-width: 100%;
+    width: 100%; /* Make image span exactly the inner width of the 550px wrapper */
     height: auto;
+    object-fit: contain;
     display: block;
     border-radius: 4px;
 }
 
 .caption {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+    width: 100%;
     font-size: 0.9rem;
     color: var(--text-muted);
     font-style: italic;
+    white-space: normal; /* Let browser wrap naturally within 550px */
+    line-height: 1.5;
+    text-align: center;
 }
 
 /* Tables */
