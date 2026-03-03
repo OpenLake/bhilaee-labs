@@ -1,27 +1,77 @@
 {
     "fig1-inv-amp": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Inverting amplifier circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/fig1-inv-amp.png",
+        "description": "Inverting amplifier circuit diagram"
     },
     "fig2-noninv-amp": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Non-inverting amplifier circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/fig2-noninv-amp.png",
+        "description": "Non-inverting amplifier circuit diagram"
     },
     "fig3-cmrr-diff": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Differential mode CMRR circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/fig3-cmrr-diff.png",
+        "description": "Differential mode CMRR circuit diagram"
     },
     "fig4-cmrr-common": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Common mode CMRR circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/fig4-cmrr-common.png",
+        "description": "Common mode CMRR circuit diagram"
     },
     "fig5-gbp-circuit": {
         "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-5/fig5-gbp-circuit.png",
+        "description": "Bode plot GBP measurement circuit diagram"
+    },
+    "obs-inv-gain1": {
+        "type": "image",
         "path": "/images/placeholder-blank.png",
-        "description": "Bode plot GBP measurement circuit diagram (placeholder)"
+        "description": "Oscilloscope: Inverting amp gain = 1 (placeholder)"
+    },
+    "obs-inv-gain5_6": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Inverting amp gain = 5.6 (placeholder)"
+    },
+    "obs-inv-gain10": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Inverting amp gain = 10 (placeholder)"
+    },
+    "obs-inv-gain18-clipped": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Inverting amp gain = 18 clipped (placeholder)"
+    },
+    "obs-noninv-gain2": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Non-inverting amp gain = 2 (placeholder)"
+    },
+    "obs-noninv-gain6_6": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Non-inverting amp gain = 6.6 (placeholder)"
+    },
+    "obs-noninv-gain11": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Non-inverting amp gain = 11 (placeholder)"
+    },
+    "obs-noninv-gain19-clipped": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: Non-inverting amp gain = 19 clipped (placeholder)"
+    },
+    "obs-cmrr-diff": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: CMRR differential mode output (placeholder)"
+    },
+    "obs-cmrr-common": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Oscilloscope: CMRR common mode output (placeholder)"
     }
 }
