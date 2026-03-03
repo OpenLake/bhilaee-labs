@@ -36,13 +36,28 @@
     },
     "sim-noninv-case2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "LTspice simulation: Non-inverting amp Rf=56k gain=6.6 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-noninv-case2.png",
+        "description": "LTspice simulation: Non-inverting amp Rf=56k gain=6.6"
     },
     "sim-noninv-case4": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "LTspice simulation: Non-inverting amp Rf=180k clipped (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-noninv-case4.png",
+        "description": "LTspice simulation: Non-inverting amp Rf=180k clipped"
+    },
+    "sim-cmrr-diff": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-cmrr-diff.png",
+        "description": "LTspice simulation: CMRR differential mode output"
+    },
+    "sim-cmrr-common": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-cmrr-common.png",
+        "description": "LTspice simulation: CMRR common mode output"
+    },
+    "sim-gbp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-gbp.png",
+        "description": "LTspice simulation: GBP frequency response"
     },
     "obs-inv-case2": {
         "type": "image",
@@ -56,22 +71,27 @@
     },
     "obs-noninv-case2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp Rf=56k gain=6.6 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-noninv-case2.png",
+        "description": "Oscilloscope: Non-inverting amp Rf=56k gain=6.6"
     },
     "obs-noninv-case4": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp Rf=180k clipped (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-noninv-case4.png",
+        "description": "Oscilloscope: Non-inverting amp Rf=180k clipped"
     },
     "obs-cmrr-diff": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: CMRR differential mode output (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-cmrr-diff.png",
+        "description": "Oscilloscope: CMRR differential mode output"
     },
     "obs-cmrr-common": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: CMRR common mode output (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-cmrr-common.png",
+        "description": "Oscilloscope: CMRR common mode output"
+    },
+    "obs-gbp": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-gbp.png",
+        "description": "Oscilloscope: GBP frequency response at 20 Hz"
     }
 }

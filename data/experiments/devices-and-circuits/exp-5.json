@@ -293,6 +293,36 @@
                     "assetId": "sim-noninv-case4",
                     "caption": "LTspice simulation — Non-inverting amp (Rf = 180 kΩ, R1 = 10 kΩ): Output clips at supply rails. In-phase but saturated waveform confirms clipping at high gain.",
                     "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**CMRR — Differential Mode Simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-cmrr-diff",
+                    "caption": "LTspice simulation — CMRR differential mode: Output ≈ 504 mV for 500 mV differential input. Ad ≈ 1.008.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**CMRR — Common Mode Simulation:**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-cmrr-common",
+                    "caption": "LTspice simulation — CMRR common mode: Output ≈ 4.1 mV for 1000 mV common input. Ac ≈ 0.0041, confirming very low common-mode gain.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**GBP — Frequency Response Simulation (20 Hz):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-gbp",
+                    "caption": "LTspice simulation — GBP circuit at 20 Hz: Output ≈ 2.2 Vpp for 0.2 V input, confirming mid-band gain of 11.",
+                    "role": "simulation-output"
                 }
             ]
         },
@@ -456,6 +486,18 @@
                     "value": "\\text{CMRR} = \\frac{A_d}{A_c} = \\frac{1.042}{0.006} = 173.66"
                 },
                 {
+                    "type": "image",
+                    "assetId": "obs-cmrr-diff",
+                    "caption": "Oscilloscope — CMRR differential mode: Mean output ≈ 521 mV for 500 mV differential input.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-cmrr-common",
+                    "caption": "Oscilloscope — CMRR common mode: Mean output ≈ 6.72 mV for 1000 mV common input. Very low common-mode gain confirms high CMRR.",
+                    "role": "observation"
+                },
+                {
                     "type": "text",
                     "content": "**4. Gain-Bandwidth Product (Input = 0.2 V, R1 = 10 kΩ, Rf = 47 kΩ)**"
                 },
@@ -575,6 +617,12 @@
                             "-11.06"
                         ]
                     ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-gbp",
+                    "caption": "Oscilloscope — GBP at 20 Hz: Yellow = input (212 mVpp), cyan = output (2.24 Vpp). Gain ≈ 10.57, close to theoretical mid-band gain of 11.",
+                    "role": "observation"
                 }
             ]
         },
