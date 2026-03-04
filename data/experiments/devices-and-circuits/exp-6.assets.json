@@ -1,8 +1,8 @@
 {
     "fig1-lpf-circuit": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "First-order active low-pass filter circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/fig1-lpf-circuit.png",
+        "description": "First-order active low-pass filter circuit diagram"
     },
     "fig1-lpf-response": {
         "type": "image",
@@ -11,23 +11,23 @@
     },
     "fig2-hpf-circuit": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "First-order active high-pass filter circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/fig2-hpf-circuit.png",
+        "description": "First-order active high-pass filter circuit diagram"
     },
     "fig3-svf-circuit": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Inverting state variable filter circuit diagram (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/fig3-svf-circuit.png",
+        "description": "Inverting state variable filter circuit diagram"
     },
     "lpf-oscilloscope-low-freq": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: LPF output at low frequency (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/lpf-oscilloscope-low-freq.png",
+        "description": "Oscilloscope: LPF output at low frequency (25Hz)"
     },
     "lpf-oscilloscope-high-freq": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: LPF output at high frequency (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/lpf-oscilloscope-high-freq.jpg",
+        "description": "Oscilloscope: LPF output at high frequency (50Hz)"
     },
     "lpf-frequency-response-plot": {
         "type": "image",
