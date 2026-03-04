@@ -1,0 +1,948 @@
+{
+    "id": "exp-6",
+    "title": "Study of Frequency Response of Different Filters Using Op-Amp",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the frequency response of different active filters using Op-Amp."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Study the frequency response of first-order low-pass and high-pass filters and also the cascaded (band-pass) filter.",
+                        "Design the state variable filter and study the frequency response."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "DC Supply (+15V, −15V)",
+                            "3"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "56 kΩ Resistor",
+                            "2"
+                        ],
+                        [
+                            "5.6 kΩ Resistor",
+                            "2"
+                        ],
+                        [
+                            "2.8 nF Capacitors",
+                            "2"
+                        ],
+                        [
+                            "1 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "330 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "15 kΩ Resistor",
+                            "5"
+                        ],
+                        [
+                            "10 nF Capacitor",
+                            "2"
+                        ],
+                        [
+                            "OP-Amp 07",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Active Low-Pass Filter:** All signals above selected frequencies get attenuated. The frequency response and the circuit of the low-pass filter is shown in Fig. 1a–1b. Here, the dotted graph is the ideal low-pass filter graph and a clean graph is the actual response of a practical circuit. This happened because a linear network cannot produce a discontinuous signal. As shown in the figure, after the signals reach cutoff frequency fº they experience attenuation and after a certain higher frequency the signals given at input get completely blocked. The transfer function of the low-pass filter is given as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "H(s) = -\\frac{R_2}{R_1} \\cdot \\frac{1}{1 + R_2 C s}"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_{\\text{cutoff}} = \\frac{1}{2\\pi R_2 C}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Active High-Pass Filter:** All signals above selected frequencies appear at the output and a signal below that frequency gets blocked. The frequency response and the circuit of the high-pass filter is shown in Fig. 2a–2b. Here, a dotted graph is the ideal high-pass filter graph and a clean graph is the actual response of a practical circuit. As shown in the figure, until the signals have a frequency higher than cutoff frequency fº they experience attenuation. The transfer function of the high-pass filter is given as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "H(s) = -\\frac{R_2}{R_1} \\cdot \\frac{R_1 C s}{1 + R_1 C s}"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_{\\text{cutoff}} = \\frac{1}{2\\pi R_1 C}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Cascaded Band-Pass Filter:** A band-pass filter is realised by cascading a high-pass filter and a low-pass filter. The output of one filter is fed as input to the other. The resulting circuit passes signals within a range of frequencies (passband) and attenuates those outside it."
+                },
+                {
+                    "type": "text",
+                    "content": "**State Variable Filter:** The State Variable filter, also known as the KHN filter (for inventors W. J. Kerwin, L. P. Huelsman, and R. W. Newcomb, who first reported it in 1967), uses two integrators and a summing amplifier to provide the second-order low-pass, band-pass, and high-pass responses. A fourth Op-Amp can be used to combine the existing responses and synthesize the notch or the all-pass responses. The circuit realizes a second-order differential equation."
+                },
+                {
+                    "type": "text",
+                    "content": "In the SV version, OA1 forms a linear combination of the input and the outputs of the remaining op-amps. Using the superposition principle:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{\\text{HP}} = -\\frac{R_5}{R_3}V_i - \\frac{R_5}{R_4}V_{\\text{LP}} + \\left(1 + \\frac{R_5}{R_3 \\| R_4}\\right)\\frac{R_1}{R_1 + R_2}V_{\\text{BP}}"
+                },
+                {
+                    "type": "text",
+                    "content": "Since OA2 and OA3 are integrators:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{\\text{BP}} = \\frac{-1}{R_6 C_1 s} V_{\\text{HP}}, \\quad V_{\\text{LP}} = \\frac{-1}{R_7 C_2 s} V_{\\text{BP}}"
+                },
+                {
+                    "type": "text",
+                    "content": "The results for the inverting state variable filter:"
+                },
+                {
+                    "type": "equation",
+                    "value": "H_{0\\text{HP}} = -\\frac{R_5}{R_3}, \\quad H_{0\\text{BP}} = \\frac{1 + R_2/R_1}{1 + R_3/R_4 + R_3/R_5}, \\quad H_{0\\text{LP}} = -\\frac{R_4}{R_3}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-lpf-circuit",
+                    "caption": "Fig 1(a): First-order active low-pass filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, fcutoff = 1 kHz).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-lpf-response",
+                    "caption": "Fig 1(b): Frequency response of the low-pass filter (dotted = ideal, solid = practical).",
+                    "role": "frequency-response"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-hpf-circuit",
+                    "caption": "Fig 2(a): First-order active high-pass filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, fcutoff = 10 kHz).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-svf-circuit",
+                    "caption": "Fig 3: Inverting state variable filter (three Op-Amps, R1–R7, C1–C2) for simultaneous LPF, BPF, HPF outputs.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — Filter Design:**"
+                },
+                {
+                    "type": "text",
+                    "content": "**1. Low-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design and realize a simple first-order low-pass filter with Gain 10 and Cut-off frequency 1 kHz. Choose R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF.",
+                        "Apply a 2 Vp−p AC sinusoidal input and vary frequency from 1 Hz to 1 MHz.",
+                        "Record the output voltage (Vout) and calculate gain (Vout/Vin) at each frequency.",
+                        "Plot gain vs log(frequency) to obtain the frequency response curve."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. High-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design and realize a simple first-order high-pass filter with Gain 10 and Cut-off frequency 10 kHz. Choose R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF.",
+                        "Apply a 2 Vp−p AC sinusoidal input and vary frequency from 1 Hz to 1 MHz.",
+                        "Record Vout and calculate gain at each frequency. Plot the frequency response."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Cascaded Band-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect both the filters in cascade. The output of one filter is given as the input to the second one.",
+                        "Apply 2 Vp−p sine wave input. Sweep frequency from 25 Hz to 20 kHz. Record Vout and gain. Observe the band-pass characteristic."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — Band-Pass Filter Design:**"
+                },
+                {
+                    "type": "text",
+                    "content": "**4. State Variable Band-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Realize the SV filter (Fig. 3) for band-pass response with a bandwidth of 10 Hz centred at 1 kHz. Use R1 = 1 kΩ, R2 = 330 kΩ, R3 = R4 = R5 = R6 = R7 = 15 kΩ, C1 = C2 = 10 nF.",
+                        "Apply 2 Vp−p sinusoidal input. Vary frequency from 400 Hz to 1 kHz.",
+                        "Record Vout and gain at each frequency step. Plot the frequency response."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Low-Pass Filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, Vin = 2 Vpp)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The circuit is designed using R1 = 5.6 kΩ and R2 = 56 kΩ to obtain a gain of 10. Since the cutoff frequency is given as 1 kHz, the capacitance required is calculated from fcutoff = 1/(2πRC) and found to be 2.8 nF. A 2Vp−p AC sinusoidal signal is applied at various frequencies and the corresponding output voltages and gains are noted."
+                },
+                {
+                    "type": "image",
+                    "assetId": "lpf-oscilloscope-low-freq",
+                    "caption": "Oscilloscope screenshot: LPF output at low frequency (pass-band behaviour).",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "lpf-oscilloscope-high-freq",
+                    "caption": "Oscilloscope screenshot: LPF output at high frequency (attenuation visible). At 25 Hz and 50 Hz the gain is equal to 10, demonstrating the behaviour of a low-pass filter; as the frequency increases gain drops.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "Vout (V)",
+                        "Gain"
+                    ],
+                    "rows": [
+                        [
+                            "25",
+                            "20.2",
+                            "10.1"
+                        ],
+                        [
+                            "50",
+                            "20.2",
+                            "10.1"
+                        ],
+                        [
+                            "100",
+                            "20",
+                            "10"
+                        ],
+                        [
+                            "200",
+                            "19.6",
+                            "9.8"
+                        ],
+                        [
+                            "400",
+                            "18.6",
+                            "9.3"
+                        ],
+                        [
+                            "800",
+                            "15.2",
+                            "7.6"
+                        ],
+                        [
+                            "1000",
+                            "13.3",
+                            "6.65"
+                        ],
+                        [
+                            "1600",
+                            "10.2",
+                            "5.1"
+                        ],
+                        [
+                            "3200",
+                            "5.64",
+                            "2.82"
+                        ],
+                        [
+                            "6400",
+                            "2.96",
+                            "1.48"
+                        ],
+                        [
+                            "8000",
+                            "2.6",
+                            "1.3"
+                        ],
+                        [
+                            "9000",
+                            "2.4",
+                            "1.2"
+                        ],
+                        [
+                            "10000",
+                            "2.28",
+                            "1.14"
+                        ],
+                        [
+                            "11000",
+                            "2.24",
+                            "1.12"
+                        ],
+                        [
+                            "12500",
+                            "2.16",
+                            "1.08"
+                        ],
+                        [
+                            "14000",
+                            "2.04",
+                            "1.02"
+                        ],
+                        [
+                            "15000",
+                            "1.92",
+                            "0.96"
+                        ],
+                        [
+                            "17500",
+                            "1.88",
+                            "0.94"
+                        ],
+                        [
+                            "20000",
+                            "1.8",
+                            "0.9"
+                        ],
+                        [
+                            "25600",
+                            "1.16",
+                            "0.58"
+                        ],
+                        [
+                            "51200",
+                            "1.06",
+                            "0.53"
+                        ],
+                        [
+                            "102400",
+                            "0.936",
+                            "0.468"
+                        ],
+                        [
+                            "204800",
+                            "0.808",
+                            "0.404"
+                        ],
+                        [
+                            "409600",
+                            "0.752",
+                            "0.376"
+                        ],
+                        [
+                            "819200",
+                            "0.592",
+                            "0.296"
+                        ],
+                        [
+                            "1000000",
+                            "0.472",
+                            "0.236"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "lpf-frequency-response-plot",
+                    "caption": "Fig: Frequency response of the Low-Pass Filter (gain vs log frequency).",
+                    "role": "frequency-response-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "The frequency response is not exactly ideal. This is because the components used (such as Op-Amp) are not ideal, and other factors like connecting wires have some resistance, leading to errors in measurement."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. High-Pass Filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, Vin = 2 Vpp)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The circuit is designed using R1 = 5.6 kΩ and R2 = 56 kΩ to obtain a gain of 10. Since the cutoff frequency is given as 10 kHz, the capacitance required is found to be 2.8 nF. A 2Vp−p AC sinusoidal signal is applied at various frequencies and the corresponding output voltages and gains are noted."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "Vout (V)",
+                        "Gain"
+                    ],
+                    "rows": [
+                        [
+                            "25",
+                            "0.06",
+                            "0.03"
+                        ],
+                        [
+                            "50",
+                            "0.082",
+                            "0.041"
+                        ],
+                        [
+                            "100",
+                            "0.26",
+                            "0.13"
+                        ],
+                        [
+                            "200",
+                            "0.48",
+                            "0.24"
+                        ],
+                        [
+                            "400",
+                            "0.912",
+                            "0.456"
+                        ],
+                        [
+                            "800",
+                            "1.82",
+                            "0.91"
+                        ],
+                        [
+                            "1600",
+                            "3.6",
+                            "1.8"
+                        ],
+                        [
+                            "3200",
+                            "6.8",
+                            "3.4"
+                        ],
+                        [
+                            "6400",
+                            "12.8",
+                            "6.4"
+                        ],
+                        [
+                            "8000",
+                            "14.8",
+                            "7.4"
+                        ],
+                        [
+                            "9000",
+                            "16",
+                            "8"
+                        ],
+                        [
+                            "10000",
+                            "16.8",
+                            "8.4"
+                        ],
+                        [
+                            "11000",
+                            "17.6",
+                            "8.8"
+                        ],
+                        [
+                            "12500",
+                            "18.8",
+                            "9.4"
+                        ],
+                        [
+                            "14000",
+                            "20",
+                            "10"
+                        ],
+                        [
+                            "15000",
+                            "21.2",
+                            "10.6"
+                        ],
+                        [
+                            "17500",
+                            "20.4",
+                            "10.2"
+                        ],
+                        [
+                            "20000",
+                            "18.4",
+                            "9.2"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "hpf-oscilloscope-low-freq",
+                    "caption": "Oscilloscope screenshot: HPF output at low frequency (attenuation visible).",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "hpf-oscilloscope-high-freq",
+                    "caption": "Oscilloscope screenshot: HPF output at high frequency (pass-band). When frequency is 25 Hz or 50 Hz, Vout and Gain are very low, demonstrating the behaviour of a high-pass filter.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "hpf-frequency-response-plot",
+                    "caption": "Fig: Frequency response of the High-Pass Filter (gain in dB vs frequency).",
+                    "role": "frequency-response-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "The frequency response is not exactly ideal. This is because the components used (such as Op-Amp) are not ideal, and other factors like connecting wires have some resistance, leading to errors in measurement."
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Cascaded Band-Pass Filter (Vin = 2 Vpp)**"
+                },
+                {
+                    "type": "text",
+                    "content": "To obtain a cascaded filter, both the high-pass and low-pass filters are cascaded. The output of one filter is given as the input to the second one. Both filters are designed with the same values of R1, R2, and C. An input voltage of 2Vp−p sine wave is applied and the following results are observed."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "Vout (V)",
+                        "Gain"
+                    ],
+                    "rows": [
+                        [
+                            "25",
+                            "0.6",
+                            "0.3"
+                        ],
+                        [
+                            "50",
+                            "0.8",
+                            "0.4"
+                        ],
+                        [
+                            "100",
+                            "2.6",
+                            "1.3"
+                        ],
+                        [
+                            "200",
+                            "4.6",
+                            "2.3"
+                        ],
+                        [
+                            "400",
+                            "8.4",
+                            "4.2"
+                        ],
+                        [
+                            "800",
+                            "13.8",
+                            "6.9"
+                        ],
+                        [
+                            "1600",
+                            "17.8",
+                            "8.9"
+                        ],
+                        [
+                            "3200",
+                            "18.2",
+                            "9.1"
+                        ],
+                        [
+                            "6400",
+                            "18.6",
+                            "9.3"
+                        ],
+                        [
+                            "8000",
+                            "23.4",
+                            "11.7"
+                        ],
+                        [
+                            "9000",
+                            "20.6",
+                            "10.3"
+                        ],
+                        [
+                            "10000",
+                            "18",
+                            "9"
+                        ],
+                        [
+                            "11000",
+                            "16.8",
+                            "8.4"
+                        ],
+                        [
+                            "12500",
+                            "13.8",
+                            "6.9"
+                        ],
+                        [
+                            "14000",
+                            "13",
+                            "6.5"
+                        ],
+                        [
+                            "15000",
+                            "12.4",
+                            "6.2"
+                        ],
+                        [
+                            "17500",
+                            "11",
+                            "5.5"
+                        ],
+                        [
+                            "20000",
+                            "10",
+                            "5"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "bpf-cascaded-oscilloscope-1",
+                    "caption": "Oscilloscope screenshot: Cascaded filter output (band-pass behaviour).",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "bpf-cascaded-oscilloscope-2",
+                    "caption": "Oscilloscope screenshot: Cascaded filter output at another frequency.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "bpf-cascaded-frequency-response-plot",
+                    "caption": "Fig: Frequency response of the Cascaded Band-Pass Filter (gain vs frequency).",
+                    "role": "frequency-response-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "It can be observed from the readings that gain initially is too low, increases as frequency increases, and after a certain frequency it starts falling again. Since it is a combination of high-pass and low-pass filters, the resultant cascaded filter shows the behaviour of a band-pass filter having a gain close to the product of the individual filter gains at each frequency."
+                },
+                {
+                    "type": "text",
+                    "content": "**4. State Variable Band-Pass Filter (Vin = 2 Vpp, R1 = 1 kΩ, R2 = 330 kΩ, R3=R4=R5=R6=R7 = 15 kΩ)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The circuit in the state variable filter is designed to obtain a band-pass filter with a bandwidth of 10 Hz centred at 1 kHz. A 2Vp−p sinusoidal input is given to the filter and the following observations were made."
+                },
+                {
+                    "type": "image",
+                    "assetId": "svf-oscilloscope-1",
+                    "caption": "Oscilloscope screenshot: State variable filter output near centre frequency.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "svf-oscilloscope-2",
+                    "caption": "Oscilloscope screenshot: State variable filter output showing narrow band-pass response.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "Vout (V)",
+                        "Gain"
+                    ],
+                    "rows": [
+                        [
+                            "400",
+                            "0.96",
+                            "0.48"
+                        ],
+                        [
+                            "500",
+                            "1.9",
+                            "0.95"
+                        ],
+                        [
+                            "600",
+                            "3.84",
+                            "1.92"
+                        ],
+                        [
+                            "650",
+                            "5.7",
+                            "2.85"
+                        ],
+                        [
+                            "700",
+                            "9.2",
+                            "4.6"
+                        ],
+                        [
+                            "720",
+                            "11.3",
+                            "5.65"
+                        ],
+                        [
+                            "740",
+                            "13.5",
+                            "6.75"
+                        ],
+                        [
+                            "760",
+                            "15.3",
+                            "7.65"
+                        ],
+                        [
+                            "780",
+                            "16.6",
+                            "8.3"
+                        ],
+                        [
+                            "800",
+                            "17",
+                            "8.5"
+                        ],
+                        [
+                            "820",
+                            "17.4",
+                            "8.7"
+                        ],
+                        [
+                            "840",
+                            "16.8",
+                            "8.4"
+                        ],
+                        [
+                            "860",
+                            "15.1",
+                            "7.55"
+                        ],
+                        [
+                            "880",
+                            "12.1",
+                            "6.05"
+                        ],
+                        [
+                            "900",
+                            "8.2",
+                            "4.1"
+                        ],
+                        [
+                            "1000",
+                            "3.56",
+                            "1.78"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "svf-frequency-response-plot",
+                    "caption": "Fig: Frequency response of the State Variable Band-Pass Filter (gain vs frequency).",
+                    "role": "frequency-response-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "It can be observed from the readings that gain initially is too low, increases as frequency increases, and after a certain frequency it starts falling again, indicating the behaviour of a band-pass filter. The exact desired characteristics are not obtained due to practical errors like manual errors or component errors."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**LPF Cutoff Frequency Design Verification:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_{c,\\text{LPF}} = \\frac{1}{2\\pi R_2 C} = \\frac{1}{2\\pi \\times 56 \\times 10^3 \\times 2.8 \\times 10^{-9}} \\approx 1\\,\\text{kHz}"
+                },
+                {
+                    "type": "text",
+                    "content": "**HPF Cutoff Frequency Design Verification:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_{c,\\text{HPF}} = \\frac{1}{2\\pi R_1 C} = \\frac{1}{2\\pi \\times 5.6 \\times 10^3 \\times 2.8 \\times 10^{-9}} \\approx 10\\,\\text{kHz}"
+                },
+                {
+                    "type": "text",
+                    "content": "**State Variable Filter Centre Frequency (design):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_0 = \\frac{1}{2\\pi R C} = \\frac{1}{2\\pi \\times 15 \\times 10^3 \\times 10 \\times 10^{-9}} \\approx 1061\\,\\text{Hz}"
+                },
+                {
+                    "type": "text",
+                    "content": "The experimentally observed centre frequency of ≈820 Hz deviates from the design value of ≈1061 Hz by approximately 22.7%, which is attributable to component tolerances and non-ideal Op-Amp behaviour."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "All four filter circuits were successfully implemented. Key performance characteristics are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Filter Type",
+                        "Design Parameter",
+                        "Observed Behaviour"
+                    ],
+                    "rows": [
+                        [
+                            "Low-Pass Filter",
+                            "fc = 1 kHz, Gain = 10",
+                            "Gain ~10 at low freq; rolls off above 1 kHz"
+                        ],
+                        [
+                            "High-Pass Filter",
+                            "fc = 10 kHz, Gain = 10",
+                            "Gain low at low freq; rises to ~10 near 14–15 kHz"
+                        ],
+                        [
+                            "Cascaded Band-Pass",
+                            "BW = LPF fc to HPF fc",
+                            "Band-pass shape with peak ~8 kHz"
+                        ],
+                        [
+                            "State Variable BPF",
+                            "Centre ~1 kHz, BW = 10 Hz",
+                            "Centre at ~820 Hz; narrow band-pass observed"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The low-pass and high-pass filters exhibited expected frequency response shapes, with gain rolling off outside their respective passbands.",
+                        "The cascaded filter successfully combined both responses to produce a band-pass characteristic.",
+                        "The state variable filter showed a narrow band-pass response centred near 820 Hz, with deviations from the 1 kHz design value due to component tolerances.",
+                        "Frequency response curves did not match ideal filter shapes exactly, as expected from practical non-ideal Op-Amp and component behaviour."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, we have successfully completed the implementation of low-pass, high-pass, cascaded (band-pass), and state variable band-pass filters with the specified characteristics using the OP-07 Op-Amp. We have observed the output voltages and corresponding gains for all filters at various frequencies. Frequency response of all filters is also observed to verify the accuracy of our outcomes. The results do not match with the ideal response of filters but they do match with respective practical responses, taking errors into consideration. Deviations from ideal behaviour are attributed to non-ideal Op-Amp properties, component tolerances, and parasitic resistances of connecting wires. The state variable filter provided simultaneous access to low-pass, band-pass, and high-pass responses from the same circuit, demonstrating its versatility."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the difference between a passive filter and an active filter?\n\n**A:** A passive filter uses only passive components (resistors, capacitors, inductors) without any active amplifying elements. It cannot provide gain — its output is always less than or equal to the input. An active filter uses an Op-Amp (or transistor) along with passive RC components. It can provide gain greater than unity, offers high input impedance and low output impedance, can be cascaded without loading effects, and can achieve sharp roll-off characteristics. Active filters are generally preferred in audio and instrumentation applications, while passive filters are used at high frequencies where Op-Amps are ineffective.",
+                        "**Q:** What is the roll-off rate of a first-order filter, and how does it change with filter order?\n\n**A:** A first-order filter rolls off at −20 dB/decade (or −6 dB/octave) beyond the cutoff frequency. Each additional filter order adds another −20 dB/decade. Therefore, a second-order filter rolls off at −40 dB/decade, a third-order at −60 dB/decade, and so on. Higher-order filters have a steeper roll-off and more sharply defined passbands, approaching the ideal ‘brick wall’ response. In this experiment, first-order LPF and HPF were implemented, both exhibiting the −20 dB/decade roll-off characteristic.",
+                        "**Q:** How does cascading a low-pass and high-pass filter produce a band-pass response?\n\n**A:** A low-pass filter passes frequencies below its cutoff fL and attenuates those above. A high-pass filter passes frequencies above its cutoff fH and attenuates those below. When these two are cascaded (with fH < fL), the output is non-zero only in the frequency band between fH and fL, because signals must pass through both filters. Below fH, the high-pass filter attenuates; above fL, the low-pass filter attenuates. Only frequencies in the range fH to fL pass through both, producing a band-pass response with bandwidth BW = fL − fH.",
+                        "**Q:** What is the transfer function of a first-order inverting low-pass filter, and what do its components represent?\n\n**A:** The transfer function is H(s) = −(R2/R1) × 1/(1 + R2Cs), where R1 is the input resistor, R2 is the feedback resistor, and C is the feedback capacitor. The term R2/R1 is the DC gain (gain at low frequencies). The term 1/(1 + R2Cs) represents the first-order low-pass characteristic, with pole at s = −1/(R2C). The cutoff frequency is fc = 1/(2πR2C). The negative sign indicates the inverting configuration. At frequencies well above fc, the impedance of C becomes small, reducing the effective feedback and thus the gain.",
+                        "**Q:** What is a state variable filter, and what are its advantages over a simple cascade filter?\n\n**A:** A state variable filter (also called a KHN biquad after its inventors Kerwin, Huelsman, and Newcomb) uses three Op-Amps interconnected with integrators to provide simultaneous low-pass, band-pass, and high-pass outputs from a single circuit. Its key advantages include: (1) Independent tuning of centre frequency (f0) and quality factor (Q) without interaction. (2) Simultaneous multiple filter type outputs (LP, BP, HP) from the same network. (3) Better stability and lower sensitivity to component variations compared to cascaded simple filters. (4) Suitable for high-Q narrow band-pass applications.",
+                        "**Q:** Why does the experimentally observed frequency response deviate from the ideal (theoretical) filter response?\n\n**A:** Several practical factors cause deviations: (1) Non-ideal Op-Amp characteristics — finite open-loop gain, finite input impedance, and non-zero output impedance affect filter performance, especially at high frequencies where Op-Amp gain rolls off. (2) Component tolerances — resistors and capacitors have ±5–10% tolerance, shifting the actual cutoff frequency from design. (3) Parasitic resistance and capacitance of connecting wires and breadboard joints add unwanted impedances. (4) Loading effects — the output of one stage affects the next stage’s input impedance, slightly altering the response. These combined effects result in a practical response that approximates but does not perfectly match the ideal.",
+                        "**Q:** How is the quality factor (Q) related to the selectivity and bandwidth of a band-pass filter?\n\n**A:** The quality factor Q is defined as the ratio of the centre frequency f0 to the −3 dB bandwidth (BW): Q = f0/BW. A higher Q means a narrower bandwidth relative to the centre frequency, indicating greater selectivity — the filter passes only a narrow range of frequencies around f0. A lower Q means a wider bandwidth and lower selectivity. In the state variable filter design, Q is independently adjustable through the resistor R2/R1 ratio. High-Q filters are used in applications like narrowband communication receivers, while low-Q filters are used for audio equalisation."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
