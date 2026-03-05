@@ -131,12 +131,6 @@
                 },
                 {
                     "type": "image",
-                    "assetId": "fig1-nl-test-circuit",
-                    "caption": "Figure 1: Circuit diagram for the No Load Test — 415 V, 3-phase supply connected via autotransformer (Variac) to the motor stator with two wattmeters (W1, W2), voltmeter (V), and ammeter (A) on each line.",
-                    "role": "circuit-diagram"
-                },
-                {
-                    "type": "image",
                     "assetId": "fig2-nl-equivalent-circuit",
                     "caption": "Figure 2: Equivalent circuit models at No Load — (a) Full model with R2/s in parallel with Ri; (b) Simplified model combining parallel shunt resistances; (c) Final reduced no-load equivalent circuit with R0 and X0.",
                     "role": "theory-diagram"
@@ -190,12 +184,6 @@
                 {
                     "type": "equation",
                     "value": "P_{total} = W_1 + W_2"
-                },
-                {
-                    "type": "image",
-                    "assetId": "fig4-two-wattmeter-table",
-                    "caption": "Figure 4: Two-Wattmeter Method — Wattmeter readings at different power factors. Note: W2 becomes negative for power factor < 0.5 (φ > 60°).",
-                    "role": "theory-diagram"
                 }
             ]
         },
@@ -207,12 +195,6 @@
                 {
                     "type": "text",
                     "content": "The circuit for both tests uses a 3-phase 415 V, 50 Hz AC supply connected through a 3-phase autotransformer (Variac). Two wattmeters (W1, W2) are connected using the two-wattmeter method, along with a voltmeter (line-to-line) and an ammeter on each line."
-                },
-                {
-                    "type": "image",
-                    "assetId": "fig1-nl-test-circuit",
-                    "caption": "Fig. 1: Circuit diagram for the No Load Test and Blocked Rotor Test of a 3-phase Induction Motor (415 V, 30 AC Supply via Variac, two wattmeters W1 and W2, voltmeter V, ammeter A, AC Motor).",
-                    "role": "circuit-diagram"
                 },
                 {
                     "type": "text",
