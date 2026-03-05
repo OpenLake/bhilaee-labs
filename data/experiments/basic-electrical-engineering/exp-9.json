@@ -1,0 +1,510 @@
+{
+    "id": "exp-3phase-im-05",
+    "title": "No Load Test and Blocked Rotor Test of a 3-Phase Induction Motor",
+    "labId": "electrical-machines",
+    "status": "Hardware Oriented",
+    "meta": {
+        "simulationId": null,
+        "simulationType": null,
+        "experimentType": "hardware",
+        "status": "hardware-oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform the No Load Test and Blocked Rotor Test on a three-phase induction motor in order to determine its equivalent circuit parameters."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Conduct the No Load (NL) test to determine the magnetising reactance Xm and the rotational loss resistance Riwf.",
+                        "Conduct the Blocked Rotor (BR) test to determine the stator and rotor leakage reactances (X1, X2') and the short-circuit resistance RBR.",
+                        "Draw the equivalent circuit of the three-phase induction motor with determined parameter values.",
+                        "Calculate the slip S from the experimental data."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Technical Specification",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "3-Phase Induction Motor with Blocked Rotor arrangement",
+                            "415 V, 50 Hz, 3-phase",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Autotransformer (Variac)",
+                            "3-phase, 415 V input",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Voltmeter",
+                            "0–500 V AC",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Ammeter",
+                            "0–10 A AC",
+                            "1"
+                        ],
+                        [
+                            "5",
+                            "Wattmeter",
+                            "LPF type for NL test; UPF type for BR test",
+                            "2"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**A. No-Load (NL) Test**"
+                },
+                {
+                    "type": "text",
+                    "content": "In this test, the motor is run at no-load at rated voltage and frequency. The shaft output is zero, so all input power covers losses only. The no-load losses are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_0 = P_{c1} + P_i + P_{wf}"
+                },
+                {
+                    "type": "text",
+                    "content": "where Pc1 is the stator copper loss, Pi is the iron (core) loss, and Pwf is the windage and friction loss. Since slip is extremely low (~0.001) at no load, rotor frequency is as low as 0.05 Hz and rotor copper loss is negligible. The no-load current I0 is approximately 30–40% of full-load current due to the air-gap. The no-load circuit model simplifies to a shunt branch (Riwf in parallel with Xm) in series with the stator impedance (R1 + jX1). From the NL test data (V0, I0, P0):"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_{NL} = Z_O = \\frac{V_o}{I_O / \\sqrt{3}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{NL} = R_O = \\frac{P_O}{\\left(I_O / \\sqrt{3}\\right)^2}"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_{NL} = X_O = \\sqrt{Z_O^2 - R_O^2}"
+                },
+                {
+                    "type": "text",
+                    "content": "Assuming (Xm/Riwf)² ≈ 0 (since Riwf >> Xm is not always valid; rather Riwf >> Xm is approximate), the magnetising parameters are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_m = X_O - X_1"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{iwf} = \\frac{X_m^2}{R_0 - R_1}"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-nl-test-circuit",
+                    "caption": "Figure 1: Circuit diagram for the No Load Test — 415 V, 3-phase supply connected via autotransformer (Variac) to the motor stator with two wattmeters (W1, W2), voltmeter (V), and ammeter (A) on each line.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-nl-equivalent-circuit",
+                    "caption": "Figure 2: Equivalent circuit models at No Load — (a) Full model with R2/s in parallel with Ri; (b) Simplified model combining parallel shunt resistances; (c) Final reduced no-load equivalent circuit with R0 and X0.",
+                    "role": "theory-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Blocked Rotor (BR) Test**"
+                },
+                {
+                    "type": "text",
+                    "content": "This test is analogous to the short-circuit test of a transformer. The rotor shaft is clamped so it cannot rotate (slip s = 1). A reduced three-phase voltage is applied via the autotransformer until rated stator current flows. Since the rotor does not rotate, core loss and mechanical (windage/friction) losses are negligible — all input power represents copper losses in the stator and rotor. From the BR test data (VBR, IBR, PBR):"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_{BR} = \\frac{V_{BR}}{I_{BR} / \\sqrt{3}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{BR} = \\frac{P_{BR}}{\\left(I_{BR} / \\sqrt{3}\\right)^2}"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_{BR} = \\sqrt{Z_{BR}^2 - R_{BR}^2}"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_1 = X_2' = \\frac{X_{BR}}{2}"
+                },
+                {
+                    "type": "text",
+                    "content": "The blocked rotor test should ideally be performed at reduced frequency (25% of rated) to account for the low rotor frequency at operating slip. For motors below 20 kW, the test at rated frequency is acceptable as frequency effects are negligible."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-br-equivalent-circuit",
+                    "caption": "Figure 3: Equivalent circuit model for Blocked Rotor Test — (a) Full circuit with Xm in shunt; (b) Simplified series RBR-XBR circuit (Xm ignored as it is much larger than series impedance).",
+                    "role": "theory-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "**C. Two-Wattmeter Method**"
+                },
+                {
+                    "type": "text",
+                    "content": "The total three-phase power is measured using the two-wattmeter method:"
+                },
+                {
+                    "type": "equation",
+                    "value": "W_1 = V I \\cos(\\phi + 30°), \\quad W_2 = V I \\cos(\\phi - 30°)"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_{total} = W_1 + W_2"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-two-wattmeter-table",
+                    "caption": "Figure 4: Two-Wattmeter Method — Wattmeter readings at different power factors. Note: W2 becomes negative for power factor < 0.5 (φ > 60°).",
+                    "role": "theory-diagram"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The circuit for both tests uses a 3-phase 415 V, 50 Hz AC supply connected through a 3-phase autotransformer (Variac). Two wattmeters (W1, W2) are connected using the two-wattmeter method, along with a voltmeter (line-to-line) and an ammeter on each line."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-nl-test-circuit",
+                    "caption": "Fig. 1: Circuit diagram for the No Load Test and Blocked Rotor Test of a 3-phase Induction Motor (415 V, 30 AC Supply via Variac, two wattmeters W1 and W2, voltmeter V, ammeter A, AC Motor).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "For the Blocked Rotor Test, the rotor shaft must be mechanically locked using the clamping screws before applying any voltage. The voltage is then increased slowly from zero until rated stator current is reached."
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**A. No-Load Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Note down the machine ratings and calculate the rated current of the machine.",
+                        "Disconnect any mechanical load connected to the induction motor shaft.",
+                        "Gradually apply the three-phase voltage across the motor stator terminals via the autotransformer (Variac).",
+                        "As the stator voltage is increased, the machine speeds up. Apply voltage slowly to avoid excessive acceleration.",
+                        "Adjust the stator voltage to its rated value (415 V line-to-line).",
+                        "Note down the no-load quantities: VNL (line voltage), INL (line current — average of three readings), PNL (total 3-phase power = W1 + W2).",
+                        "Slowly decrease the stator voltage to zero using the autotransformer and disconnect the supply."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Blocked Rotor Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Note down the machine ratings and calculate the rated current of the machine.",
+                        "Fasten the machine rotor shaft to the fixed disc using the clamping screws provided. Ensure the rotor shaft is tightly held in position and cannot rotate.",
+                        "Slowly increase the three-phase stator voltage from zero using the autotransformer.",
+                        "Stop increasing the voltage when rated current is established in the machine stator (as read by the ammeter).",
+                        "Record the relevant quantities: VBR (line voltage), IBR (line current), PBR (total power = W1 + W2) from the power analyzer / wattmeters.",
+                        "Reduce the voltage back to zero and disconnect the supply. Release the rotor shaft clamping."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Observation Table: No Load Test and Blocked Rotor Test**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Test",
+                        "Line Voltage V (V)",
+                        "Line Current I (A)",
+                        "Wattmeter W1 (W)",
+                        "Wattmeter W2 (W)",
+                        "Input Power P = W1+W2 (W)"
+                    ],
+                    "rows": [
+                        [
+                            "No Load",
+                            "415",
+                            "4.20",
+                            "210",
+                            "190",
+                            "400"
+                        ],
+                        [
+                            "Blocked Rotor",
+                            "96",
+                            "8.50",
+                            "380",
+                            "170",
+                            "550"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Notes on observed values:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "No Load: Rated voltage (415 V) applied; motor runs freely. No-load current (4.20 A) is approximately 35% of rated current (~12 A), consistent with the expected 30–40% range for induction motors. Low power factor at no load causes W2 to be close to W1.",
+                        "Blocked Rotor: Reduced voltage (96 V ≈ 23% of rated) required to circulate rated current (8.50 A). Power factor in this test is higher than no-load, so both wattmeter readings are positive."
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Given (assumed from stator DC resistance measurement):** R1 = 1.8 Ω per phase, X1 = X2' (to be determined from BR test)."
+                },
+                {
+                    "type": "text",
+                    "content": "**1. No Load Test Parameters (per phase, star-equivalent):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{ph,NL} = \\frac{V_{NL}}{\\sqrt{3}} = \\frac{415}{\\sqrt{3}} \\approx 239.6 \\text{ V}"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{NL} = I_O = 4.20 \\text{ A (line = phase for star connection)}"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_O = \\frac{V_{ph,NL}}{I_O} = \\frac{239.6}{4.20} \\approx 57.05 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_O = \\frac{P_O / 3}{I_O^2} = \\frac{400 / 3}{(4.20)^2} = \\frac{133.3}{17.64} \\approx 7.56 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_O = \\sqrt{Z_O^2 - R_O^2} = \\sqrt{(57.05)^2 - (7.56)^2} = \\sqrt{3254.7 - 57.2} \\approx 56.55 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_m = X_O - X_1 = 56.55 - 2.88 \\approx 53.67 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{iwf} = \\frac{X_m^2}{R_O - R_1} = \\frac{(53.67)^2}{7.56 - 1.8} = \\frac{2880.5}{5.76} \\approx 500.1 \\text{ } \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Blocked Rotor Test Parameters (per phase):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{ph,BR} = \\frac{V_{BR}}{\\sqrt{3}} = \\frac{96}{\\sqrt{3}} \\approx 55.4 \\text{ V}"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_{BR} = \\frac{V_{ph,BR}}{I_{BR}} = \\frac{55.4}{8.50} \\approx 6.52 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{BR} = \\frac{P_{BR} / 3}{I_{BR}^2} = \\frac{550 / 3}{(8.50)^2} = \\frac{183.3}{72.25} \\approx 2.54 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_{BR} = \\sqrt{Z_{BR}^2 - R_{BR}^2} = \\sqrt{(6.52)^2 - (2.54)^2} = \\sqrt{42.51 - 6.45} \\approx 6.00 \\text{ } \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_1 = X_2' = \\frac{X_{BR}}{2} = \\frac{6.00}{2} = 3.0 \\text{ } \\Omega \\text{ (each)}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_2' = R_{BR} - R_1 = 2.54 - 1.8 = 0.74 \\text{ } \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Slip Calculation (at rated conditions):**"
+                },
+                {
+                    "type": "text",
+                    "content": "For a 4-pole, 50 Hz motor, synchronous speed Ns = 1500 RPM. Assume observed full-load speed Nr = 1440 RPM."
+                },
+                {
+                    "type": "equation",
+                    "value": "S = \\frac{N_s - N_r}{N_s} = \\frac{1500 - 1440}{1500} = \\frac{60}{1500} = 0.04 \\text{ (4\\%)}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Summary of Equivalent Circuit Parameters:**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Symbol",
+                        "Value (Ω)"
+                    ],
+                    "rows": [
+                        [
+                            "Stator resistance",
+                            "R1",
+                            "1.80"
+                        ],
+                        [
+                            "Stator leakage reactance",
+                            "X1",
+                            "3.00"
+                        ],
+                        [
+                            "Rotor resistance (referred)",
+                            "R2'",
+                            "0.74"
+                        ],
+                        [
+                            "Rotor leakage reactance",
+                            "X2'",
+                            "3.00"
+                        ],
+                        [
+                            "Magnetising reactance",
+                            "Xm",
+                            "53.67"
+                        ],
+                        [
+                            "Rotational loss resistance",
+                            "Riwf",
+                            "500.1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The No Load and Blocked Rotor tests were successfully conducted on the 3-phase induction motor. The equivalent circuit parameters were determined as follows:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Stator resistance R1 = 1.80 Ω (from DC test), Stator leakage reactance X1 = 3.00 Ω (from BR test).",
+                        "Rotor resistance referred to stator R2' = 0.74 Ω, Rotor leakage reactance X2' = 3.00 Ω.",
+                        "Magnetising reactance Xm = 53.67 Ω, Rotational loss resistance Riwf = 500.1 Ω (from NL test).",
+                        "The full-load slip S = 4%, which is within the typical range of 2–5% for squirrel-cage induction motors.",
+                        "The no-load current (4.20 A) is approximately 35% of rated current, consistent with the large air-gap of induction motors.",
+                        "The blocked rotor voltage (96 V) required to circulate rated current is about 23% of rated voltage, indicating normal rotor resistance values."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The No Load Test and Blocked Rotor Test were successfully performed on the three-phase induction motor. The equivalent circuit parameters (R1, X1, R2', X2', Xm, Riwf) were determined from the experimental data using standard analysis procedures. The no-load current was found to be approximately 35% of the rated current — typical for induction motors due to their inherent air-gap. The full-load slip was calculated to be 4%, which lies within the expected 2–5% range for cage induction motors. The two-wattmeter method was used throughout for power measurement. These parameters enable construction of the per-phase equivalent circuit, which can be used to predict motor performance (torque, efficiency, power factor) at any loading condition without running the motor under actual load."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why is the no-load current of an induction motor much higher (30–40% of rated) compared to a transformer's no-load current?\n\n**A:** Unlike a transformer, an induction motor has an air-gap between the stator and rotor. The air-gap has much higher magnetic reluctance than a ferromagnetic core, so a much larger magnetising current is required to establish the same flux. This results in a significantly larger no-load current compared to transformers where there is no air-gap.",
+                        "**Q:** What does the blocked rotor test determine and why is a reduced voltage applied?\n\n**A:** The blocked rotor test determines the series parameters of the equivalent circuit — specifically the total leakage reactances (X1, X2') and the combined resistance RBR (from which R2' is extracted). A reduced voltage is applied because at s = 1 (rotor locked), the effective rotor impedance R2'/s = R2' is very low (no back-multiplication by 1/s), making the motor appear as a low-impedance circuit. Applying full rated voltage would cause excessive current, damaging the windings.",
+                        "**Q:** What are the assumptions made when neglecting the shunt branch during the blocked rotor test?\n\n**A:** In the blocked rotor test, the magnetising branch (Xm in parallel with Riwf) is neglected because the applied voltage VBR is very small (typically 20–30% of rated). The current through the shunt branch is proportional to the applied voltage and is therefore very small compared to the large series current (rated stator current). Thus ZBR ≈ R1 + jX1 + R2' + jX2', making the shunt branch negligible.",
+                        "**Q:** Explain the significance of the two-wattmeter method. When does one wattmeter read negative?\n\n**A:** The two-wattmeter method measures total three-phase power using only two wattmeters, regardless of load balance or power factor. The readings are W1 = VI·cos(φ+30°) and W2 = VI·cos(φ−30°). When the power factor is less than 0.5 (φ > 60°), W1 = VI·cos(φ+30°) involves an angle greater than 90°, giving a negative cosine — so W1 reads negative. In the no-load test, the power factor is typically very low (<0.2), so one wattmeter will deflect in the reverse direction.",
+                        "**Q:** How is slip calculated and what does a slip of 4% indicate about motor performance?\n\n**A:** Slip is S = (Ns − Nr)/Ns, where Ns is synchronous speed and Nr is actual rotor speed. A slip of 4% means the rotor runs at 96% of synchronous speed. Practically, this indicates the motor is operating normally under load — induction motors cannot run at synchronous speed as zero slip means zero rotor EMF, zero rotor current, and hence zero torque. Typical full-load slip is 2–5% for cage motors; higher slip indicates higher losses.",
+                        "**Q:** What is the physical significance of the parameter Riwf in the equivalent circuit?\n\n**A:** Riwf is a lumped resistance that represents the rotational losses of the motor — specifically the iron (core) loss in the stator and the windage and friction losses. It appears as a shunt resistance in the magnetising branch of the equivalent circuit. A large value of Riwf (e.g., 500 Ω) indicates low rotational losses relative to the magnetising reactance Xm, which is the expected relationship (Riwf >> Xm) in a well-designed induction motor.",
+                        "**Q:** Why is it important to perform the blocked rotor test at reduced frequency for large motors?\n\n**A:** At rated frequency, the rotor leakage reactance X2 = 2πfL2. Under normal operation, the rotor frequency is fs × s ≈ 1–2 Hz (for 2–4% slip), which is much lower than 50 Hz. At low frequency, the effective rotor resistance increases (due to reduced skin effect) and leakage reactance decreases. If the blocked rotor test is done at 50 Hz, the measured X2' and R2' may not represent actual operating conditions accurately. Testing at 25% of rated frequency (12.5 Hz) gives more accurate low-slip parameters. For motors below 20 kW, this effect is small enough to be ignored."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

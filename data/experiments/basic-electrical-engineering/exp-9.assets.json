@@ -1,0 +1,22 @@
+{
+    "fig1-nl-test-circuit": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Figure 1: Circuit diagram for the No Load Test (placeholder)"
+    },
+    "fig2-nl-equivalent-circuit": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Figure 2: Equivalent circuit models at No Load (placeholder)"
+    },
+    "fig3-br-equivalent-circuit": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Figure 3: Equivalent circuit model for Blocked Rotor Test (placeholder)"
+    },
+    "fig4-two-wattmeter-table": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Figure 4: Two-Wattmeter Method — Wattmeter readings at different power factors (placeholder)"
+    }
+}

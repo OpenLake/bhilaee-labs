@@ -57,7 +57,14 @@
           "id": "8",
           "title": "Speed Control of a DC Shunt Motor",
           "fileName": "exp-8.json",
-          "status": "Hardware Only",
+          "status": "Hardware Oriented",
+          "completeness": 1
+        },
+        {
+          "id": "9",
+          "title": "No Load Test and Blocked Rotor Test of a 3-Phase Induction Motor",
+          "fileName": "exp-9.json",
+          "status": "Hardware Oriented",
           "completeness": 1
         },
         {
