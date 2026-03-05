@@ -110,8 +110,8 @@ html {
   /* Reset body and container for optimal paper usage */
   @page {
     size: auto;
-    margin: 0mm;
-    /* Using 0 margin perfectly strips browser header/footer URLs and Dates */
+    margin: 20mm 15mm;
+    /* 20mm top/bottom margin creates the physical empty space between printed pages */
   }
 
   body,
@@ -120,8 +120,8 @@ html {
     background: none !important;
     color: #000000 !important;
     margin: 0 !important;
-    padding: 15mm 15mm 15mm 15mm !important;
-    /* Move the margin inside the body padding so text isn't cut off */
+    padding: 0 !important;
+    /* Removed body padding so it doesn't double up with @page margin */
     font-size: 11pt;
   }
 
