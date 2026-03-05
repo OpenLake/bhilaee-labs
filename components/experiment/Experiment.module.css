@@ -55,7 +55,7 @@
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 0.75rem;
-    background: white;
+    background: var(--card-bg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +95,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
-    background: white;
+    background: var(--card-bg);
 }
 
 .table th,
@@ -106,7 +106,7 @@
 }
 
 .table th {
-    background: var(--bg-secondary, #f8f9fa);
+    background: var(--bg-color);
     font-weight: 600;
     color: var(--primary-color);
     white-space: nowrap;
@@ -151,7 +151,7 @@
     display: block;
     font-weight: 600;
     color: var(--primary-color);
-    background-color: var(--bg-secondary, #f8f9fa);
+    background-color: var(--bg-color);
     border-left: 3px solid var(--secondary-color);
     padding: 0.5rem;
     border-radius: 4px;
@@ -161,7 +161,7 @@
 .equation {
     margin: 0.5rem 0;
     padding: 0.5rem;
-    background: var(--bg-secondary, #f8f9fa);
+    background: var(--bg-color);
     border-radius: 4px;
     text-align: center;
     font-size: 1.05rem;
@@ -184,7 +184,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background: white;
+    background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 60px;
@@ -204,7 +204,7 @@
     display: none;
     /* Hidden on mobile by default for now */
     width: 280px;
-    background: var(--bg-secondary, #f8f9fa);
+    background: var(--bg-color);
     border-right: 1px solid var(--border-color);
     position: fixed;
     top: 60px;
@@ -251,7 +251,7 @@
 }
 
 .tocLink:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--border-color);
     color: var(--primary-color);
 }
 
@@ -339,17 +339,17 @@
 }
 
 .status_Simulation_Available {
-    background: #e7f5ff;
+    background: rgba(28, 126, 214, 0.15);
     color: #1c7ed6;
 }
 
 .status_Guide_Only {
-    background: #f8f9fa;
-    color: #868e96;
+    background: var(--border-color);
+    color: var(--text-color);
 }
 
 .status_Hardware_Oriented {
-    background: #fff4e6;
+    background: rgba(253, 126, 20, 0.15);
     color: #fd7e14;
 }
 
@@ -383,7 +383,7 @@
     color: var(--text-muted);
     font-style: italic;
     padding: 1rem;
-    background: var(--bg-secondary, #f8f9fa);
+    background: var(--bg-color);
     border-radius: 4px;
 }
 
@@ -401,9 +401,9 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #f1f3f5;
-    color: #495057;
-    border: 1px solid #ced4da;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 600;
@@ -415,8 +415,8 @@
 }
 
 .printButton:hover {
-    background-color: #e9ecef;
-    color: #212529;
+    background-color: var(--border-color);
+    color: var(--primary-color);
 }
 
 /* =========================================

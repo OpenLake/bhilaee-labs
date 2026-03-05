@@ -10,9 +10,24 @@
   --text-color: #1a1a2e;
   --text-muted: #6c757d;
   --bg-color: #f8f9fa;
+  --bg-secondary: #f1f3f5;
   --card-bg: #ffffff;
   --border-color: #e0e0e0;
   --max-width: 1200px;
+}
+
+/* Global Dark Mode Overrides */
+[data-theme='dark'] {
+  --primary-color: #e2e8f0;
+  --secondary-color: #38bdf8;
+  --text-color: #f1f5f9;
+  --text-muted: #94a3b8;
+  --bg-color: #0f172a;
+  /* Deep slate/navy background */
+  --bg-secondary: #1a2332;
+  --card-bg: #1e293b;
+  /* Slightly lighter slate for cards */
+  --border-color: #334155;
 }
 
 body {
@@ -21,7 +36,9 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 html {
   height: 100%;

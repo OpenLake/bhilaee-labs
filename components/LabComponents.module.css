@@ -121,24 +121,25 @@
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-weight: 600;
-    background: #f1f3f5;
-    color: var(--text-muted);
+    background: var(--border-color);
+    color: var(--text-color);
+    white-space: nowrap;
 }
 
 /* Status colors */
 .status_Simulation_Available {
-    background: #e7f5ff;
-    color: #1c7ed6;
+    background: rgba(28, 126, 214, 0.15);
+    color: rgba(28, 126, 214, 1);
 }
 
 .status_Hardware_Oriented {
-    background: #fff4e6;
+    background: rgba(253, 126, 20, 0.15);
     color: #fd7e14;
 }
 
 .status_Guide_Only {
-    background: #f8f9fa;
-    color: #868e96;
+    background: var(--border-color);
+    color: var(--text-color);
 }
 
 .expTitle {
