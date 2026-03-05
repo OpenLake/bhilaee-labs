@@ -98,13 +98,24 @@ html {
    Print-Friendly Mode
    ========================================= */
 @media print {
+
   /* Hide typical app navigation/footers */
-  header, footer, nav, aside {
+  header,
+  footer,
+  nav,
+  aside {
     display: none !important;
   }
 
   /* Reset body and container for optimal paper usage */
-  body, html {
+  @page {
+    size: auto;
+    margin: 15mm;
+    /* Sufficient margin hides browser headers/footers typically, or we can use margin: 0 and pad the body */
+  }
+
+  body,
+  html {
     background-color: #ffffff !important;
     background: none !important;
     color: #000000 !important;
@@ -113,7 +124,9 @@ html {
     font-size: 11pt;
   }
 
-  .app-wrapper, .main-content, .container {
+  .app-wrapper,
+  .main-content,
+  .container {
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100% !important;
@@ -126,7 +139,12 @@ html {
   }
 
   /* Prevent awkward page breaks */
-  img, table, figure, pre, blockquote, .sectionContainer {
+  img,
+  table,
+  figure,
+  pre,
+  blockquote,
+  .sectionContainer {
     page-break-inside: avoid;
     break-inside: avoid;
   }
@@ -137,6 +155,7 @@ html {
     color: #000000 !important;
   }
 }
+
 .labs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

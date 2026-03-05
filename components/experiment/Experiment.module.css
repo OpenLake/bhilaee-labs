@@ -442,7 +442,8 @@
         background: none !important;
     }
 
-    /* Hide "Not Applicable" empty sections */
+    /* Hide "Not Applicable" empty sections completely */
+    .notApplicableSection,
     .notApplicableBadge,
     .notApplicableText,
     .emptyPlaceholder {

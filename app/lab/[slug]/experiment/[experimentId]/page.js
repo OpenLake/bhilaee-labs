@@ -31,7 +31,7 @@ export default async function ExperimentPage({ params }) {
                 const hasContent = section.content && section.content.length > 0;
 
                 return (
-                    <section key={sectionKey} id={sectionKey} className={styles.sectionContainer}>
+                    <section key={sectionKey} id={sectionKey} className={`${styles.sectionContainer} ${!isApplicable ? styles.notApplicableSection : ''}`}>
                         <h2 className={styles.sectionTitle}>
                             {section.title || SECTION_TITLES[sectionKey]}
                             {!isApplicable && <span className={styles.notApplicableBadge}> (Not Applicable)</span>}
