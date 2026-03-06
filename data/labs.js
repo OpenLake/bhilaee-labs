@@ -41,9 +41,9 @@ const labMetadata = [
     code: "EEP209",
     description: "Semiconductor devices, transistor circuits, and amplifier configurations",
     focus: "Semiconductor devices and amplifiers",
-    nature: "Component Analysis",
-    prerequisites: "Network Analysis",
-    totalExperiments: 10
+    nature: "Analog Circuits & Semiconductor Devices",
+    prerequisites: "ECL101 (Basic Electronics Engineering), EEL101 (Basic Electrical Engineering), EEL202 (Analog Circuits)",
+    totalExperiments: 8
   },
   {
     id: "power-system-lab",
