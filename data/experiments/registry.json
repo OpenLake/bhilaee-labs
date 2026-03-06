@@ -292,10 +292,10 @@
         },
         {
           "id": "4",
-          "title": "Experiment 4",
+          "title": "Study of RTD (Pt-100) Characteristics and Key Performance Parameters",
           "fileName": "exp-4.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "5",

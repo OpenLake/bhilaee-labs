@@ -1,0 +1,27 @@
+{
+    "exp4-wheatstone-bridge-rtd": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-4/exp4-wheatstone-bridge-rtd.png",
+        "description": "RTD (Pt-100) incorporated in a Wheatstone bridge circuit"
+    },
+    "exp4-calibration-curve": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-4/exp4-calibration-curve.png",
+        "description": "Figure 1: RTD Resistance vs Temperature (Calibration Curve) plotted in MATLAB"
+    },
+    "exp4-curve-fitting": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-4/exp4-curve-fitting.png",
+        "description": "Figure 2: Curve Fitting for RTD Parameters"
+    },
+    "exp4-sensitivity-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-4/exp4-sensitivity-plot.png",
+        "description": "Figure 3: Temperature vs Sensitivity of the RTD (Pt-100)"
+    },
+    "exp4-bridge-voltage-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-4/exp4-bridge-voltage-plot.png",
+        "description": "Figure 4: Bridge Voltage VAB vs Temperature plot for RTD"
+    }
+}

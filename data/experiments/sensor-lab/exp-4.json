@@ -1,0 +1,792 @@
+{
+    "id": "exp-4",
+    "title": "Study of RTD (Pt-100) Characteristics and Key Performance Parameters",
+    "labId": "sensor-lab",
+    "status": "Completed",
+    "meta": {
+        "simulationId": "sensor_lab-exp4",
+        "simulationType": "MATLAB Curve Fitting / Data Analysis",
+        "experimentType": "hardware",
+        "status": "completed",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the Resistance Temperature Detector (RTD) characteristics and determine key performance parameters:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Error – Measurement accuracy assessment",
+                        "Nonlinearity – Temperature-resistance relationship deviation",
+                        "Sensitivity – Response to temperature variations"
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "RTD (Pt-100)",
+                            "Resistance Temperature Detector for sensing"
+                        ],
+                        [
+                            "Hot Plate",
+                            "Heat source for temperature control"
+                        ],
+                        [
+                            "Thermometer",
+                            "Reference temperature measurement"
+                        ],
+                        [
+                            "Distilled Water",
+                            "Heat transfer medium"
+                        ],
+                        [
+                            "Glass Beaker (500 ml)",
+                            "Container for water bath"
+                        ],
+                        [
+                            "Digital Multimeter",
+                            "Resistance measurement"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "Electrical connections"
+                        ],
+                        [
+                            "Breadboard",
+                            "Circuit prototyping platform"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A Resistance Temperature Detector (RTD) is a temperature sensor that operates on the principle of change in electrical resistance of a pure metal with temperature. RTDs are widely used for accurate and stable temperature measurements in industrial and laboratory applications. Among them, the Pt-100 type, made of platinum with 100 Ω resistance at 0°C, is the most common due to its high accuracy, repeatability, and linearity."
+                },
+                {
+                    "type": "text",
+                    "content": "The resistance–temperature relationship of an RTD is nearly linear over a wide range, making it suitable for precise temperature measurement and control systems. Platinum is preferred because of its chemical stability, reproducibility, and wide temperature range (−200°C to 850°C)."
+                },
+                {
+                    "type": "text",
+                    "content": "The resistance of an RTD as a function of temperature is expressed using the Callendar–Van Dusen equation:"
+                },
+                {
+                    "type": "equation",
+                    "value": "R(T) = R_0\\left(1 + \\alpha T + \\beta T^2 + \\gamma(T - 100)T^3\\right)"
+                },
+                {
+                    "type": "text",
+                    "content": "where R(T) = resistance at temperature T (°C), R₀ = resistance at 0°C (typically 100 Ω for Pt-100), and α, β, γ = temperature coefficients."
+                },
+                {
+                    "type": "text",
+                    "content": "**Sensitivity:** The sensitivity of an RTD is the rate of change of resistance with temperature:"
+                },
+                {
+                    "type": "equation",
+                    "value": "S = \\frac{dR}{dT}"
+                },
+                {
+                    "type": "text",
+                    "content": "For a Pt-100, the typical sensitivity is about 0.385 Ω/°C, meaning the resistance increases by approximately 0.385 Ω for every 1°C rise in temperature."
+                },
+                {
+                    "type": "text",
+                    "content": "**Linearity and Non-Linearity:** RTDs exhibit a nearly linear resistance–temperature relationship compared to thermistors. However, small deviations still exist, especially at extreme temperatures. Mathematical compensation using the Callendar–Van Dusen equation or polynomial fitting ensures improved accuracy across a wide range."
+                },
+                {
+                    "type": "text",
+                    "content": "**Error Considerations:** Measurement errors in RTDs may arise due to lead wire resistance, self-heating effects, or calibration inaccuracies. The percentage error is given as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\% \\text{ Error} = \\frac{|\\text{Measured Value} - \\text{Actual Value}|}{\\text{Actual Value}} \\times 100"
+                },
+                {
+                    "type": "text",
+                    "content": "**Full Scale Error (FSE):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{FSE} = \\frac{R_M - R_A}{\\text{Full Scale}}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Relative Error (RE):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{RE} = \\frac{R_M - R_A}{R_A}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp4-wheatstone-bridge-rtd",
+                    "caption": "RTD (Pt-100) incorporated in a Wheatstone bridge circuit (R1 = R2 = R3 = 100 Ω, Vs = 10V). Output VAB is proportional to RTD resistance change.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — RTD Calibration:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Fill the glass beaker with distilled water and place it on the hot plate.",
+                        "Immerse the Pt-100 RTD and the thermometer in the water bath.",
+                        "Heat the water gradually and record the RTD resistance using the digital multimeter at various temperature points from approximately 25.8°C to 62°C.",
+                        "Record temperature in °C alongside the corresponding resistance values."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — Curve Fitting (MATLAB):**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Plot the calibration data (resistance vs temperature) in MATLAB.",
+                        "Apply curve fitting using the truncated Callendar–Van Dusen form R(T) = R₀(1 + α₁T + α₂T²) to determine R₀, α₁, and α₂.",
+                        "Record the fitted parameters and plot sensitivity dR/dT vs temperature."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3 — Bridge Circuit Measurement:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the Wheatstone bridge circuit with the RTD as one arm (R1 = R2 = R3 = 100 Ω, Vs = 10V).",
+                        "Measure the bridge output voltage VAB at each temperature step from 37°C to 70°C.",
+                        "Calculate RT and measured temperature from bridge voltage readings.",
+                        "Compute full-scale error and relative error for each measurement."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "MATLAB was used to plot the calibration curve (resistance vs temperature), perform curve fitting to determine RTD parameters R₀, α₁, and α₂, compute sensitivity dR/dT vs temperature, and plot bridge voltage VAB vs temperature."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table 1: Calibration of RTD (Pt-100)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S. No.",
+                        "Temperature (°C)",
+                        "Resistance (Ω)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "25.8",
+                            "107.8"
+                        ],
+                        [
+                            "2",
+                            "28.0",
+                            "108.0"
+                        ],
+                        [
+                            "3",
+                            "30.0",
+                            "108.5"
+                        ],
+                        [
+                            "4",
+                            "35.0",
+                            "109.5"
+                        ],
+                        [
+                            "5",
+                            "38.0",
+                            "111.02"
+                        ],
+                        [
+                            "6",
+                            "40.0",
+                            "111.5"
+                        ],
+                        [
+                            "7",
+                            "42.0",
+                            "112.3"
+                        ],
+                        [
+                            "8",
+                            "45.0",
+                            "113.2"
+                        ],
+                        [
+                            "9",
+                            "48.0",
+                            "114.2"
+                        ],
+                        [
+                            "10",
+                            "50.0",
+                            "115.05"
+                        ],
+                        [
+                            "11",
+                            "52.0",
+                            "115.7"
+                        ],
+                        [
+                            "12",
+                            "55.0",
+                            "116.7"
+                        ],
+                        [
+                            "13",
+                            "58.0",
+                            "117.5"
+                        ],
+                        [
+                            "14",
+                            "60.0",
+                            "118.2"
+                        ],
+                        [
+                            "15",
+                            "62.0",
+                            "119.01"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp4-calibration-curve",
+                    "caption": "Figure 1: RTD Resistance vs Temperature (Calibration Curve) plotted in MATLAB.",
+                    "role": "matlab-plot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp4-curve-fitting",
+                    "caption": "Figure 2: Curve Fitting for RTD Parameters. Fitted results: R₀ = 101.2850 Ω, α₁ = 0.0020, α₂ ≈ 0.",
+                    "role": "matlab-plot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp4-sensitivity-plot",
+                    "caption": "Figure 3: Temperature vs Sensitivity of the RTD (Pt-100). RTD sensitivity is approximately constant, unlike the thermistor.",
+                    "role": "matlab-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 2: Bridge Voltage VAB vs Temperature for RTD**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S. No.",
+                        "Temperature (°C)",
+                        "Bridge Voltage VAB (V)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "37",
+                            "0.49"
+                        ],
+                        [
+                            "2",
+                            "40",
+                            "0.50"
+                        ],
+                        [
+                            "3",
+                            "42",
+                            "0.515"
+                        ],
+                        [
+                            "4",
+                            "45",
+                            "0.541"
+                        ],
+                        [
+                            "5",
+                            "47",
+                            "0.569"
+                        ],
+                        [
+                            "6",
+                            "50",
+                            "0.59"
+                        ],
+                        [
+                            "7",
+                            "52",
+                            "0.61"
+                        ],
+                        [
+                            "8",
+                            "55",
+                            "0.632"
+                        ],
+                        [
+                            "9",
+                            "57",
+                            "0.644"
+                        ],
+                        [
+                            "10",
+                            "60",
+                            "0.661"
+                        ],
+                        [
+                            "11",
+                            "62",
+                            "0.69"
+                        ],
+                        [
+                            "12",
+                            "65",
+                            "0.71"
+                        ],
+                        [
+                            "13",
+                            "67",
+                            "0.724"
+                        ],
+                        [
+                            "14",
+                            "69",
+                            "0.735"
+                        ],
+                        [
+                            "15",
+                            "70",
+                            "0.745"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp4-bridge-voltage-plot",
+                    "caption": "Figure 4: Bridge Voltage VAB vs Temperature plot for RTD (Pt-100) obtained from MATLAB.",
+                    "role": "matlab-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 3: Bridge Voltage vs Actual and Measured Temperature and Resistance**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Bridge Voltage (V)",
+                        "Actual Temp (°C)",
+                        "Actual Resistance (Ω)",
+                        "RTD Measured Temp (°C)",
+                        "RTD Measured Resistance (Ω)"
+                    ],
+                    "rows": [
+                        [
+                            "0.49",
+                            "37",
+                            "108.77",
+                            "100.96",
+                            "121.73"
+                        ],
+                        [
+                            "0.50",
+                            "40",
+                            "109.38",
+                            "103.39",
+                            "122.22"
+                        ],
+                        [
+                            "0.515",
+                            "42",
+                            "109.79",
+                            "107.06",
+                            "122.97"
+                        ],
+                        [
+                            "0.541",
+                            "45",
+                            "110.40",
+                            "113.48",
+                            "124.27"
+                        ],
+                        [
+                            "0.569",
+                            "47",
+                            "110.80",
+                            "120.47",
+                            "125.68"
+                        ],
+                        [
+                            "0.59",
+                            "50",
+                            "111.41",
+                            "125.78",
+                            "126.76"
+                        ],
+                        [
+                            "0.61",
+                            "52",
+                            "111.81",
+                            "130.88",
+                            "127.79"
+                        ],
+                        [
+                            "0.632",
+                            "55",
+                            "112.42",
+                            "136.54",
+                            "128.94"
+                        ],
+                        [
+                            "0.644",
+                            "57",
+                            "112.83",
+                            "139.65",
+                            "129.57"
+                        ],
+                        [
+                            "0.661",
+                            "60",
+                            "113.43",
+                            "144.09",
+                            "130.47"
+                        ],
+                        [
+                            "0.69",
+                            "62",
+                            "113.84",
+                            "151.75",
+                            "132.02"
+                        ],
+                        [
+                            "0.71",
+                            "65",
+                            "114.45",
+                            "157.09",
+                            "133.10"
+                        ],
+                        [
+                            "0.724",
+                            "67",
+                            "114.85",
+                            "160.86",
+                            "133.86"
+                        ],
+                        [
+                            "0.735",
+                            "69",
+                            "115.26",
+                            "163.84",
+                            "134.47"
+                        ],
+                        [
+                            "0.745",
+                            "70",
+                            "115.46",
+                            "166.56",
+                            "135.02"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 4: Full-Scale and Relative Errors for RTD Measurements**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Actual Resistance (Ω)",
+                        "Measured Resistance (Ω)",
+                        "Full-Scale Error (%)",
+                        "Relative Error (%)"
+                    ],
+                    "rows": [
+                        [
+                            "108.77",
+                            "121.73",
+                            "9.32",
+                            "11.91"
+                        ],
+                        [
+                            "109.38",
+                            "122.22",
+                            "9.24",
+                            "11.74"
+                        ],
+                        [
+                            "109.79",
+                            "122.97",
+                            "9.48",
+                            "12.00"
+                        ],
+                        [
+                            "110.40",
+                            "124.27",
+                            "9.98",
+                            "12.56"
+                        ],
+                        [
+                            "110.80",
+                            "125.68",
+                            "10.71",
+                            "13.43"
+                        ],
+                        [
+                            "111.41",
+                            "126.76",
+                            "11.04",
+                            "13.78"
+                        ],
+                        [
+                            "111.81",
+                            "127.79",
+                            "11.49",
+                            "14.29"
+                        ],
+                        [
+                            "112.42",
+                            "128.94",
+                            "11.88",
+                            "14.69"
+                        ],
+                        [
+                            "112.83",
+                            "129.57",
+                            "12.04",
+                            "14.84"
+                        ],
+                        [
+                            "113.43",
+                            "130.47",
+                            "12.25",
+                            "15.02"
+                        ],
+                        [
+                            "113.84",
+                            "132.02",
+                            "13.08",
+                            "15.97"
+                        ],
+                        [
+                            "114.45",
+                            "133.10",
+                            "13.42",
+                            "16.30"
+                        ],
+                        [
+                            "114.85",
+                            "133.86",
+                            "13.68",
+                            "16.55"
+                        ],
+                        [
+                            "115.26",
+                            "134.47",
+                            "13.82",
+                            "16.67"
+                        ],
+                        [
+                            "115.46",
+                            "135.02",
+                            "14.07",
+                            "16.94"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Curve Fitted Parameters:** R₀ = 101.2850 Ω, α₁ = 0.0020, α₂ ≈ 0"
+                },
+                {
+                    "type": "text",
+                    "content": "**Calibrating Equation (RTD):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_T = 101.2850\\,(1 + 0.0020\\,T)"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sensing (Inverse) Equation:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "T = \\frac{R_T - 101.2850}{0.20257}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Non-Linearity at Mid Range:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{mid}} = \\frac{25.8 + 62}{2} = 43.9^\\circ\\text{C}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_M = 101.2850 \\times (1 + 0.0020 \\times 43.9) \\approx 110.2\\,\\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_A = 112.3 + \\frac{43.9 - 42}{45 - 42} \\times (113.2 - 112.3) \\approx 112.9\\,\\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{FS} = 119.01 - 107.8 = 11.21\\,\\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{FSE} = \\frac{110.2 - 112.9}{11.21} \\approx -0.240 \\Rightarrow 24.0\\%"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{RE} = \\frac{110.2 - 112.9}{112.9} \\approx -0.024 \\Rightarrow 2.4\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sensitivity (RTD):** Unlike the thermistor, RTD sensitivity is constant with temperature:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{dR_T}{dT} = R_0 \\cdot \\alpha = \\text{constant}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Bridge Circuit — Sample Calculation (at Vbridge = 0.49 V, Vs = 10V, R1=R2=R3=100 Ω):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_x = R_3 \\cdot \\frac{0.5 + \\frac{V_{\\text{bridge}}}{V_s}}{0.5 - \\frac{V_{\\text{bridge}}}{V_s}} = 100 \\cdot \\frac{0.549}{0.451} \\approx 121.73\\,\\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "T = \\frac{R_T - R_0}{\\alpha R_0} = \\frac{121.73 - 101.28}{0.002 \\times 101.28} \\approx 100.96^\\circ\\text{C}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "RTD parameters obtained from curve fitting: R₀ = 101.2850 Ω, α₁ = 0.0020, α₂ ≈ 0.",
+                        "The RTD exhibits a nearly linear resistance–temperature relationship, with resistance increasing from 107.8 Ω at 25.8°C to 119.01 Ω at 62°C.",
+                        "RTD sensitivity is approximately constant (unlike the thermistor), with dR/dT = R₀ · α.",
+                        "Non-linearity at mid-range: RM = 110.2 Ω vs RA = 112.9 Ω, giving a relative error of 2.4%.",
+                        "Bridge circuit full-scale error ranged from approximately 9.32% to 14.07% across the measurement range.",
+                        "Relative error ranged from 11.74% to 16.94%, indicating systematic overestimation of resistance by the bridge model."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, we successfully carried out the calibration of an RTD and observed its resistance variation with temperature. We plotted the resistance versus temperature graph and applied curve fitting to determine the RTD constants R₀ and α. We also found the sensitivity of the RTD by differentiating the RTD equation and plotted the sensitivity versus temperature graph. From the results, it can be seen how small changes in temperature affect the resistance of the RTD. Finally, we implemented a bridge circuit to measure temperature vs voltage variations and compared the RTD measured temperature with actual temperature values. Full-scale and relative errors were calculated for all readings based on the measured and actual resistance values. Overall, the experiment provided hands-on experience on RTD behavior, curve fitting, and its application in accurate temperature measurement."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** The RTD sensitivity dR/dT = R₀α is constant, unlike the thermistor. What are the practical implications of a constant sensitivity for measurement system design?\n\n**A:** A constant sensitivity means the relationship between resistance and temperature is approximately linear, so the same change in temperature produces approximately the same change in resistance regardless of the operating point. This greatly simplifies signal conditioning — a simple linear equation converts resistance to temperature without needing correction tables or non-linear compensation. It also means the resolution and accuracy of the measurement are approximately uniform across the operating range, unlike the thermistor which is highly sensitive near its reference temperature but poorly sensitive far from it.",
+                        "**Q:** Why is platinum specifically chosen for Pt-100 RTDs over other metals like copper or nickel?\n\n**A:** Platinum is chosen because: (1) It has a highly stable and reproducible resistance-temperature relationship, which allows individual sensors from different manufacturers to be interchangeable. (2) It is chemically inert and does not oxidise or corrode even at high temperatures, ensuring long-term stability. (3) Its temperature coefficient α ≈ 0.00385 Ω/Ω/°C is well-characterised and consistent. (4) It can operate over a very wide range (−200°C to 850°C). Copper has lower resistivity and oxidises above ~150°C; nickel has a higher TCR but is non-linear and less stable. These limitations make platinum the industry standard for precision RTDs.",
+                        "**Q:** In the bridge circuit measurement, the calculated RT from the bridge voltage formula gave values systematically higher than the actual RTD resistance. What does this suggest about the bridge circuit model used?\n\n**A:** The systematic overestimation of resistance suggests the bridge circuit model assumes ideal conditions (R1 = R2 = R3 = 100 Ω exactly, and the bridge is perfectly balanced at 0°C) that do not match the actual circuit. Possible reasons include: (1) The actual values of R1, R2, R3 differ from 100 Ω due to component tolerances, shifting the balance point. (2) Lead wire resistance of the two-wire RTD connection adds to the measured resistance (two-wire RTD connection includes lead resistance in the measurement). (3) The RTD resistance at the starting temperature (37°C) is already above 100 Ω (≈108.77 Ω), so the bridge is not balanced at the start of the experiment, causing a systematic offset in the voltage-to-resistance conversion.",
+                        "**Q:** What is the difference between a two-wire, three-wire, and four-wire RTD connection, and why does this matter for measurement accuracy?\n\n**A:** In a two-wire connection, the lead wire resistance is directly added to the RTD measurement, introducing a fixed error proportional to lead length and wire resistance. In a three-wire connection, one additional wire is added; the bridge circuit can partially cancel lead resistance by placing matched leads in adjacent bridge arms, significantly reducing the error. In a four-wire (Kelvin) connection, two wires carry the excitation current and two separate wires sense the voltage directly across the RTD — since the sense wires carry negligible current, their resistance does not affect the measurement. Four-wire connections are used for the highest accuracy applications.",
+                        "**Q:** The full-scale error for the RTD bridge measurements was consistently above 9% across all readings, much higher than expected. Propose two specific circuit modifications that would reduce this error.\n\n**A:** (1) Use a three-wire or four-wire RTD connection to eliminate lead resistance from the measurement. In this experiment, a two-wire connection was used, and the lead resistance (even a few ohms) is significant compared to the small resistance changes of the Pt-100 (≈0.385 Ω/°C), causing a large systematic offset in all readings. (2) Re-balance the bridge at the starting temperature of the experiment (37°C) rather than at 0°C, by replacing one of the fixed 100 Ω resistors with an adjustable trimmer potentiometer calibrated to match the RTD resistance at 37°C. This would reduce the initial offset and bring all subsequent readings closer to the actual values.",
+                        "**Q:** The Callendar–Van Dusen equation has four coefficients (R₀, α, β, γ), but the curve fitting in this experiment only used two (R₀ and α₁, with α₂ ≈ 0). Under what temperature conditions is this simplification justified, and when would it fail?\n\n**A:** The simplification to a linear model R(T) = R₀(1 + αT) is justified for temperatures in the range 0°C to about 100°C, where the quadratic and cubic correction terms contribute less than 0.1% to the resistance value. This is because α ≈ 3.85 × 10⁻³/°C while β ≈ −5.775 × 10⁻⁷/°C², so at 100°C the β term contributes only about 0.006% correction. For temperatures below 0°C, the γ term (which only applies below 0°C) becomes significant and cannot be ignored. For temperatures above 300°C, the β term becomes large enough that the linear approximation introduces errors exceeding 1%, requiring the full Callendar–Van Dusen equation."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
