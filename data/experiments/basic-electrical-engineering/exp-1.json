@@ -227,14 +227,9 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "default",
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Simulate the circuit to measure and correct the power factor."
-                }
-            ]
+            "content": []
         },
         "observation": {
             "id": "observation",
@@ -453,7 +448,7 @@
         },
         "result": {
             "id": "result",
-            "title": "Results \u0026 Analysis",
+            "title": "Results & Analysis",
             "isApplicable": true,
             "content": [
                 {

@@ -297,14 +297,9 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "default",
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Simulate the star/delta connections to verify voltage and current relationships."
-                }
-            ]
+            "content": []
         },
         "observation": {
             "id": "observation",

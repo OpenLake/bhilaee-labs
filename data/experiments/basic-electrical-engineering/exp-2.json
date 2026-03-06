@@ -161,7 +161,7 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "default",
             "content": []
         },

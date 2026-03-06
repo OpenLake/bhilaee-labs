@@ -7,7 +7,7 @@
         "simulationId": "basic-ee-exp-7",
         "simulationType": "AC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.0.0",
@@ -261,7 +261,7 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "/simulator/basic-ee-exp-7",
             "content": []
         },

@@ -216,14 +216,9 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "default",
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Simulate the circuit to verify the theorem virtually."
-                }
-            ]
+            "content": []
         },
         "observation": {
             "id": "observation",

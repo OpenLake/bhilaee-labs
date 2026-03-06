@@ -297,14 +297,9 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": true,
+            "isApplicable": false,
             "route": "default",
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Simulate the circuit to verify the open circuit and short circuit test results."
-                }
-            ]
+            "content": []
         },
         "observation": {
             "id": "observation",
