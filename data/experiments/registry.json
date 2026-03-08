@@ -331,20 +331,8 @@
           "fileName": "exp-9.json",
           "status": "Hardware-Oriented",
           "completeness": 1
-        },
-        {
-          "id": "10",
-          "title": "Experiment 10",
-          "fileName": "exp-10.json",
-          "status": "Guide Only",
-          "completeness": 0.1
         }
-      ],
-      "nature": "Hands-on exploration of transducer characteristics, signal conditioning circuits, and data conversion. Students build, calibrate, and characterize measurement systems for temperature, displacement, strain, and force using op-amps, ADC/DACs, and industry-standard sensors like RTDs, thermistors, LVDTs, strain gauges, and load cells.",
-      "prerequisites": [
-        "EEL208 (Sensor and Instrumentation)"
-      ],
-      "totalExperiments": 9
+      ]
     },
     "control-system-lab": {
       "name": "Control System Lab",

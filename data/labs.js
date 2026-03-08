@@ -61,9 +61,9 @@ const labMetadata = [
     code: "EEP304",
     description: "Various sensors, transducers, and measurement techniques",
     focus: "Transducers and measurements",
-    nature: "Measurement-based",
-    prerequisites: "Basic Electronics",
-    totalExperiments: 10
+    nature: "Transducer Characterisation",
+    prerequisites: "EEL208 (Sensor and Instrumentation)",
+    totalExperiments: 9
   },
   {
     id: "control-system-lab",
