@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import Head from 'next/head';
 import { getAllExperiments } from '@/data/labs';
