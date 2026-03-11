@@ -424,22 +424,32 @@
    ========================================= */
 .glossaryTerm {
     position: relative;
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-    text-decoration-color: var(--secondary-color);
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1.5px;
     cursor: help;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    
+    /* Highly noticeable highlight */
+    color: var(--secondary-color);
+    font-weight: 500;
+    background-color: rgba(52, 152, 219, 0.12);
+    border-bottom: 2px solid var(--secondary-color);
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+    margin: 0 0.1em;
 }
 
 .glossaryTerm:hover {
-    background-color: rgba(52, 152, 219, 0.1);
-    border-radius: 2px;
+    background-color: rgba(52, 152, 219, 0.25);
+    color: #1c7ed6; /* A slightly darker blue on hover for light mode */
+}
+
+[data-theme='dark'] .glossaryTerm {
+    background-color: rgba(56, 189, 248, 0.15);
+    color: var(--secondary-color);
 }
 
 [data-theme='dark'] .glossaryTerm:hover {
-    background-color: rgba(56, 189, 248, 0.12);
+    background-color: rgba(56, 189, 248, 0.3);
+    color: #7dd3fc; /* A slightly lighter blue on hover for dark mode */
 }
 
 .glossaryTooltip {
