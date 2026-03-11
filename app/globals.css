@@ -5,29 +5,27 @@
 }
 
 :root {
-  --primary-color: #2c3e50;
+  --primary-color: #171717;
   --secondary-color: #3498db;
-  --text-color: #1a1a2e;
-  --text-muted: #6c757d;
-  --bg-color: #f8f9fa;
-  --bg-secondary: #f1f3f5;
-  --card-bg: #ffffff;
-  --border-color: #e0e0e0;
+  --text-color: #0A0A0A;
+  --text-muted: #737373;
+  --bg-color: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --card-bg: #FFFFFF;
+  --border-color: #E5E5E5;
   --max-width: 1200px;
 }
 
 /* Global Dark Mode Overrides */
 [data-theme='dark'] {
-  --primary-color: #e2e8f0;
+  --primary-color: #FAFAFA;
   --secondary-color: #38bdf8;
-  --text-color: #f1f5f9;
-  --text-muted: #94a3b8;
-  --bg-color: #0f172a;
-  /* Deep slate/navy background */
-  --bg-secondary: #1a2332;
-  --card-bg: #1e293b;
-  /* Slightly lighter slate for cards */
-  --border-color: #334155;
+  --text-color: #FAFAFA;
+  --text-muted: #A3A3A3;
+  --bg-color: #0A0A0A;
+  --bg-secondary: #262626;
+  --card-bg: #0A0A0A;
+  --border-color: #262626;
 }
 
 body {
