@@ -32,7 +32,11 @@ export default function HomeContent({ labs, allExperiments }) {
                     <span className="hero-pill-icon">🎓</span> IIT Bhilai
                 </div>
                 <h1>Bhilai EE Labs</h1>
-                <p>A comprehensive guide to practical experiments and virtual simulations for Electrical Engineering.</p>
+                <p>
+                    Tired of struggling with lab reports and searching for experiment details?
+                    <br /><br />
+                    Bhilai EE Labs makes it effortless to find practical guides, visualize circuits, and master your electrical engineering practicals.
+                </p>
             </section>
 
             <section className="labs-section">
