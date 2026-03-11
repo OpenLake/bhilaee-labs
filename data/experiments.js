@@ -25,6 +25,21 @@ export async function getExperiment(labSlug, experimentId) {
     experiment.labId = labSlug;
     experiment.status = experimentMeta.status;
 
+    // Attach previous and next experiments for navigation
+    const expIndex = labData.experiments.findIndex(e => e.id === experimentId);
+    if (expIndex > 0) {
+        experiment.prevExperiment = {
+            id: labData.experiments[expIndex - 1].id,
+            title: labData.experiments[expIndex - 1].title
+        };
+    }
+    if (expIndex < labData.experiments.length - 1) {
+        experiment.nextExperiment = {
+            id: labData.experiments[expIndex + 1].id,
+            title: labData.experiments[expIndex + 1].title
+        };
+    }
+
     // Try to load content file if available
     try {
         // Use fs instead of import() to avoid Webpack context issues with new files

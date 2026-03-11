@@ -420,6 +420,87 @@
 }
 
 /* =========================================
+   Experiment Navigation (Previous/Next)
+   ========================================= */
+.experimentNav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.navColumn {
+    flex: 1;
+    display: flex;
+}
+
+.navColumnRight {
+    justify-content: flex-end;
+}
+
+.navLink {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 350px;
+}
+
+.navLink:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: var(--bg-color);
+}
+
+.navLinkPrev {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.navLinkNext {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.navDirection {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.navTitle {
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+    .experimentNav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .navColumnRight {
+        justify-content: flex-start;
+    }
+    
+    .navLink {
+        max-width: 100%;
+    }
+}
+
+/* =========================================
    Glossary Term Highlight & Tooltip
    ========================================= */
 .glossaryTerm {

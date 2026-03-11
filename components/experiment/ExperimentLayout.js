@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
 import BookmarkButton from './BookmarkButton';
+import ExperimentNav from './ExperimentNav';
 import styles from './Experiment.module.css';
 
 /**
@@ -144,6 +145,13 @@ export default function ExperimentLayout({ experiment, children }) {
                 <div className={styles.contentBody}>
                     {children}
                 </div>
+
+                {/* Bottom Navigation */}
+                <ExperimentNav 
+                    labId={experiment.labId} 
+                    prevExperiment={experiment.prevExperiment} 
+                    nextExperiment={experiment.nextExperiment} 
+                />
             </main>
         </div>
     );
