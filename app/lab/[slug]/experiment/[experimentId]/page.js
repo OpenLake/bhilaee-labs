@@ -5,6 +5,7 @@ import { getGlossary } from '@/data/glossaryLoader';
 import ExperimentLayout from '@/components/experiment/ExperimentLayout';
 import ContentBlock from '@/components/experiment/ContentBlock';
 import ExperimentFeedback from '@/components/experiment/ExperimentFeedback';
+import PrintSettingsWrapper from '@/components/experiment/PrintSettingsWrapper';
 import styles from '@/components/experiment/Experiment.module.css';
 
 /**
@@ -37,7 +38,11 @@ export default async function ExperimentPage({ params }) {
                 const hasContent = section.content && section.content.length > 0;
 
                 return (
-                    <section key={sectionKey} id={sectionKey} className={`${styles.sectionContainer} ${!isApplicable ? styles.notApplicableSection : ''}`}>
+                    <PrintSettingsWrapper 
+                        key={sectionKey} 
+                        sectionKey={sectionKey}
+                        className={`${styles.sectionContainer} ${!isApplicable ? styles.notApplicableSection : ''}`}
+                    >
                         <h2 className={styles.sectionTitle}>
                             {section.title || SECTION_TITLES[sectionKey]}
                             {!isApplicable && <span className={styles.notApplicableBadge}> (Not Applicable)</span>}
@@ -65,7 +70,7 @@ export default async function ExperimentPage({ params }) {
                                 This section is not required for this experiment.
                             </p>
                         )}
-                    </section>
+                    </PrintSettingsWrapper>
                 );
             })}
 

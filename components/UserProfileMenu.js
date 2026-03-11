@@ -57,7 +57,7 @@ export default function UserProfileMenu() {
                         <span className={styles.menuIcon}>🕒</span>
                         Recently Viewed
                     </Link>
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/glossary" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>🧠</span>
                         Viva & Glossary Prep
                     </Link>
@@ -69,7 +69,7 @@ export default function UserProfileMenu() {
                     <div className={styles.divider}></div>
 
                     {/* Group 2: App Settings & Support */}
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/preferences" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>⚙️</span>
                         Preferences
                     </Link>
