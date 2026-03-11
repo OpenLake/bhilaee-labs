@@ -14,7 +14,6 @@ export default function Header() {
                 <nav className={styles.nav}>
                     <ThemeToggle />
                     <UserProfileMenu />
-                    <span className={styles.badge}>Electrical Engineering</span>
                 </nav>
             </div>
         </header>
