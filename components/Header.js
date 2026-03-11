@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
 import ThemeToggle from './ThemeToggle';
+import UserProfileMenu from './UserProfileMenu';
 
 export default function Header() {
     return (
@@ -12,6 +13,7 @@ export default function Header() {
                 </Link>
                 <nav className={styles.nav}>
                     <ThemeToggle />
+                    <UserProfileMenu />
                     <span className={styles.badge}>Electrical Engineering</span>
                 </nav>
             </div>

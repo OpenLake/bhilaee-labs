@@ -47,3 +47,86 @@
     border-radius: 1rem;
     border: 1px solid var(--border-color);
 }
+
+/* Profile Menu Styles */
+.profileContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profileBtn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.2s;
+}
+
+.profileBtn:hover, .profileBtnOpen {
+    background: var(--bg-color);
+    border-color: var(--border-color);
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    z-index: 1000;
+    animation: slideDown 0.15s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.25rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background: var(--bg-color);
+}
+
+.menuIcon {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.5rem 0;
+}
