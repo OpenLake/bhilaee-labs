@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getExperiment, getAllExperimentPaths } from '@/data/experiments';
 import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
+import { getGlossary } from '@/data/glossaryLoader';
 import ExperimentLayout from '@/components/experiment/ExperimentLayout';
 import ContentBlock from '@/components/experiment/ContentBlock';
 import ExperimentFeedback from '@/components/experiment/ExperimentFeedback';
@@ -20,6 +21,10 @@ export default async function ExperimentPage({ params }) {
 
     // Enhance experiment object with labSlug for back-link if not present
     if (!experiment.labId) experiment.labId = slug;
+
+    // Load glossary and create a Set to track first-occurrence-only highlighting
+    const glossaryTerms = getGlossary();
+    const highlightedTerms = new Set();
 
     return (
         <ExperimentLayout experiment={experiment}>
@@ -42,7 +47,14 @@ export default async function ExperimentPage({ params }) {
                             hasContent ? (
                                 <div className={styles.sectionContent}>
                                     {section.content.map((block, index) => (
-                                        <ContentBlock key={index} block={block} assets={experiment.assets} sectionId={sectionKey} />
+                                        <ContentBlock
+                                            key={index}
+                                            block={block}
+                                            assets={experiment.assets}
+                                            sectionId={sectionKey}
+                                            glossaryTerms={glossaryTerms}
+                                            highlightedTerms={highlightedTerms}
+                                        />
                                     ))}
                                 </div>
                             ) : (
@@ -67,3 +79,4 @@ export default async function ExperimentPage({ params }) {
 export async function generateStaticParams() {
     return getAllExperimentPaths();
 }
+

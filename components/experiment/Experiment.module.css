@@ -420,6 +420,90 @@
 }
 
 /* =========================================
+   Glossary Term Highlight & Tooltip
+   ========================================= */
+.glossaryTerm {
+    position: relative;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    cursor: help;
+    transition: background-color 0.2s ease;
+}
+
+.glossaryTerm:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 2px;
+}
+
+[data-theme='dark'] .glossaryTerm:hover {
+    background-color: rgba(56, 189, 248, 0.12);
+}
+
+.glossaryTooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    padding: 0.65rem 0.85rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    font-size: 0.85rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    color: var(--text-color);
+    text-decoration: none;
+    z-index: 100;
+    pointer-events: none;
+    text-align: left;
+    white-space: normal;
+}
+
+/* Tooltip arrow */
+.glossaryTooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--border-color);
+}
+
+.glossaryTerm:hover .glossaryTooltip {
+    display: block;
+    animation: glossaryFadeIn 0.15s ease-out;
+}
+
+@keyframes glossaryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Tooltip term label */
+.glossaryTooltipTerm {
+    display: block;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+    text-transform: capitalize;
+}
+
+/* =========================================
    Print-Friendly Overrides for Experiment
    ========================================= */
 @media print {
@@ -430,6 +514,16 @@
     .printButton,
     .noPrint {
         display: none !important;
+    }
+
+    /* Hide glossary tooltips and styling in print */
+    .glossaryTooltip {
+        display: none !important;
+    }
+
+    .glossaryTerm {
+        text-decoration: none !important;
+        cursor: auto !important;
     }
 
     /* Expand main content to full width */
