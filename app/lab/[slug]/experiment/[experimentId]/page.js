@@ -27,8 +27,11 @@ export default async function ExperimentPage({ params }) {
     const glossaryTerms = getGlossary();
     const highlightedTerms = new Set();
 
+    // Standardize ID to include labSlug to avoid collisions
+    const fullExperimentId = `${slug}/${experimentId}`;
+
     return (
-        <ExperimentLayout experiment={experiment}>
+        <ExperimentLayout experiment={experiment} fullExperimentId={fullExperimentId}>
             {SECTION_ORDER.map((sectionKey) => {
                 const section = experiment.sections[sectionKey];
                 // Safety check: if section data is missing for some reason
@@ -59,7 +62,7 @@ export default async function ExperimentPage({ params }) {
                                             sectionId={sectionKey}
                                             glossaryTerms={glossaryTerms}
                                             highlightedTerms={highlightedTerms}
-                                            experimentId={experimentId}
+                                            experimentId={fullExperimentId}
                                         />
                                     ))}
                                 </div>

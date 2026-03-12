@@ -1,0 +1,103 @@
+.resultCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+.resultCard:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.resultCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.resultExpNumber {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--border-color);
+    line-height: 1;
+}
+
+.resultStatusTag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 600;
+    background: var(--border-color);
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.statusSimulation { background: rgba(28, 126, 214, 0.15); color: #1c7ed6; }
+.statusHardware { background: rgba(253, 126, 20, 0.15); color: #fd7e14; }
+.statusSoftware { background: rgba(12, 166, 120, 0.15); color: #0ca678; }
+
+.resultExpTitle {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.65rem;
+    margin-top: 0.5rem;
+    line-height: 1.35;
+    flex-grow: 1;
+}
+
+.resultLabBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.resultLabBadge svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+
+.resultLabBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #868e96;
+}
+
+.resultLabBadge svg {
+    width: 14px;
+    height: 14px;
+}
+
+.timeLine {
+    font-size: 0.7rem;
+    color: #adb5bd;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

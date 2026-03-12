@@ -55,11 +55,11 @@ export default function UserProfileMenu() {
                     <div className={styles.divider}></div>
 
                     {/* Group 1: Lab Resources */}
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/starred" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>⭐</span>
                         Starred Experiments
                     </Link>
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/history" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>🕒</span>
                         Recently Viewed
                     </Link>
@@ -67,7 +67,7 @@ export default function UserProfileMenu() {
                         <span className={styles.menuIcon}>🧠</span>
                         Viva & Glossary Prep
                     </Link>
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/observations" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>📊</span>
                         Saved Observations
                     </Link>
@@ -90,9 +90,10 @@ export default function UserProfileMenu() {
                     {user ? (
                         <button 
                             className={styles.dropdownItem} 
-                            onClick={() => {
-                                signOut();
+                            onClick={async () => {
+                                await signOut();
                                 setIsOpen(false);
+                                window.location.href = '/';
                             }}
                         >
                             <span className={styles.menuIcon}>🚪</span>

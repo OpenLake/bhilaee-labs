@@ -13,16 +13,18 @@ import styles from './Experiment.module.css';
  * Main shell for the Experiment Page.
  * Handles the sticky sidebar navigation and responsive content area.
  */
-export default function ExperimentLayout({ children, experiment }) {
+export default function ExperimentLayout({ children, experiment, fullExperimentId }) {
     const { user } = useAuth();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     // Record visit to history
     useEffect(() => {
-        if (user && experiment?.id) {
-            recordVisit(user.id, experiment.id);
+        const expId = fullExperimentId || experiment?.id || experiment?.meta?.simulationId;
+        if (user && expId) {
+            console.log('ExperimentLayout: Recording visit', { userId: user.id, experimentId: expId });
+            recordVisit(user.id, expId);
         }
-    }, [user, experiment?.id]);
+    }, [user, experiment, fullExperimentId]);
     // Generate Table of Contents based on sections available in the experiment
     // Only include applicable sections
     const toc = SECTION_ORDER.filter(key =>
@@ -87,7 +89,7 @@ export default function ExperimentLayout({ children, experiment }) {
                         </button>
 
                         {/* Bookmark Button */}
-                        <BookmarkButton experimentId={experiment.id} />
+                        <BookmarkButton experimentId={fullExperimentId || experiment.id} />
                     </div>
                     <h1 className={styles.experimentTitle}>{experiment.title}</h1>
 

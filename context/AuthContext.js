@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       setUser(initialSession?.user || null);
       
       if (initialSession?.user) {
-        await fetchProfile(initialSession.user.id);
+        await fetchProfile(initialSession.user.id, initialSession.user);
       }
       setLoading(false);
     };
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
       setUser(currentSession?.user || null);
       
       if (currentSession?.user) {
-        await fetchProfile(currentSession.user.id);
+        await fetchProfile(currentSession.user.id, currentSession.user);
       } else {
         setProfile(null);
       }
@@ -50,18 +50,34 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const fetchProfile = async (userId) => {
+  const fetchProfile = async (userId, user) => {
     try {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle(); // maybeSingle() avoids the single() error when 0 rows
 
       if (error) {
-        // If profile doesn't exist yet, it's handled by the trigger generally, 
-        // but we can catch it here.
         console.error('Error fetching profile:', error);
+        return;
+      }
+
+      if (!data) {
+        console.info('Profile missing, creating on-demand for:', userId);
+        // Profile was likely deleted manually but Auth user remains. 
+        // Let's recreate it to heal the state.
+        const { data: newProfile, error: createError } = await supabase
+          .from('profiles')
+          .insert([{ id: userId, full_name: user?.email?.split('@')[0] || 'User' }])
+          .select()
+          .maybeSingle();
+        
+        if (createError) {
+          console.error('Failed to auto-create profile:', createError);
+        } else {
+          setProfile(newProfile);
+        }
       } else {
         setProfile(data);
       }
@@ -71,7 +87,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      setLoading(true);
+      await supabase.auth.signOut();
+      setProfile(null);
+      setUser(null);
+      setSession(null);
+    } catch (error) {
+      console.error('Error signing out:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const value = {

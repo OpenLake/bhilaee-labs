@@ -68,16 +68,26 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
     };
 
     const handleSave = async () => {
+        const originalRows = [...currentRows];
         setCurrentRows(draftRows);
         setIsEditing(false);
 
-        if (user) {
-            // Persist to Supabase
-            await saveObservation(user.id, experimentId, sectionId, draftRows);
-        } else {
-            // Persist to localStorage
-            const localKey = `${experimentId}-draftData-${sectionId}`;
-            localStorage.setItem(localKey, JSON.stringify(draftRows));
+        try {
+            if (user) {
+                // Persist to Supabase
+                console.log('EditableTableBlock: Saving to DB', { userId: user.id, experimentId, sectionId });
+                const { error } = await saveObservation(user.id, experimentId, sectionId, draftRows);
+                if (error) throw error;
+                console.log('EditableTableBlock: DB save successful');
+            } else {
+                // Persist to localStorage
+                const localKey = `${experimentId}-draftData-${sectionId}`;
+                localStorage.setItem(localKey, JSON.stringify(draftRows));
+            }
+        } catch (e) {
+            console.error('EditableTableBlock: Save failed', e);
+            alert('Could not save data to cloud. Reverting UI.');
+            setCurrentRows(originalRows);
         }
     };
 

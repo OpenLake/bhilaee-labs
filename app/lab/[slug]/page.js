@@ -63,7 +63,12 @@ export default async function LabPage({ params }) {
             />
 
             <section className="experiments-section">
-                <ExperimentList experiments={lab.experiments} labSlug={lab.id} />
+                <ExperimentList 
+                    experiments={lab.experiments} 
+                    labSlug={lab.id} 
+                    labName={lab.name}
+                    labCode={lab.code}
+                />
             </section>
         </main>
     );
