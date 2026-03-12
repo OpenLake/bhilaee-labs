@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { updateProfile } from '@/lib/db';
+import { updateProfile, clearAllBookmarks, clearAllObservations, clearAllHistory } from '@/lib/db';
 import styles from './Preferences.module.css';
 
 export default function PreferencesClient() {
@@ -80,7 +80,7 @@ export default function PreferencesClient() {
                     full_name: profile.name,
                     roll_number: profile.rollNumber,
                     theme: appSettings.theme,
-                    default_lab: appSettings.default_lab,
+                    default_lab: appSettings.defaultLab,
                     print_preferences: printPrefs
                 });
                 if (error) throw error;
@@ -103,10 +103,14 @@ export default function PreferencesClient() {
     };
 
     // -- Danger Zone Handlers --
-    const clearTableData = () => {
+    const clearTableData = async () => {
         if (confirm("Are you sure? This will wipe ALL your manually entered observations and plot points across all experiments.")) {
-            // Data is saved in ExperimentLayout per-experiment (e.g. `exp-[id]-draftData`)
-            // We iterate and remove only data keys
+            if (user) {
+                setSaveStatus('Clearing cloud observations...');
+                await clearAllObservations(user.id);
+            }
+
+            // Local storage cleanup
             const keysToRemove = [];
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
@@ -115,20 +119,38 @@ export default function PreferencesClient() {
                 }
             }
             keysToRemove.forEach(k => localStorage.removeItem(k));
-            alert(`Cleared ${keysToRemove.length} saved observation tables.`);
+            setSaveStatus('Cleared observations.');
+            setTimeout(() => setSaveStatus(''), 3000);
+            alert(`Cleared ${keysToRemove.length} local observation tables and cloud data.`);
         }
     };
 
-    const clearStarred = () => {
+    const clearStarred = async () => {
         if (confirm("Remove all starred experiments from your bookmarks?")) {
+            if (user) {
+                setSaveStatus('Clearing cloud bookmarks...');
+                await clearAllBookmarks(user.id);
+            }
+
             localStorage.removeItem('starredExperiments');
             window.dispatchEvent(new Event('bookmarksUpdated'));
-            alert('Bookmarks cleared.');
+            setSaveStatus('Bookmarks cleared.');
+            setTimeout(() => setSaveStatus(''), 3000);
+            alert('Bookmarks cleared from local and cloud.');
         }
     };
 
-    const factoryReset = () => {
+    const factoryReset = async () => {
         if (confirm("FACTORY RESET: This will delete ALL local data, including preferences, bookmarks, and observations. Proceed?")) {
+            if (user) {
+                setSaveStatus('Performing cloud factory reset...');
+                await Promise.all([
+                    clearAllBookmarks(user.id),
+                    clearAllObservations(user.id),
+                    clearAllHistory(user.id)
+                ]);
+            }
+
             localStorage.clear();
             alert("All data wiped. Returning to homepage.");
             router.push('/');

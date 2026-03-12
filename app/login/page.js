@@ -57,7 +57,7 @@ export default function LoginPage() {
         });
 
         if (error) setError(error.message);
-        else setMessage('Check your email for the confirmation link!');
+        else setMessage('Account created successfully! You can now log in.');
         setLoading(false);
     };
 
