@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { addStarredExperiment, removeStarredExperiment, getStarredExperiments } from '@/lib/db';
+import { toggleStar, getStarredExperiments } from '@/lib/db';
 import styles from './BookmarkButton.module.css';
 
 export default function BookmarkButton({ experimentId }) {

@@ -17,32 +17,42 @@ export const AuthProvider = ({ children }) => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+    useEffect(() => {
     // 1. Get initial session
     const initSession = async () => {
-      const { data: { session: initialSession } } = await supabase.auth.getSession();
-      setSession(initialSession);
-      setUser(initialSession?.user || null);
-      
-      if (initialSession?.user) {
-        await fetchProfile(initialSession.user.id, initialSession.user);
+      try {
+        const { data: { session: initialSession } } = await supabase.auth.getSession();
+        setSession(initialSession);
+        setUser(initialSession?.user || null);
+        
+        if (initialSession?.user) {
+          await fetchProfile(initialSession.user.id, initialSession.user);
+        }
+      } catch (error) {
+        console.error('AuthContext: Session init error', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     initSession();
 
     // 2. Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, currentSession) => {
-      setSession(currentSession);
-      setUser(currentSession?.user || null);
-      
-      if (currentSession?.user) {
-        await fetchProfile(currentSession.user.id, currentSession.user);
-      } else {
-        setProfile(null);
+      try {
+        setSession(currentSession);
+        setUser(currentSession?.user || null);
+        
+        if (currentSession?.user) {
+          await fetchProfile(currentSession.user.id, currentSession.user);
+        } else {
+          setProfile(null);
+        }
+      } catch (error) {
+        console.error('AuthContext: Auth change error', error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => {
