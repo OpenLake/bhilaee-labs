@@ -79,7 +79,7 @@ export default function UserProfileMenu() {
                         <span className={styles.menuIcon}>⚙️</span>
                         Preferences
                     </Link>
-                    <Link href="#" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <Link href="/support" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>💬</span>
                         Help & Feedback
                     </Link>
