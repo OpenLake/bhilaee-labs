@@ -32,6 +32,7 @@ export default function UserProfileMenu() {
                 className={`${styles.profileBtn} ${isOpen ? styles.profileBtnOpen : ''}`}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="User Profile Menu"
+                suppressHydrationWarning
                 aria-expanded={isOpen}
             >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

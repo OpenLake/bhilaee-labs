@@ -135,12 +135,12 @@ export default function SupportPage() {
                         <div className={styles.formRow}>
                             <div className={styles.inputGroup}>
                                 <label htmlFor="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" placeholder="E.g., Graph not plotting in Exp 4" required />
+                                <input type="text" id="subject" name="subject" placeholder="E.g., Graph not plotting in Exp 4" required suppressHydrationWarning />
                             </div>
                             <div className={styles.inputGroup}>
                                 <label htmlFor="severity">Severity</label>
                                 <div className={styles.selectWrapper}>
-                                    <select id="severity" name="severity" required defaultValue="medium">
+                                    <select id="severity" name="severity" required defaultValue="medium" suppressHydrationWarning>
                                         <option value="low">Low (Minor typo)</option>
                                         <option value="medium">Medium (UI glitch)</option>
                                         <option value="high">High (Sim broken)</option>
@@ -154,7 +154,7 @@ export default function SupportPage() {
                             <label htmlFor="context-url">Context URL <span className={styles.optionalTag}>Optional</span></label>
                             <div className={styles.urlInputWrapper}>
                                 <span className={styles.urlPrefix}>bhilaeelabs.in/</span>
-                                <input type="text" id="context-url" name="contextUrl" placeholder="lab/devices-and-circuits/experiment/4" />
+                                <input type="text" id="context-url" name="contextUrl" placeholder="lab/devices-and-circuits/experiment/4" suppressHydrationWarning />
                             </div>
                         </div>
 
@@ -164,7 +164,7 @@ export default function SupportPage() {
                         </div>
 
                         <div className={styles.formFooter}>
-                            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                            <button type="submit" className={styles.submitBtn} disabled={isSubmitting} suppressHydrationWarning>
                                 {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
                                 {!isSubmitting && (
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
