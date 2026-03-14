@@ -179,33 +179,37 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
 
     return (
         <div className={`${styles.contentBlock} ${styles.tableWrapper}`}>
-            {/* Top Toolbar: Plot, Edit, Tweak */}
-            <div className={styles.tableToolbar}>
-                {canPlot && (
-                    <button
-                        className={`${styles.plotToggleBtn} ${isPlotOpen ? styles.plotToggleActive : ''}`}
-                        onClick={() => setIsPlotOpen(!isPlotOpen)}
-                        title={isPlotOpen ? 'Close plot' : 'Plot this data'}
+            {/* Top Toolbar: Plot, Apply Tolerance, Edit */}
+            {(canPlot || isEditing) && (
+                <div className={styles.tableToolbar}>
+                    {canPlot && (
+                        <>
+                            <button
+                                className={`${styles.tweakToggleBtn} ${isTweaking ? styles.tweakToggleActive : ''}`}
+                                onClick={handleTweakToggle}
+                                title="Introduce random variance/errors to data"
+                            >
+                                🎲 Apply Tolerance
+                            </button>
+                            <button
+                                className={`${styles.plotToggleBtn} ${isPlotOpen ? styles.plotToggleActive : ''}`}
+                                onClick={() => setIsPlotOpen(!isPlotOpen)}
+                                title={isPlotOpen ? 'Close plot' : 'Plot this data'}
+                            >
+                                📊 {isPlotOpen ? 'Close Plot' : 'Plot Data'}
+                            </button>
+                        </>
+                    )}
+                    <div style={{ flex: 1 }}></div>
+                    <button 
+                        className={`${styles.editToggleBtn} ${isEditing && !isTweaking ? styles.plotToggleActive : ''}`} 
+                        onClick={handleEditToggle}
+                        title={isEditing ? 'Cancel editing' : 'Edit table data'}
                     >
-                        📊 {isPlotOpen ? 'Close Plot' : 'Plot Data'}
+                        {isEditing ? '✕ Cancel' : '✎ Edit Data'}
                     </button>
-                )}
-                <div style={{ flex: 1 }}></div>
-                <button
-                    className={`${styles.tweakToggleBtn} ${isTweaking ? styles.tweakToggleActive : ''}`}
-                    onClick={handleTweakToggle}
-                    title="Introduction random variance/errors to data"
-                >
-                    🎲 Tweak Readings
-                </button>
-                <button 
-                    className={`${styles.editToggleBtn} ${isEditing && !isTweaking ? styles.plotToggleActive : ''}`} 
-                    onClick={handleEditToggle}
-                    title={isEditing ? 'Cancel editing' : 'Edit table data'}
-                >
-                    {isEditing ? '✕ Cancel' : '✎ Edit Data'}
-                </button>
-            </div>
+                </div>
+            )}
 
             {/* Tweak Panel */}
             {isTweaking && (
