@@ -51,7 +51,22 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                     </div>
                     <nav className={styles.toc}>
                         {toc.map(item => (
-                            <a key={item.id} href={`#${item.id}`} className={styles.tocLink}>
+                            <a 
+                                key={item.id} 
+                                href={`#${item.id}`} 
+                                className={styles.tocLink}
+                                onClick={(e) => {
+                                    // Let smooth scroll happen, but trigger highlight
+                                    const target = document.getElementById(item.id);
+                                    if (target) {
+                                        target.classList.add(styles.sectionHighlight);
+                                        // Remove after animation finishes (1.3s to be safe)
+                                        setTimeout(() => {
+                                            target.classList.remove(styles.sectionHighlight);
+                                        }, 1500);
+                                    }
+                                }}
+                            >
                                 {item.title}
                             </a>
                         ))}

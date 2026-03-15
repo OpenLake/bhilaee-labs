@@ -687,6 +687,33 @@
     margin-bottom: 3rem;
     scroll-margin-top: 100px;
     /* Offset for sticky header */
+    transition: background-color 0.3s ease;
+}
+
+.sectionHighlight {
+    animation: highlightFade 1.5s ease-out forwards;
+}
+
+@keyframes highlightFade {
+    0% {
+        background-color: rgba(255, 243, 191, 0.4); /* Soft yellow highlight */
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+[data-theme='dark'] .sectionHighlight {
+    animation: highlightFadeDark 1.5s ease-out forwards;
+}
+
+@keyframes highlightFadeDark {
+    0% {
+        background-color: rgba(253, 216, 53, 0.15); /* Subtler yellow for dark mode */
+    }
+    100% {
+        background-color: transparent;
+    }
 }
 
 .sectionTitle {
