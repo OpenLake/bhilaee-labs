@@ -309,6 +309,38 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     url: '/lab/basic-electrical-engineering/experiment/1',
                     text: 'Want to make your data more realistic? Use "Apply Tolerance" to introduce natural measurement variations and error margins.'
                 }
+            ],
+            'study-tools': [
+                {
+                    title: 'Glossary tooltips',
+                    selector: '[class*="glossaryTerm"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Look out for blue underlined words. Hover over them to see instant technical definitions from our encyclopedia!'
+                },
+                {
+                    title: 'Glossary search page',
+                    selector: '[class*="searchInput"]',
+                    url: '/glossary',
+                    text: 'Need to look up a specific term? Use our centralized glossary to search across all labs and modules.'
+                },
+                {
+                    title: 'Flashcard mode',
+                    selector: '[class*="flashcardToggle"]',
+                    url: '/glossary',
+                    text: 'Preparing for a Viva? Toggle Flashcard Mode to hide definitions and test your knowledge. Click any card to reveal the answer!'
+                },
+                {
+                    title: 'Circuit diagram gallery',
+                    selector: '[class*="galleryHeader"]',
+                    url: '/gallery',
+                    text: 'Browse our visual library of circuit diagrams. You can find reference connections for every experiment on the platform here.'
+                },
+                {
+                    title: 'Zoomable diagrams',
+                    selector: '[class*="zoomable"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Don\'t squint! Click any diagram to enlarge it. You can see high-resolution details of every connection and component.'
+                }
             ]
         };
 
