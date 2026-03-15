@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import styles from './Header.module.css';
+import PlatformGuideModal from './PlatformGuideModal';
 
 export default function UserProfileMenu() {
     const { user, profile, signOut, loading } = useAuth();
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    const [isGuideOpen, setIsGuideOpen] = useState(false);
     const menuRef = useRef(null);
 
     // Close menu when clicking outside
@@ -58,10 +60,16 @@ export default function UserProfileMenu() {
                     <div className={styles.divider}></div>
 
                     {/* Group 1: Lab Resources */}
-                    <Link href="/guide" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                    <button 
+                        className={styles.dropdownItem} 
+                        onClick={() => {
+                            setIsOpen(false);
+                            setIsGuideOpen(true);
+                        }}
+                    >
                         <span className={styles.menuIcon}>🔭</span>
                         Platform Guide
-                    </Link>
+                    </button>
                     <Link href="/starred" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>⭐</span>
                         Starred Experiments
@@ -123,6 +131,11 @@ export default function UserProfileMenu() {
                     )}
                 </div>
             )}
+
+            <PlatformGuideModal 
+                isOpen={isGuideOpen} 
+                onClose={() => setIsGuideOpen(false)} 
+            />
         </div>
     );
 }
