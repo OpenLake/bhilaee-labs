@@ -109,9 +109,10 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                 const element = document.querySelector(step.selector);
                 if (element) {
                     const rect = element.getBoundingClientRect();
+                    // Positioning relative to viewport because interactiveOverlay is fixed
                     setHighlightStyle({
-                        top: rect.top + window.scrollY - 10,
-                        left: rect.left + window.scrollX - 10,
+                        top: rect.top - 10,
+                        left: rect.left - 10,
                         width: rect.width + 20,
                         height: rect.height + 20,
                         borderRadius: '12px'
@@ -127,21 +128,14 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
     if (!isOpen && !isVisible) return null;
 
     const handleStartCategory = (cat) => {
-        // Map category IDs to actual interactive steps
         const interactiveSteps = {
             'getting-around': [
                 {
                     title: 'Master Lab Index',
                     selector: '.labs-grid',
-                    text: 'This is your central hub. All course labs are organized here, with your pinned labs appearing at the top for instant access.'
-                },
-                {
-                    title: 'Cross-lab search',
-                    selector: 'input[placeholder*="Search experiments"]',
-                    text: 'Need to find a specific experiment fast? This global search looks across all labs instantly.'
+                    text: 'This is the heart of Bhilai EE Labs. All course labs are organized here. Pro tip: Pinned labs always stay at the top for quick access!'
                 }
             ]
-            // More categories to be added...
         };
 
         const steps = interactiveSteps[cat.id] || [];
@@ -167,8 +161,10 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                 <div className={styles.interactiveOverlay} onClick={(e) => e.stopPropagation()}>
                     <div className={styles.highlight} style={highlightStyle}></div>
                     <div className={styles.instructionCard} style={{ 
-                        top: `calc(${highlightStyle.top}px + ${highlightStyle.height}px + 20px)`,
-                        left: `${highlightStyle.left}px`
+                        top: highlightStyle.top + highlightStyle.height + 20 > window.innerHeight - 200 
+                            ? highlightStyle.top - 180 
+                            : highlightStyle.top + highlightStyle.height + 20,
+                        left: Math.min(highlightStyle.left, window.innerWidth - 350)
                     }}>
                         <div className={styles.stepHeader}>
                             <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
@@ -176,9 +172,9 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         </div>
                         <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
                         <div className={styles.stepActions}>
-                            <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Skip Guide</button>
+                            <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
                             <button className={styles.nextBtn} onClick={handleNext}>
-                                {activeStep === activeCategory.steps.length - 1 ? 'Finish' : 'Next Step'}
+                                {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
                             </button>
                         </div>
                     </div>
