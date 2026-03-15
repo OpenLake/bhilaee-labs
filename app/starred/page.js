@@ -80,7 +80,7 @@ export default function StarredPage() {
                 <Link href="/">← Back to Home</Link>
                 <span> / Starred Experiments</span>
             </nav>
-            <header className={styles.header}>
+            <header className={styles.header} data-tour="starred-page">
                 <div className={styles.titleWrapper}>
                     <h1 className={styles.title}>Starred Experiments</h1>
                     <span className={styles.countBadge}>{starredItems.length}</span>

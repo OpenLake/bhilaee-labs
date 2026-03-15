@@ -62,7 +62,7 @@ export default function ObservationsPage() {
 
     if (!user) {
         return (
-            <div className={styles.container}>
+            <div className={styles.container} data-tour="observations-page">
                 <div className={styles.authPrompt}>
                     <h2>Please Log In</h2>
                     <p>Log in to view your saved laboratory observations and cloud-synced data.</p>
@@ -72,12 +72,12 @@ export default function ObservationsPage() {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-tour="observations-page">
             <nav className={styles.breadcrumb}>
                 <Link href="/">← Back to Home</Link>
                 <span> / Saved Observations</span>
             </nav>
-            <header className={styles.header}>
+            <header className={styles.header} data-tour="observations-page">
                 <h1 className={styles.title}>Saved Observations</h1>
                 <p className={styles.subtitle}>Experiments where you've recorded and saved data</p>
             </header>

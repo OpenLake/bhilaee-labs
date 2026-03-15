@@ -90,6 +90,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
     const [highlights, setHighlights] = useState([]); // Support multiple spotlights
     const [cardStyle, setCardStyle] = useState({ opacity: 0 });
     const [triggeredStep, setTriggeredStep] = useState(null); // Track one-time clicks
+    const [retryTick, setRetryTick] = useState(0); // For polling elements
 
     useEffect(() => {
         if (isOpen) {
@@ -114,9 +115,10 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             const selectors = step.selectors || (step.selector ? [step.selector] : []);
             
             if (selectors.length > 0) {
+                // Try to find elements. We re-run this entire effect on retryTick to poll.
                 const elements = selectors.map(s => document.querySelector(s)).filter(Boolean);
                 
-                  if (elements.length > 0) {
+                if (elements.length > 0) {
                     if (step.title.includes('Navigation')) {
                         window.scrollTo({ top: 400, behavior: 'smooth' });
                     } else {
@@ -146,7 +148,6 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                             };
                         }, { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity });
 
-                        // Correctly calculate transient dimensions for the composite area
                         compositeRect.width = compositeRect.right - compositeRect.left;
                         compositeRect.height = compositeRect.bottom - compositeRect.top;
 
@@ -154,25 +155,16 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         const cardWidth = 320;
                         const cardHeight = 220;
 
-                        // Detection: If highlighting a huge element (like the grid)
                         if (compositeRect.height > window.innerHeight * 0.6) {
-                            // Place at a fixed "safe" top center
                             cardTop = 40;
                             cardLeft = (window.innerWidth / 2) - (cardWidth / 2);
-                        }
-                        // Detection: If highlighting a sidebar (left-aligned)
-                        else if (compositeRect.left < 100 && compositeRect.width < 400) {
+                        } else if (compositeRect.left < 100 && compositeRect.width < 400) {
                             cardTop = Math.max(40, compositeRect.top + (compositeRect.height / 2) - (cardHeight / 2));
                             cardLeft = compositeRect.right + 40;
-                        } 
-                        // Detection: If highlighting navigation buttons (far apart)
-                        else if (elements.length > 1 && compositeRect.width > 500) {
-                            // Vertically and horizontally center in the gap, shifted up for taskbar clearance
+                        } else if (elements.length > 1 && compositeRect.width > 500) {
                             cardTop = Math.max(40, (compositeRect.top + (compositeRect.height / 2) - (cardHeight / 2)) - 100);
                             cardLeft = compositeRect.left + (compositeRect.width / 2) - (cardWidth / 2);
-                        }
-                        // Default: Above or below the highlight
-                        else {
+                        } else {
                             cardTop = compositeRect.top + compositeRect.height + 40 > window.innerHeight - cardHeight
                                 ? Math.max(40, compositeRect.top - cardHeight - 40)
                                 : compositeRect.top + compositeRect.height + 40;
@@ -200,19 +192,10 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         window.removeEventListener('resize', updateHighlight);
                     };
                 } else {
-                    // ACTION: If target is missing, try triggering it (auto-open menus/tabs)
-                    if (step.triggerSelector && triggeredStep !== `${activeCategory.id}-${activeStep}`) {
-                        const trigger = document.querySelector(step.triggerSelector);
-                        if (trigger) {
-                            setTriggeredStep(`${activeCategory.id}-${activeStep}`);
-                            trigger.click();
-                            // Short delay to let UI animations finish before next attempt
-                            let timer = setTimeout(() => setActiveStep(activeStep), 300);
-                            return () => clearTimeout(timer);
-                        }
-                    }
-
-                    // FALLBACK: If element is still missing, show card in center
+                    // TARGET MISSING: Start retry cycle
+                    const retryTimer = setTimeout(() => setRetryTick(prev => prev + 1), 800);
+                    
+                    // FALLBACK: Show card in center while waiting
                     setHighlights([]); 
                     setCardStyle({
                         position: 'fixed',
@@ -223,23 +206,26 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         width: 320
                     });
 
-                    // RETRY logic
-                    const retryTimer = setTimeout(() => setActiveStep(activeStep), 1000);
+                    // Trigger fallback action if available
+                    if (step.triggerSelector && triggeredStep !== `${activeCategory.id}-${activeStep}`) {
+                        const trigger = document.querySelector(step.triggerSelector);
+                        if (trigger) {
+                            setTriggeredStep(`${activeCategory.id}-${activeStep}`);
+                            trigger.click();
+                        }
+                    }
+
                     return () => clearTimeout(retryTimer);
                 }
             } else if (step.url && pathname !== step.url) {
                 setHighlights([]); 
                 router.push(step.url);
-            } else {
-                setHighlights([]); 
-                const retryTimer = setTimeout(() => setActiveStep(activeStep), 500);
-                return () => clearTimeout(retryTimer);
             }
         } else {
             setHighlights([]);
             setCardStyle({ opacity: 0 });
         }
-    }, [activeCategory, activeStep, pathname, router, triggeredStep]);
+    }, [activeCategory, activeStep, pathname, router, triggeredStep, retryTick]);
 
     if (!isOpen && !isVisible) return null;
 
@@ -340,6 +326,38 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     selector: '[class*="zoomable"]',
                     url: '/lab/basic-electrical-engineering/experiment/1',
                     text: 'Don\'t squint! Click any diagram to enlarge it. You can see high-resolution details of every connection and component.'
+                }
+            ],
+            'personal-workspace': [
+                {
+                    title: 'Star experiments',
+                    selector: '[data-tour="bookmark-btn"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Found a core experiment? Click the Star to bookmark it. It will be saved to your personal list for instant access later.'
+                },
+                {
+                    title: 'Recently viewed',
+                    selector: '[data-tour="history-page"]',
+                    url: '/history',
+                    text: 'Lost your way? Check your navigation history to see the last 10 experiments you visited, automatically synced to your account.'
+                },
+                {
+                    title: 'Saved observations',
+                    selector: '[data-tour="observations-page"]',
+                    url: '/observations',
+                    text: 'Access all your recorded data in one place. Every table you\'ve ever saved is organized and ready for your lab reports.'
+                },
+                {
+                    title: 'Pinned labs',
+                    selector: '[data-tour="labs-grid"]',
+                    url: '/',
+                    text: 'Keep your current semester labs at the top! You can pin frequently used course labs for a faster, personalized home grid.'
+                },
+                {
+                    title: 'Dashboard overview',
+                    selector: '[data-tour="profile-menu"]',
+                    url: '/',
+                    text: 'This is your central hub. The profile menu gives you quick access to your history, bookmarks, observations, and account settings.'
                 }
             ]
         };

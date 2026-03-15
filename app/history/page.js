@@ -54,7 +54,7 @@ export default function HistoryPage() {
 
     if (!user) {
         return (
-            <div className={styles.container}>
+            <div className={styles.container} data-tour="history-page">
                 <div className={styles.authPrompt}>
                     <h2>Please Log In</h2>
                     <p>Sign in to sync your laboratory navigation history across devices.</p>
@@ -64,12 +64,12 @@ export default function HistoryPage() {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-tour="history-page">
             <nav className={styles.breadcrumb}>
                 <Link href="/">← Back to Home</Link>
                 <span> / Recently Viewed</span>
             </nav>
-            <header className={styles.header}>
+            <header className={styles.header} data-tour="history-page">
                 <div className={styles.titleWrapper}>
                     <h1 className={styles.title}>Recently Viewed</h1>
                     <span className={styles.countBadge}>{historyItems.length}</span>

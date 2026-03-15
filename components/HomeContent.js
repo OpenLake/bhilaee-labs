@@ -110,7 +110,7 @@ export default function HomeContent({ labs, allExperiments }) {
                     </div>
                 ) : (
                     /* Normal labs grid (Sorted) */
-                    <div className="labs-grid">
+                    <div className="labs-grid" data-tour="labs-grid">
                         {sortedLabs.map((lab) => {
                             const isPinned = pinnedIds.includes(lab.id);
                             return (
