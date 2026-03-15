@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Gallery.module.css';
 import circuitRegistry from '@/data/experiments/circuit_registry.json';
