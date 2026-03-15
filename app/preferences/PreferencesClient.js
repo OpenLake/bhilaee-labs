@@ -274,7 +274,7 @@ export default function PreferencesClient() {
             </section>
 
             {/* Section C: Print Preferences */}
-            <section className={styles.sectionCard}>
+            <section className={styles.sectionCard} data-tour="print-prefs">
                 <div className={styles.sectionHeader}>
                     <h2>🖨️ Print Preferences (Paper Saver)</h2>
                     <p>Select which sections to include when exporting an experiment to PDF.</p>

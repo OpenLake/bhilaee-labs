@@ -75,7 +75,7 @@ export default function FeedbackSection({ experimentId }) {
     // removed if (!user) return null checking to allow guests to see the prompt
     
     return (
-        <section className={styles.feedbackSection}>
+        <section className={styles.feedbackSection} data-tour="feedback-section">
             <div className={styles.feedbackHeader}>
                 <h3 className={styles.feedbackTitle}>Was this experiment helpful?</h3>
                 <p className={styles.feedbackSubtitle}>Your feedback helps us improve</p>
@@ -83,7 +83,7 @@ export default function FeedbackSection({ experimentId }) {
             </div>
 
             <form onSubmit={handleSubmit} className={styles.feedbackForm}>
-                <div className={styles.emojiRow}>
+                <div className={styles.emojiRow} data-tour="feedback-emojis">
                     {REACTIONS.map((r) => (
                         <button
                             key={r.value}

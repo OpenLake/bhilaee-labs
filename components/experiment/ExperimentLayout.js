@@ -95,6 +95,7 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                             onClick={() => window.print()}
                             title="Print or Save as PDF"
                             aria-label="Download as PDF"
+                            data-tour="print-button"
                         >
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="6 9 6 2 18 2 18 9"></polyline>

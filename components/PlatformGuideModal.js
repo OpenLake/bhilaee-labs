@@ -66,18 +66,18 @@ const CATEGORIES = [
         purpose: 'Manage personal activity.'
     },
     {
-        id: 'export-utilities',
+        id: 'advanced-features',
         num: '5',
-        title: 'Export & Utilities',
-        description: 'Output your results and provide feedback to help us improve.',
-        icon: '📤',
+        title: 'Advanced Features',
+        description: 'Master the power-user tools for reporting and platform feedback.',
+        icon: '✨',
         steps: [
             'Print to PDF',
             'Print section selection',
             'Feedback system',
             'Emoji reactions'
         ],
-        purpose: 'Output and communication.'
+        purpose: 'Export reports and share your experience.'
     }
 ];
 
@@ -358,6 +358,32 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     selector: '[data-tour="profile-menu"]',
                     url: '/',
                     text: 'This is your central hub. The profile menu gives you quick access to your history, bookmarks, observations, and account settings.'
+                }
+            ],
+            'advanced-features': [
+                {
+                    title: 'Print to PDF',
+                    selector: '[data-tour="print-button"]',
+                    url: '/lab/digital-electronics/experiment/2',
+                    text: 'Need a physical copy? Use this button to instantly generate a professional PDF report of your experiment results.'
+                },
+                {
+                    title: 'Print section selection',
+                    selector: '[data-tour="print-prefs"]',
+                    url: '/preferences',
+                    text: 'Save paper! In your preferences, you can choose exactly which sections to include or hide when printing a report.'
+                },
+                {
+                    title: 'Feedback system',
+                    selector: '[data-tour="feedback-section"]',
+                    url: '/lab/digital-electronics/experiment/2',
+                    text: 'Help us improve! This section at the bottom of every experiment lets you share your thoughts with the developers.'
+                },
+                {
+                    title: 'Emoji reactions',
+                    selector: '[data-tour="feedback-emojis"]',
+                    url: '/lab/digital-electronics/experiment/2',
+                    text: 'Quick rating! Tap an emoji to instantly let us know if the experiment was helpful or needs improvement.'
                 }
             ]
         };
