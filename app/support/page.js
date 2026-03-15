@@ -67,7 +67,7 @@ export default function SupportPage() {
                         </div>
                     )}
 
-                    <form className={styles.premiumForm} onSubmit={handleSubmit}>
+                    <form className={styles.premiumForm} onSubmit={handleSubmit} data-tour="support-form">
                         
                         <div className={styles.formSectionBlock}>
                             <label className={styles.sectionLabel}>What kind of issue is this?</label>

@@ -74,10 +74,10 @@ const CATEGORIES = [
         steps: [
             'Print to PDF',
             'Print section selection',
-            'Feedback system',
-            'Emoji reactions'
+            'Support Hub',
+            'Experiment Feedback'
         ],
-        purpose: 'Export reports and share your experience.'
+        purpose: 'Contact support and share your experience.'
     }
 ];
 
@@ -374,16 +374,16 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     text: 'Save paper! In your preferences, you can choose exactly which sections to include or hide when printing a report.'
                 },
                 {
-                    title: 'Feedback system',
-                    selector: '[data-tour="feedback-section"]',
-                    url: '/lab/digital-electronics/experiment/2',
-                    text: 'Help us improve! This section at the bottom of every experiment lets you share your thoughts with the developers.'
+                    title: 'Support Hub',
+                    selector: '[data-tour="support-form"]',
+                    url: '/support',
+                    text: 'Having trouble or have a great idea? Use the Support Hub to send a ticket directly to our development team.'
                 },
                 {
-                    title: 'Emoji reactions',
-                    selector: '[data-tour="feedback-emojis"]',
+                    title: 'Experiment Feedback',
+                    selector: '[data-tour="feedback-section"]',
                     url: '/lab/digital-electronics/experiment/2',
-                    text: 'Quick rating! Tap an emoji to instantly let us know if the experiment was helpful or needs improvement.'
+                    text: 'We value your input! Rate the experiment with emojis and leave a quick comment to help us refine the content.'
                 }
             ]
         };
