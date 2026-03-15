@@ -108,18 +108,32 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             if (step.selector) {
                 const element = document.querySelector(step.selector);
                 if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Positioning relative to viewport because interactiveOverlay is fixed
-                    setHighlightStyle({
-                        top: rect.top - 10,
-                        left: rect.left - 10,
-                        width: rect.width + 20,
-                        height: rect.height + 20,
-                        borderRadius: '12px'
-                    });
-                    
-                    // Smooth scroll to element if needed
+                    // 1. Initial scroll to target
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    const updateHighlight = () => {
+                        const rect = element.getBoundingClientRect();
+                        setHighlightStyle({
+                            top: rect.top - 10,
+                            left: rect.left - 10,
+                            width: rect.width + 20,
+                            height: rect.height + 20,
+                            borderRadius: '12px'
+                        });
+                    };
+
+                    // Initial delay to wait for modal transition/scroll
+                    const timer = setTimeout(updateHighlight, 500);
+                    
+                    // Keep highlight in sync on scroll/resize
+                    window.addEventListener('scroll', updateHighlight, true);
+                    window.addEventListener('resize', updateHighlight);
+                    
+                    return () => {
+                        clearTimeout(timer);
+                        window.removeEventListener('scroll', updateHighlight, true);
+                        window.removeEventListener('resize', updateHighlight);
+                    };
                 }
             }
         }
@@ -155,29 +169,31 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
     };
 
     return (
-        <div className={`${styles.overlay} ${isOpen ? styles.active : ''}`} onClick={onClose}>
+        <div className={`${styles.overlay} ${isOpen ? styles.active : ''} ${activeCategory ? styles.interactiveMode : ''}`} onClick={onClose}>
             {activeCategory ? (
                 /* INTERACTIVE STEP OVERLAY */
                 <div className={styles.interactiveOverlay} onClick={(e) => e.stopPropagation()}>
-                    <div className={styles.highlight} style={highlightStyle}></div>
-                    <div className={styles.instructionCard} style={{ 
-                        top: highlightStyle.top + highlightStyle.height + 20 > window.innerHeight - 200 
-                            ? highlightStyle.top - 180 
-                            : highlightStyle.top + highlightStyle.height + 20,
-                        left: Math.min(highlightStyle.left, window.innerWidth - 350)
-                    }}>
-                        <div className={styles.stepHeader}>
-                            <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
-                            <span className={styles.stepProgress}>{activeStep + 1} / {activeCategory.steps.length}</span>
+                    {highlightStyle.width > 0 && <div className={styles.highlight} style={highlightStyle}></div>}
+                    {highlightStyle.width > 0 && highlightStyle.top !== undefined && (
+                        <div className={styles.instructionCard} style={{ 
+                            top: highlightStyle.top + highlightStyle.height + 20 > window.innerHeight - 250 
+                                ? highlightStyle.top - 200 
+                                : highlightStyle.top + highlightStyle.height + 20,
+                            left: Math.max(20, Math.min(highlightStyle.left, window.innerWidth - 350))
+                        }}>
+                            <div className={styles.stepHeader}>
+                                <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
+                                <span className={styles.stepProgress}>{activeStep + 1} / {activeCategory.steps.length}</span>
+                            </div>
+                            <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
+                            <div className={styles.stepActions}>
+                                <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
+                                <button className={styles.nextBtn} onClick={handleNext}>
+                                    {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
+                                </button>
+                            </div>
                         </div>
-                        <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
-                        <div className={styles.stepActions}>
-                            <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
-                            <button className={styles.nextBtn} onClick={handleNext}>
-                                {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
-                            </button>
-                        </div>
-                    </div>
+                    )}
                 </div>
             ) : (
                 /* CATEGORY SELECTION HUB */
