@@ -63,7 +63,8 @@ html {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
+  padding: 1.75rem 1.75rem 1.75rem;
+  /* Balanced 1.5rem spacing */
   background: var(--bg-color);
   display: flex;
   flex-direction: column;
@@ -80,7 +81,8 @@ html {
   border-radius: 2rem;
   font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  margin-bottom: 1rem;
+  /* Reduced from 1.5rem */
   border: 1px solid var(--border-color);
 }
 
@@ -89,7 +91,8 @@ html {
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem); /* Reduced max from 4rem to 3.5rem */
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  /* Reduced max from 4rem to 3.5rem */
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -140,6 +143,7 @@ html {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -147,9 +151,12 @@ html {
 }
 
 @keyframes bounceUpRight {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0);
   }
+
   50% {
     transform: translate(4px, -4px);
   }
@@ -157,7 +164,8 @@ html {
 
 /* Labs Grid */
 .labs-section {
-  padding: 2rem 1.5rem;
+  padding: 1rem 1.5rem 2.5rem;
+  /* Reduced top padding further to 1rem */
   max-width: var(--max-width);
   margin: 0 auto;
 }
@@ -256,7 +264,7 @@ html {
   a {
     text-decoration: none !important;
     color: #000000 !important;
-}
+  }
 
   /* Global utility to hide elements from print */
   .noPrint {
