@@ -7,16 +7,24 @@
 
 .galleryHeader {
     margin-bottom: 2rem;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .breadcrumb {
+    align-self: flex-start;
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
     color: var(--text-muted);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.galleryHeader h1,
+.galleryHeader p {
+    text-align: center;
 }
 
 .breadcrumb a {
