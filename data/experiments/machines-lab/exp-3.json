@@ -1,0 +1,322 @@
+{
+    "id": "exp-3",
+    "title": "Sumpner's (Back to Back) Test of Single-Phase Transformers",
+    "labId": "machines-lab",
+    "status": "Hardware Oriented",
+    "meta": {
+        "simulationId": "",
+        "simulationType": "",
+        "experimentType": "hardware",
+        "status": "hardware-oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "2.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform Sumpner's (Back to Back) test on two identical single-phase transformers and determine their efficiency."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To conduct the Sumpner's (back to back) test on two identical single-phase transformers.",
+                        "To determine the iron losses and copper losses of each transformer from the test.",
+                        "To calculate the efficiency of the transformer at full load and at various load factors."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Technical Specification",
+                        "Quantities"
+                    ],
+                    "rows": [
+                        ["1", "Single-Phase Transformer", "1kVA, 230V/115V, 50Hz (Identical)", "2"],
+                        ["2", "Autotransformer (Variac)", "1-Phase, 230V, 0-270V Output", "2"],
+                        ["3", "Wattmeter (UPF)", "5A/10A, 300V range", "1"],
+                        ["4", "Wattmeter (LPF)", "10A/20A, 75V range", "1"],
+                        ["5", "Digital Voltmeter", "0-300V/600V AC range", "2"],
+                        ["6", "Digital Ammeter", "0-10A AC range", "2"]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Sumpner's (Back to Back) Test:**"
+                },
+                {
+                    "type": "text",
+                    "content": "This test facilitates the simultaneous collection of data equivalent to both open-circuit and short-circuit tests through a single experimental setup. However, two identical transformers are required to perform this test."
+                },
+                {
+                    "type": "text",
+                    "content": "**Circuit Configuration:** The primary windings of both transformers are connected in parallel and supplied with rated voltage at rated frequency. The secondary windings of both transformers are connected in phase opposition (back to back), so the net voltage in the secondary loop is zero. On the secondary side, a low voltage — just sufficient to circulate full-load current — is injected using a separate variac."
+                },
+                {
+                    "type": "text",
+                    "content": "**Advantages of this test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Rated iron losses occur in the cores of both transformers (since rated voltage is applied to primaries).",
+                        "Full-load copper losses occur in both windings (since full-load current flows in the secondaries).",
+                        "Heat-run test can be performed without actually loading the transformers.",
+                        "Steady-state temperature rise of the transformer can be determined.",
+                        "Only the loss power needs to be drawn from the supply, making it highly energy efficient for testing."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Loss Measurement:** The current through the primary side is twice the no-load current of a single transformer. The wattmeter on the primary side reads the total iron losses of both transformers. Let this reading be W_O:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Iron losses of one transformer} = \\frac{1}{2} W_O"
+                },
+                {
+                    "type": "text",
+                    "content": "The wattmeter on the secondary side reads the total copper losses of both transformers. Let this reading be W_C:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Copper losses of one transformer} = \\frac{1}{2} W_C"
+                },
+                {
+                    "type": "text",
+                    "content": "**Total losses of one transformer:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Total losses} = \\frac{1}{2}W_O + \\frac{1}{2}W_C"
+                },
+                {
+                    "type": "text",
+                    "content": "**Efficiency Calculation:** Let the rated output in VA of one transformer be VI, and the load power factor be cos φ. The efficiency at full load is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta_{\\text{full load}} = \\frac{VI \\cos\\phi}{VI \\cos\\phi + \\frac{1}{2}W_O + \\frac{1}{2}W_C}"
+                },
+                {
+                    "type": "text",
+                    "content": "At any load x times the full load, the copper losses scale by x², while the iron losses remain constant. The efficiency at load factor x is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta_x = \\frac{x \\cdot VI \\cos\\phi}{x \\cdot VI \\cos\\phi + \\frac{1}{2}W_O + x^2 \\cdot \\frac{1}{2}W_C}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig4-sumpners-test",
+                    "caption": "Figure 4: Circuit Diagram for Sumpner's (Back to Back) Test on Two Identical Single-Phase Transformers"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Sumpner's (Back to Back) Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 4.",
+                        "Ensure that all three switches (primary side switch, secondary side switch, and the switch S2) are open.",
+                        "Connect a 600 V voltmeter on the secondary side to check the polarity of secondary connections.",
+                        "Close the switch on the primary side, thus energizing the primary windings with rated voltage.",
+                        "Observe the reading of the voltmeter on the secondary side. If it reads zero, the secondary windings are correctly connected in phase opposition. If it reads double the rated secondary voltage, the secondaries are in phase addition — switch off the primary supply, reverse the connections of the secondary winding of one transformer, and re-energize to verify a zero reading.",
+                        "Disconnect the primary supply. Replace the 600 V voltmeter on the secondary side with a 30 V range voltmeter.",
+                        "Switch on the supply to the primary side and adjust the variac to supply rated primary voltage.",
+                        "Ensure that the variac on the secondary side is at its zero position.",
+                        "Switch on the supply on the secondary side of the transformers.",
+                        "Slowly increase the variac on the secondary side until the current through the secondary windings reaches the full rated value.",
+                        "Note down the readings of all instruments connected (wattmeter on primary side W_O, wattmeter on secondary side W_C, ammeters, voltmeters).",
+                        "One set of readings is sufficient.",
+                        "Disconnect supplies from both the primary and secondary sides after recording the readings."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "All connections should be neat and tight.",
+                        "The meters used should be of proper range.",
+                        "Before switching on the supply, the zero settings of all meters should be checked.",
+                        "A 600 V voltmeter must be used initially on the secondary side to guard against the possibility of double-rated voltage appearing if connections are in phase addition.",
+                        "While performing the load test, an ammeter must be used in series with the wattmeter to ensure the current through the wattmeter does not exceed its rating.",
+                        "The secondary side variac must be set to zero before switching on the secondary supply."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table (a): Sumpner's (Back to Back) Test Readings**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Applied Voltage V1 (V)",
+                        "Primary Current I1 (A)",
+                        "Total Iron Loss WO (W)",
+                        "Secondary Voltage V2 (V)",
+                        "Secondary Current I2 (A)",
+                        "Total Copper Loss WC (W)"
+                    ],
+                    "rows": [
+                        ["1", "230", "0.45", "42", "15", "8.7", "86"]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** cos φ = 0.8 (Assumed load power factor)"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Losses per Transformer:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_{\\text{iron}} = \\frac{W_O}{2} = \\frac{42}{2} = 21 \\text{ W}"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_{\\text{copper}} = \\frac{W_C}{2} = \\frac{86}{2} = 43 \\text{ W}"
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Efficiency at Full Load (x = 1):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{VI \\cos\\phi}{VI \\cos\\phi + P_{\\text{iron}} + P_{\\text{copper}}} = \\frac{1000 \\times 0.8}{1000 \\times 0.8 + 21 + 43} = \\frac{800}{864} = 92.59\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Load Factor for Maximum Efficiency:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "x_m = \\sqrt{\\frac{P_{\\text{iron}}}{P_{\\text{copper}}}} = \\sqrt{\\frac{21}{43}} = 0.699"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Symbol",
+                        "Value"
+                    ],
+                    "rows": [
+                        ["Iron loss per transformer", "Pi", "21 W"],
+                        ["Copper loss per transformer (full load)", "Pc", "43 W"],
+                        ["Full-load efficiency (cos φ = 0.8)", "η", "92.59%"],
+                        ["Load factor for maximum efficiency", "xm", "0.699"]
+                    ]
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why are two identical transformers needed for Sumpner's test?\n\n**A:** For the net secondary voltage to be zero (phase opposition), both units must have identical voltage ratios. If not, circulating currents would flow even without the auxiliary supply, making it impossible to separate losses.",
+                        "**Q:** Why does the primary wattmeter read only iron losses?\n\n**A:** Because the secondary loop is closed but in phase opposition, the net EMF is zero, so no load current flows initially. The primary supply only provides the no-load (excitation) power, which equals the total iron losses of both transformers.",
+                        "**Q:** Why is Sumpner's test energy-efficient?\n\n**A:** The transformers are operated at full load internally, but the external supply only provides the power lost as heat (iron + copper losses), not the full rated kVA of the machines.",
+                        "**Q:** What is the significance of the 600V voltmeter?\n\n**A:** It is a safety measure to detect 'Phase Addition'. If incorrectly connected, the voltmeter reads double the secondary voltage (2x230V = 460V), which could damage a standard 300V meter.",
+                        "**Q:** How do you calculate maximum efficiency load factor?\n\n**A:** It occurs when constant (iron) losses equal variable (copper) losses: $x_m = \\sqrt{W_O / W_C}$."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Sumpner's (back to back) test was successfully conducted on two identical 1kVA transformers. The iron losses (21W/unit) and copper losses (43W/unit) were determined concurrently. The transformer achieved a peak efficiency of 92.59% at full load (0.8 PF), with maximum efficiency projected at approximately 70% load. This test proved to be an efficient method for determining efficiency without requiring an actual high-power load bank."
+                }
+            ]
+        }
+    }
+}
