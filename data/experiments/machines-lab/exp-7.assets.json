@@ -1,0 +1,12 @@
+{
+    "fig2-nl-equivalent-circuit": {
+        "type": "image",
+        "path": "/assets/labs/basic-electrical-engineering/exp-9/fig2-nl-equivalent-circuit.png",
+        "description": "Figure 2: Equivalent circuit models at No Load"
+    },
+    "fig3-br-equivalent-circuit": {
+        "type": "image",
+        "path": "/assets/labs/basic-electrical-engineering/exp-9/fig3-br-equivalent-circuit.png",
+        "description": "Figure 3: Equivalent circuit model for Blocked Rotor Test"
+    }
+}
