@@ -5,9 +5,10 @@ import styles from './ExperimentCard.module.css';
 
 function getStatusClass(status) {
     if (!status) return '';
-    if (status === 'Simulation Available') return styles.statusSimulation;
-    if (status === 'Hardware-Oriented') return styles.statusHardware;
-    if (status === 'Software-Oriented') return styles.statusSoftware;
+    const s = status.replace(/[-\s]/g, '').toLowerCase();
+    if (s === 'simulationavailable') return styles.statusSimulation;
+    if (s === 'hardwareoriented') return styles.statusHardware;
+    if (s === 'softwareoriented') return styles.statusSoftware;
     return '';
 }
 

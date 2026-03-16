@@ -7,7 +7,7 @@ import registry from './experiments/registry.json';
 export const EXPERIMENT_STATUS = {
   SIMULATION: "Simulation Available",
   GUIDE: "Guide Only",
-  HARDWARE: "Hardware-Oriented"
+  HARDWARE: "Hardware Oriented"
 };
 
 /**
