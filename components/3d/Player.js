@@ -27,8 +27,13 @@ export default function Player() {
             .applyQuaternion(camera.quaternion);
 
         // Movement on XZ plane only
-        camera.position.x += direction.x * delta;
-        camera.position.z += direction.z * delta;
+        const newX = camera.position.x + direction.x * delta;
+        const newZ = camera.position.z + direction.z * delta;
+
+        // Clamp within room (approx 15x15 room)
+        const BOUNDARY = 6.8;
+        if (Math.abs(newX) < BOUNDARY) camera.position.x = newX;
+        if (Math.abs(newZ) < BOUNDARY) camera.position.z = newZ;
         
         // Keep user grounded
         camera.position.y = 1.7; // Human height approx

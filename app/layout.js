@@ -19,11 +19,11 @@ export default function RootLayout({ children }) {
                 <AuthProvider>
                     <ThemeHandler />
                     <div className="app-wrapper">
-                        {!isHomePage && <Header />}
+                        <Header />
                         <main className="main-content">
                             {children}
                         </main>
-                        {!isHomePage && <Footer />}
+                        <Footer />
                     </div>
                 </AuthProvider>
                 <Analytics />
