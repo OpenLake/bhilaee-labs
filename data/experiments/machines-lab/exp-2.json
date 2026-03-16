@@ -143,11 +143,6 @@
                 {
                     "type": "equation",
                     "value": "\\%\\text{Regulation (Step-Down Transformer)} = \\frac{E - V}{E} \\times 100\\%"
-                },
-                {
-                    "type": "image",
-                    "assetId": "fig3-voltage-regulation-test",
-                    "caption": "Figure 3: Voltage Regulation Test Circuit Diagram"
                 }
             ]
         },
