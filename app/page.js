@@ -1,7 +1,7 @@
 import { labs, getAllExperiments } from '@/data/labs';
-import HomeContent from '@/components/HomeContent';
+import ThreeDHome from '@/components/ThreeDHome';
 
 export default function Home() {
     const allExperiments = getAllExperiments();
-    return <HomeContent labs={labs} allExperiments={allExperiments} />;
+    return <ThreeDHome labs={labs} allExperiments={allExperiments} />;
 }
