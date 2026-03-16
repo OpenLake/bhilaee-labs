@@ -1,0 +1,445 @@
+{
+    "id": "exp-2",
+    "title": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
+    "labId": "machines-lab",
+    "status": "Simulation Available",
+    "meta": {
+        "simulationId": "basic-ee-exp-2a",
+        "simulationType": "AC Analysis",
+        "experimentType": "hardware",
+        "status": "simulation-available",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "2.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform Polarity, Voltage Ratio, and Voltage Regulation tests on a single-phase transformer."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To determine the polarity of the primary and secondary windings of a single-phase transformer.",
+                        "To determine the voltage ratio (transformation ratio) of the transformer.",
+                        "To measure the voltage regulation of the transformer under load conditions."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Technical Specification",
+                        "Quantities"
+                    ],
+                    "rows": [
+                        ["1", "", "", ""],
+                        ["2", "", "", ""],
+                        ["3", "", "", ""],
+                        ["4", "", "", ""],
+                        ["5", "", "", ""],
+                        ["6", "", "", ""]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** The apparatus table is to be filled as per the laboratory setup. Typical equipment includes a single-phase transformer, auto-transformer (variac), digital ammeters, digital voltmeters (0–300 V range), lamp load, and connecting wires."
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**I. Polarity Test:**"
+                },
+                {
+                    "type": "text",
+                    "content": "In AC circuits, polarity has a definite meaning for transformers, particularly in the following situations: (1) when two single-phase transformers are connected in parallel to share the total load on a system, and (2) for connecting three single-phase transformers to form a single three-phase transformer."
+                },
+                {
+                    "type": "text",
+                    "content": "Each terminal of the primary (as well as secondary) winding is alternately positive and negative with respect to the other. It is important to know the relative polarities of the primary and secondary terminals at any instant of time for making correct connections."
+                },
+                {
+                    "type": "text",
+                    "content": "For determining polarities, terminal P1 of the primary winding is marked as positive (indicated by a dot). Since P2 and S2 are connected together (at the same potential at all instants), there are two possibilities:"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**P1 and S1 are of similar polarity:** For a transformer with a 2:1 ratio, with 240 V applied to primary, voltmeter V1 reads 240 V, V2 reads 120 V. Since P2 and S2 are short-circuited and S1 is assumed to be of the same polarity as P1, voltmeter V3 reads 120 V (240 − 120 = 120 V).",
+                        "**P1 and S1 are of opposite polarity:** Under the same conditions, V3 reads 360 V (240 + 120 = 360 V)."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Conclusion:** If V3 < V1 (applied voltage), terminal S1 is marked positive. If V3 > V1, terminal S1 is marked negative."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-polarity-test",
+                    "caption": "Figure 1: Polarity Test Circuit Diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "**II. Voltage Ratio Test:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Let N1 = Number of turns in primary winding, N2 = Number of turns in secondary winding, E1 = RMS value of primary induced EMF, E2 = RMS value of secondary induced EMF. The primary and secondary induced EMFs are given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E_1 = 4.44 f N_1 \\phi_m"
+                },
+                {
+                    "type": "equation",
+                    "value": "E_2 = 4.44 f N_2 \\phi_m"
+                },
+                {
+                    "type": "text",
+                    "content": "Thus the ratio of primary voltage to secondary voltage equals the ratio of primary to secondary winding turns. The ratio N2/N1 is the transformation ratio or voltage ratio, denoted by K. There are two cases:"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "If N2 < N1, then E2 < E1; the device is a step-down transformer (K < 1).",
+                        "If N2 > N1, then E2 > E1; the device is a step-up transformer (K > 1)."
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-ratio-test",
+                    "caption": "Figure 2: Voltage Ratio Test Circuit Diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "**III. Voltage Regulation of Transformer:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Voltage regulation is the measure of how well a power transformer can maintain constant secondary voltage given a constant primary voltage and wide variance in load current. The lower the percentage (closer to zero), the more stable the secondary voltage and the better the regulation."
+                },
+                {
+                    "type": "text",
+                    "content": "Due to the resistances and inductances within the transformer, there is a definite voltage drop. The secondary terminal voltage changes with load: it falls with increasing load at lagging power factor, and rises with increasing load at leading power factor."
+                },
+                {
+                    "type": "text",
+                    "content": "The change in secondary terminal voltage from full-load to no-load, expressed as a percentage of full-load voltage, is called the percentage voltage regulation. If E is the no-load terminal voltage and V is the full-load terminal voltage:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\text{Regulation (Step-Up Transformer)} = \\frac{E - V}{V} \\times 100\\%"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\text{Regulation (Step-Down Transformer)} = \\frac{E - V}{E} \\times 100\\%"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-voltage-regulation-test",
+                    "caption": "Figure 3: Voltage Regulation Test Circuit Diagram"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-polarity-test",
+                    "caption": "Figure 1: Circuit Diagram for Polarity Test"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-ratio-test",
+                    "caption": "Figure 2: Circuit Diagram for Voltage Ratio Test"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-voltage-regulation-test",
+                    "caption": "Figure 3: Circuit Diagram for Voltage Regulation Test"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1) Polarity Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 1.",
+                        "Switch on single-phase AC supply.",
+                        "Adjust the variac so that voltmeter V1 reads 240 V.",
+                        "Record the reading of voltmeter V3.",
+                        "If V3 < V1, then mark S1 as positive.",
+                        "If V3 > V1, then mark S1 as negative."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2) Voltage Ratio Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 2.",
+                        "Switch on the supply.",
+                        "For various values of the input voltage V1, note down the output voltage V2.",
+                        "For each reading taken, calculate V2/V1. This is the value of the voltage ratio."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3) Voltage Regulation Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 3 but without any bulb load.",
+                        "Connect the voltmeter at the secondary side and note down the no-load voltage E.",
+                        "Connect a load with rated secondary current (full load) and note down the full-load secondary voltage V.",
+                        "Calculate voltage regulation using the appropriate formula."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "All connections should be neat and tight.",
+                        "The meters used should be of proper range.",
+                        "Before switching on the supply, the zero settings of all meters should be checked.",
+                        "While performing the polarity test, full rated voltage should not be applied. Only less than half the rated voltage should be applied.",
+                        "While performing the load test, an ammeter must be used in series with the wattmeter to ensure the current through the wattmeter does not exceed its rating."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table (a): Observations of Polarity Test**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "V1 (V)",
+                        "V2 (V)",
+                        "V3 (V)",
+                        "Result (S1 Polarity)"
+                    ],
+                    "rows": [
+                        ["", "", "", ""]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Table (b): Observations of Voltage Ratio Test**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Tapping",
+                        "V1 (V)",
+                        "V2 (V)",
+                        "Voltage Ratio = V2/V1"
+                    ],
+                    "rows": [
+                        ["1", "", "", "", ""],
+                        ["2", "", "", "", ""],
+                        ["3", "", "", "", ""]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Table (c): Observations of Voltage Regulation Test**"
+                },
+                {
+                    "type": "text",
+                    "content": "At No-Load Condition (IS = 0):"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Primary Voltage VP (V)",
+                        "Primary Current IP (A)",
+                        "Secondary Voltage VS (V)"
+                    ],
+                    "rows": [
+                        ["", "", ""]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "At Load Condition:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Primary Voltage VP (V)",
+                        "Secondary Voltage VS (V)",
+                        "Secondary Current IS (A)"
+                    ],
+                    "rows": [
+                        ["", "", ""]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Voltage Ratio Calculation:**"
+                },
+                {
+                    "type": "text",
+                    "content": "For each set of readings from the Voltage Ratio Test, the voltage ratio K is calculated as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "K = \\frac{V_2}{V_1} = \\frac{N_2}{N_1}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation Calculation:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Using the no-load voltage E and full-load voltage V recorded from the Voltage Regulation Test:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\text{Regulation (Step-Up)} = \\frac{E - V}{V} \\times 100\\%"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\text{Regulation (Step-Down)} = \\frac{E - V}{E} \\times 100\\%"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Polarity Test Result:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Based on the comparison of V3 with V1: if V3 < V1, terminal S1 is marked positive (subtractive polarity); if V3 > V1, terminal S1 is marked negative (additive polarity)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Ratio Result:**"
+                },
+                {
+                    "type": "text",
+                    "content": "The measured voltage ratio V2/V1 should remain approximately constant across different tapping values, confirming the transformation ratio K of the transformer."
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation Result:**"
+                },
+                {
+                    "type": "text",
+                    "content": "The percentage voltage regulation is calculated using the no-load and full-load secondary terminal voltages. A lower percentage indicates better voltage regulation of the transformer."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why is polarity important for transformers operating in parallel?\n\n**A:** When two transformers are connected in parallel, their secondary terminals must have the same polarity (same instantaneous voltage direction) at each connection point. If polarities are reversed, the two secondary EMFs will be in phase opposition, creating a short-circuit loop with a net voltage equal to the sum of both secondary voltages, causing dangerously large circulating currents that can damage the windings.",
+                        "**Q:** What happens if the voltmeter V3 reads a value greater than V1 during the polarity test?\n\n**A:** If V3 > V1, it indicates that P1 and S1 are of opposite polarities (additive polarity). The voltage V3 equals the sum of the primary and secondary voltages. In this case, terminal S1 is marked negative. The connections must be noted before using the transformer in parallel operation.",
+                        "**Q:** What is the transformation ratio K, and how does it determine whether a transformer is step-up or step-down?\n\n**A:** The transformation ratio K = N2/N1 = E2/E1 = V2/V1. If K < 1 (N2 < N1), the secondary voltage is lower than the primary voltage and the transformer is a step-down type. If K > 1 (N2 > N1), the secondary voltage is higher and it is a step-up transformer. K also determines the current transformation: secondary current is 1/K times the primary current.",
+                        "**Q:** Why does secondary voltage fall with increasing load at lagging power factor but rise at leading power factor?\n\n**A:** At lagging power factor, the load current lags the terminal voltage. The inductive voltage drop within the transformer (I × X_eq) is in a direction that subtracts from the no-load EMF, causing the secondary terminal voltage to decrease as load increases. At leading power factor, the capacitive effect causes the voltage drop to partially add to the EMF, resulting in a rise in secondary terminal voltage with load. This is why voltage regulation can be negative for leading power factor loads.",
+                        "**Q:** Why should less than half the rated voltage be applied during the polarity test?\n\n**A:** During the polarity test, P2 and S2 are connected together, and voltmeter V3 measures the difference or sum of primary and secondary voltages. In the additive polarity case, V3 = V1 + V2. If full rated voltage were applied, V3 could be as high as V1 + V2 = 240 + 120 = 360 V for a 2:1 transformer, which may exceed the rating of the voltmeter and risk damaging the instrument. Applying less than half rated voltage keeps V3 within safe measurement limits."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The polarity, voltage ratio, and voltage regulation tests were performed on the single-phase transformer. The polarity test determined the relative polarities of the primary and secondary terminals (subtractive or additive), which is essential for safe parallel operation. The voltage ratio test confirmed that the ratio V2/V1 remains constant across different supply voltages, consistent with the turns ratio N2/N1. The voltage regulation test quantified the change in secondary terminal voltage from no-load to full-load, expressed as a percentage, indicating the transformer's ability to maintain a stable output voltage under varying load conditions."
+                }
+            ]
+        }
+    }
+}
