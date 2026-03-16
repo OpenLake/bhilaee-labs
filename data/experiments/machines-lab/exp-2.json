@@ -49,12 +49,12 @@
                         "Quantities"
                     ],
                     "rows": [
-                        ["1", "", "", ""],
-                        ["2", "", "", ""],
-                        ["3", "", "", ""],
-                        ["4", "", "", ""],
-                        ["5", "", "", ""],
-                        ["6", "", "", ""]
+                        ["1", "Single-Phase Transformer", "1kVA, 230V/115V, 50Hz", "1"],
+                        ["2", "Autotransformer (Variac)", "1-Phase, 230V Input, 0-270V Output", "1"],
+                        ["3", "Digital Voltmeter", "0-300V AC, Digital", "2"],
+                        ["4", "Digital Voltmeter", "0-600V AC, Digital", "1"],
+                        ["5", "Digital Ammeter", "0-10A AC, Digital", "1"],
+                        ["6", "Lamp Load / Rheostat", "5kW, 230V, Variable", "1"]
                     ]
                 },
                 {
@@ -278,7 +278,7 @@
                         "Result (S1 Polarity)"
                     ],
                     "rows": [
-                        ["", "", "", ""]
+                        ["115", "57.5", "57.5", "Subtractive (S1 is Positive)"]
                     ]
                 },
                 {
@@ -295,9 +295,9 @@
                         "Voltage Ratio = V2/V1"
                     ],
                     "rows": [
-                        ["1", "", "", "", ""],
-                        ["2", "", "", "", ""],
-                        ["3", "", "", "", ""]
+                        ["1", "Step-Down (Normal)", "50", "25", "0.50"],
+                        ["2", "Step-Down (Normal)", "100", "50", "0.50"],
+                        ["3", "Step-Down (Normal)", "230", "115", "0.50"]
                     ]
                 },
                 {
@@ -316,7 +316,7 @@
                         "Secondary Voltage VS (V)"
                     ],
                     "rows": [
-                        ["", "", ""]
+                        ["230", "0.22", "115"]
                     ]
                 },
                 {
@@ -331,7 +331,7 @@
                         "Secondary Current IS (A)"
                     ],
                     "rows": [
-                        ["", "", ""]
+                        ["230", "110.2", "8.0"]
                     ]
                 }
             ]
