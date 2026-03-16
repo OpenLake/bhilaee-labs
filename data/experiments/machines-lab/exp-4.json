@@ -1,0 +1,432 @@
+{
+    "id": "exp-4",
+    "title": "Open Circuit and Short Circuit Tests of Synchronous Generator",
+    "labId": "machines-lab",
+    "status": "Hardware Oriented",
+    "meta": {
+        "simulationId": "",
+        "simulationType": "",
+        "experimentType": "hardware",
+        "status": "hardware-oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "2.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform open circuit and short circuit tests on a synchronous generator and determine its equivalent circuit parameters."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To study and plot the open circuit characteristic (OCC) of a synchronous generator — open circuit phase voltage versus field current.",
+                        "To study and plot the short circuit characteristic (SCC) of a synchronous generator — short circuit armature current versus field current.",
+                        "To measure the effective armature resistance (RA) using the DC test (ammeter-voltmeter method).",
+                        "To calculate the synchronous impedance (Zs) and synchronous reactance (Xs) from the OCC and SCC."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Technical Specification",
+                        "Quantities"
+                    ],
+                    "rows": [
+                        ["1", "Variable DC Power Supply", "0-220V, 2A (Field Excitation)", "1"],
+                        ["2", "Variable DC Power Supply", "0-220V, 20A (Prime Mover)", "1"],
+                        ["3", "DC Ammeter", "0-2A (Field Current Measurement)", "1"],
+                        ["4", "AC Voltmeter", "0-300V/600V (Armature Voltage)", "1"],
+                        ["5", "AC Ammeter", "0-10A (Short Circuit Current)", "1"],
+                        ["6", "Digital Tachometer", "Non-contact type, 0-10000 RPM", "1"]
+                    ]
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Machine",
+                        "Technical Specification",
+                        "Quantities"
+                    ],
+                    "rows": [
+                        ["1", "Synchronous Generator (3-Phase)", "3kVA, 415V, 1500 RPM, Salient Pole", "1"],
+                        ["2", "Prime Mover (DC Shunt Motor)", "3.7kW (5HP), 220V, 1500 RPM", "1"]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment involves determination of the following characteristics and parameters of a synchronous generator: (1) Open Circuit Characteristic (OCC), (2) Short Circuit Characteristic (SCC), and (3) Effective resistance of the armature winding (RA)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Equivalent Circuit of a Synchronous Generator:**"
+                },
+                {
+                    "type": "text",
+                    "content": "The per-phase equivalent circuit of a synchronous generator consists of the internal generated voltage EA in series with the armature resistance RA and the synchronous reactance Xs. The armature reactance XA and the armature reaction reactance XAR are combined into the synchronous reactance:"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_S = X_A + X_{AR}"
+                },
+                {
+                    "type": "text",
+                    "content": "The per-phase terminal voltage is therefore:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = E_A - jX_S I_A - R_A I_A"
+                },
+                {
+                    "type": "text",
+                    "content": "**I. Open Circuit Characteristic (OCC):**"
+                },
+                {
+                    "type": "text",
+                    "content": "The generator is rotated at rated speed with all armature terminals disconnected from any load. The field current is initially set to zero and then increased in small steps. Since the armature current is zero, the terminal phase voltage equals the internal generated voltage EA. A graph is plotted between the open circuit phase voltage (Voc) and the field current (If). The resulting curve is the OCC and takes the shape of a normal magnetization curve. The extension of the linear portion of the OCC is called the air-gap line."
+                },
+                {
+                    "type": "text",
+                    "content": "**II. Short Circuit Characteristic (SCC):**"
+                },
+                {
+                    "type": "text",
+                    "content": "The armature terminals are short-circuited through an ammeter. The field current is set to zero before starting. The generator is run at rated speed and the field current is increased in small steps; the armature current is measured at each step. The field current may be increased to obtain armature current up to 125% of rated value. A graph of armature current (IA) versus field current (If) is plotted — this is the SCC. Because the machine is operating in the linear (unsaturated) region under short circuit conditions, the SCC is a straight line through the origin."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-occ-scc-synchronous-generator",
+                    "caption": "Figure 2: OCC and SCC plotted on the same graph, showing Air-Gap Line and Synchronous Impedance (Xs)"
+                },
+                {
+                    "type": "text",
+                    "content": "**III. Effective Resistance of the Armature Winding (RA):**"
+                },
+                {
+                    "type": "text",
+                    "content": "The alternator is assumed star-connected with the DC field winding open. DC resistance is measured between each pair of terminals using the ammeter-voltmeter method. The value of RDC is divided by 2 to obtain the DC resistance per phase. Since the effective AC resistance is larger than the DC resistance (due to the skin effect), the effective AC resistance per phase is obtained by multiplying the DC resistance per phase by a factor between 1.1 and 1.3 depending on machine size. A typical factor of 1.2 is used:"
+                },
+                {
+                    "type": "equation",
+                    "value": "2R_{ADC} = \\frac{V_{DC}}{2 I_{DC}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_A = 1.2 \\times R_{ADC}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Synchronous Impedance and Reactance:**"
+                },
+                {
+                    "type": "text",
+                    "content": "By reading the open circuit voltage (Voc) and short circuit current (Isc) corresponding to the same field current from the OCC and SCC respectively, the synchronous impedance per phase is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_s = \\frac{\\text{Open circuit voltage per phase}}{\\text{Short circuit armature current}} = \\frac{V_{oc}}{I_{sc}}"
+                },
+                {
+                    "type": "text",
+                    "content": "At higher field currents, magnetic saturation causes the synchronous impedance to decrease. The value of Zs calculated in the unsaturated (linear) region of the OCC is called the unsaturated synchronous impedance. The synchronous reactance is then:"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_s = \\sqrt{Z_s^2 - R_A^2}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig3-open-circuit-test-circuit",
+                    "caption": "Figure 3: Circuit Diagram for Open Circuit Test — DC Motor driving Synchronous Generator with open armature terminals"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-short-circuit-test-circuit",
+                    "caption": "Figure 4: Circuit Diagram for Short Circuit Test — DC Motor driving Synchronous Generator with short-circuited armature terminals"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig5-armature-resistance-test-circuit",
+                    "caption": "Figure 5: Circuit Diagram for Armature Resistance Measurement — DC supply applied between two armature terminals (field winding open)"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Open Circuit Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the alternator as shown in Fig. 3.",
+                        "The prime mover in this experiment is a DC motor coupled with the alternator. Adjust the speed of the alternator to rated speed by varying the armature resistance of the DC shunt motor.",
+                        "With no-load connected, adjust the speed to rated speed for each setting of the field current of the alternator and record the alternator terminal voltage.",
+                        "Record readings of field current (If) versus open circuit terminal voltage (Voc) of the alternator until the open circuit voltage reaches 120% of the rated voltage of the machine."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Short Circuit Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit diagram as shown in Fig. 4.",
+                        "Ensure the current range of the ammeter is appropriate (approximately 25–50% of rated current range).",
+                        "Set the field current to zero before starting. Starting with zero field current, gradually and cautiously increase the field current until rated armature current flows. Note down the readings (If versus Isc) in the observation table at each step.",
+                        "Maintain the speed of the set at the rated speed of the alternator throughout this test."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Armature Resistance Measurement:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 5 (DC supply connected between two armature terminals; field winding open).",
+                        "Switch ON the power supply.",
+                        "Note down the ammeter (IDC) and voltmeter (VDC) readings correctly for different supply voltages.",
+                        "Switch OFF the power supply after recording all readings.",
+                        "Calculate RADC = VDC / (2 × IDC) for each reading and determine the mean RADC. Then calculate RA = 1.2 × RADC."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "All connections should be tight and clean.",
+                        "Special care should be taken while selecting the ranges of meters for the short circuit test and open circuit test.",
+                        "During the short circuit test, the voltage applied should initially be set to zero and then increased slowly.",
+                        "During the short circuit test, the field current should be set to zero before the machine is started."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table (a): Armature Resistance Measurement**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "VDC (V)",
+                        "IDC (A)",
+                        "RADC = VDC / 2IDC (Ω)",
+                        "Mean RADC (Ω)",
+                        "RA = 1.2 × RADC (Ω)"
+                    ],
+                    "rows": [
+                        ["8", "2.0", "2.0", "2.0", "2.4"],
+                        ["12", "3.0", "2.0", "2.0", "2.4"],
+                        ["16", "4.0", "2.0", "2.0", "2.4"],
+                        ["20", "5.0", "2.0", "2.0", "2.4"]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Table (b): Open Circuit Test, Short Circuit Test, and Derived Parameters**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "OC Test — If (A)",
+                        "OC Test — Voc (Phase) (V)",
+                        "SC Test — If (A)",
+                        "SC Test — Isc (A)",
+                        "Zs = Voc / Isc (Ω)",
+                        "Xs = √(Zs² − RA²) (Ω)"
+                    ],
+                    "rows": [
+                        ["1", "0.00", "12", "0.00", "0.0", "-", "-"],
+                        ["2", "0.10", "65", "0.10", "1.1", "59.1", "59.0"],
+                        ["3", "0.20", "125", "0.20", "2.1", "59.5", "59.45"],
+                        ["4", "0.30", "185", "0.30", "3.1", "59.67", "59.62"],
+                        ["5", "0.40", "230", "0.40", "4.1", "56.1", "56.05"],
+                        ["6", "0.50", "255", "0.50", "5.1", "50.0", "49.94"],
+                        ["7", "0.60", "275", "0.60", "6.1", "45.08", "45.0"],
+                        ["8", "0.70", "290", "0.70", "7.1", "40.85", "40.78"],
+                        ["9", "0.80", "300", "0.80", "8.1", "37.04", "36.96"]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Step 1 — Armature Resistance per phase:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{ADC} = \\frac{V_{DC}}{2 I_{DC}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_A = 1.2 \\times R_{ADC}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Step 2 — Synchronous Impedance (from OCC and SCC at the same field current):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_s = \\frac{V_{oc}}{I_{sc}}"
+                },
+                {
+                    "type": "text",
+                    "content": "For the unsaturated synchronous impedance, use the Voc and Isc values corresponding to a field current in the linear region of the OCC (along the air-gap line)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Step 3 — Synchronous Reactance:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_s = \\sqrt{Z_s^2 - R_A^2}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Reports to be submitted:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Plot on the same graph sheet: the OCC (open circuit terminal voltage per phase versus field current) and the SCC (short circuit armature current versus field current).",
+                        "Measure and report the armature resistance per phase (RA).",
+                        "Calculate the unsaturated value of synchronous impedance (Zs) corresponding to rated armature short-circuit current, and the corresponding synchronous reactance (Xs)."
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The equivalent circuit parameters of the synchronous generator are determined as follows:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Symbol",
+                        "Value"
+                    ],
+                    "rows": [
+                        ["DC Resistance per phase", "RADC", "2.0 Ω"],
+                        ["Effective AC Armature Resistance per phase", "RA = 1.2 × RADC", "2.4 Ω"],
+                        ["Unsaturated Synchronous Impedance", "Zs", "59.67 Ω"],
+                        ["Synchronous Reactance", "Xs = √(Zs² − RA²)", "59.62 Ω"]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "The OCC follows the magnetization curve shape — linear (air-gap line) at low field currents and saturating at higher values. The SCC is linear throughout. The synchronous impedance Zs decreases at higher field currents due to core saturation; the value obtained in the unsaturated (linear) region of the OCC is taken as the unsaturated synchronous impedance."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why is the OCC of a synchronous generator similar in shape to the magnetization (B-H) curve of the core material?\n\n**A:** The internal generated voltage EA is proportional to the air-gap flux φ (EA = Kφω, where ω is constant at rated speed). The air-gap flux φ, in turn, depends on the total MMF produced by the field current If through the magnetic circuit of the machine. Since the relationship between flux and MMF follows the B-H characteristic of the iron core — linear at low values and saturating at high values — the OCC (EA vs If) takes the same shape. The linear extension of the OCC is the air-gap line, corresponding to the hypothetical case of infinite iron permeability (all reluctance in the air gap only).",
+                        "**Q:** Why is the SCC of a synchronous generator a straight line, even though the OCC is nonlinear?\n\n**A:** Under short circuit conditions, the armature terminals are shorted, so the terminal voltage V = 0. The internal generated voltage EA drives armature current Isc through the synchronous impedance Zs. However, under short circuit the machine operates deep in the unsaturated (linear) region of the magnetic circuit because the armature reaction MMF (which is demagnetizing under lagging/short-circuit conditions) effectively reduces the net air-gap flux, keeping the machine in the linear region regardless of the field current. Since Zs is essentially constant in the linear region, the short-circuit current Isc is directly proportional to the field current If, giving a linear SCC.",
+                        "**Q:** Why is the effective AC armature resistance taken as 1.2 times the measured DC resistance?\n\n**A:** When AC flows through a conductor, the skin effect causes the current to concentrate near the surface rather than being uniformly distributed across the cross-section. This effectively reduces the usable cross-sectional area of the conductor, increasing its resistance compared to the DC case. The skin effect is more pronounced at higher frequencies and for larger conductors. For synchronous machine armature windings, the ratio of effective AC resistance to DC resistance is typically between 1.1 and 1.3 depending on the machine size and conductor geometry. A factor of 1.2 is a commonly used practical compromise that accounts for the skin effect without requiring detailed frequency-dependent measurements.",
+                        "**Q:** Why does the synchronous impedance Zs decrease at higher values of field current (saturation region), and which value is used for circuit calculations?\n\n**A:** At higher field currents, the magnetic core saturates. In the saturated region, a given increase in field current produces a smaller increase in flux (and hence a smaller increase in EA), so the OCC flattens. However, the SCC remains linear (as explained above), meaning Isc continues to increase proportionally with If. Therefore, the ratio Zs = Voc/Isc (at the same If) decreases as we move into the saturated region, since Voc grows more slowly than Isc. For circuit calculations such as finding terminal voltage under load, the saturated value of Zs (at rated voltage on the OCC) gives more accurate results for machine performance near rated conditions. The unsaturated Zs, obtained from the air-gap line, gives the worst-case (most pessimistic) synchronous impedance.",
+                        "**Q:** What is the physical meaning of the synchronous reactance Xs, and what two components does it represent?\n\n**A:** The synchronous reactance Xs = XA + XAR is the total per-phase reactance seen by the armature current in the equivalent circuit. It has two physical components: XA is the leakage reactance of the armature winding, associated with the flux that links only the armature winding and does not cross the air gap (leakage flux in the slots, end windings, etc.); XAR is the armature reaction reactance, which represents the effect of the armature MMF on the air-gap flux — specifically, the component of flux change produced by the armature current that is in quadrature with the field flux. In the synchronous machine model these are lumped into a single Xs to simplify analysis, since both are proportional to armature current and appear as inductive voltage drops in series with the generated voltage EA."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The open circuit and short circuit tests were successfully conducted on the three-phase synchronous generator. The OCC plotted at rated speed confirmed the magnetization curve shape with a distinct air-gap line in the unsaturated region and saturation at higher field currents. The SCC was linear throughout, as expected from operation in the unsaturated magnetic region under short-circuit conditions. The armature resistance per phase (RA) was measured using the DC ammeter-voltmeter method and corrected for skin effect using a factor of 1.2. From the OCC and SCC, the synchronous impedance per phase (Zs) was calculated at the same field current, and the synchronous reactance (Xs) was derived. These parameters constitute the complete per-phase equivalent circuit of the synchronous generator."
+                }
+            ]
+        }
+    }
+}

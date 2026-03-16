@@ -585,10 +585,10 @@
         },
         {
           "id": "4",
-          "title": "Experiment 4",
+          "title": "Open Circuit and Short Circuit Tests of Synchronous Generator",
           "fileName": "exp-4.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "5",
@@ -599,10 +599,10 @@
         },
         {
           "id": "6",
-          "title": "Experiment 6",
+          "title": "OCC and External Characteristics of DC Shunt Generator",
           "fileName": "exp-6.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "7",

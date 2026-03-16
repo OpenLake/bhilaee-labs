@@ -1,0 +1,296 @@
+{
+    "id": "exp-6",
+    "title": "OCC and External Characteristics of DC Shunt Generator",
+    "labId": "machines-lab",
+    "status": "Hardware Oriented",
+    "meta": {
+        "simulationId": "basic-ee-exp-6",
+        "simulationType": "DC Analysis",
+        "experimentType": "hardware",
+        "status": "simulation-available",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "2.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the open circuit characteristics (OCC) and external characteristics of a self-excited DC shunt generator."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To plot the open circuit characteristics (magnetization curve) of a self-excited DC shunt generator — terminal voltage versus field current at no load.",
+                        "To plot the external characteristics of the shunt generator — terminal voltage versus load current under loaded conditions."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Specification",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        ["1", "3 Phase VFD AC Power Supply", "Input 415V, Output 0-415V, 10A", "1"],
+                        ["2", "DC Ammeter", "0-15A (Load Current)", "1"],
+                        ["3", "DC Ammeter", "0-2A (Field Current)", "1"],
+                        ["4", "DC Voltmeter", "0-300V (Terminal Voltage)", "1"],
+                        ["5", "Digital Tachometer", "0-10,000 RPM", "1"],
+                        ["6", "DC Shunt Generator coupled with 3-Ph Induction Motor", "2.2kW, 220V, 1500 RPM", "1"]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Self-Excited DC Generator:**"
+                },
+                {
+                    "type": "text",
+                    "content": "In a self-excited DC shunt generator, the field winding is connected directly across the armature terminals. Hence, the terminal voltage is also the field voltage, and the armature current is the sum of load current and field current."
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Build-Up Process:** When the rotor is rotated, the residual flux in the field winding induces a small EMF (Er) in the armature winding. Since the field winding is connected across the armature, this induced EMF drives a small current through the field winding. If the field MMF due to this current aids the residual flux, the total airgap flux increases, which further increases the induced EMF and in turn the field current. This is a cumulative, self-reinforcing process. The no-load terminal voltage builds up to the point where the field resistance line intersects the magnetization curve — this intersection is the operating point. A decrease in field resistance causes the generator to build up faster and to a higher voltage."
+                },
+                {
+                    "type": "text",
+                    "content": "**Failure to Build Up:** If the field winding is connected such that the flux produced by the field current opposes the residual flux, the generator fails to build up. This can be corrected by either reversing the direction of rotation or by interchanging the field winding connections across the armature."
+                },
+                {
+                    "type": "text",
+                    "content": "**Governing Equations (Steady State):** The equivalent circuit under steady state is governed by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_a = I_L + I_f"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_a = I_f (R_f + R_{ext}) = I_L R_L = E - I_a R_a"
+                },
+                {
+                    "type": "text",
+                    "content": "Under no-load condition, the armature current equals the field current (a small fraction of load current), so the terminal voltage is nearly equal to the induced EMF — the IaRa drop is very small."
+                },
+                {
+                    "type": "text",
+                    "content": "**Causes of Terminal Voltage Drop Under Load:** As load current increases, the terminal voltage decreases due to three reasons:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "IaRa drop — increased armature resistance drop with increasing armature current.",
+                        "Demagnetization effect of armature reaction — the armature MMF distorts and weakens the main field flux.",
+                        "Decrease in field current due to reduction in terminal voltage — unlike a separately excited generator where field current is held constant, in a self-excited generator the field current falls as the terminal voltage falls, further reducing the induced EMF."
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-occ-dc-shunt-generator",
+                    "caption": "Figure 1: Open Circuit Characteristics of Self-Excited DC Shunt Generator (Terminal Voltage vs Field Current)"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-equivalent-circuit-dc-shunt-generator",
+                    "caption": "Figure 2: Equivalent Circuit of DC Shunt Generator"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-external-characteristics-shunt-generator",
+                    "caption": "Figure 3: External Characteristics of Shunt Generator (Terminal Voltage vs Load Current)"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig4-experiment-connection-diagram",
+                    "caption": "Figure 4: Experiment Connection Diagram — 3 Phase Slip Ring Induction Motor coupled with Self-Excited DC Shunt Generator"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit diagram as shown in Fig. 4. Connect the field winding across the armature (self-excited configuration) instead of connecting it to a separate supply.",
+                        "Slowly increase the input to the prime mover. The speed of the set will increase. Observe the voltmeter connected across the terminals of the DC generator. Above a certain speed, the voltmeter reading starts increasing. If this does not happen, reduce the prime mover input and switch off the supply, interchange the field terminals of the generator, and repeat the same procedure. By controlling the input to the prime mover, adjust the speed to the rated speed of the machine.",
+                        "Set the variable resistance to its maximum value, then decrease it in small steps. For each step, note down the open circuit terminal voltage (Va) and the field current (If) of the generator.",
+                        "Close the main switch S. Load the generator in steps by switching ON the lamps. For each step, adjust the prime mover input so that the speed remains constant at rated speed. Note down the load voltage (Va), load current (IL), and field current (If) of the generator. Repeat this procedure until the load current equals the rated current of the generator.",
+                        "After completing the load test, switch off all the lamps, open the main switch S, reduce the prime mover input, and switch off the AC supply to the controller."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Combined Observation Table (Open Circuit Test and Load Test):**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "OC Test — If (A)",
+                        "OC Test — Va (V)",
+                        "Load Test — If (A)",
+                        "Load Test — Va (V)",
+                        "Load Test — IL (A)"
+                    ],
+                    "rows": [
+                        ["1", "0.00", "12", "1.05", "230", "0.0"],
+                        ["2", "0.20", "105", "1.02", "224", "2.1"],
+                        ["3", "0.40", "180", "1.00", "218", "4.0"],
+                        ["4", "0.60", "215", "0.96", "212", "6.1"],
+                        ["5", "0.80", "232", "0.93", "204", "8.1"],
+                        ["6", "1.00", "238", "0.89", "195", "10.0"],
+                        ["7", "1.20", "242", "-", "-", "-"],
+                        ["8", "1.40", "245", "-", "-", "-"],
+                        ["9", "1.60", "247", "-", "-", "-"]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Armature Current Calculation (for each load step):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_a = I_L + I_f"
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation Calculation:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Using the no-load terminal voltage (Vnl) and full-load terminal voltage (Vfl) from the observations:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\text{Voltage Regulation} = \\frac{V_{nl} - V_{fl}}{V_{fl}} \\times 100\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Graphs to be plotted:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Open circuit terminal voltage (Va) versus field current (If) — this gives the OCC (magnetization curve).",
+                        "Loaded terminal voltage (Va) versus load current (IL) — this gives the external characteristics of the shunt generator."
+                    ]
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Open Circuit Characteristics (OCC):** The plot of terminal voltage versus field current at no load follows the shape of a normal magnetization curve. At low field currents the curve is nearly linear (unsaturated region); as the field current increases, the core begins to saturate and the curve flattens. The no-load voltage at rated field current is read from this curve."
+                },
+                {
+                    "type": "text",
+                    "content": "**External Characteristics:** The plot of terminal voltage versus load current shows a drooping characteristic. The terminal voltage decreases progressively as load current increases, due to the combined effects of IaRa drop, armature reaction demagnetization, and the reduction in field current caused by the falling terminal voltage. The rated load operating point is identified on this curve."
+                },
+                {
+                    "type": "text",
+                    "content": "**Voltage Regulation:** The percentage voltage regulation calculated from the no-load and full-load terminal voltages quantifies the voltage-holding ability of the shunt generator. A higher value indicates poorer regulation."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is residual flux, and why is it essential for voltage build-up in a self-excited DC shunt generator?\n\n**A:** Residual flux is the small amount of magnetic flux that remains in the field core even when no field current is flowing, as a result of previous magnetization. It is essential for self-excitation because it provides the initial EMF (Er) when the rotor starts spinning. This small EMF drives a tiny current through the field winding; if this current reinforces the residual flux, the flux increases, inducing a higher EMF, which again increases the field current — a cumulative process that builds up the terminal voltage to its steady-state value. Without residual flux, there is no initial EMF and the generator cannot self-excite.",
+                        "**Q:** What are the three causes of terminal voltage drop in a self-excited shunt generator under increasing load, and how does each contribute?\n\n**A:** The three causes are: (1) IaRa drop — as load increases, armature current increases and the voltage drop across the armature resistance (Ia × Ra) increases, directly reducing the terminal voltage; (2) Armature reaction demagnetization — the armature current creates an MMF that distorts and weakens the main field flux, reducing the induced EMF; (3) Reduction in field current — since the field winding is connected directly across the terminals, a fall in terminal voltage reduces the field current, which further reduces the flux and the induced EMF. This third effect is unique to self-excited generators and makes their voltage regulation worse than that of separately excited generators.",
+                        "**Q:** What is the critical field resistance, and what happens when the field resistance exceeds this value?\n\n**A:** The critical field resistance is the maximum value of total field circuit resistance at which the generator can just build up its voltage at a given speed. Graphically, it is the slope of the tangent drawn from the origin to the linear (unsaturated) portion of the OCC. If the actual field resistance exceeds the critical value, the field resistance line is steeper than the tangent to the OCC and intersects the magnetization curve only near the origin (at residual voltage). In this condition the generator fails to build up and the terminal voltage remains near zero. To restore build-up, the field resistance must be reduced below the critical value.",
+                        "**Q:** Why does the OCC of a DC generator take the shape of a magnetization (B-H) curve, and what is the significance of the air-gap line?\n\n**A:** The OCC plots induced EMF versus field current at constant speed (E = Kφω, so E ∝ φ). Since the flux φ depends on the field current If through the magnetic circuit of the machine, the OCC has the same shape as the B-H (flux vs. MMF) curve of the core material — linear in the unsaturated region and flattening as the core saturates. The air-gap line is the extension of the initial linear portion of the OCC and represents the relationship that would exist if the iron had infinite permeability (i.e., all the MMF dropped across the air gap only). It serves as a reference: the vertical distance between the OCC and the air-gap line at any field current indicates the MMF consumed by the iron core due to saturation.",
+                        "**Q:** How does the speed of the prime mover affect the OCC of a DC shunt generator?\n\n**A:** Since the induced EMF is E = Kφω, for a given field current (fixed flux), the induced EMF is directly proportional to the rotor speed ω. If the speed increases, the entire OCC shifts upward — the same field current produces a higher induced EMF. If the speed decreases, the OCC shifts downward. This means that the no-load terminal voltage at any given field current depends on the operating speed. In the experiment, it is therefore essential to maintain a constant rated speed during all OCC measurements; otherwise the characteristic obtained will not be reproducible or comparable to rated-condition specifications."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The open circuit characteristics (OCC) and external characteristics of the self-excited DC shunt generator were successfully studied. The OCC plotted at rated speed confirmed the magnetization curve shape — linear in the unsaturated region and saturating at higher field currents. The external characteristics plot showed a drooping terminal voltage with increasing load current, attributable to IaRa drop, armature reaction demagnetization, and the inherent reduction in field current as the terminal voltage falls in a self-excited machine. The experiment demonstrated the voltage build-up mechanism through residual flux and verified the steady-state governing equations of the shunt generator."
+                }
+            ]
+        }
+    }
+}
