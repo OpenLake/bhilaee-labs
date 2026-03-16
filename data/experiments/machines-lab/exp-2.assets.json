@@ -1,17 +1,17 @@
 {
     "fig1-polarity-test": {
         "type": "image",
-        "path": "/assets/placeholders/circuit-diagram.png",
+        "path": "/assets/experiments/machines-lab/exp-2/fig1-polarity-test.png",
         "description": "Figure 1: Polarity Test Circuit Diagram"
     },
     "fig2-ratio-test": {
         "type": "image",
-        "path": "/assets/placeholders/circuit-diagram.png",
+        "path": "/assets/experiments/machines-lab/exp-2/fig2-ratio-test.png",
         "description": "Figure 2: Voltage Ratio Test Circuit Diagram"
     },
     "fig3-voltage-regulation-test": {
         "type": "image",
-        "path": "/assets/placeholders/circuit-diagram.png",
+        "path": "/assets/experiments/machines-lab/exp-2/fig3-voltage-regulation-test.png",
         "description": "Figure 3: Voltage Regulation Test Circuit Diagram"
     }
 }

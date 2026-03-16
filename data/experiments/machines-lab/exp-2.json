@@ -2,12 +2,12 @@
     "id": "exp-2",
     "title": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
     "labId": "machines-lab",
-    "status": "Simulation Available",
+    "status": "Hardware Oriented",
     "meta": {
-        "simulationId": "basic-ee-exp-2a",
-        "simulationType": "AC Analysis",
+        "simulationId": "",
+        "simulationType": "",
         "experimentType": "hardware",
-        "status": "simulation-available",
+        "status": "hardware-oriented",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "2.0",
@@ -56,10 +56,6 @@
                         ["5", "Digital Ammeter", "0-10A AC, Digital", "1"],
                         ["6", "Lamp Load / Rheostat", "5kW, 230V, Variable", "1"]
                     ]
-                },
-                {
-                    "type": "text",
-                    "content": "**Note:** The apparatus table is to be filled as per the laboratory setup. Typical equipment includes a single-phase transformer, auto-transformer (variac), digital ammeters, digital voltmeters (0–300 V range), lamp load, and connecting wires."
                 }
             ]
         },
@@ -97,11 +93,6 @@
                     "content": "**Conclusion:** If V3 < V1 (applied voltage), terminal S1 is marked positive. If V3 > V1, terminal S1 is marked negative."
                 },
                 {
-                    "type": "image",
-                    "assetId": "fig1-polarity-test",
-                    "caption": "Figure 1: Polarity Test Circuit Diagram"
-                },
-                {
                     "type": "text",
                     "content": "**II. Voltage Ratio Test:**"
                 },
@@ -128,11 +119,6 @@
                         "If N2 < N1, then E2 < E1; the device is a step-down transformer (K < 1).",
                         "If N2 > N1, then E2 > E1; the device is a step-up transformer (K > 1)."
                     ]
-                },
-                {
-                    "type": "image",
-                    "assetId": "fig2-ratio-test",
-                    "caption": "Figure 2: Voltage Ratio Test Circuit Diagram"
                 },
                 {
                     "type": "text",
@@ -257,7 +243,6 @@
             "id": "simulation",
             "title": "Simulation / Execution",
             "isApplicable": false,
-            "route": "default",
             "content": []
         },
         "observation": {

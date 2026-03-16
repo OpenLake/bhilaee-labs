@@ -573,7 +573,7 @@
           "id": "2",
           "title": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
           "fileName": "exp-2.json",
-          "status": "Simulation Available",
+          "status": "Hardware Oriented",
           "completeness": 1
         },
         {
