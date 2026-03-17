@@ -35,7 +35,7 @@ function WayfindingKiosk({ position }) {
                 <boxGeometry args={[0.6, 0.1, 0.6]} />
                 <meshStandardMaterial color="#1a1b20" metalness={0.8} />
             </mesh>
-            
+
             {/* Pedestal Column */}
             <mesh position={[0, 0.6, 0]}>
                 <boxGeometry args={[0.15, 1.2, 0.15]} />
@@ -48,13 +48,13 @@ function WayfindingKiosk({ position }) {
                     <boxGeometry args={[0.8, 0.6, 0.1]} />
                     <meshStandardMaterial color="#1c1d22" metalness={0.9} />
                 </mesh>
-                
+
                 {/* Glowing Screen */}
                 <mesh position={[0, 0, 0.101]}>
                     <planeGeometry args={[0.7, 0.5]} />
                     <meshBasicMaterial color="#001a1f" />
                 </mesh>
-                
+
                 {/* Bezel */}
                 <mesh position={[0, 0, 0.11]}>
                     <boxGeometry args={[0.72, 0.52, 0.01]} />
@@ -66,7 +66,7 @@ function WayfindingKiosk({ position }) {
                     <Text fontSize={0.045} fontWeight="bold" color="#fff" position={[0, 0.18, 0]} anchorX="center" letterSpacing={0.1}>
                         BHILAEE WAYFINDING
                     </Text>
-                    
+
                     {/* Divider */}
                     <mesh position={[0, 0.1, 0]}>
                         <planeGeometry args={[0.6, 0.005]} />
@@ -80,7 +80,7 @@ function WayfindingKiosk({ position }) {
                         <Text fontSize={0.032} color="#00ffff" position={[0, -0.06, 0]} anchorX="left" letterSpacing={0.05}>
                             ▶ 3RD YR : RIGHT & STRAIGHT
                         </Text>
-                        
+
                         {/* Status Divider */}
                         <mesh position={[0.28, -0.12, 0]}>
                             <planeGeometry args={[0.55, 0.002]} />
@@ -143,7 +143,7 @@ function WallWithHoles({ position, rotation, labs, wallIndex }) {
                 <boxGeometry args={[15, 5, 0.1]} />
                 <meshStandardMaterial color="#0b0b0e" roughness={0.8} />
             </mesh>
-            
+
             {/* Recessed Frame Trim (Top) */}
             <mesh position={[0, 4.95, 0.2]}>
                 <boxGeometry args={[15, 0.1, 0.2]} />
@@ -151,10 +151,10 @@ function WallWithHoles({ position, rotation, labs, wallIndex }) {
             </mesh>
 
             {labs.map((lab, i) => (
-                <Sector7DoorSystem 
-                    key={lab.id} 
-                    lab={lab} 
-                    position={[(i - 1) * 4.2, 0, 0]} 
+                <Sector7DoorSystem
+                    key={lab.id}
+                    lab={lab}
+                    position={[(i - 1) * 4.2, 0, 0]}
                     statusText={wallIndex === 0 ? "LAB ACCESS" : wallIndex === 1 ? "AUTHORIZED" : "RESTRICTED"}
                 />
             ))}
@@ -174,7 +174,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
         const worldPos = new THREE.Vector3();
         groupRef.current.getWorldPosition(worldPos);
         const distance = worldPos.distanceTo(camera.position);
-        const near = distance < 4.5;
+        const near = distance < 4.3; // Very subtle reduction for intentional feel
         if (near !== isNear) setIsNear(near);
 
         // Heavy Swing (pivot left)
@@ -198,7 +198,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
                     <planeGeometry args={[2.2, 3.6]} />
                     <meshStandardMaterial color="#050507" />
                 </mesh>
-                
+
                 {/* Frame Surround */}
                 <mesh receiveShadow>
                     <boxGeometry args={[2.4, 3.8, 0.2]} />
@@ -281,9 +281,9 @@ function Sector7DoorSystem({ lab, position, statusText }) {
                     {/* Door Slab (Disable receiveShadow to prevent stippling) */}
                     <mesh castShadow>
                         <boxGeometry args={[2.3, 3.6, 0.1]} />
-                        <meshPhysicalMaterial 
-                            color="#1b1d22" 
-                            metalness={0.85} 
+                        <meshPhysicalMaterial
+                            color="#1b1d22"
+                            metalness={0.85}
                             roughness={0.2}
                         />
                     </mesh>
@@ -295,7 +295,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
                             <meshBasicMaterial color="#000" />
                         </mesh>
                     ))}
-                    
+
                     {/* Vertical Centre Seam */}
                     <mesh position={[0, 0, 0.052]}>
                         <boxGeometry args={[0.01, 3.6, 0.02]} />
@@ -354,10 +354,60 @@ function Sector7DoorSystem({ lab, position, statusText }) {
 }
 
 function ExitWall({ position, onExit }) {
+    const archiveLab = { id: 'archive', code: 'ARC-01', name: 'User Records' };
+
     return (
         <group position={position} rotation={[0, Math.PI, 0]}>
+            {/* BHILAEE Main Concrete Wall */}
             <mesh receiveShadow position={[0, 2.5, 0.1]}><boxGeometry args={[15, 5, 0.1]} /><meshStandardMaterial color="#0a0a0d" /></mesh>
+
+            {/* Exit Portal (Center) */}
             <ExitDoorSystem position={[0, 0, 0]} onExit={onExit} />
+
+            {/* Reception Desk - Swapped to the Right Side (local 2.2) */}
+            <group position={[5.75, 0, 0.12]}>
+                <ReceptionDesk />
+            </group>
+
+            {/* Archive Wing - Stays on the Left Side (local -4.5) */}
+            <group position={[-4.5, 0, 0]}>
+                <Sector7DoorSystem
+                    lab={archiveLab}
+                    position={[0, 0, 0]}
+                    statusText="USER ARCHIVE"
+                />
+            </group>
+        </group>
+    );
+}
+
+function ReceptionDesk() {
+    // THE ULTIMATE VISIBILITY TEST - SOLID VOLUMETRIC CURVE
+    // A thick neon "C" block that is impossible to miss.
+    const R = 2.0; // Outer Radius
+    const T = 0.4; // Solid thickness
+    const H = 1.4; // Height
+
+    const solidShape = useMemo(() => {
+        const shape = new THREE.Shape();
+        // Anchored to wall at Mesh Y=0. 
+        // We want to sweep into the room (Mesh Y goes negative -> Group Z goes positive).
+        shape.moveTo(0, 0);
+        // Sweep counter-clockwise from 0 to -PI/2 around center (-R, 0)
+        // This lands at Mesh (-R, -R) which is Group (-R, R).
+        shape.absarc(-R, 0, R, 0, Math.PI * 1.5, false);
+        shape.lineTo(-R + T, 0);
+        shape.closePath();
+        return shape;
+    }, [R, T]);
+
+    return (
+        <group>
+            {/* Massive solid volumetric glowing neon curve */}
+            <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <extrudeGeometry args={[solidShape, { depth: H, bevelEnabled: false }]} />
+                <meshBasicMaterial color="#00ffff" />
+            </mesh>
         </group>
     );
 }
@@ -386,7 +436,7 @@ function ExitDoorSystem({ position, onExit }) {
         <group ref={groupRef} position={position}>
             {/* Standardized Exit Frame */}
             <mesh position={[0, 1.8, 0.1]} receiveShadow><boxGeometry args={[2.4, 3.8, 0.2]} /><meshStandardMaterial color="#050507" /></mesh>
-            
+
             <group position={[0, 3.9, 0.22]}>
                 <mesh><boxGeometry args={[2.4, 0.35, 0.05]} /><meshStandardMaterial color="#1a0000" /></mesh>
                 <Text fontSize={0.12} letterSpacing={0.2}>
