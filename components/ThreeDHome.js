@@ -82,14 +82,14 @@ export default function ThreeDHome({ labs, allExperiments }) {
                         }}
                     >
                         <Suspense fallback={<Html center><div style={{ color: 'white', background: 'rgba(0,0,0,0.8)', padding: '20px', borderRadius: '10px' }}>INITIALIZING LABS...</div></Html>}>
-                            <Environment preset="city" />
-                            <ambientLight intensity={1.8} />
+                            <Environment preset="night" />
+                            <ambientLight intensity={0.5} />
                             
-                            {/* MULTI-POINT ARCHITECTURAL LIGHTING (One for each wall) */}
-                            <pointLight position={[0, 4, -4]} intensity={250} distance={25} castShadow shadow-bias={-0.0001} />
-                            <pointLight position={[0, 4, 4]} intensity={200} distance={25} castShadow shadow-bias={-0.0001} />
-                            <pointLight position={[-4, 4, 0]} intensity={200} distance={25} castShadow shadow-bias={-0.0001} />
-                            <pointLight position={[4, 4, 0]} intensity={200} distance={25} castShadow shadow-bias={-0.0001} />
+                            {/* SECTOR 7 ARCHITECTURAL LIGHTING (High resolution for clean surfaces) */}
+                            <pointLight position={[0, 4, -4]} intensity={200} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
+                            <pointLight position={[0, 4, 4]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
+                            <pointLight position={[-4, 4, 0]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
+                            <pointLight position={[4, 4, 0]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
                             
                             <Player />
                             
