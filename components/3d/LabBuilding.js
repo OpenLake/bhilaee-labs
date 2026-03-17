@@ -386,18 +386,33 @@ function ReceptionDesk() {
     // A thick neon "C" block that is impossible to miss.
     const R = 2.0; // Outer Radius
     const T = 0.4; // Solid thickness
-    const H = 1.4; // Height
+    const H = 1.2; // Height
+
+    const EXT = 2.3 // length of the tail
 
     const solidShape = useMemo(() => {
         const shape = new THREE.Shape();
-        // Anchored to wall at Mesh Y=0. 
-        // We want to sweep into the room (Mesh Y goes negative -> Group Z goes positive).
+
+        // Start
         shape.moveTo(0, 0);
-        // Sweep counter-clockwise from 0 to -PI/2 around center (-R, 0)
-        // This lands at Mesh (-R, -R) which is Group (-R, R).
+
+        // OUTER ARC (270°)
         shape.absarc(-R, 0, R, 0, Math.PI * 1.5, false);
-        shape.lineTo(-R + T, 0);
+
+        // OUTER TANGENT EXTENSION (this is the "J" tail)
+        shape.lineTo(-R + EXT, -R);
+
+        // Go inward (thickness)
+        shape.lineTo(-R + EXT, -R + T);
+
+        // INNER TANGENT BACK
+        shape.lineTo(-R + T, -R + T);
+
+        // INNER ARC (reverse)
+        shape.absarc(-R, 0, R - T, Math.PI * 1.5, 0, true);
+
         shape.closePath();
+
         return shape;
     }, [R, T]);
 
@@ -406,7 +421,7 @@ function ReceptionDesk() {
             {/* Massive solid volumetric glowing neon curve */}
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                 <extrudeGeometry args={[solidShape, { depth: H, bevelEnabled: false }]} />
-                <meshBasicMaterial color="#00ffff" />
+                <meshStandardMaterial color="#2a3036" metalness={0.4} roughness={0.7} />
             </mesh>
         </group>
     );
