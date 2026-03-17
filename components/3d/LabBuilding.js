@@ -423,6 +423,46 @@ function ReceptionDesk() {
                 <extrudeGeometry args={[solidShape, { depth: H, bevelEnabled: false }]} />
                 <meshStandardMaterial color="#2a3036" metalness={0.4} roughness={0.7} />
             </mesh>
+
+            {/* RECEPTION ACCESSORIES - Sitting flush on surface, shifted back towards wall (Z=1.8) */}
+            <group position={[-0.8, H, 1.8]}>
+                {/* 1. Admin PC Monitor */}
+                <group position={[0.4, 0.25, 0]} rotation={[0, -Math.PI / 6, 0]}>
+                    {/* Monitor Base */}
+                    <mesh position={[0, -0.2, 0]}><boxGeometry args={[0.2, 0.02, 0.15]} /><meshStandardMaterial color="#111" /></mesh>
+                    <mesh position={[0, -0.1, 0]}><boxGeometry args={[0.04, 0.2, 0.04]} /><meshStandardMaterial color="#111" /></mesh>
+                    {/* Screen */}
+                    <mesh rotation={[-0.1, 0, 0]}>
+                        <boxGeometry args={[0.6, 0.35, 0.03]} />
+                        <meshStandardMaterial color="#050505" />
+                    </mesh>
+                    <mesh position={[0, 0, 0.016]} rotation={[-0.1, 0, 0]}>
+                        <planeGeometry args={[0.56, 0.31]} />
+                        <meshBasicMaterial color="#00ffff" toneMapped={false} />
+                    </mesh>
+                </group>
+
+                {/* 2. Notepad with Papers - Shifted slightly back towards wall */}
+                <group position={[-0.2, 0.01, 0.0]} rotation={[0, 0.1, 0]}>
+                    <mesh><boxGeometry args={[0.25, 0.02, 0.3]} /><meshStandardMaterial color="#d4a017" roughness={0.8} /></mesh>
+                    <mesh position={[0, 0.015, 0]}><boxGeometry args={[0.22, 0.01, 0.26]} /><meshStandardMaterial color="#ffffff" roughness={1} /></mesh>
+                </group>
+
+                {/* 3. Pen Holder */}
+                <group position={[0.1, 0.01, -0.1]}>
+                    <mesh position={[0, 0.08, 0]}>
+                        <cylinderGeometry args={[0.04, 0.04, 0.16, 16, 1, true]} />
+                        <meshStandardMaterial color="#111" side={THREE.DoubleSide} />
+                    </mesh>
+                    <mesh position={[0, 0.005, 0]}><cylinderGeometry args={[0.04, 0.04, 0.01, 16]} /><meshStandardMaterial color="#111" /></mesh>
+                    {/* Two Pens */}
+                    <mesh position={[0.01, 0.15, 0]} rotation={[0.2, 0, 0.1]}><cylinderGeometry args={[0.005, 0.005, 0.18]} /><meshStandardMaterial color="#007bff" /></mesh>
+                    <mesh position={[-0.01, 0.15, 0.01]} rotation={[-0.1, 0, -0.15]}><cylinderGeometry args={[0.005, 0.005, 0.18]} /><meshStandardMaterial color="#333" /></mesh>
+                </group>
+
+                {/* Subtle Task Lighting */}
+                <pointLight position={[0.3, 0.6, 0.2]} intensity={0.8} color="#00ffff" distance={2} />
+            </group>
         </group>
     );
 }
