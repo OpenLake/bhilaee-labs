@@ -5,7 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { Text, MeshReflectorMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-export default function LabBuilding({ labs, onExit }) {
+export default function LabBuilding({ labs, onExit, onEnter }) {
     const leftWallLabs = labs.slice(0, 3);
     const frontWallLabs = labs.slice(3, 6);
     const rightWallLabs = labs.slice(6, 9);
@@ -16,10 +16,10 @@ export default function LabBuilding({ labs, onExit }) {
             <RoomEnvironment />
 
             {/* 2. THE 4 WALLS WITH BHILAEE ARCHITECTURE */}
-            <WallWithHoles position={[-7.5, 0, 0]} rotation={[0, Math.PI / 2, 0]} labs={leftWallLabs} wallIndex={0} />
-            <WallWithHoles position={[0, 0, -7.5]} rotation={[0, 0, 0]} labs={frontWallLabs} wallIndex={1} />
-            <WallWithHoles position={[7.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]} labs={rightWallLabs} wallIndex={2} />
-            <ExitWall position={[0, 0, 7.5]} onExit={onExit} />
+            <WallWithHoles position={[-7.5, 0, 0]} rotation={[0, Math.PI / 2, 0]} labs={leftWallLabs} wallIndex={0} onEnterLab={onEnter} />
+            <WallWithHoles position={[0, 0, -7.5]} rotation={[0, 0, 0]} labs={frontWallLabs} wallIndex={1} onEnterLab={onEnter} />
+            <WallWithHoles position={[7.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]} labs={rightWallLabs} wallIndex={2} onEnterLab={onEnter} />
+            <ExitWall position={[0, 0, 7.5]} onExit={onExit} onEnterLab={onEnter} />
 
             {/* 3. HUMOROUS WAYFINDING KIOSK */}
             <WayfindingKiosk position={[0, 0, 1.5]} />
@@ -135,7 +135,7 @@ function RoomEnvironment() {
     );
 }
 
-function WallWithHoles({ position, rotation, labs, wallIndex }) {
+function WallWithHoles({ position, rotation, labs, wallIndex, onEnterLab }) {
     return (
         <group position={position} rotation={rotation}>
             {/* Sector 7 Concrete Wall (Ultra Dark) */}
@@ -156,13 +156,14 @@ function WallWithHoles({ position, rotation, labs, wallIndex }) {
                     lab={lab}
                     position={[(i - 1) * 4.2, 0, 0]}
                     statusText={wallIndex === 0 ? "LAB ACCESS" : wallIndex === 1 ? "AUTHORIZED" : "RESTRICTED"}
+                    onEnter={onEnterLab}
                 />
             ))}
         </group>
     );
 }
 
-function Sector7DoorSystem({ lab, position, statusText }) {
+function Sector7DoorSystem({ lab, position, statusText, onEnter }) {
     const doorHinge = useRef();
     const cameraLed = useRef();
     const groupRef = useRef();
@@ -174,7 +175,8 @@ function Sector7DoorSystem({ lab, position, statusText }) {
         const worldPos = new THREE.Vector3();
         groupRef.current.getWorldPosition(worldPos);
         const distance = worldPos.distanceTo(camera.position);
-        const near = distance < 4.3; // Very subtle reduction for intentional feel
+        
+        const near = distance < 5.5;
         if (near !== isNear) setIsNear(near);
 
         // Heavy Swing (pivot left)
@@ -186,6 +188,11 @@ function Sector7DoorSystem({ lab, position, statusText }) {
         // Camera Blink
         if (cameraLed.current) {
             cameraLed.current.visible = Math.sin(state.clock.elapsedTime * 3) > 0.4;
+        }
+
+        // AUTOMATIC ENTRY: Transition if near the threshold (3.5m for super-seamless flow)
+        if (distance < 3.5 && onEnter) {
+            onEnter(lab);
         }
     });
 
@@ -276,7 +283,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
             </group>
 
             {/* 5. BHILAEE SWING DOOR (Pivot Left - Pushed forward to avoid Z-fighting) */}
-            <group position={[-1.15, 1.8, 0.17]} ref={doorHinge}>
+            <group position={[-1.15, 1.8, 0.17]} ref={doorHinge} onClick={() => isNear && onEnter && onEnter(lab)}>
                 <group position={[1.15, 0, 0]}>
                     {/* Door Slab (Disable receiveShadow to prevent stippling) */}
                     <mesh castShadow>
@@ -353,7 +360,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
     );
 }
 
-function ExitWall({ position, onExit }) {
+function ExitWall({ position, onExit, onEnterLab }) {
     const archiveLab = { id: 'archive', code: 'ARC-01', name: 'User Records' };
 
     return (
@@ -375,6 +382,7 @@ function ExitWall({ position, onExit }) {
                     lab={archiveLab}
                     position={[0, 0, 0]}
                     statusText="USER ARCHIVE"
+                    onEnter={onEnterLab}
                 />
             </group>
         </group>

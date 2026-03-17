@@ -16,12 +16,14 @@ import {
 import * as THREE from 'three';
 import Player from './3d/Player';
 import LabBuilding from './3d/LabBuilding';
+import LabRoom from './3d/LabRoom';
 import HomeContent from './HomeContent';
 
 export default function ThreeDHome({ labs, allExperiments }) {
     const [classicMode, setClassicMode] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const [isReady, setIsReady] = useState(false);
+    const [activeLab, setActiveLab] = useState(null);
 
     useEffect(() => {
         setIsMounted(true);
@@ -63,6 +65,15 @@ export default function ThreeDHome({ labs, allExperiments }) {
         );
     }
 
+    const handleEnterLab = (lab) => {
+        if (lab.id === 'archive') return; // Archive logic can be different
+        setActiveLab(lab);
+    };
+
+    const handleExitLab = () => {
+        setActiveLab(null);
+    };
+
     return (
         <KeyboardControls
             map={[
@@ -85,15 +96,21 @@ export default function ThreeDHome({ labs, allExperiments }) {
                             <Environment preset="night" />
                             <ambientLight intensity={0.5} />
                             
-                            {/* SECTOR 7 ARCHITECTURAL LIGHTING (High resolution for clean surfaces) */}
+                            {/* SECTOR 7 ARCHITECTURAL LIGHTING */}
                             <pointLight position={[0, 4, -4]} intensity={200} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
                             <pointLight position={[0, 4, 4]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
-                            <pointLight position={[-4, 4, 0]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
-                            <pointLight position={[4, 4, 0]} intensity={180} distance={20} castShadow shadow-bias={0.0001} shadow-mapSize={2048} />
                             
-                            <Player />
-                            
-                            <LabBuilding labs={labs} onExit={() => setClassicMode(true)} />
+                            {!activeLab ? (
+                                <>
+                                    <Player key="plaza-player" position={[0, 1.7, 5]} boundary={6.8} />
+                                    <LabBuilding labs={labs} onExit={() => setClassicMode(true)} onEnter={handleEnterLab} />
+                                </>
+                            ) : (
+                                <>
+                                    <Player key="lab-player" position={[0, 1.7, 0]} boundary={{ x: 9.5, z: 10.5 }} />
+                                    <LabRoom lab={activeLab} onExit={handleExitLab} />
+                                </>
+                            )}
                         </Suspense>
                         {isReady && !classicMode && <PointerLockControls />}
                     </Canvas>
