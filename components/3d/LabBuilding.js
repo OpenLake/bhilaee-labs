@@ -12,14 +12,95 @@ export default function LabBuilding({ labs, onExit }) {
 
     return (
         <group>
-            {/* 1. SECTOR 7 ROOM (Deep Dark Industrial) */}
+            {/* 1. BHILAEE ROOM (Deep Dark Industrial) */}
             <RoomEnvironment />
 
-            {/* 2. ARCHITECTURAL WALLS */}
+            {/* 2. THE 4 WALLS WITH BHILAEE ARCHITECTURE */}
             <WallWithHoles position={[-7.5, 0, 0]} rotation={[0, Math.PI / 2, 0]} labs={leftWallLabs} wallIndex={0} />
             <WallWithHoles position={[0, 0, -7.5]} rotation={[0, 0, 0]} labs={frontWallLabs} wallIndex={1} />
             <WallWithHoles position={[7.5, 0, 0]} rotation={[0, -Math.PI / 2, 0]} labs={rightWallLabs} wallIndex={2} />
             <ExitWall position={[0, 0, 7.5]} onExit={onExit} />
+
+            {/* 3. HUMOROUS WAYFINDING KIOSK */}
+            <WayfindingKiosk position={[0, 0, 1.5]} />
+        </group>
+    );
+}
+
+function WayfindingKiosk({ position }) {
+    return (
+        <group position={position}>
+            {/* Pedestal Base */}
+            <mesh position={[0, 0.05, 0]}>
+                <boxGeometry args={[0.6, 0.1, 0.6]} />
+                <meshStandardMaterial color="#1a1b20" metalness={0.8} />
+            </mesh>
+            
+            {/* Pedestal Column */}
+            <mesh position={[0, 0.6, 0]}>
+                <boxGeometry args={[0.15, 1.2, 0.15]} />
+                <meshStandardMaterial color="#0e1014" metalness={1} />
+            </mesh>
+
+            {/* Angled Screen Housing */}
+            <group position={[0, 1.2, 0]} rotation={[-Math.PI / 6, 0, 0]}>
+                <mesh position={[0, 0, 0.05]}>
+                    <boxGeometry args={[0.8, 0.6, 0.1]} />
+                    <meshStandardMaterial color="#1c1d22" metalness={0.9} />
+                </mesh>
+                
+                {/* Glowing Screen */}
+                <mesh position={[0, 0, 0.101]}>
+                    <planeGeometry args={[0.7, 0.5]} />
+                    <meshBasicMaterial color="#001a1f" />
+                </mesh>
+                
+                {/* Bezel */}
+                <mesh position={[0, 0, 0.11]}>
+                    <boxGeometry args={[0.72, 0.52, 0.01]} />
+                    <meshStandardMaterial color="#000" />
+                </mesh>
+
+                {/* Content Text - Enhanced Industrial UI */}
+                <group position={[0, 0.02, 0.12]}>
+                    <Text fontSize={0.045} fontWeight="bold" color="#fff" position={[0, 0.18, 0]} anchorX="center" letterSpacing={0.1}>
+                        BHILAEE WAYFINDING
+                    </Text>
+                    
+                    {/* Divider */}
+                    <mesh position={[0, 0.1, 0]}>
+                        <planeGeometry args={[0.6, 0.005]} />
+                        <meshBasicMaterial color="#00ffff" transparent opacity={0.3} />
+                    </mesh>
+
+                    <group position={[-0.28, 0, 0]}>
+                        <Text fontSize={0.032} color="#00ffff" position={[0, 0.02, 0]} anchorX="left" letterSpacing={0.05}>
+                            ◀ 1ST & 2ND YR : PROCEED LEFT
+                        </Text>
+                        <Text fontSize={0.032} color="#00ffff" position={[0, -0.06, 0]} anchorX="left" letterSpacing={0.05}>
+                            ▶ 3RD YR : RIGHT & STRAIGHT
+                        </Text>
+                        
+                        {/* Status Divider */}
+                        <mesh position={[0.28, -0.12, 0]}>
+                            <planeGeometry args={[0.55, 0.002]} />
+                            <meshBasicMaterial color="#ff4444" transparent opacity={0.2} />
+                        </mesh>
+
+                        <Text fontSize={0.032} color="#ff4444" position={[0, -0.18, 0]} anchorX="left" fontWeight="bold" letterSpacing={0.05}>
+                            ▼ NON-EE : NEAREST EXIT
+                        </Text>
+                    </group>
+                </group>
+
+                {/* Corner Bolts */}
+                {[-0.36, 0.36].map(x => [0.26, -0.26].map(y => (
+                    <mesh key={`${x}-${y}`} position={[x, y, 0.1]}>
+                        <sphereGeometry args={[0.02, 8, 8]} />
+                        <meshStandardMaterial color="#2e2f34" metalness={1} />
+                    </mesh>
+                )))}
+            </group>
         </group>
     );
 }
@@ -194,7 +275,7 @@ function Sector7DoorSystem({ lab, position, statusText }) {
                 <Text position={[0, -0.28, 0.06]} fontSize={0.055} color="#ffffff" opacity={0.3} transparent>ID</Text>
             </group>
 
-            {/* 5. SECTOR 7 SWING DOOR (Pivot Left - Pushed forward to avoid Z-fighting) */}
+            {/* 5. BHILAEE SWING DOOR (Pivot Left - Pushed forward to avoid Z-fighting) */}
             <group position={[-1.15, 1.8, 0.17]} ref={doorHinge}>
                 <group position={[1.15, 0, 0]}>
                     {/* Door Slab (Disable receiveShadow to prevent stippling) */}
@@ -292,7 +373,7 @@ function ExitDoorSystem({ position, onExit }) {
         const worldPos = new THREE.Vector3();
         groupRef.current.getWorldPosition(worldPos);
         const distance = worldPos.distanceTo(camera.position);
-        const near = distance < 5.0;
+        const near = distance < 3.0; // Reduced from 5.0 for more intentional exit
         if (near !== isNear) setIsNear(near);
 
         const targetRotation = isNear ? -Math.PI * 0.45 : 0;
@@ -325,7 +406,7 @@ function ExitDoorSystem({ position, onExit }) {
                         <meshBasicMaterial color="#ffffff" toneMapped={false} depthTest={false} />
                         EXIT
                     </Text>
-                    <Text position={[0, -0.2, 0.06]} fontSize={0.07} color="#ffffff" opacity={0.6} transparent>SECTOR 7 SHUTDOWN</Text>
+                    <Text position={[0, -0.2, 0.06]} fontSize={0.07} color="#ffffff" opacity={0.6} transparent>BHILAEE SHUTDOWN</Text>
                     <mesh position={[0, -1.73, 0.06]}>
                         <planeGeometry args={[2.3, 0.14]} />
                         <meshBasicMaterial color="#d4a017" transparent opacity={0.5} toneMapped={false} />
