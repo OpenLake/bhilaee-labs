@@ -211,11 +211,6 @@
           "content": "The digital control approach involved implementing a PD controller using a Simulink model. The control algorithm was executed in discrete time, and the required control signal was applied to the magnetic levitation plant through a digital-to-analog interface."
         },
         {
-          "type": "image",
-          "assetId": "fig2-digital-control-circuit",
-          "caption": "Figure 2: Digital control circuit/Simulink model used for magnetic levitation"
-        },
-        {
           "type": "text",
           "content": "The Simulink model includes PCI1711 Lab I/O Board feedback ADC and DAC channels, a PID controller block, voltage-to-position converters, sinus and square wave signal sources, and a signal scope for real-time output monitoring."
         }

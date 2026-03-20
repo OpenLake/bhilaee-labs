@@ -218,16 +218,6 @@
               "31.25% of time period"
             ]
           ]
-        },
-        {
-          "type": "image",
-          "assetId": "fig2-open-loop-simulink",
-          "caption": "Figure 2: Open-loop Simulink model of the buck converter"
-        },
-        {
-          "type": "image",
-          "assetId": "fig3-closed-loop-simulink",
-          "caption": "Figure 3: Closed-loop Simulink model of the buck converter"
         }
       ]
     },
