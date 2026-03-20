@@ -339,9 +339,9 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Transient Response of R-L-C Network",
+          "title": "State Space Analysis for Controllability and Observability using MATLAB",
           "fileName": "exp-1.json",
-          "status": "Simulation Available",
+          "status": "Software Oriented",
           "completeness": 1
         },
         {

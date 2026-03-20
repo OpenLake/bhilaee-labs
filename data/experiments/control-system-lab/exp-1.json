@@ -1,187 +1,576 @@
 {
-    "id": "exp-1",
-    "title": "Transient Response of R-L-C Network",
-    "labId": "control-system-lab",
-    "status": "Simulation Available",
-    "meta": {
-        "experimentType": "simulation",
-        "status": "simulation-only",
-        "difficulty": "medium",
-        "estimatedTimeMinutes": 60,
-        "version": "1.0.0",
-        "contentState": "complete",
-        "reviewStatus": "approved"
-    },
-    "sections": {
-        "aim": {
-            "id": "aim",
-            "title": "Aim",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "To study the transient response of a series R-L-C circuit for a step input."
-                }
-            ]
-        },
-        "apparatus": {
-            "id": "apparatus",
-            "title": "Apparatus & Software",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "MATLAB software",
-                        "Control System Toolbox"
-                    ]
-                }
-            ]
-        },
-        "theory": {
-            "id": "theory",
-            "title": "Theory",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The transient response of a control system exhibits damped oscillations before reaching steady state."
-                },
-                {
-                    "content": "G(s) = ωn² / (s² + 2ζωns + ωn²)"
-                },
-                {
-                    "type": "text",
-                    "content": "Where $\\zeta$ is the damping ratio and $\\omega_n$ is the natural frequency."
-                }
-            ]
-        },
-        "preLab": {
-            "id": "preLab",
-            "title": "Pre-Lab / Circuit Diagram",
-            "isApplicable": false,
-            "content": []
-        },
-        "procedure": {
-            "id": "procedure",
-            "title": "Procedure",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "ordered",
-                    "items": [
-                        "Launch MATLAB.",
-                        "Define the transfer function using `tf` command.",
-                        "Apply a step input using `step` command.",
-                        "Observe the rise time, peak time, and settling time."
-                    ]
-                }
-            ]
-        },
-        "simulation": {
-            "id": "simulation",
-            "title": "Simulation / Execution",
-            "isApplicable": true,
-            "route": null,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Use the following MATLAB code to simulate the system:"
-                },
-                {
-                    "type": "code",
-                    "language": "matlab",
-                    "code": "wn = 5;\nzeta = 0.5;\nnum = [wn^2];\nden = [1 2*zeta*wn wn^2];\nsys = tf(num, den);\nstep(sys);\ntitle('Step Response of Underdamped System');"
-                }
-            ]
-        },
-        "observation": {
-            "id": "observation",
-            "title": "Observations",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "table",
-                    "headers": [
-                        "Parameter",
-                        "Value"
-                    ],
-                    "rows": [
-                        [
-                            "Rise Time (tr)",
-                            "0.5 s"
-                        ],
-                        [
-                            "Peak Time (tp)",
-                            "0.8 s"
-                        ],
-                        [
-                            "Settling Time (ts)",
-                            "1.2 s"
-                        ]
-                    ]
-                }
-            ]
-        },
-        "calculation": {
-            "id": "calculation",
-            "title": "Calculations",
-            "isApplicable": true,
-            "content": []
-        },
-        "result": {
-            "id": "result",
-            "title": "Results & Analysis",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The step response was plotted and time domain specifications were verified."
-                }
-            ]
-        },
-        "postLab": {
-            "id": "postLab",
-            "title": "Post-Lab / Viva Voce",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "ordered",
-                    "items": [
-                        "What is the effect of damping ratio on peak overshoot?",
-                        "How does natural frequency affect rise time?"
-                    ]
-                }
-            ]
-        },
-        "resources": {
-            "id": "resources",
-            "title": "References & Resources",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "Control Systems Engineering by Norman Nise",
-                        "MATLAB Documentation"
-                    ]
-                }
-            ]
-        },
-        "conclusion": {
-            "id": "conclusion",
-            "title": "Conclusion",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The system behaves as an underdamped second-order system."
-                }
-            ]
+  "id": "exp-1",
+  "title": "State Space Analysis for Controllability and Observability using MATLAB",
+  "labId": "control-system-lab",
+  "status": "Software Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB/Simulink",
+    "experimentType": "software",
+    "status": "software-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The aim of this experiment is to analyze the controllability and observability of given linear time-invariant systems using state space representation and MATLAB."
         }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Sl. No.",
+            "Apparatus / Software",
+            "Technical Specification",
+            "Quantities"
+          ],
+          "rows": [
+            [
+              "1",
+              "MATLAB",
+              "R2023 or compatible version with Control System Toolbox",
+              "1"
+            ],
+            [
+              "2",
+              "Simulink",
+              "Integrated with MATLAB for block diagram simulation",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "State space analysis is a powerful mathematical approach used for modeling and analyzing dynamic systems, especially in modern control engineering. Unlike classical control methods which mainly focus on input\u2013output relationships, state space analysis considers the internal behavior of the system through state variables."
+        },
+        {
+          "type": "text",
+          "content": "**State Space Representation**"
+        },
+        {
+          "type": "text",
+          "content": "In state space analysis, a linear time-invariant (LTI) system is represented using a set of first-order differential equations. These equations describe how the system states change over time and also relate them to the system input and output. The general state space model of an LTI system is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "\\dot{x}(t) = Ax(t) + Bu(t)"
+        },
+        {
+          "type": "equation",
+          "value": "y(t) = Cx(t) + Du(t)"
+        },
+        {
+          "type": "text",
+          "content": "where x(t) is the state vector representing the internal state of the system, u(t) is the input or control signal, y(t) is the output of the system, A is the system matrix, B is the input matrix, C is the output matrix, and D is the feedforward matrix. The order of the system is determined by the number of state variables. State space representation is widely used because it can handle multi-input multi-output (MIMO) systems and provides a complete description of the system dynamics."
+        },
+        {
+          "type": "text",
+          "content": "**Controllability**"
+        },
+        {
+          "type": "text",
+          "content": "Controllability is an important property of a dynamic system. A system is said to be controllable if it is possible to move the system from any initial state to any desired final state within a finite time using an appropriate control input. For an LTI system, controllability can be tested using the controllability matrix, which is defined as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\mathcal{C} = \\begin{bmatrix} B & AB & A^2B & \\cdots & A^{n-1}B \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "where n is the order of the system. The system is said to be completely controllable if the rank of the controllability matrix is equal to n:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{rank}(\\mathcal{C}) = n"
+        },
+        {
+          "type": "text",
+          "content": "**Observability**"
+        },
+        {
+          "type": "text",
+          "content": "Observability refers to the ability to determine the internal states of a system by observing its external output over time. A system is said to be observable if the complete state vector can be uniquely determined from the output measurements. The observability matrix of an LTI system is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "\\mathcal{O} = \\begin{bmatrix} C \\\\ CA \\\\ CA^2 \\\\ \\vdots \\\\ CA^{n-1} \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "The system is completely observable if the rank of the observability matrix is equal to the order of the system:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{rank}(\\mathcal{O}) = n"
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The following steps are followed to analyze the controllability and observability of the given systems:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Write the state space equations of the given system.",
+            "Form the state matrices A, B, C, and D.",
+            "Create the state space model of the system using MATLAB.",
+            "Determine the controllability matrix and calculate its rank.",
+            "Determine the observability matrix and calculate its rank.",
+            "Verify whether the system is controllable and observable based on the rank conditions."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Following the above procedure, the following systems are analyzed:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "System 1: d\u00b2y/dt\u00b2 + 3(dy/dt) + 2y = u",
+            "System 2: d\u00b3y/dt\u00b3 + 6(d\u00b2y/dt\u00b2) + 11(dy/dt) + 6y = u",
+            "System 3: d\u00b2y/dt\u00b2 + 3(dy/dt) + 2y = u  (with different output equation)",
+            "System 4: d\u00b3y/dt\u00b3 \u2212 6(d\u00b2y/dt\u00b2) + 11(dy/dt) \u2212 6y = 2(du/dt) \u2212 2u"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "For all the given systems, the state space equations are obtained by suitably defining the state variables. Based on these equations, the state matrices A, B, C, and D are derived. Using the derived matrices, the state space model is implemented in MATLAB using the ss(A,B,C,D) function. The controllability and observability matrices are then obtained, and their ranks are calculated using the rank() function."
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "fig1-matlab-code",
+          "caption": "Figure 1: MATLAB code for state space model, controllability, and observability analysis"
+        },
+        {
+          "type": "text",
+          "content": "System 2 was additionally realized using Simulink to study its dynamic behavior. The state space model of the system was implemented using appropriate Simulink blocks."
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-simulink-system2",
+          "caption": "Figure 3: Simulink block diagram for System 2"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-simulink-output-system2",
+          "caption": "Figure 4: Simulink output response for System 2"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The MATLAB outputs showing controllability and observability results for the systems are captured below."
+        },
+        {
+          "type": "image",
+          "assetId": "sys1-output",
+          "caption": "Figure: MATLAB output showing controllability and observability results for System 1"
+        },
+        {
+          "type": "image",
+          "assetId": "sys2-output",
+          "caption": "Figure: MATLAB output showing controllability and observability results for System 2"
+        },
+        {
+          "type": "image",
+          "assetId": "sys3-output",
+          "caption": "Figure: MATLAB output showing controllability and observability results for System 3"
+        },
+        {
+          "type": "image",
+          "assetId": "sys4-output",
+          "caption": "Figure: MATLAB output showing controllability and observability results for System 4"
+        },
+        {
+          "type": "text",
+          "content": "**System 1 \u2014 MATLAB Output:**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Matrix",
+            "Values",
+            "Rank"
+          ],
+          "rows": [
+            [
+              "Controllability Matrix",
+              "[[0, 1], [1, -3]]",
+              "2"
+            ],
+            [
+              "Observability Matrix",
+              "[[1, 0], [0, 1]]",
+              "2"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**System 2 \u2014 MATLAB Output:**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Matrix",
+            "Values",
+            "Rank"
+          ],
+          "rows": [
+            [
+              "Controllability Matrix",
+              "[[0, 0, 1], [0, 1, -6], [1, -6, 25]]",
+              "3"
+            ],
+            [
+              "Observability Matrix",
+              "[[1, 0, 0], [0, 1, 0], [0, 0, 1]]",
+              "3"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**System 3 \u2014 MATLAB Output:**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Matrix",
+            "Values",
+            "Rank"
+          ],
+          "rows": [
+            [
+              "Controllability Matrix",
+              "[[0, 0], [1, -2]]",
+              "1"
+            ],
+            [
+              "Observability Matrix",
+              "[[1, 1], [-1, -2]]",
+              "2"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**System 4 \u2014 MATLAB Output:**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Matrix",
+            "Values",
+            "Rank"
+          ],
+          "rows": [
+            [
+              "Controllability Matrix",
+              "[[0, 0, 0], [1, 2, 4], [1, 3, 9]]",
+              "2"
+            ],
+            [
+              "Observability Matrix",
+              "[[1, 1, 1], [1, 2, 3], [1, 4, 9]]",
+              "3"
+            ]
+          ]
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**System 1**"
+        },
+        {
+          "type": "text",
+          "content": "Given differential equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{d^2y}{dt^2} + 3\\frac{dy}{dt} + 2y = u"
+        },
+        {
+          "type": "text",
+          "content": "Define state variables: x\u2081 = y, x\u2082 = dy/dt. State equations:"
+        },
+        {
+          "type": "equation",
+          "value": "\\dot{x}_1 = x_2, \\quad \\dot{x}_2 = -2x_1 - 3x_2 + u"
+        },
+        {
+          "type": "text",
+          "content": "Output equation: y = x\u2081. State matrices:"
+        },
+        {
+          "type": "equation",
+          "value": "A = \\begin{bmatrix} 0 & 1 \\\\ -2 & -3 \\end{bmatrix},\\; B = \\begin{bmatrix} 0 \\\\ 1 \\end{bmatrix},\\; C = \\begin{bmatrix} 1 & 0 \\end{bmatrix},\\; D = [0]"
+        },
+        {
+          "type": "text",
+          "content": "**System 2**"
+        },
+        {
+          "type": "text",
+          "content": "Given differential equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{d^3y}{dt^3} + 6\\frac{d^2y}{dt^2} + 11\\frac{dy}{dt} + 6y = u"
+        },
+        {
+          "type": "text",
+          "content": "Define state variables: x\u2081 = y, x\u2082 = dy/dt, x\u2083 = d\u00b2y/dt\u00b2. State equations:"
+        },
+        {
+          "type": "equation",
+          "value": "\\dot{x}_1 = x_2, \\quad \\dot{x}_2 = x_3, \\quad \\dot{x}_3 = -6x_1 - 11x_2 - 6x_3 + u"
+        },
+        {
+          "type": "text",
+          "content": "Output equation: y = x\u2081. State matrices:"
+        },
+        {
+          "type": "equation",
+          "value": "A = \\begin{bmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ -6 & -11 & -6 \\end{bmatrix},\\; B = \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix},\\; C = \\begin{bmatrix} 1 & 0 & 0 \\end{bmatrix},\\; D = [0]"
+        },
+        {
+          "type": "text",
+          "content": "**System 3**"
+        },
+        {
+          "type": "text",
+          "content": "Given differential equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{d^2y}{dt^2} + 3\\frac{dy}{dt} + 2y = u"
+        },
+        {
+          "type": "text",
+          "content": "Define state variables: x\u2081 = y, x\u2082 = dy/dt. State equations:"
+        },
+        {
+          "type": "equation",
+          "value": "\\dot{x}_1 = x_2, \\quad \\dot{x}_2 = -2x_1 - 3x_2 + u"
+        },
+        {
+          "type": "text",
+          "content": "Output equation: y = x\u2081 + x\u2082. State matrices:"
+        },
+        {
+          "type": "equation",
+          "value": "A = \\begin{bmatrix} 0 & 1 \\\\ -2 & -3 \\end{bmatrix},\\; B = \\begin{bmatrix} 0 \\\\ 1 \\end{bmatrix},\\; C = \\begin{bmatrix} 1 & 1 \\end{bmatrix},\\; D = [0]"
+        },
+        {
+          "type": "text",
+          "content": "**System 4**"
+        },
+        {
+          "type": "text",
+          "content": "Given differential equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{d^3y}{dt^3} - 6\\frac{d^2y}{dt^2} + 11\\frac{dy}{dt} - 6y = 2\\frac{du}{dt} - 2u"
+        },
+        {
+          "type": "text",
+          "content": "State equations chosen as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\dot{x}_1 = x_1, \\quad \\dot{x}_2 = 2x_2 + u, \\quad \\dot{x}_3 = 3x_3 + u"
+        },
+        {
+          "type": "text",
+          "content": "Output equation: y = x\u2081 + x\u2082 + x\u2083. State matrices:"
+        },
+        {
+          "type": "equation",
+          "value": "A = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{bmatrix},\\; B = \\begin{bmatrix} 0 \\\\ 1 \\\\ 1 \\end{bmatrix},\\; C = \\begin{bmatrix} 1 & 1 & 1 \\end{bmatrix},\\; D = [0]"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The controllability and observability of each system are determined by comparing the rank of the respective matrices with the order of the system. The results are summarized below."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "System",
+            "Order (n)",
+            "Rank of Controllability Matrix",
+            "Controllable?",
+            "Rank of Observability Matrix",
+            "Observable?"
+          ],
+          "rows": [
+            [
+              "System 1",
+              "2",
+              "2",
+              "Yes",
+              "2",
+              "Yes"
+            ],
+            [
+              "System 2",
+              "3",
+              "3",
+              "Yes",
+              "3",
+              "Yes"
+            ],
+            [
+              "System 3",
+              "2",
+              "1",
+              "No",
+              "2",
+              "Yes"
+            ],
+            [
+              "System 4",
+              "3",
+              "2",
+              "No",
+              "3",
+              "Yes"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**System 1:** The order of the system is 2. The rank of the controllability matrix is 2 (equal to n), hence the system is completely controllable. The rank of the observability matrix is also 2, indicating the system is completely observable."
+        },
+        {
+          "type": "text",
+          "content": "**System 2:** The order of the system is 3. The rank of the controllability matrix is 3 (equal to n), therefore the system is completely controllable. The rank of the observability matrix is also 3, showing the system is completely observable."
+        },
+        {
+          "type": "text",
+          "content": "**System 3:** The order of the system is 2. The rank of the controllability matrix is 1 (not equal to n), hence the system is uncontrollable. The rank of the observability matrix is 2, confirming the system is observable."
+        },
+        {
+          "type": "text",
+          "content": "**System 4:** The order of the system is 3. The rank of the controllability matrix is 2 (not equal to n), thus the system is uncontrollable. The rank of the observability matrix is 3, indicating the system is completely observable."
+        },
+        {
+          "type": "text",
+          "content": "Additionally, System 2 was realized using Simulink. The Simulink results were found to be consistent with the theoretical and MATLAB-based analysis."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment on State Space Analysis for Controllability and Observability."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q: What is state space representation and why is it preferred over classical transfer function methods for MIMO systems?**\n\n**A:** State space representation uses a set of first-order differential equations of the form \u1e8b(t) = Ax(t) + Bu(t) and y(t) = Cx(t) + Du(t) to describe a system's internal dynamics. Unlike transfer functions, which only capture input-output relationships, state space models expose the internal state variables of the system. This makes them directly applicable to multi-input multi-output (MIMO) systems, time-varying systems, and nonlinear systems, and they allow analysis of properties such as controllability and observability that are not visible from the transfer function alone.",
+            "**Q: Define controllability. What does it physically mean if a system is uncontrollable?**\n\n**A:** A system is said to be completely controllable if there exists a finite-time control input u(t) that can drive the system from any arbitrary initial state x(0) to any desired final state x(T). Physically, if a system is uncontrollable, it means that certain state variables cannot be influenced by the applied input, regardless of how the input is designed. For example, in System 3 of this experiment, the rank of the controllability matrix was 1 (less than the system order n = 2), meaning at least one state mode is decoupled from the input and cannot be steered.",
+            "**Q: Define observability. What is the practical consequence of a system being unobservable?**\n\n**A:** A system is completely observable if the complete state vector x(t) can be uniquely determined from the output measurements y(t) over a finite time interval, regardless of the input. Practically, if a system is unobservable, it means certain internal states produce no effect on the measured output. This is a serious problem in control design because state feedback controllers and state estimators (such as Luenberger observers or Kalman filters) require full knowledge of system states. An unobservable state cannot be estimated from output measurements and therefore cannot be controlled through output feedback.",
+            "**Q: How is the rank of the controllability matrix used to determine whether a system is controllable? What happens when the rank is deficient?**\n\n**A:** For an nth-order LTI system, the controllability matrix is C = [B, AB, A\u00b2B, \u2026, A^(n\u22121)B]. The system is completely controllable if and only if rank(C) = n. If rank(C) < n, the matrix is rank-deficient, meaning its columns are linearly dependent. This indicates that the reachable subspace spanned by the controllability matrix has dimension less than n, so not all states can be independently excited by the input. In this experiment, System 3 had rank(C) = 1 < 2, confirming it is uncontrollable.",
+            "**Q: Systems 1 and 3 in this experiment have identical A and B matrices but different C matrices. How does changing only the C matrix affect controllability and observability?**\n\n**A:** The controllability matrix C = [B, AB, A\u00b2B, \u2026] depends only on A and B, not on C. Therefore, changing the output matrix C has no effect on controllability \u2014 both System 1 and System 3 have the same controllability matrix and rank. However, the observability matrix O = [C; CA; CA\u00b2; \u2026] depends directly on C. In System 1, C = [1 0], giving rank(O) = 2 (fully observable). In System 3, C = [1 1], which also gives rank(O) = 2 (still observable), but the output now combines both state variables, affecting how states appear in the output signal.",
+            "**Q: In System 4, the controllability matrix has rank 2 but the system order is 3. Why is the system uncontrollable despite having a non-zero controllability matrix?**\n\n**A:** A non-zero controllability matrix does not guarantee controllability \u2014 the critical condition is that rank(C) must equal the system order n. For System 4, the state matrix A is diagonal with entries {1, 2, 3} and B = [0; 1; 1]. The first row of B is zero, meaning the first state x\u2081 receives no direct input. Furthermore, x\u2081 evolves as \u1e8b\u2081 = x\u2081, an unstable autonomous mode that is entirely decoupled from the input. Since u(t) cannot influence x\u2081 through any combination of input channels, the system is uncontrollable and the controllability matrix rank is 2, not 3.",
+            "**Q: What is the significance of the MATLAB functions ctrb(), obsv(), and rank() in this experiment?**\n\n**A:** The ctrb(A, B) function constructs the controllability matrix C = [B, AB, \u2026, A^(n\u22121)B] directly from the system matrices. The obsv(A, C) function constructs the observability matrix O = [C; CA; \u2026; CA^(n\u22121)]. The rank() function then computes the numerical rank of these matrices using singular value decomposition. Comparing the computed rank against the system order n provides a definitive, numerically reliable test for controllability and observability without manually computing matrix determinants, which can be numerically ill-conditioned for higher-order systems.",
+            "**Q: Can a system be controllable but not observable, or observable but not controllable? Give an example from this experiment.**\n\n**A:** Yes, controllability and observability are independent properties. A system can satisfy one condition without satisfying the other. System 3 in this experiment is a clear example: its controllability matrix has rank 1 (uncontrollable) but its observability matrix has rank 2 (completely observable). Similarly, a system could be controllable but not observable if all state modes are reachable by the input but some modes produce no measurable output. This independence is captured by the Kalman decomposition, which separates system dynamics into four subspaces: controllable-observable, controllable-unobservable, uncontrollable-observable, and uncontrollable-unobservable."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, the controllability and observability of different linear time-invariant systems were analyzed using the state space approach. The given higher-order differential equations were first converted into state space form by selecting appropriate state variables. Based on this representation, the state matrices A, B, C, and D were derived for each system."
+        },
+        {
+          "type": "text",
+          "content": "Using MATLAB, the state space models were implemented and the controllability and observability matrices were obtained. The rank of these matrices was compared with the order of the respective systems to verify the controllability and observability conditions. From the analysis, it was observed that the systems for which the rank of the matrices was equal to the system order were completely controllable and observable."
+        },
+        {
+          "type": "text",
+          "content": "Additionally, one of the systems (System 2) was realized using Simulink to study its dynamic behavior. The Simulink results were found to be consistent with the theoretical and MATLAB-based analysis. This experiment highlights the importance of state space analysis in understanding system behavior and in the design of effective control systems."
+        }
+      ]
     }
+  }
 }

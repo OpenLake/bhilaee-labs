@@ -1,22 +1,22 @@
 {
     "fig1-occ-dc-shunt-generator": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-6/fig1-occ-dc-shunt-generator.png",
+        "path": "/assets/labs/machines-lab/exp-6/fig1-occ-dc-shunt-generator.png",
         "description": "Figure 1: Open Circuit Characteristics of Self-Excited DC Shunt Generator"
     },
     "fig2-equivalent-circuit-dc-shunt-generator": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-6/fig2-equivalent-circuit-dc-shunt-generator.png",
+        "path": "/assets/labs/machines-lab/exp-6/fig2-equivalent-circuit-dc-shunt-generator.png",
         "description": "Figure 2: Equivalent Circuit of DC Shunt Generator"
     },
     "fig3-external-characteristics-shunt-generator": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-6/fig3-external-characteristics-shunt-generator.png",
+        "path": "/assets/labs/machines-lab/exp-6/fig3-external-characteristics-shunt-generator.png",
         "description": "Figure 3: External Characteristics of Shunt Generator"
     },
     "fig4-experiment-connection-diagram": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-6/fig4-experiment-connection-diagram.png",
+        "path": "/assets/labs/machines-lab/exp-6/fig4-experiment-connection-diagram.png",
         "description": "Figure 4: Experiment Connection Diagram"
     }
 }

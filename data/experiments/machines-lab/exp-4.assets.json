@@ -6,22 +6,22 @@
     },
     "fig2-occ-scc-synchronous-generator": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-4/fig2-occ-scc-synchronous-generator.png",
+        "path": "/assets/labs/machines-lab/exp-4/fig2-occ-scc-synchronous-generator.png",
         "description": "Figure 2: OCC and SCC plotted on the same graph"
     },
     "fig3-open-circuit-test-circuit": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-4/fig3-open-circuit-test-circuit.png",
+        "path": "/assets/labs/machines-lab/exp-4/fig3-open-circuit-test-circuit.png",
         "description": "Figure 3: Circuit Diagram for Open Circuit Test"
     },
     "fig4-short-circuit-test-circuit": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-4/fig4-short-circuit-test-circuit.png",
+        "path": "/assets/labs/machines-lab/exp-4/fig4-short-circuit-test-circuit.png",
         "description": "Figure 4: Circuit Diagram for Short Circuit Test"
     },
     "fig5-armature-resistance-test-circuit": {
         "type": "image",
-        "path": "/assets/experiments/machines-lab/exp-4/fig5-armature-resistance-test-circuit.png",
+        "path": "/assets/labs/machines-lab/exp-4/fig5-armature-resistance-test-circuit.png",
         "description": "Figure 5: Circuit Diagram for Armature Resistance Measurement"
     }
 }

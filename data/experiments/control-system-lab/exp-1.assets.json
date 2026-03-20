@@ -1,0 +1,37 @@
+{
+    "sys1-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/sys1-output.png",
+        "description": "Output response for System 1"
+    },
+    "sys2-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/sys2-output.png",
+        "description": "Output response for System 2"
+    },
+    "sys3-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/sys3-output.png",
+        "description": "Output response for System 3"
+    },
+    "sys4-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/sys4-output.png",
+        "description": "Output response for System 4"
+    },
+    "fig3-simulink-system2": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/fig3-simulink-system2.png",
+        "description": "Figure 3: Simulink block diagram for System 2"
+    },
+    "fig4-simulink-output-system2": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/fig4-simulink-output-system2.png",
+        "description": "Figure 4: Simulink output response for System 2"
+    },
+    "fig1-matlab-code": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-1/fig1-matlab-code.png",
+        "description": "Figure 1: MATLAB code for state space model, controllability, and observability analysis"
+    }
+}
