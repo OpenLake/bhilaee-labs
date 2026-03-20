@@ -23,5 +23,10 @@
         "type": "image",
         "path": "/assets/labs/control-system-lab/exp-2/fig4-square-wave-response.png",
         "description": "Figure 4: Ball position response corresponding to square wave input"
+    },
+    "fig2a-circuit-diagram": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig2a-circuit-diagram.png",
+        "description": "Figure 2(a): Digital control circuit model"
     }
 }
