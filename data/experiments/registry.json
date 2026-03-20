@@ -201,12 +201,12 @@
           "status": "Guide Only",
           "completeness": 0.1
         },
-        {
+                {
           "id": "2",
-          "title": "Experiment 2",
+          "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
           "fileName": "exp-2.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "3",
@@ -344,12 +344,12 @@
           "status": "Software Oriented",
           "completeness": 1
         },
-        {
+                {
           "id": "2",
-          "title": "Experiment 2",
+          "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
           "fileName": "exp-2.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "3",
@@ -419,12 +419,12 @@
           "status": "Guide Only",
           "completeness": 0.1
         },
-        {
+                {
           "id": "2",
-          "title": "Experiment 2",
+          "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
           "fileName": "exp-2.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "3",

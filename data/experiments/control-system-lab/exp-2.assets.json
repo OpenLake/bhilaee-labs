@@ -1,0 +1,27 @@
+{
+    "fig1-mlp-schematic": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig1-mlp-schematic.png",
+        "description": "Figure 1: Schematic diagram of the Magnetic Levitation Plant (MLP)"
+    },
+    "fig2-digital-control-circuit": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig2-digital-control-circuit.png",
+        "description": "Figure 2: Digital control circuit/Simulink model used for magnetic levitation"
+    },
+    "fig3a-analog-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig3a-analog-output.jpg",
+        "description": "Figure 3(a): Analog control output \u2014 levitated ball at equilibrium"
+    },
+    "fig3b-digital-output": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig3b-digital-output.jpg",
+        "description": "Figure 3(b): Digital control output \u2014 levitated ball with digital controller"
+    },
+    "fig4-square-wave-response": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-2/fig4-square-wave-response.png",
+        "description": "Figure 4: Ball position response corresponding to square wave input"
+    }
+}
