@@ -344,19 +344,19 @@
           "status": "Software Oriented",
           "completeness": 1
         },
-                {
+                        {
           "id": "2",
           "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
           "fileName": "exp-2.json",
           "status": "Hardware Oriented",
           "completeness": 1
         },
-        {
+                {
           "id": "3",
-          "title": "Experiment 3",
+          "title": "Implementing Closed-Loop Control of a Buck Converter Using PID Controller",
           "fileName": "exp-3.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Simulation Oriented",
+          "completeness": 1
         },
         {
           "id": "4",

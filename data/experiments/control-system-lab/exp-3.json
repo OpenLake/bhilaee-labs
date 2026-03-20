@@ -1,0 +1,422 @@
+{
+  "id": "exp-3",
+  "title": "Implementing Closed-Loop Control of a Buck Converter Using PID Controller",
+  "labId": "control-system-lab",
+  "status": "Simulation Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB/Simulink",
+    "experimentType": "simulation",
+    "status": "simulation-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To design, simulate, and analyze a buck converter under both open-loop and closed-loop PID control using MATLAB/Simulink."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To design and simulate a buck converter using MATLAB/Simulink.",
+            "To implement closed-loop voltage control using a PID controller.",
+            "To analyze the open-loop operation of the buck converter."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Sl. No.",
+            "Apparatus / Software",
+            "Technical Specification",
+            "Quantities"
+          ],
+          "rows": [
+            [
+              "1",
+              "MATLAB / Simulink",
+              "R2023 or compatible, with Simscape Power Systems / Specialized Power Systems toolbox",
+              "1"
+            ],
+            [
+              "2",
+              "Buck Converter (Simulated)",
+              "Vin = 48 V, Vo = 15 V, L = 85 \u00b5H, C = 125 \u00b5F, RL = 8 \u03a9, fsw = 40 kHz",
+              "1 (simulation)"
+            ],
+            [
+              "3",
+              "PID Controller Block",
+              "Simulink built-in PID controller block for closed-loop feedback",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A buck converter is a DC\u2013DC switching converter used to step down a higher input DC voltage to a lower output voltage with high efficiency. The output voltage is regulated by controlling the duty cycle of a high-frequency switching signal applied to a power electronic switch."
+        },
+        {
+          "type": "text",
+          "content": "The basic components of a buck converter include a controlled switch, diode, inductor L, capacitor C, and a resistive load R. The duty cycle D of the switch is defined as:"
+        },
+        {
+          "type": "equation",
+          "value": "D = \\frac{T_{on}}{T}"
+        },
+        {
+          "type": "text",
+          "content": "where T_on is the ON time of the switch and T is the switching period."
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-buck-converter-circuit",
+          "caption": "Figure 1: Equivalent circuit diagram of a buck converter"
+        },
+        {
+          "type": "text",
+          "content": "Under ideal conditions and continuous conduction mode, the average output voltage of the buck converter is directly proportional to the duty cycle and the input voltage:"
+        },
+        {
+          "type": "equation",
+          "value": "V_o = D \\cdot V_{in}"
+        },
+        {
+          "type": "text",
+          "content": "The inductor stores energy when the switch is ON and releases energy to the load when the switch is OFF. The capacitor filters the output voltage and reduces ripple by maintaining a smooth voltage across the load."
+        },
+        {
+          "type": "text",
+          "content": "In open-loop operation, the duty cycle is fixed and the output voltage depends on the input voltage and load conditions. The efficiency of the buck converter is defined as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\eta = \\frac{P_{out}}{P_{in}} = \\frac{V_o I_o}{V_{in} I_{in}}"
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "fig2-open-loop-simulink",
+          "caption": "Figure 2: Open-loop Simulink model of the buck converter"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-closed-loop-simulink",
+          "caption": "Figure 3: Closed-loop Simulink model of the buck converter"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Open-Loop Operation:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Build the open-loop Simulink model of the buck converter as shown in Figure 2.",
+            "Set the simulation parameters as per Table 1 (Vin = 48 V, L = 85 \u00b5H, C = 125 \u00b5F, RL = 8 \u03a9, fsw = 40 kHz, duty cycle = 31.25%).",
+            "Replace the PWM generator with a pulse generator having a fixed duty cycle.",
+            "Run the simulation and observe the output voltage, inductor current, diode current, and pulse waveforms.",
+            "Record the steady-state output voltage."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Closed-Loop PID Control Operation:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Build the closed-loop Simulink model as shown in Figure 3 by adding a PID controller block in the feedback path.",
+            "Set the reference voltage to 15 V.",
+            "Configure the PID controller with appropriate gain values.",
+            "Run the simulation and observe the error signal, duty ratio, output current, output voltage, diode current, pulse, and inductor current waveforms.",
+            "Compare the closed-loop output voltage with the open-loop result and the reference voltage."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The buck converter was simulated in MATLAB/Simulink under both open-loop and closed-loop conditions. The simulation parameters used are listed below."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Input Voltage (Vin)",
+              "48 V"
+            ],
+            [
+              "Reference Voltage (Vo)",
+              "15 V"
+            ],
+            [
+              "Inductance (L)",
+              "85 \u00b5H"
+            ],
+            [
+              "Capacitance (C)",
+              "125 \u00b5F"
+            ],
+            [
+              "Load Resistance (RL)",
+              "8 \u03a9"
+            ],
+            [
+              "Switching Frequency",
+              "40 kHz"
+            ],
+            [
+              "Pulse Width (Duty Cycle)",
+              "31.25% of time period"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-open-loop-simulink",
+          "caption": "Figure 2: Open-loop Simulink model of the buck converter"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-closed-loop-simulink",
+          "caption": "Figure 3: Closed-loop Simulink model of the buck converter"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The closed-loop simulation outputs are shown below. Note: The time axis in the bottom portions of both figures is scaled to a different level, since the switching frequency is very high. The diode current, inductor current, and pulse waveforms are zoomed in while other signals are kept at the original time scale."
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-closed-loop-output-1",
+          "caption": "Figure 4: Closed-loop operation \u2014 Error, Duty Ratio, Output Current, Output Voltage (top); Diode Current, Pulse, Inductor Current zoomed (bottom)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-closed-loop-output-2",
+          "caption": "Figure 5: Closed-loop operation \u2014 Output Current, Output Voltage (top); Diode Current, Pulse, Inductor Current zoomed (bottom)"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The key parameters of the buck converter are calculated using the simulation results."
+        },
+        {
+          "type": "text",
+          "content": "**Duty Cycle (D)**"
+        },
+        {
+          "type": "text",
+          "content": "The duty cycle of a buck converter is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "D = \\frac{V_o}{V_{in}}"
+        },
+        {
+          "type": "text",
+          "content": "Substituting the observed output voltage Vo = 14.4 V and Vin = 48 V:"
+        },
+        {
+          "type": "equation",
+          "value": "D = \\frac{14.4\\,\\text{V}}{48\\,\\text{V} } = 0.3 \\quad (30\\%)"
+        },
+        {
+          "type": "text",
+          "content": "**Inductance (L)**"
+        },
+        {
+          "type": "text",
+          "content": "The inductor value for continuous conduction mode is calculated as:"
+        },
+        {
+          "type": "equation",
+          "value": "L = \\frac{V_o(V_{in} - V_o)}{\\Delta I_L \\, f_{sw} \\, V_{in}}"
+        },
+        {
+          "type": "text",
+          "content": "where \u0394I_L = inductor current ripple = 3.2 A, f_sw = 40 kHz:"
+        },
+        {
+          "type": "equation",
+          "value": "L = \\frac{14.4 \\times (48 - 14.4)}{3.2 \\times 40 \\times 10^3 \\times 48} \\approx 7.87 \\times 10^{-5}\\,\\text{H} = 78.7\\,\\mu\\text{H}"
+        },
+        {
+          "type": "text",
+          "content": "**Capacitance (C)**"
+        },
+        {
+          "type": "text",
+          "content": "The output capacitance estimated from the desired output voltage ripple \u0394Vo (closed-loop control):"
+        },
+        {
+          "type": "equation",
+          "value": "C = \\frac{\\Delta I_L}{8 f_{sw} \\Delta V_o}"
+        },
+        {
+          "type": "text",
+          "content": "Substituting \u0394I_L = 3.2 A, f_sw = 40 kHz, \u0394Vo = 0.06 V:"
+        },
+        {
+          "type": "equation",
+          "value": "C = \\frac{3.2}{8 \\times 40{,}000 \\times 0.06} \\approx 0.0001667\\,\\text{F} = 166.7\\,\\mu\\text{F}"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The simulation results clearly demonstrate the difference between open-loop and closed-loop operation of the buck converter."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Operating Mode",
+            "Output Voltage",
+            "Duty Cycle",
+            "Voltage Ripple",
+            "Remarks"
+          ],
+          "rows": [
+            [
+              "Open-Loop",
+              "~14.4 V (slightly below 15 V)",
+              "Fixed at 31.25%",
+              "Present",
+              "Output depends solely on fixed duty cycle; no feedback correction"
+            ],
+            [
+              "Closed-Loop (PID)",
+              "~15 V (regulated)",
+              "Continuously adjusted by PID",
+              "Almost none",
+              "PID actively corrects duty cycle based on output error"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "In open-loop mode, the output voltage settled slightly below 15 V due to the fixed pulse width (duty cycle \u2248 31.25%). According to Vo = D\u00b7Vin, a duty cycle of approximately 0.31 results in an output close to 14.4 V. Since no feedback correction was present, the output depended only on the pulse width."
+        },
+        {
+          "type": "text",
+          "content": "In closed-loop mode, the PID controller continuously adjusted the duty cycle with respect to changes in output voltage, resulting in a stable output of approximately 15 V with almost no voltage ripple. This confirmed the effectiveness of feedback control in maintaining output voltage at the desired reference level."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment on Closed-Loop Control of a Buck Converter Using a PID Controller."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** What is a buck converter and how does the duty cycle control the output voltage?\n\n**A:** A buck converter is a DC\u2013DC switching power converter that steps down a higher input DC voltage to a lower output voltage with high efficiency. It operates by rapidly switching a power transistor ON and OFF at high frequency. When the switch is ON for a fraction D of the switching period T (where D = Ton/T is the duty cycle), energy is stored in the inductor. When the switch is OFF, the inductor releases this energy to the load through the freewheeling diode. Under ideal conditions in continuous conduction mode (CCM), the average output voltage is Vo = D\u00b7Vin. Therefore, by varying D between 0 and 1, the output voltage can be continuously controlled between 0 and Vin.",
+            "**Q:** Why does the open-loop buck converter in this experiment produce an output voltage slightly lower than the theoretical value of D\u00b7Vin?\n\n**A:** In an ideal lossless buck converter, Vo = D\u00b7Vin exactly. However, practical converters have resistive losses in the inductor winding, switch on-state resistance (RDS(on)), diode forward voltage drop, and capacitor ESR (equivalent series resistance). These parasitic elements cause a voltage drop that reduces the actual output below the theoretical value. Additionally, the diode forward voltage reduces the effective duty cycle during the freewheeling interval. In this experiment, with D = 31.25% and Vin = 48 V, the theoretical output is 15 V but the simulated open-loop output settled at approximately 14.4 V, consistent with these losses.",
+            "**Q:** How does the PID controller achieve closed-loop voltage regulation in the buck converter?\n\n**A:** The PID controller compares the measured output voltage Vo with the reference voltage Vref (15 V) to compute an error signal e(t) = Vref \u2212 Vo(t). The proportional term (Kp\u00b7e) provides an immediate corrective response proportional to the current error. The integral term (Ki\u00b7\u222be dt) eliminates steady-state error by accumulating the error over time and increasing the control effort until the error is driven to zero. The derivative term (Kd\u00b7de/dt) anticipates future error by responding to the rate of change, improving transient response and reducing overshoot. The combined PID output adjusts the duty cycle of the PWM signal in real time, continuously regulating the output voltage at 15 V despite load or input variations.",
+            "**Q:** What is the role of the inductor and capacitor in a buck converter, and how do their values affect performance?\n\n**A:** The inductor serves as an energy storage element that smooths the pulsating current from the switch, providing a continuous current to the load. It limits the rate of change of current (di/dt = V/L), so a larger inductance results in smaller current ripple \u0394IL. The capacitor filters the output voltage by absorbing and releasing charge during switching transients, reducing the output voltage ripple \u0394Vo. A larger capacitance results in smaller voltage ripple. However, larger L and C values increase component size, cost, and slow the transient response of the converter. The design trade-off in this experiment used L = 85 \u00b5H and C = 125 \u00b5F to balance ripple performance with transient speed.",
+            "**Q:** What is continuous conduction mode (CCM) and how does it affect the input\u2013output voltage relationship of the buck converter?\n\n**A:** In continuous conduction mode (CCM), the inductor current never falls to zero during the switching cycle \u2014 there is always a continuous current flowing through the inductor. Under CCM, the volt-second balance on the inductor gives the simple relationship Vo = D\u00b7Vin, making the output voltage linearly proportional to duty cycle and independent of load current (for an ideal converter). In discontinuous conduction mode (DCM), which occurs at light loads when the inductor current reaches zero before the next switching cycle, the voltage conversion ratio becomes nonlinear and dependent on the load resistance. The simulation parameters in this experiment (L = 85 \u00b5H, RL = 8 \u03a9, fsw = 40 kHz) are designed to maintain CCM operation at full load.",
+            "**Q:** Why is high switching frequency desirable in a buck converter, and what are its limitations?\n\n**A:** A higher switching frequency reduces the required values of L and C to achieve the same current and voltage ripple, because the inductor and capacitor have less time to charge and discharge in each cycle (\u0394IL = VL\u00b7Ton/L, so smaller Ton at higher fsw means smaller ripple for the same L). This leads to smaller, lighter, and cheaper passive components, improving power density. In this experiment, fsw = 40 kHz is used. However, higher switching frequency increases switching losses in the transistor (proportional to fsw) and the diode, core losses in the inductor, and electromagnetic interference (EMI). It also requires faster switching devices and more sophisticated gate drive circuits, increasing cost and design complexity.",
+            "**Q:** How would the buck converter respond if the load resistance RL suddenly decreases (load step increase) under open-loop and closed-loop operation?\n\n**A:** Under open-loop operation with a fixed duty cycle, a sudden decrease in RL increases the load current demand. The additional current drawn from the capacitor causes the output voltage Vo to drop, since the converter cannot respond to the increased demand \u2014 the duty cycle remains fixed and the average inductor current is predetermined. The output voltage will settle at a new lower steady-state value determined by the circuit losses. Under closed-loop PID control, the voltage drop is detected immediately as an increased error signal. The PID controller responds by increasing the duty cycle, which increases the average inductor current to supply the higher load demand, restoring Vo back to 15 V within a transient settling time. This demonstrates the primary advantage of closed-loop regulation.",
+            "**Q:** What is the significance of the calculated inductance (78.7 \u00b5H) and capacitance (166.7 \u00b5H) compared to the simulated values of 85 \u00b5H and 125 \u00b5H?\n\n**A:** The calculated values represent the minimum L and C required to maintain CCM and limit ripple to specified levels (\u0394IL = 3.2 A, \u0394Vo = 0.06 V) given the operating conditions. The simulated values of L = 85 \u00b5H and C = 125 \u00b5F are close to but not identical to the calculated values. The inductance of 85 \u00b5H is slightly higher than the calculated 78.7 \u00b5H, providing a margin of safety to ensure CCM operation and slightly lower current ripple than the design target. The capacitance of 125 \u00b5F is lower than the calculated 166.7 \u00b5F, which means the actual voltage ripple will be slightly higher than 0.06 V. In closed-loop operation, the PID controller compensates for the higher ripple by actively correcting the duty cycle, so the effective output regulation is still maintained at 15 V."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, the buck converter was first analyzed under closed-loop operation using a feedback PID controller. The closed-loop system continuously adjusted the duty cycle of the switching signal with respect to changes in output voltage, resulting in a stable output voltage of approximately 15 V with almost no voltage ripple. This confirmed the effectiveness of feedback control in maintaining output voltage at the desired level."
+        },
+        {
+          "type": "text",
+          "content": "The buck converter was also operated in open-loop mode by removing the feedback path and replacing the PWM generator with a pulse generator. In this case, the output voltage settled at a value slightly lower than 15 V, even though the input voltage was 48 V. This is due to the fixed pulse width generated based on the selected duty cycle of 31.25%. According to the theoretical relation Vo = D\u00b7Vin, a duty cycle of approximately 0.31 results in an output voltage close to the observed value."
+        },
+        {
+          "type": "text",
+          "content": "Overall, the simulation results clearly demonstrate the difference between open-loop and closed-loop operation of a buck converter. While open-loop control follows the theoretical voltage conversion ratio determined by the duty cycle, closed-loop control provides improved voltage regulation by actively adjusting the duty cycle based on output feedback."
+        }
+      ]
+    }
+  }
+}

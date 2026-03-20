@@ -1,0 +1,27 @@
+{
+    "fig1-buck-converter-circuit": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-3/fig1-buck-converter-circuit.png",
+        "description": "Figure 1: Equivalent circuit diagram of a buck converter"
+    },
+    "fig2-open-loop-simulink": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-3/fig2-open-loop-simulink.png",
+        "description": "Figure 2: Open-loop Simulink model of the buck converter"
+    },
+    "fig3-closed-loop-simulink": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-3/fig3-closed-loop-simulink.png",
+        "description": "Figure 3: Closed-loop Simulink model of the buck converter"
+    },
+    "fig4-closed-loop-output-1": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-3/fig4-closed-loop-output-1.png",
+        "description": "Figure 4: Closed-loop operation outputs (Error, Duty Ratio, etc.)"
+    },
+    "fig5-closed-loop-output-2": {
+        "type": "image",
+        "path": "/assets/labs/control-system-lab/exp-3/fig5-closed-loop-output-2.png",
+        "description": "Figure 5: Closed-loop operation outputs (Current, Voltage, etc.)"
+    }
+}
