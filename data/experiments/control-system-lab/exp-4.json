@@ -1,0 +1,797 @@
+{
+  "id": "exp-4",
+  "title": "Time Domain Analysis of First, Second and Third Order Systems",
+  "labId": "control-system-lab",
+  "status": "Simulation Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB",
+    "experimentType": "simulation",
+    "status": "simulation-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To study and analyze the time domain responses of first, second, and third order linear time-invariant (LTI) systems using MATLAB."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To analyze the time response of first, second, and third order LTI systems.",
+            "To study impulse, step, ramp, and parabolic responses.",
+            "To evaluate system stability and time domain specifications.",
+            "To verify theoretical results using MATLAB simulations."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Sl. No.",
+            "Apparatus / Software",
+            "Technical Specification",
+            "Quantities"
+          ],
+          "rows": [
+            [
+              "1",
+              "MATLAB",
+              "R2023 or compatible, with Control System Toolbox",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The time domain response of a control system describes how the output of the system varies with time for a given input signal. To evaluate the dynamic performance of control systems, standard test inputs are commonly applied. These inputs are mathematically simple and represent practical physical situations, allowing a clear comparison of system behavior under different conditions."
+        },
+        {
+          "type": "text",
+          "content": "**Standard Test Inputs**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Impulse Input:** Represents a sudden shock or disturbance applied to the system. r(t) = \u03b4(t)",
+            "**Step Input:** Represents a sudden change in position or reference value. r(t) = u(t)",
+            "**Ramp Input:** Represents a constant velocity input. r(t) = t\u00b7u(t)",
+            "**Parabolic Input:** Represents a constant acceleration input. r(t) = (t\u00b2/2)\u00b7u(t)"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part A: First Order System**"
+        },
+        {
+          "type": "text",
+          "content": "A first order system contains a single energy storage element and is characterized by one pole. The standard transfer function of a first order system is:"
+        },
+        {
+          "type": "equation",
+          "value": "G(s) = \\frac{K}{\\tau s + 1}"
+        },
+        {
+          "type": "text",
+          "content": "where K is the system gain and \u03c4 is the time constant. For an impulse input, the time response is:"
+        },
+        {
+          "type": "equation",
+          "value": "c(t) = \\frac{K}{\\tau} e^{-t/\\tau}"
+        },
+        {
+          "type": "text",
+          "content": "**Time Domain Specifications of First Order Systems:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Delay Time (td):** Time to reach 50% of final value. td \u2248 0.693\u03c4",
+            "**Rise Time (tr):** Time to rise from 10% to 90% of final value. tr \u2248 2.2\u03c4",
+            "**Settling Time (ts):** Time to remain within \u00b12% of final value. ts \u2248 4\u03c4",
+            "**Steady-State Value:** lim(t\u2192\u221e) c(t) = K",
+            "**Steady-State Error (ess):** ess = lim(t\u2192\u221e) [r(t) \u2212 c(t)]"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part B: Second Order System**"
+        },
+        {
+          "type": "text",
+          "content": "A second order system contains two energy storage elements and may exhibit oscillatory behavior depending on the damping ratio. The standard transfer function is:"
+        },
+        {
+          "type": "equation",
+          "value": "G(s) = \\frac{\\omega_n^2}{s^2 + 2\\zeta\\omega_n s + \\omega_n^2}"
+        },
+        {
+          "type": "text",
+          "content": "where \u03c9n is the natural frequency and \u03b6 is the damping ratio. The impulse response is:"
+        },
+        {
+          "type": "equation",
+          "value": "c(t) = \\frac{\\omega_n}{\\sqrt{1-\\zeta^2}} e^{-\\zeta\\omega_n t} \\sin(\\omega_d t)"
+        },
+        {
+          "type": "text",
+          "content": "where the damped natural frequency is:"
+        },
+        {
+          "type": "equation",
+          "value": "\\omega_d = \\omega_n \\sqrt{1 - \\zeta^2}"
+        },
+        {
+          "type": "text",
+          "content": "**Classification of Second Order Systems:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Undamped (\u03b6 = 0):** Sustained oscillations with constant amplitude.",
+            "**Underdamped (0 < \u03b6 < 1):** Oscillations with exponentially decaying amplitude.",
+            "**Critically Damped (\u03b6 = 1):** Fastest return to steady-state without oscillations.",
+            "**Overdamped (\u03b6 > 1):** Returns to steady-state without oscillations but more slowly."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Time Domain Specifications of Second Order Systems:**"
+        },
+        {
+          "type": "equation",
+          "value": "t_r = \\frac{\\pi - \\theta}{\\omega_d}, \\quad \\theta = \\tan^{-1}\\left(\\frac{\\sqrt{1-\\zeta^2}}{\\zeta}\\right)"
+        },
+        {
+          "type": "equation",
+          "value": "t_p = \\frac{\\pi}{\\omega_d}"
+        },
+        {
+          "type": "equation",
+          "value": "M_p = e^{-\\frac{\\pi\\zeta}{\\sqrt{1-\\zeta^2}}} \\times 100\\%"
+        },
+        {
+          "type": "equation",
+          "value": "t_s \\approx \\frac{4}{\\zeta\\omega_n} \\quad (2\\%\\text{ criterion})"
+        },
+        {
+          "type": "text",
+          "content": "**Part C: Third Order System**"
+        },
+        {
+          "type": "text",
+          "content": "A third order system contains three energy storage elements and exhibits more complex dynamics. The transfer function of a typical third order system is:"
+        },
+        {
+          "type": "equation",
+          "value": "G(s) = \\frac{K}{(s + a)(s^2 + 2\\zeta\\omega_n s + \\omega_n^2)}"
+        },
+        {
+          "type": "text",
+          "content": "The poles are s\u2081 = \u2212a and s\u2082,\u2083 = \u2212\u03b6\u03c9n \u00b1 j\u03c9n\u221a(1\u2212\u03b6\u00b2). If the real pole \u2212a lies far to the left of the imaginary axis (a \u226b \u03b6\u03c9n), the complex conjugate poles dominate the system response and the third order system can be approximated as a dominant second order system."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Define the transfer function of each system using MATLAB's tf() function.",
+            "Apply impulse, step, ramp, and parabolic inputs to each system.",
+            "Plot the time responses using MATLAB's impulse(), step(), and lsim() functions.",
+            "Extract time domain specifications (rise time, peak time, settling time, maximum overshoot, steady-state value) using MATLAB's stepinfo() function.",
+            "Identify system parameters (K, \u03c4 for first order; \u03c9n, \u03b6 for second order) by comparing with standard forms.",
+            "For the third order system, identify dominant poles and compare with second order approximation.",
+            "Verify the MATLAB results against theoretical calculations."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "The following six systems are analyzed:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "System 1 (First Order): G(s) = 3 / (0.6s + 1)",
+            "System 2 (Second Order \u2014 Undamped): G(s) = 121 / (s\u00b2 + 121)",
+            "System 3 (Second Order \u2014 Underdamped): G(s) = 144 / (s\u00b2 + 19.2s + 144)",
+            "System 4 (Second Order \u2014 Critically Damped): G(s) = 144 / (s\u00b2 + 24s + 144)",
+            "System 5 (Second Order \u2014 Overdamped): G(s) = 144 / (s\u00b2 + 72s + 144)",
+            "System 6 (Third Order): G(s) = 1 / [(s + 36)(s\u00b2 + 14s + 196)]"
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB simulations were performed for all six systems to obtain their impulse, step, ramp, and parabolic responses, and to compute time domain specifications. The system models used are shown in Figure 1."
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-system-models",
+          "caption": "Figure 1: System models used for time domain analysis"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**First Order System \u2014 G(s) = 3 / (0.6s + 1)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-first-order-matlab",
+          "caption": "Figure 2: MATLAB simulation output for first order system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Gain K",
+              "3"
+            ],
+            [
+              "Time Constant \u03c4",
+              "0.6"
+            ],
+            [
+              "Rise Time",
+              "1.3182 s"
+            ],
+            [
+              "Peak Time",
+              "4.3933 s"
+            ],
+            [
+              "Maximum Overshoot",
+              "0 %"
+            ],
+            [
+              "Settling Time",
+              "2.3472 s"
+            ],
+            [
+              "Steady-State Value",
+              "3"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Second Order System \u2014 Undamped (\u03b6 = 0) \u2014 G(s) = 121 / (s\u00b2 + 121)**"
+        },
+        {
+          "type": "text",
+          "content": "The undamped second order system exhibits sustained oscillations with constant amplitude. No energy dissipation is observed, and the system does not reach steady-state."
+        },
+        {
+          "type": "image",
+          "assetId": "fig-undamped-matlab",
+          "caption": "MATLAB simulation output for second order undamped system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "text",
+          "content": "**Second Order System \u2014 Underdamped (0 < \u03b6 < 1) \u2014 G(s) = 144 / (s\u00b2 + 19.2s + 144)**"
+        },
+        {
+          "type": "text",
+          "content": "The underdamped system exhibits oscillatory behavior with exponentially decaying amplitude. The response overshoots the steady-state value before settling."
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-underdamped-matlab",
+          "caption": "Figure 3: MATLAB simulation output for second order underdamped system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Natural Frequency \u03c9n",
+              "12"
+            ],
+            [
+              "Damping Ratio \u03b6",
+              "0.8"
+            ],
+            [
+              "Rise Time",
+              "0.20566 s"
+            ],
+            [
+              "Peak Time",
+              "0.43653 s"
+            ],
+            [
+              "Maximum Overshoot",
+              "1.5165 %"
+            ],
+            [
+              "Settling Time",
+              "0.31302 s"
+            ],
+            [
+              "Steady-State Value",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Second Order System \u2014 Critically Damped (\u03b6 = 1) \u2014 G(s) = 144 / (s\u00b2 + 24s + 144)**"
+        },
+        {
+          "type": "text",
+          "content": "The critically damped system returns to steady-state in the minimum possible time without oscillations. It represents the fastest non-oscillatory response."
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-critically-damped-matlab",
+          "caption": "Figure 4: MATLAB simulation output for second order critically damped system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Natural Frequency \u03c9n",
+              "12"
+            ],
+            [
+              "Damping Ratio \u03b6",
+              "1"
+            ],
+            [
+              "Rise Time",
+              "0.27986 s"
+            ],
+            [
+              "Peak Time",
+              "0.99395 s"
+            ],
+            [
+              "Maximum Overshoot",
+              "0 %"
+            ],
+            [
+              "Settling Time",
+              "0.48618 s"
+            ],
+            [
+              "Steady-State Value",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Second Order System \u2014 Overdamped (\u03b6 > 1) \u2014 G(s) = 144 / (s\u00b2 + 72s + 144)**"
+        },
+        {
+          "type": "text",
+          "content": "The overdamped system does not exhibit oscillations and returns to steady-state slowly compared to the critically damped case due to the presence of two real and distinct poles."
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-overdamped-matlab",
+          "caption": "Figure 5: MATLAB simulation output for second order overdamped system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Natural Frequency \u03c9n",
+              "12"
+            ],
+            [
+              "Damping Ratio \u03b6",
+              "3"
+            ],
+            [
+              "Rise Time",
+              "1.0675 s"
+            ],
+            [
+              "Peak Time",
+              "3.5564 s"
+            ],
+            [
+              "Maximum Overshoot",
+              "0 %"
+            ],
+            [
+              "Settling Time",
+              "1.9147 s"
+            ],
+            [
+              "Steady-State Value",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Third Order System \u2014 G(s) = 1 / [(s + 36)(s\u00b2 + 14s + 196)]**"
+        },
+        {
+          "type": "text",
+          "content": "The third order system consists of an additional real pole (s\u2081 = \u221236) along with complex conjugate poles (s\u2082,\u2083 \u2248 \u22127 \u00b1 j12.12). The complex poles are dominant. The dominant pole approximation was used to analyze the transient response."
+        },
+        {
+          "type": "image",
+          "assetId": "fig6-third-order-matlab",
+          "caption": "Figure 6: MATLAB simulation output for third order system (Impulse, Step, Ramp, Parabolic responses)"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Natural Frequency \u03c9n (dominant)",
+              "84.2378"
+            ],
+            [
+              "Damping Ratio \u03b6 (dominant)",
+              "2.9915"
+            ],
+            [
+              "Rise Time",
+              "0.11707 s"
+            ],
+            [
+              "Peak Time",
+              "0.25657 s"
+            ],
+            [
+              "Maximum Overshoot",
+              "16.2929 %"
+            ],
+            [
+              "Settling Time",
+              "0.57685 s"
+            ],
+            [
+              "Steady-State Value",
+              "0.00014172"
+            ]
+          ]
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**System 1 \u2014 First Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_1(s) = \\frac{3}{0.6s + 1} \\Rightarrow K = 3,\\; \\tau = 0.6"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7-system1-handwritten",
+          "caption": "Figure 7: Handwritten calculations for System 1 (impulse, step, ramp, parabolic responses and time domain specs)"
+        },
+        {
+          "type": "text",
+          "content": "Key results: td = 0.693 \u00d7 0.6 = 0.4158 s, tr = 2.2 \u00d7 0.6 = 1.32 s, ts = 4\u03c4 = 2.4 s, steady-state value = 3, steady-state error = \u22124 (for ramp input)."
+        },
+        {
+          "type": "text",
+          "content": "**System 2 \u2014 Undamped Second Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_2(s) = \\frac{121}{s^2 + 121} \\Rightarrow \\omega_n^2 = 121 \\Rightarrow \\omega_n = 11,\\; 2\\zeta\\omega_n = 0 \\Rightarrow \\zeta = 0"
+        },
+        {
+          "type": "image",
+          "assetId": "fig8-system2-handwritten",
+          "caption": "Figure 8: Handwritten calculations for System 2 (impulse, step, ramp, parabolic responses)"
+        },
+        {
+          "type": "text",
+          "content": "**System 3 \u2014 Underdamped Second Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_3(s) = \\frac{144}{s^2 + 19.2s + 144} \\Rightarrow \\omega_n = 12,\\; 2\\zeta\\omega_n = 19.2 \\Rightarrow \\zeta = 0.8"
+        },
+        {
+          "type": "image",
+          "assetId": "fig9-system3-handwritten-1",
+          "caption": "Figure 9: Handwritten calculations for System 3 \u2014 Part 1 (impulse, step, ramp responses)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig10-system3-handwritten-2",
+          "caption": "Figure 10: Handwritten calculations for System 3 \u2014 Part 2 (parabolic response)"
+        },
+        {
+          "type": "text",
+          "content": "**System 4 \u2014 Critically Damped Second Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_4(s) = \\frac{144}{s^2 + 24s + 144} \\Rightarrow 2\\zeta\\omega_n = 24 \\Rightarrow \\zeta = 1"
+        },
+        {
+          "type": "image",
+          "assetId": "fig11-system4-handwritten-1",
+          "caption": "Figure 11: Handwritten calculations for System 4 \u2014 Part 1"
+        },
+        {
+          "type": "image",
+          "assetId": "fig12-system4-handwritten-2",
+          "caption": "Figure 12: Handwritten calculations for System 4 \u2014 Part 2"
+        },
+        {
+          "type": "text",
+          "content": "**System 5 \u2014 Overdamped Second Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_5(s) = \\frac{144}{s^2 + 72s + 144} \\Rightarrow 2\\zeta\\omega_n = 72 \\Rightarrow \\zeta = 3"
+        },
+        {
+          "type": "text",
+          "content": "Poles: s = \u22122.06, s = \u221269.94 (factored as (s + 2.06)(s + 69.94))."
+        },
+        {
+          "type": "image",
+          "assetId": "fig13-system5-handwritten-1",
+          "caption": "Figure 13: Handwritten calculations for System 5 \u2014 Part 1"
+        },
+        {
+          "type": "image",
+          "assetId": "fig14-system5-handwritten-2",
+          "caption": "Figure 14: Handwritten calculations for System 5 \u2014 Part 2"
+        },
+        {
+          "type": "text",
+          "content": "**System 6 \u2014 Third Order**"
+        },
+        {
+          "type": "equation",
+          "value": "G_6(s) = \\frac{1}{(s+36)(s^2+14s+196)}"
+        },
+        {
+          "type": "text",
+          "content": "Poles: s\u2081 = \u221236, s\u2082,\u2083 = \u22127 \u00b1 j\u221a147 \u2248 \u22127 \u00b1 j12.12. The complex conjugate poles s\u2082, s\u2083 are dominant (closer to imaginary axis)."
+        },
+        {
+          "type": "image",
+          "assetId": "fig15-system6-handwritten-1",
+          "caption": "Figure 15: Handwritten calculations for System 6 \u2014 Part 1 (impulse response)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig16-system6-handwritten-2",
+          "caption": "Figure 16: Handwritten calculations for System 6 \u2014 Part 2 (step, ramp, parabolic responses)"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The time domain specifications obtained from MATLAB for all systems are summarized below."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "System",
+            "Transfer Function",
+            "Type",
+            "\u03c9n / K",
+            "\u03b6 / \u03c4",
+            "Rise Time (s)",
+            "Peak Time (s)",
+            "Max Overshoot (%)",
+            "Settling Time (s)",
+            "SS Value"
+          ],
+          "rows": [
+            [
+              "System 1",
+              "3 / (0.6s+1)",
+              "1st Order",
+              "K=3",
+              "\u03c4=0.6",
+              "1.3182",
+              "4.3933",
+              "0",
+              "2.3472",
+              "3"
+            ],
+            [
+              "System 2",
+              "121 / (s\u00b2+121)",
+              "2nd \u2014 Undamped",
+              "11",
+              "0",
+              "\u2014",
+              "\u2014",
+              "\u2014",
+              "\u221e",
+              "1 (oscillating)"
+            ],
+            [
+              "System 3",
+              "144 / (s\u00b2+19.2s+144)",
+              "2nd \u2014 Underdamped",
+              "12",
+              "0.8",
+              "0.20566",
+              "0.43653",
+              "1.5165",
+              "0.31302",
+              "1"
+            ],
+            [
+              "System 4",
+              "144 / (s\u00b2+24s+144)",
+              "2nd \u2014 Critically Damped",
+              "12",
+              "1",
+              "0.27986",
+              "0.99395",
+              "0",
+              "0.48618",
+              "1"
+            ],
+            [
+              "System 5",
+              "144 / (s\u00b2+72s+144)",
+              "2nd \u2014 Overdamped",
+              "12",
+              "3",
+              "1.0675",
+              "3.5564",
+              "0",
+              "1.9147",
+              "1"
+            ],
+            [
+              "System 6",
+              "1 / [(s+36)(s\u00b2+14s+196)]",
+              "3rd Order",
+              "84.24",
+              "2.99",
+              "0.11707",
+              "0.25657",
+              "16.2929",
+              "0.57685",
+              "0.000142"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "For second order systems, the effect of the damping ratio on system behavior was clearly observed. As \u03b6 increases from 0 to values greater than 1, the system transitions from sustained oscillations (undamped) \u2192 oscillatory decay (underdamped) \u2192 fastest non-oscillatory response (critically damped) \u2192 sluggish non-oscillatory response (overdamped). The third order system analysis demonstrated the dominant pole concept, where the overall transient response was primarily governed by the poles closest to the imaginary axis."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment on Time Domain Analysis of First, Second, and Third Order Systems."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q: What are standard test inputs and why are they used to evaluate control systems rather than the actual operating inputs?**\n\n**A:** Standard test inputs are mathematically simple, well-defined signals \u2014 impulse \u03b4(t), step u(t), ramp t\u00b7u(t), and parabolic (t\u00b2/2)\u00b7u(t) \u2014 that represent idealized physical situations such as sudden shocks, sudden changes in setpoint, constant velocity commands, and constant acceleration commands. They are used because they are easy to generate mathematically and in hardware, allow direct comparison of system performance across different designs, and their responses completely characterize the system's dynamic behavior. Since the Laplace transform of these signals (1, 1/s, 1/s\u00b2, 1/s\u00b3) are simple rational functions, the resulting output expressions are analytically tractable, enabling extraction of time domain specifications such as rise time, settling time, and overshoot.",
+            "**Q: For a first order system G(s) = K/(\u03c4s + 1), how do the gain K and time constant \u03c4 individually affect the step response?**\n\n**A:** The gain K determines the steady-state output value \u2014 the step response settles at K (for a unit step input), so increasing K raises the final value proportionally. It does not affect the speed of response. The time constant \u03c4 governs the speed of the transient response \u2014 the system reaches 63.2% of its final value at t = \u03c4, and is considered settled (within 2% of final value) at t \u2248 4\u03c4. A smaller \u03c4 means a faster response (shorter rise time tr \u2248 2.2\u03c4 and settling time ts \u2248 4\u03c4) but does not affect steady-state value. A first order system never exhibits overshoot regardless of K or \u03c4, since it has a single real pole and no oscillatory modes.",
+            "**Q: Explain the physical significance of the damping ratio \u03b6 in a second order system. What value of \u03b6 gives the best balance between speed and overshoot?**\n\n**A:** The damping ratio \u03b6 quantifies the degree of energy dissipation in the system relative to the restoring force. It determines whether the system's response is oscillatory. \u03b6 = 0 gives pure undamped oscillation (no energy loss), 0 < \u03b6 < 1 gives underdamped oscillatory response with exponentially decaying amplitude, \u03b6 = 1 gives critically damped response (fastest settling without overshoot), and \u03b6 > 1 gives overdamped sluggish non-oscillatory response. In practical control system design, \u03b6 = 0.707 (1/\u221a2) is often considered optimal \u2014 it gives a maximum overshoot of approximately 4.3%, a fast rise time, and good settling behavior. This is confirmed in this experiment: System 3 (\u03b6 = 0.8) shows only 1.5165% overshoot with a fast settling time of 0.313 s.",
+            "**Q: In the undamped second order system (System 2, \u03b6 = 0), the step response never settles. How does this appear in the MATLAB results and what does it imply about system stability?**\n\n**A:** For System 2 G(s) = 121/(s\u00b2 + 121), setting \u03b6 = 0 places both poles on the imaginary axis at s = \u00b1j11. The step response is y(t) = 1 \u2212 cos(11t), which oscillates indefinitely between 0 and 2 with constant amplitude and never converges to a steady-state value. In MATLAB, the stepinfo() function cannot return a finite settling time or steady-state value. The system is marginally stable \u2014 it neither grows unbounded (unstable) nor decays to steady-state (stable). In practice, any small perturbation or nonlinearity would cause the response to either diverge or decay depending on system imperfections, making marginally stable systems unsuitable for most control applications.",
+            "**Q: How do you determine the time domain specifications (rise time, peak time, settling time, maximum overshoot) for a second order underdamped system analytically?**\n\n**A:** For a second order underdamped system with natural frequency \u03c9n and damping ratio \u03b6, the damped natural frequency is \u03c9d = \u03c9n\u221a(1\u2212\u03b6\u00b2). The rise time is tr = (\u03c0 \u2212 \u03b8)/\u03c9d where \u03b8 = tan\u207b\u00b9(\u221a(1\u2212\u03b6\u00b2)/\u03b6). The peak time is the time at which the first overshoot occurs: tp = \u03c0/\u03c9d. The maximum percent overshoot is Mp = exp(\u2212\u03c0\u03b6/\u221a(1\u2212\u03b6\u00b2)) \u00d7 100%. The settling time (2% criterion) is ts \u2248 4/(\u03b6\u03c9n). For System 3 (\u03c9n = 12, \u03b6 = 0.8): \u03c9d = 12\u221a(1\u22120.64) = 7.2, tp = \u03c0/7.2 = 0.436 s, Mp = exp(\u2212\u03c0\u00d70.8/0.6)\u00d7100% \u2248 1.52%, ts \u2248 4/(0.8\u00d712) = 0.417 s, all consistent with the MATLAB results.",
+            "**Q: What is the dominant pole concept in a third order system and when is the approximation valid?**\n\n**A:** In a third order system with poles s\u2081 = \u2212a (real) and s\u2082,\u2083 = \u2212\u03b6\u03c9n \u00b1 j\u03c9d (complex conjugate), the dominant poles are those closest to the imaginary axis, as they produce the slowest-decaying transient components. If the real pole satisfies a \u226b \u03b6\u03c9n (typically a > 5\u03b6\u03c9n), the contribution of the e^(\u2212at) term decays much faster than the oscillatory component e^(\u2212\u03b6\u03c9nt), making the third order system behave approximately like the dominant second order subsystem. In System 6 of this experiment G(s) = 1/[(s+36)(s\u00b2+14s+196)], the real pole is at s = \u221236 while the complex poles are at s \u2248 \u22127 \u00b1 j12.12. Since 36 \u226b 7, the dominant pole approximation is valid and the transient response characteristics are primarily determined by the complex conjugate poles.",
+            "**Q: Why does the ramp response of a type-0 system (no integrators in open loop) have a non-zero steady-state error, while the step response has zero steady-state error?**\n\n**A:** The steady-state error for a closed-loop system depends on the system type (number of open-loop integrators) and the type of input. For a type-0 system (zero integrators), the position error constant Kp = lim(s\u21920) G(s) is finite, giving zero steady-state error for a step input. However, the velocity error constant Kv = lim(s\u21920) s\u00b7G(s) = 0 for a type-0 system, meaning the steady-state error for a ramp input is ess = 1/Kv \u2192 \u221e. In this experiment, System 1 G(s) = 3/(0.6s+1) is a type-0 first order system: its step response settles at K = 3 with zero steady-state error (for a scaled step), but its ramp response shows a growing error, consistent with the calculated steady-state error of \u22124 seen in the handwritten calculations.",
+            "**Q: Compare the step responses of the critically damped and overdamped systems (Systems 4 and 5) in terms of rise time, settling time, and overshoot. Which is preferred in practice and why?**\n\n**A:** From the MATLAB results: System 4 (\u03b6 = 1, critically damped) has rise time = 0.280 s, settling time = 0.486 s, and 0% overshoot. System 5 (\u03b6 = 3, overdamped) has rise time = 1.068 s, settling time = 1.915 s, and 0% overshoot. Both have zero overshoot, but the critically damped system is approximately 4\u00d7 faster in rise time and 4\u00d7 faster in settling. In practice, the critically damped response is generally preferred when zero overshoot is required, as it provides the fastest possible settling without any oscillation. Overdamped responses are chosen only in applications where even critically damped transients are too aggressive, such as in precision positioning systems where mechanical resonance must be avoided."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, the time domain responses of first, second, and third order linear time-invariant (LTI) systems were analyzed using standard test inputs such as impulse, step, ramp, and parabolic signals. The theoretical behavior of each system was studied using standard transfer function models, and key time domain specifications including rise time, peak time, settling time, and maximum overshoot were evaluated. The responses clearly demonstrated how system order and pole locations influence transient and steady-state characteristics."
+        },
+        {
+          "type": "text",
+          "content": "For second order systems, the effect of the damping ratio on system behavior was clearly observed. The undamped system exhibited sustained oscillations, while the underdamped system showed oscillatory behavior with decaying amplitude and measurable overshoot. The critically damped system provided the fastest non-oscillatory response, and the overdamped system returned to steady-state more slowly without oscillations. The third order system analysis further illustrated the dominant pole concept, where the overall transient response was primarily governed by the poles closest to the imaginary axis."
+        },
+        {
+          "type": "text",
+          "content": "The MATLAB simulations closely matched the theoretical predictions, validating the analytical calculations and reinforcing the relationship between system parameters and time domain performance. Overall, the experiment provided a comprehensive understanding of how system order and damping characteristics affect dynamic response, stability, and performance in control systems."
+        }
+      ]
+    }
+  }
+}

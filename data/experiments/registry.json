@@ -358,12 +358,12 @@
           "status": "Simulation Oriented",
           "completeness": 1
         },
-        {
+                {
           "id": "4",
-          "title": "Experiment 4",
+          "title": "Time Domain Analysis of First, Second and Third Order Systems",
           "fileName": "exp-4.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Simulation Oriented",
+          "completeness": 1
         },
         {
           "id": "5",

@@ -1,0 +1,87 @@
+{
+  "fig1-system-models": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig1-system-models.png",
+    "description": "System models used for time domain analysis"
+  },
+  "fig2-first-order-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig2-first-order-matlab.png",
+    "description": "MATLAB simulation output for first order system"
+  },
+  "fig-undamped-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig-undamped-matlab.png",
+    "description": "MATLAB simulation output for second order undamped system"
+  },
+  "fig3-underdamped-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig3-underdamped-matlab.png",
+    "description": "MATLAB simulation output for second order underdamped system"
+  },
+  "fig4-critically-damped-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4-critically-damped-matlab.png",
+    "description": "MATLAB simulation output for second order critically damped system"
+  },
+  "fig5-overdamped-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5-overdamped-matlab.png",
+    "description": "MATLAB simulation output for second order overdamped system"
+  },
+  "fig6-third-order-matlab": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig6-third-order-matlab.png",
+    "description": "MATLAB simulation output for third order system"
+  },
+  "fig7-system1-handwritten": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7-system1-handwritten.png",
+    "description": "Handwritten calculations for System 1"
+  },
+  "fig8-system2-handwritten": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig8-system2-handwritten.png",
+    "description": "Handwritten calculations for System 2"
+  },
+  "fig9-system3-handwritten-1": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig9-system3-handwritten-1.png",
+    "description": "Handwritten calculations for System 3 \u2014 Part 1"
+  },
+  "fig10-system3-handwritten-2": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig10-system3-handwritten-2.png",
+    "description": "Handwritten calculations for System 3 \u2014 Part 2"
+  },
+  "fig11-system4-handwritten-1": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig11-system4-handwritten-1.png",
+    "description": "Handwritten calculations for System 4 \u2014 Part 1"
+  },
+  "fig12-system4-handwritten-2": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig12-system4-handwritten-2.png",
+    "description": "Handwritten calculations for System 4 \u2014 Part 2"
+  },
+  "fig13-system5-handwritten-1": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig13-system5-handwritten-1.png",
+    "description": "Handwritten calculations for System 5 \u2014 Part 1"
+  },
+  "fig14-system5-handwritten-2": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig14-system5-handwritten-2.png",
+    "description": "Handwritten calculations for System 5 \u2014 Part 2"
+  },
+  "fig15-system6-handwritten-1": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig15-system6-handwritten-1.png",
+    "description": "Handwritten calculations for System 6 \u2014 Part 1"
+  },
+  "fig16-system6-handwritten-2": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig16-system6-handwritten-2.png",
+    "description": "Handwritten calculations for System 6 \u2014 Part 2"
+  }
+}
