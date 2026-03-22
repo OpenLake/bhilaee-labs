@@ -500,8 +500,23 @@
         },
         {
           "type": "image",
-          "assetId": "fig5-overdamped-matlab",
-          "caption": "Figure 5: MATLAB simulation output for second order overdamped system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig6a-overdamped-impulse",
+          "caption": "Impulse Response for overdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6b-overdamped-step",
+          "caption": "Step Response for overdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6c-overdamped-ramp",
+          "caption": "Ramp Response for overdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6d-overdamped-parabolic",
+          "caption": "Parabolic Response for overdamped second order system"
         },
         {
           "type": "table",

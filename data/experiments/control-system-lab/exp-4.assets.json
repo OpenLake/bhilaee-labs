@@ -1,9 +1,4 @@
 {
-  "fig5-overdamped-matlab": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig5-overdamped-matlab.png",
-    "description": "MATLAB simulation output for second order overdamped system"
-  },
   "fig6-third-order-matlab": {
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig6-third-order-matlab.png",
@@ -103,5 +98,25 @@
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig5e-critically-damped-specs.png",
     "description": "Step Response Specifications for critically damped system"
+  },
+  "fig6a-overdamped-impulse": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig6a-overdamped-impulse.png",
+    "description": "Impulse Response for overdamped second order system"
+  },
+  "fig6b-overdamped-step": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig6b-overdamped-step.png",
+    "description": "Step Response for overdamped second order system"
+  },
+  "fig6c-overdamped-ramp": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig6c-overdamped-ramp.png",
+    "description": "Ramp Response for overdamped second order system"
+  },
+  "fig6d-overdamped-parabolic": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig6d-overdamped-parabolic.png",
+    "description": "Parabolic Response for overdamped second order system"
   }
 }
