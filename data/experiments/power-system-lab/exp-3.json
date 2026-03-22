@@ -204,47 +204,8 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": true,
-      "content": [
-        {
-          "type": "text",
-          "content": "**Flowchart for Newton-Raphson Method**"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "START",
-            "Input System Data: Bus data (P, Q, V, δ), Ybus matrix",
-            "Initialize: Vi = 1.0∠0, Set k = 0",
-            "Calculate P_calc_i, Q_calc_i for all buses",
-            "Calculate Mismatches: ΔPi = P_spec_i − P_calc_i, ΔQi = Q_spec_i − Q_calc_i",
-            "Check Convergence: if |ΔP| < ε and |ΔQ| < ε → Print Results and END",
-            "Form Jacobian Matrix J = [∂P/∂δ, ∂P/∂V; ∂Q/∂δ, ∂Q/∂V]",
-            "Solve: J · [Δδ; ΔV] = [ΔP; ΔQ]",
-            "Update Values: δ(k+1) = δ(k) + Δδ, V(k+1) = V(k) + ΔV",
-            "Set k = k + 1 and return to Step 4"
-          ]
-        },
-        {
-          "type": "text",
-          "content": "**Three-Bus Power System — Q11**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig-q11-three-bus-system",
-          "caption": "Three-bus power system for Q11 (V1 = 1.05+j0.0, loads and generator at buses 2 and 3)"
-        },
-        {
-          "type": "text",
-          "content": "**Three-Bus Power System — Q8**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig9-three-bus-q8",
-          "caption": "Figure 9: Three-bus power system for Question 8"
-        }
-      ]
+      "isApplicable": false,
+      "content": []
     },
     "procedure": {
       "id": "procedure",
@@ -662,13 +623,13 @@
           "content": "**Q11.** For the power system shown in the following figure, the bus admittance matrix Ybus is given by:"
         },
         {
-          "type": "equation",
-          "value": "Y_{bus} = \\begin{bmatrix} 3.05 - j9.0 & -2.0 + j6.0 & -1.0 + j3.0 \\\\ -2.0 + j6.0 & 2.5 - j7.5 & -0.5 + j1.5 \\\\ -1.0 + j3.0 & -0.5 + j1.5 & 1.5 - j4.5 \\end{bmatrix}"
-        },
-        {
           "type": "image",
           "assetId": "fig-q11-three-bus-system",
           "caption": "Three-bus power system for Q11"
+        },
+        {
+          "type": "equation",
+          "value": "Y_{bus} = \\begin{bmatrix} 3.05 - j9.0 & -2.0 + j6.0 & -1.0 + j3.0 \\\\ -2.0 + j6.0 & 2.5 - j7.5 & -0.5 + j1.5 \\\\ -1.0 + j3.0 & -0.5 + j1.5 & 1.5 - j4.5 \\end{bmatrix}"
         },
         {
           "type": "text",
@@ -693,7 +654,17 @@
         },
         {
           "type": "text",
-          "content": "Thus: Bus 1: Slack, Bus 2: PQ, Bus 3: PV. A MATLAB code was implemented using the given Ybus to compute P_calc, Q_calc, and the mismatch vector at the initial flat-start estimate. Refer to Figure 16 for the MATLAB code and Figure 17 for the output."
+          "content": "Thus: Bus 1: Slack, Bus 2: PQ, Bus 3: PV. A MATLAB code was implemented using the given Ybus to compute P_calc, Q_calc, and the mismatch vector at the initial flat-start estimate."
+        },
+        {
+          "type": "image",
+          "assetId": "fig16-matlab-nr-q11",
+          "caption": "Figure 16: MATLAB Code for Q11 Calculation"
+        },
+        {
+          "type": "image",
+          "assetId": "fig17-output-nr-q11",
+          "caption": "Figure 17: MATLAB Output for Q11 Calculation"
         }
       ]
     },
