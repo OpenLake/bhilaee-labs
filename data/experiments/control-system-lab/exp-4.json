@@ -360,8 +360,28 @@
         },
         {
           "type": "image",
-          "assetId": "fig3-underdamped-matlab",
-          "caption": "Figure 3: MATLAB simulation output for second order underdamped system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig4a-underdamped-impulse",
+          "caption": "Impulse Response for underdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4b-underdamped-step",
+          "caption": "Step Response for underdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4c-underdamped-ramp",
+          "caption": "Ramp Response for underdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4d-underdamped-parabolic",
+          "caption": "Parabolic Response for underdamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4e-underdamped-specs",
+          "caption": "Step Response Specifications for underdamped system"
         },
         {
           "type": "table",

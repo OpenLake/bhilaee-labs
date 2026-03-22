@@ -1,9 +1,4 @@
 {
-  "fig3-underdamped-matlab": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig3-underdamped-matlab.png",
-    "description": "MATLAB simulation output for second order underdamped system"
-  },
   "fig4-critically-damped-matlab": {
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig4-critically-damped-matlab.png",
@@ -63,5 +58,30 @@
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig3d-undamped-parabolic.png",
     "description": "Parabolic Response for undamped second order system"
+  },
+  "fig4a-underdamped-impulse": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4a-underdamped-impulse.png",
+    "description": "Impulse Response for underdamped second order system"
+  },
+  "fig4b-underdamped-step": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4b-underdamped-step.png",
+    "description": "Step Response for underdamped second order system"
+  },
+  "fig4c-underdamped-ramp": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4c-underdamped-ramp.png",
+    "description": "Ramp Response for underdamped second order system"
+  },
+  "fig4d-underdamped-parabolic": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4d-underdamped-parabolic.png",
+    "description": "Parabolic Response for underdamped second order system"
+  },
+  "fig4e-underdamped-specs": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig4e-underdamped-specs.png",
+    "description": "Step Response Specifications for underdamped system"
   }
 }
