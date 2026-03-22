@@ -2,12 +2,12 @@
   "id": "exp-4",
   "title": "Time Domain Analysis of First, Second and Third Order Systems",
   "labId": "control-system-lab",
-  "status": "Simulation Oriented",
+  "status": "Software Oriented",
   "meta": {
     "simulationId": "",
     "simulationType": "MATLAB",
-    "experimentType": "simulation",
-    "status": "simulation-oriented",
+    "experimentType": "software",
+    "status": "software-oriented",
     "difficulty": "intermediate",
     "estimatedTimeMinutes": 120,
     "version": "2.0",
@@ -805,21 +805,43 @@
       "content": [
         {
           "type": "text",
-          "content": "**Note:** The following questions are intended to evaluate conceptual understanding arising from this experiment on Time Domain Analysis of First, Second, and Third Order Systems."
+          "content": "**Q:** What is the effect of damping ratio ($\\zeta$) on the maximum overshoot and settling time of a second-order system?"
         },
         {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "**Q: What are standard test inputs and why are they used to evaluate control systems rather than the actual operating inputs?**\n\n**A:** Standard test inputs are mathematically simple, well-defined signals \u2014 impulse \u03b4(t), step u(t), ramp t\u00b7u(t), and parabolic (t\u00b2/2)\u00b7u(t) \u2014 that represent idealized physical situations such as sudden shocks, sudden changes in setpoint, constant velocity commands, and constant acceleration commands. They are used because they are easy to generate mathematically and in hardware, allow direct comparison of system performance across different designs, and their responses completely characterize the system's dynamic behavior. Since the Laplace transform of these signals (1, 1/s, 1/s\u00b2, 1/s\u00b3) are simple rational functions, the resulting output expressions are analytically tractable, enabling extraction of time domain specifications such as rise time, settling time, and overshoot.",
-            "**Q: For a first order system G(s) = K/(\u03c4s + 1), how do the gain K and time constant \u03c4 individually affect the step response?**\n\n**A:** The gain K determines the steady-state output value \u2014 the step response settles at K (for a unit step input), so increasing K raises the final value proportionally. It does not affect the speed of response. The time constant \u03c4 governs the speed of the transient response \u2014 the system reaches 63.2% of its final value at t = \u03c4, and is considered settled (within 2% of final value) at t \u2248 4\u03c4. A smaller \u03c4 means a faster response (shorter rise time tr \u2248 2.2\u03c4 and settling time ts \u2248 4\u03c4) but does not affect steady-state value. A first order system never exhibits overshoot regardless of K or \u03c4, since it has a single real pole and no oscillatory modes.",
-            "**Q: Explain the physical significance of the damping ratio \u03b6 in a second order system. What value of \u03b6 gives the best balance between speed and overshoot?**\n\n**A:** The damping ratio \u03b6 quantifies the degree of energy dissipation in the system relative to the restoring force. It determines whether the system's response is oscillatory. \u03b6 = 0 gives pure undamped oscillation (no energy loss), 0 < \u03b6 < 1 gives underdamped oscillatory response with exponentially decaying amplitude, \u03b6 = 1 gives critically damped response (fastest settling without overshoot), and \u03b6 > 1 gives overdamped sluggish non-oscillatory response. In practical control system design, \u03b6 = 0.707 (1/\u221a2) is often considered optimal \u2014 it gives a maximum overshoot of approximately 4.3%, a fast rise time, and good settling behavior. This is confirmed in this experiment: System 3 (\u03b6 = 0.8) shows only 1.5165% overshoot with a fast settling time of 0.313 s.",
-            "**Q: In the undamped second order system (System 2, \u03b6 = 0), the step response never settles. How does this appear in the MATLAB results and what does it imply about system stability?**\n\n**A:** For System 2 G(s) = 121/(s\u00b2 + 121), setting \u03b6 = 0 places both poles on the imaginary axis at s = \u00b1j11. The step response is y(t) = 1 \u2212 cos(11t), which oscillates indefinitely between 0 and 2 with constant amplitude and never converges to a steady-state value. In MATLAB, the stepinfo() function cannot return a finite settling time or steady-state value. The system is marginally stable \u2014 it neither grows unbounded (unstable) nor decays to steady-state (stable). In practice, any small perturbation or nonlinearity would cause the response to either diverge or decay depending on system imperfections, making marginally stable systems unsuitable for most control applications.",
-            "**Q: How do you determine the time domain specifications (rise time, peak time, settling time, maximum overshoot) for a second order underdamped system analytically?**\n\n**A:** For a second order underdamped system with natural frequency \u03c9n and damping ratio \u03b6, the damped natural frequency is \u03c9d = \u03c9n\u221a(1\u2212\u03b6\u00b2). The rise time is tr = (\u03c0 \u2212 \u03b8)/\u03c9d where \u03b8 = tan\u207b\u00b9(\u221a(1\u2212\u03b6\u00b2)/\u03b6). The peak time is the time at which the first overshoot occurs: tp = \u03c0/\u03c9d. The maximum percent overshoot is Mp = exp(\u2212\u03c0\u03b6/\u221a(1\u2212\u03b6\u00b2)) \u00d7 100%. The settling time (2% criterion) is ts \u2248 4/(\u03b6\u03c9n). For System 3 (\u03c9n = 12, \u03b6 = 0.8): \u03c9d = 12\u221a(1\u22120.64) = 7.2, tp = \u03c0/7.2 = 0.436 s, Mp = exp(\u2212\u03c0\u00d70.8/0.6)\u00d7100% \u2248 1.52%, ts \u2248 4/(0.8\u00d712) = 0.417 s, all consistent with the MATLAB results.",
-            "**Q: What is the dominant pole concept in a third order system and when is the approximation valid?**\n\n**A:** In a third order system with poles s\u2081 = \u2212a (real) and s\u2082,\u2083 = \u2212\u03b6\u03c9n \u00b1 j\u03c9d (complex conjugate), the dominant poles are those closest to the imaginary axis, as they produce the slowest-decaying transient components. If the real pole satisfies a \u226b \u03b6\u03c9n (typically a > 5\u03b6\u03c9n), the contribution of the e^(\u2212at) term decays much faster than the oscillatory component e^(\u2212\u03b6\u03c9nt), making the third order system behave approximately like the dominant second order subsystem. In System 6 of this experiment G(s) = 1/[(s+36)(s\u00b2+14s+196)], the real pole is at s = \u221236 while the complex poles are at s \u2248 \u22127 \u00b1 j12.12. Since 36 \u226b 7, the dominant pole approximation is valid and the transient response characteristics are primarily determined by the complex conjugate poles.",
-            "**Q: Why does the ramp response of a type-0 system (no integrators in open loop) have a non-zero steady-state error, while the step response has zero steady-state error?**\n\n**A:** The steady-state error for a closed-loop system depends on the system type (number of open-loop integrators) and the type of input. For a type-0 system (zero integrators), the position error constant Kp = lim(s\u21920) G(s) is finite, giving zero steady-state error for a step input. However, the velocity error constant Kv = lim(s\u21920) s\u00b7G(s) = 0 for a type-0 system, meaning the steady-state error for a ramp input is ess = 1/Kv \u2192 \u221e. In this experiment, System 1 G(s) = 3/(0.6s+1) is a type-0 first order system: its step response settles at K = 3 with zero steady-state error (for a scaled step), but its ramp response shows a growing error, consistent with the calculated steady-state error of \u22124 seen in the handwritten calculations.",
-            "**Q: Compare the step responses of the critically damped and overdamped systems (Systems 4 and 5) in terms of rise time, settling time, and overshoot. Which is preferred in practice and why?**\n\n**A:** From the MATLAB results: System 4 (\u03b6 = 1, critically damped) has rise time = 0.280 s, settling time = 0.486 s, and 0% overshoot. System 5 (\u03b6 = 3, overdamped) has rise time = 1.068 s, settling time = 1.915 s, and 0% overshoot. Both have zero overshoot, but the critically damped system is approximately 4\u00d7 faster in rise time and 4\u00d7 faster in settling. In practice, the critically damped response is generally preferred when zero overshoot is required, as it provides the fastest possible settling without any oscillation. Overdamped responses are chosen only in applications where even critically damped transients are too aggressive, such as in precision positioning systems where mechanical resonance must be avoided."
-          ]
+          "type": "text",
+          "content": "**A:** As the damping ratio $\\zeta$ decreases from 1 towards 0, the maximum overshoot increases significantly. However, a highly underdamped system may have a longer settling time due to sustained oscillations, whereas a heavily overdamped system ($\\zeta > 1$) approaches the steady state too slowly, also increasing settling time. The optimal damping ratio for minimal settling time without excessive overshoot is typically around $\\zeta = 0.7$."
+        },
+        {
+          "type": "text",
+          "content": "**Q:** Why is a critically damped system preferred in applications like analog meter movements or door closers?"
+        },
+        {
+          "type": "text",
+          "content": "**A:** A critically damped system provides the fastest possible response without any overshoot or oscillation. This is strictly preferred when an overshoot could cause mechanical damage, reading inaccuracies (in meters), or slamming (in door closers)."
+        },
+        {
+          "type": "text",
+          "content": "**Q:** Explain the relationship between the location of closed-loop poles and the nature of the time response (underdamped vs. overdamped)."
+        },
+        {
+          "type": "text",
+          "content": "**A:** When closed-loop poles are complex conjugates located in the left half of the s-plane, the system response is underdamped and exhibits oscillations. If the poles are purely real, distinct, and negative, the system is overdamped with a sluggish response. If the two real poles are identical (repeated root), the system is critically damped."
+        },
+        {
+          "type": "text",
+          "content": "**Q:** How does adding a zero to a second-order system affect its step response? How does adding a pole affect it?"
+        },
+        {
+          "type": "text",
+          "content": "**A:** Adding a zero to the forward path of a second-order system generally increases peak overshoot, decreases rise time, and makes the system 'faster' but less stable. Conversely, adding a pole increases rise time, slows down the response, and usually increases stability while damping out overshoots."
+        },
+        {
+          "type": "text",
+          "content": "**Q:** In a third-order system, what condition allows it to be accurately approximated as a dominant second-order system?"
+        },
+        {
+          "type": "text",
+          "content": "**A:** A third-order system can be approximated as a dominant second-order system if the third pole is located significantly further to the left in the s-plane than the pair of dominant second-order poles. Typically, if the real part of the third pole is at least 5 to 10 times larger (more negative) than the real part of the dominant poles, its transient effect decays very rapidly and can be neglected."
         }
       ]
     },
