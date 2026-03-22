@@ -44,9 +44,19 @@
       "content": [
         {
           "type": "table",
-          "headers": ["Sl. No.", "Apparatus / Software", "Technical Specification", "Quantities"],
+          "headers": [
+            "Sl. No.",
+            "Apparatus / Software",
+            "Technical Specification",
+            "Quantities"
+          ],
           "rows": [
-            ["1", "MATLAB", "R2023 or compatible", "1"]
+            [
+              "1",
+              "MATLAB",
+              "R2023 or compatible",
+              "1"
+            ]
           ]
         }
       ]
@@ -233,7 +243,7 @@
       "content": [
         {
           "type": "text",
-          "content": "**Flowchart for Y-Bus Formation — Short Transmission Line**"
+          "content": "**Flowchart for Y-Bus Formation \u2014 Short Transmission Line**"
         },
         {
           "type": "list",
@@ -243,14 +253,14 @@
             "Read inputs: nbus, From_Bus, To_Bus, R, X",
             "Create Ybus = zeros(nbus, nbus)",
             "Compute Y = 1 / (R + jX)",
-            "For each line: set Yij = Yij − Y, Yji = Yij, Yii = Yii + Y, Yjj = Yjj + Y",
+            "For each line: set Yij = Yij \u2212 Y, Yji = Yij, Yii = Yii + Y, Yjj = Yjj + Y",
             "Display Ybus",
             "End"
           ]
         },
         {
           "type": "text",
-          "content": "**Flowchart for Y-Bus Formation — Long Transmission Line**"
+          "content": "**Flowchart for Y-Bus Formation \u2014 Long Transmission Line**"
         },
         {
           "type": "list",
@@ -260,14 +270,14 @@
             "Read inputs: nbus, From_Bus, To_Bus, R, X, B",
             "Create Ybus = zeros(nbus, nbus)",
             "Compute Y = 1 / (R + jX)",
-            "For each line: set Yij = Yij − Y, Yji = Yij, Yii = Yii + Y + jB/2, Yjj = Yjj + Y + jB/2",
+            "For each line: set Yij = Yij \u2212 Y, Yji = Yij, Yii = Yii + Y + jB/2, Yjj = Yjj + Y + jB/2",
             "Display Ybus",
             "End"
           ]
         },
         {
           "type": "text",
-          "content": "**Circuit Diagram — 3-Bus Power System (Short Transmission)**"
+          "content": "**Circuit Diagram \u2014 3-Bus Power System (Short Transmission)**"
         },
         {
           "type": "image",
@@ -276,7 +286,7 @@
         },
         {
           "type": "text",
-          "content": "**Circuit Diagram — 3-Bus Power System (Long Transmission)**"
+          "content": "**Circuit Diagram \u2014 3-Bus Power System (Long Transmission)**"
         },
         {
           "type": "image",
@@ -295,11 +305,11 @@
           "style": "ordered",
           "items": [
             "Define the number of buses (nbus) and line data (From Bus, To Bus, R, X, and B if applicable).",
-            "Initialize the Ybus matrix as a zero matrix of size nbus × nbus.",
+            "Initialize the Ybus matrix as a zero matrix of size nbus \u00d7 nbus.",
             "For each transmission line, compute the series admittance Y = 1 / (R + jX).",
-            "For short lines: update off-diagonal elements Yij = Yji = −Y and diagonal elements Yii, Yjj += Y.",
+            "For short lines: update off-diagonal elements Yij = Yji = \u2212Y and diagonal elements Yii, Yjj += Y.",
             "For long lines: additionally add jB/2 to each of the two diagonal elements Yii and Yjj.",
-            "For systems with ideal transformers: use the turns ratio formulation to populate the 2×2 Ybus.",
+            "For systems with ideal transformers: use the turns ratio formulation to populate the 2\u00d72 Ybus.",
             "For junction-based networks: apply KCL at the junction node, solve for Vt, and express bus currents in terms of bus voltages to obtain Ybus.",
             "Display the computed Ybus matrix in rectangular (complex) form.",
             "Convert Ybus elements to polar form (magnitude and angle in degrees) for verification.",
@@ -315,7 +325,7 @@
           "style": "ordered",
           "items": [
             "Q1: 3-bus system with given line impedances and line-charging susceptances (long transmission line model).",
-            "Q2: 3-bus system with generators as ideal voltage sources, all series and shunt impedances Z = j1 \\\Omega, using junction nodal analysis.",
+            "Q2: 3-bus system with generators as ideal voltage sources, all series and shunt impedances Z = j1 \\Omega, using junction nodal analysis.",
             "Q3: 10-bus power system with 11 lines, no shunt admittances, using the direct inspection method.",
             "Q4: 2-bus system with a transmission line of admittance Y and ideal transformers of turns ratios 1:t1 and t2:1 at the two ends."
           ]
@@ -333,7 +343,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code — Q1 (3-Bus, Long Transmission with Line Charging)**"
+          "content": "**MATLAB Code \u2014 Q1 (3-Bus, Long Transmission with Line Charging)**"
         },
         {
           "type": "image",
@@ -342,7 +352,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code — Q2 (3-Bus, Junction Network)**"
+          "content": "**MATLAB Code \u2014 Q2 (3-Bus, Junction Network)**"
         },
         {
           "type": "image",
@@ -351,7 +361,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code — Q3 (10-Bus System)**"
+          "content": "**MATLAB Code \u2014 Q3 (10-Bus System)**"
         },
         {
           "type": "image",
@@ -360,7 +370,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code — Q4 (2-Bus with Ideal Transformers)**"
+          "content": "**MATLAB Code \u2014 Q4 (2-Bus with Ideal Transformers)**"
         },
         {
           "type": "image",
@@ -376,7 +386,7 @@
       "content": [
         {
           "type": "text",
-          "content": "**Q1 — Computed Ybus (3-Bus, Long Transmission Line)**"
+          "content": "**Q1 \u2014 Computed Ybus (3-Bus, Long Transmission Line)**"
         },
         {
           "type": "image",
@@ -385,7 +395,7 @@
         },
         {
           "type": "text",
-          "content": "**Q2 — Computed Ybus (3-Bus, Junction Network)**"
+          "content": "**Q2 \u2014 Computed Ybus (3-Bus, Junction Network)**"
         },
         {
           "type": "image",
@@ -394,7 +404,7 @@
         },
         {
           "type": "text",
-          "content": "**Q3 — Computed Ybus (10-Bus System)**"
+          "content": "**Q3 \u2014 Computed Ybus (10-Bus System)**"
         },
         {
           "type": "image",
@@ -408,7 +418,7 @@
         },
         {
           "type": "text",
-          "content": "**Q4 — Computed Ybus (2-Bus System with Ideal Transformers)**"
+          "content": "**Q4 \u2014 Computed Ybus (2-Bus System with Ideal Transformers)**"
         },
         {
           "type": "image",
@@ -460,7 +470,7 @@
         },
         {
           "type": "equation",
-          "value": "Y_{ij} = -\\frac{1}{Z_{ij}},\\quad i \\\neq j"
+          "value": "Y_{ij} = -\\frac{1}{Z_{ij}},\\quad i \\neq j"
         },
         {
           "type": "equation",
@@ -517,7 +527,7 @@
         },
         {
           "type": "text",
-          "content": "Now substitute Vt into i1 = Y1(V1 − Vt):"
+          "content": "Now substitute Vt into i1 = Y1(V1 \u2212 Vt):"
         },
         {
           "type": "equation",
@@ -533,7 +543,7 @@
         },
         {
           "type": "text",
-          "content": "So in compact form (for i \\\neq j):"
+          "content": "So in compact form (for i \\neq j):"
         },
         {
           "type": "equation",
@@ -541,7 +551,7 @@
         },
         {
           "type": "text",
-          "content": "Substituting numerical values: All series impedances and the shunt impedance are Z = j1 \\\Omega (given). Thus:"
+          "content": "Substituting numerical values: All series impedances and the shunt impedance are Z = j1 \\Omega (given). Thus:"
         },
         {
           "type": "equation",
@@ -565,7 +575,7 @@
         },
         {
           "type": "equation",
-          "value": "Y_{ij} = -\\frac{Y_i Y_j}{Y_{\\Sigma}} = -\\frac{(-j)(-j)}{-4j} = \\frac{1}{4}j \\quad (i \\\neq j)"
+          "value": "Y_{ij} = -\\frac{Y_i Y_j}{Y_{\\Sigma}} = -\\frac{(-j)(-j)}{-4j} = \\frac{1}{4}j \\quad (i \\neq j)"
         },
         {
           "type": "text",
@@ -581,24 +591,96 @@
         },
         {
           "type": "table",
-          "headers": ["Line", "From bus", "To bus", "R (pu)", "X (pu)"],
+          "headers": [
+            "Line",
+            "From bus",
+            "To bus",
+            "R (pu)",
+            "X (pu)"
+          ],
           "rows": [
-            ["1", "1", "2", "0.10", "0.30"],
-            ["2", "1", "3", "0.05", "0.25"],
-            ["3", "2", "4", "0.08", "0.24"],
-            ["4", "2", "5", "0.06", "0.18"],
-            ["5", "3", "6", "0.12", "0.36"],
-            ["6", "4", "7", "0.09", "0.27"],
-            ["7", "5", "8", "0.07", "0.21"],
-            ["8", "6", "9", "0.11", "0.33"],
-            ["9", "7", "10", "0.05", "0.15"],
-            ["10", "8", "9", "0.08", "0.24"],
-            ["11", "9", "10", "0.10", "0.30"]
+            [
+              "1",
+              "1",
+              "2",
+              "0.10",
+              "0.30"
+            ],
+            [
+              "2",
+              "1",
+              "3",
+              "0.05",
+              "0.25"
+            ],
+            [
+              "3",
+              "2",
+              "4",
+              "0.08",
+              "0.24"
+            ],
+            [
+              "4",
+              "2",
+              "5",
+              "0.06",
+              "0.18"
+            ],
+            [
+              "5",
+              "3",
+              "6",
+              "0.12",
+              "0.36"
+            ],
+            [
+              "6",
+              "4",
+              "7",
+              "0.09",
+              "0.27"
+            ],
+            [
+              "7",
+              "5",
+              "8",
+              "0.07",
+              "0.21"
+            ],
+            [
+              "8",
+              "6",
+              "9",
+              "0.11",
+              "0.33"
+            ],
+            [
+              "9",
+              "7",
+              "10",
+              "0.05",
+              "0.15"
+            ],
+            [
+              "10",
+              "8",
+              "9",
+              "0.08",
+              "0.24"
+            ],
+            [
+              "11",
+              "9",
+              "10",
+              "0.10",
+              "0.30"
+            ]
           ]
         },
         {
           "type": "equation",
-          "value": "Y_{ij} = -\\frac{1}{R_{ij} + jX_{ij}},\\quad Y_{ii} = \\sum_{k \\\neq i} \\frac{1}{Z_{ik}}"
+          "value": "Y_{ij} = -\\frac{1}{R_{ij} + jX_{ij}},\\quad Y_{ii} = \\sum_{k \\neq i} \\frac{1}{Z_{ik}}"
         },
         {
           "type": "text",
@@ -650,17 +732,47 @@
         },
         {
           "type": "table",
-          "headers": ["Problem", "Network Type", "Buses", "Lines", "Key Observation"],
+          "headers": [
+            "Problem",
+            "Network Type",
+            "Buses",
+            "Lines",
+            "Key Observation"
+          ],
           "rows": [
-            ["Q1", "3-Bus Long Transmission", "3", "3", "Line charging (B/2) adds to diagonal elements; off-diagonals are negative series admittances."],
-            ["Q2", "3-Bus Junction Network", "3", "3 + shunt", "Symmetric Ybus with equal diagonal (−0.75j) and off-diagonal (+0.25j) entries due to uniform impedances."],
-            ["Q3", "10-Bus Short Transmission", "10", "11", "Sparse symmetric 10×10 Ybus; zero entries where no direct line exists between buses."],
-            ["Q4", "2-Bus with Transformers", "2", "1", "Ybus diagonal elements scale as ti² and tj²; off-diagonal elements scale as −ti·tj."]
+            [
+              "Q1",
+              "3-Bus Long Transmission",
+              "3",
+              "3",
+              "Line charging (B/2) adds to diagonal elements; off-diagonals are negative series admittances."
+            ],
+            [
+              "Q2",
+              "3-Bus Junction Network",
+              "3",
+              "3 + shunt",
+              "Symmetric Ybus with equal diagonal (\u22120.75j) and off-diagonal (+0.25j) entries due to uniform impedances."
+            ],
+            [
+              "Q3",
+              "10-Bus Short Transmission",
+              "10",
+              "11",
+              "Sparse symmetric 10\u00d710 Ybus; zero entries where no direct line exists between buses."
+            ],
+            [
+              "Q4",
+              "2-Bus with Transformers",
+              "2",
+              "1",
+              "Ybus diagonal elements scale as ti\u00b2 and tj\u00b2; off-diagonal elements scale as \u2212ti\u00b7tj."
+            ]
           ]
         },
         {
           "type": "text",
-          "content": "For Q1, including line charging susceptances (B/2 = 0.5, 0.8, 0.0) modified the diagonal elements of the Ybus compared to the short-line model, while the off-diagonal elements remained equal to the negative series admittances. For Q3, the 10×10 Ybus confirmed the sparse nature of admittance matrices in large power systems, with most off-diagonal entries being zero due to limited inter-bus connectivity. The transformer-coupled system in Q4 produced a 2×2 Ybus whose entries are entirely determined by the line admittance Y and the turns ratios t1 and t2."
+          "content": "For Q1, including line charging susceptances (B/2 = 0.5, 0.8, 0.0) modified the diagonal elements of the Ybus compared to the short-line model, while the off-diagonal elements remained equal to the negative series admittances. For Q3, the 10\u00d710 Ybus confirmed the sparse nature of admittance matrices in large power systems, with most off-diagonal entries being zero due to limited inter-bus connectivity. The transformer-coupled system in Q4 produced a 2\u00d72 Ybus whose entries are entirely determined by the line admittance Y and the turns ratios t1 and t2."
         }
       ]
     },
@@ -683,7 +795,7 @@
         },
         {
           "type": "text",
-          "content": "**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i ≠ j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly."
+          "content": "**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i \u2260 j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly."
         },
         {
           "type": "text",
@@ -707,7 +819,7 @@
         },
         {
           "type": "text",
-          "content": "**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2×2 Ybus is no longer symmetric in general if ti ≠ tj. The diagonal elements become ti²Y and tj²Y, and the off-diagonal elements become −ti·tj·Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus."
+          "content": "**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2\u00d72 Ybus is no longer symmetric in general if ti \u2260 tj. The diagonal elements become ti\u00b2Y and tj\u00b2Y, and the off-diagonal elements become \u2212ti\u00b7tj\u00b7Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus."
         },
         {
           "type": "text",
@@ -715,7 +827,7 @@
         },
         {
           "type": "text",
-          "content": "**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3×3 Ybus that directly relates the injected bus currents to the bus voltages."
+          "content": "**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3\u00d73 Ybus that directly relates the injected bus currents to the bus voltages."
         }
       ]
     },
