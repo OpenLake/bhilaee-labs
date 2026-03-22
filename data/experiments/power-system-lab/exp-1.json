@@ -748,52 +748,16 @@
       "isApplicable": true,
       "content": [
         {
-          "type": "text",
-          "content": "**Q1.** What is the bus admittance matrix (Ybus) and why is it important in power system analysis?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** The bus admittance matrix (Ybus) is a square matrix that relates the bus current injections to the bus voltages in a power system through the relation [I] = [Ybus][V]. It is important because it provides a compact, systematic, and computationally efficient representation of the network topology and line admittances. Ybus is used extensively in load flow analysis, short circuit studies, and stability analysis. It is typically a sparse and symmetric matrix, which reduces storage requirements and computational effort in large systems."
-        },
-        {
-          "type": "text",
-          "content": "**Q2.** How are the diagonal and off-diagonal elements of the Ybus matrix formed using the direct inspection method?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i ≠ j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly."
-        },
-        {
-          "type": "text",
-          "content": "**Q3.** How does line charging affect the Ybus matrix in long transmission line models compared to short transmission line models?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** In the short transmission line model, each line is represented only by its series impedance, so only off-diagonal elements and diagonal elements due to series admittances are affected. In the long transmission line model, line charging susceptances (B/2) are added as shunt admittances at each end of the line. This adds an extra jB/2 term to the diagonal elements Yii and Yjj for every line connected to those buses. The off-diagonal elements remain equal to the negative series admittances and are unaffected by line charging."
-        },
-        {
-          "type": "text",
-          "content": "**Q4.** What is the significance of the sparsity of the Ybus matrix in large power systems?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** In a large power system, each bus is typically connected to only a few other buses, so most off-diagonal elements of the Ybus are zero. This sparsity is highly significant for computational efficiency: sparse matrix storage formats drastically reduce memory requirements, and sparse solvers (such as LU factorization with optimal ordering) reduce the computational time for solving the network equations. For a 10-bus system as in Q3, the Ybus contains many zero off-diagonal entries corresponding to pairs of buses with no direct connection."
-        },
-        {
-          "type": "text",
-          "content": "**Q5.** How does the presence of ideal transformers with off-nominal turns ratios affect the Ybus matrix structure?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2×2 Ybus is no longer symmetric in general if ti ≠ tj. The diagonal elements become ti²Y and tj²Y, and the off-diagonal elements become −ti·tj·Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus."
-        },
-        {
-          "type": "text",
-          "content": "**Q6.** In Q2, why is the junction voltage Vt eliminated before forming the Ybus?"
-        },
-        {
-          "type": "text",
-          "content": "**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3×3 Ybus that directly relates the injected bus currents to the bus voltages."
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** What is the bus admittance matrix (Ybus) and why is it important in power system analysis?\n\n**A:** The bus admittance matrix (Ybus) is a square matrix that relates the bus current injections to the bus voltages in a power system through the relation [I] = [Ybus][V]. It is important because it provides a compact, systematic, and computationally efficient representation of the network topology and line admittances. Ybus is used extensively in load flow analysis, short circuit studies, and stability analysis. It is typically a sparse and symmetric matrix, which reduces storage requirements and computational effort in large systems.",
+            "**Q:** How are the diagonal and off-diagonal elements of the Ybus matrix formed using the direct inspection method?\n\n**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i ≠ j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly.",
+            "**Q:** How does line charging affect the Ybus matrix in long transmission line models compared to short transmission line models?\n\n**A:** In the short transmission line model, each line is represented only by its series impedance, so only off-diagonal elements and diagonal elements due to series admittances are affected. In the long transmission line model, line charging susceptances (B/2) are added as shunt admittances at each end of the line. This adds an extra jB/2 term to the diagonal elements Yii and Yjj for every line connected to those buses. The off-diagonal elements remain equal to the negative series admittances and are unaffected by line charging.",
+            "**Q:** What is the significance of the sparsity of the Ybus matrix in large power systems?\n\n**A:** In a large power system, each bus is typically connected to only a few other buses, so most off-diagonal elements of the Ybus are zero. This sparsity is highly significant for computational efficiency: sparse matrix storage formats drastically reduce memory requirements, and sparse solvers (such as LU factorization with optimal ordering) reduce the computational time for solving the network equations. For a 10-bus system as in Q3, the Ybus contains many zero off-diagonal entries corresponding to pairs of buses with no direct connection.",
+            "**Q:** How does the presence of ideal transformers with off-nominal turns ratios affect the Ybus matrix structure?\n\n**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2×2 Ybus is no longer symmetric in general if ti ≠ tj. The diagonal elements become ti²Y and tj²Y, and the off-diagonal elements become −ti·tj·Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus.",
+            "**Q:** In Q2, why is the junction voltage Vt eliminated before forming the Ybus?\n\n**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3×3 Ybus that directly relates the injected bus currents to the bus voltages."
+          ]
         }
       ]
     },
