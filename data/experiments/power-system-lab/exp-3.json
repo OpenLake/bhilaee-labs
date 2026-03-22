@@ -427,7 +427,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution:**\n\nTotal number of buses (n) = 300\nNumber of PV buses (including generator buses and buses with reactive support) = m = 45\nSlack bus is excluded from m\n\nJacobian size = 2n − m − 1\n= 2(300) − 45 − 1 = 600 − 46\n\nSize of Jacobian = **554 × 554**"
+          "content": "**Solution:**\n\n- **Total number of buses (n)** = **300**\n- **Number of PV buses** (including generator buses and reactive support) = **m = 45**\n- **Slack bus** is excluded from m.\n\n**Jacobian size = 2n − m − 1**\n= 2(300) − 45 − 1 = 600 − 46 = **554**.\n\n**∴ Size of Jacobian = 554 × 554.**"
         },
         {
           "type": "text",
@@ -445,7 +445,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution:**\n\nThe size of Jacobian matrix in Newton-Raphson method is given by = 2n − m − 1\n\nwhere,\nn = total no. of buses\nm = number of PV buses (generator excluding the slack bus)\n\n**Given:** n = 100\nGenerator buses = 10\n\nJacobian size = 2 × 100 − 10 − 1 = 200 − 11\n= **189 × 189**"
+          "content": "**Solution (Part 1):**\n\nThe size of Jacobian matrix in Newton-Raphson method is given by:\n**Size = 2n − m − 1**\n\nWhere:\n- **n** = Total no. of buses\n- **m** = Number of PV buses (generator excluding the slack bus)\n\n**Solution (Part 2):**\n\n- Given: **n = 100**, Generator buses = **10**\n- Jacobian size = 2 × 100 − 10 − 1 = 200 − 11 = **189**.\n\n**∴ Size of Jacobian = 189 × 189.**"
         },
         {
           "type": "text",
@@ -463,7 +463,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution:**\n\nThe size of Jacobian in Newton-Raphson method is given by = 2n − m − 1\n\nwhere,\nn is the total no. of buses and m is the number of PV buses\n\nGiven: Jacobian size = 100, m = 20\n\n100 = 2n − 20 − 1\n100 = 2n − 21 ⇒ 2n = 121\n\nn = 60.5 ≈ 61\n\n**∴ n = 61**"
+          "content": "**Solution:**\n\nThe size of Jacobian in Newton-Raphson method is given by:\n**Size = 2n − m − 1**\n\nWhere **n** is the total no. of buses and **m** is the number of PV buses.\n\n- Given: Jacobian size = **100**, **m = 20**\n- 100 = 2n − 20 − 1\n- 100 = 2n − 21 ⇒ 2n = 121\n- n = 60.5 ≈ **61**\n\n**∴ n = 61.**"
         },
         {
           "type": "text",
@@ -481,7 +481,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (a):** n = 10, Slack = 1, PV = G3, G4, L3, L4 (Total 4), PQ = G2 (violated), L1, L2, L5, L6 (Total 5).\nEquations = (n-1) + PQ = 9 + 5 = **14**."
+          "content": "**Solution:**\n\nThe total number of non-linear equations in Newton-Raphson method is given by:\n**No. of equations = (n − 1) + (no. of PQ buses)**\n\n- Total no. of buses = **10**\n- Slack bus = **G₁ = 1**\n- PQ buses = Load buses excluding voltage controlled buses = **6 − 2 = 4**\n\nInitially, no. of equations = (10 − 1) + 4 = **13**.\n\nSince generator G₂ reaches reactive limit, it becomes a **PQ bus**. \n\n**∴ Total no. of equations = 13 + 1 = 14.**"
         },
         {
           "type": "text",
@@ -499,7 +499,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (c):** T = n + 2b \n8000 = 1000 + 2b\n7000 = 2b \n**b = 3500**."
+          "content": "**Solution:**\n\nThe minimum no. of branches is given by:\n**2 × (No. of branches) = (No. of OFF-diagonal nonzero elements)**\n\n- Total no. of nonzero elements = **8000**\n- Assuming diagonal elements correspond to self admittances = **1000**\n- Off-diagonal non-zero elements = 8000 − 1000 = **7000**\n\n**∴ Minimum no. of branches = 7000 / 2 = 3500.**"
         },
         {
           "type": "text",
@@ -517,7 +517,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (c):** n = 183, m = 32.\nSize = (183-1) + (183-1-32) = 182 + 150 = **332**."
+          "content": "**Solution:**\n\n- Total no. of buses = **n = 183**\n- Number of PV buses = **m = 32**\n- Number of PQ buses = n − m − 1 = 183 − 32 − 1 = **150**\n\nMinimum number of simultaneous equations in Newton-Raphson method =\n**2 × (PQ buses) + (PV buses)**\n= 2 × 150 + 32 = **332**."
         },
         {
           "type": "text",
@@ -543,7 +543,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (A):** M = ∂Q/∂δ. \nRows = No. of Q mismatch equations = NL (PQ buses).\nColumns = No. of unknown angles = N-1 (excluding slack).\n**Dimension = NL × (N-1)**."
+          "content": "**Solution:**\n\nFor the sub-matrix **'M'** in Jacobian, **M = ∂Q/∂δ** i.e., partial derivatives of reactive power with respect to angles.\n\n- **No. of rows** = Buses where Q is unknown (these are PQ buses) = **NL**\n- **No. of columns** = Buses where δ is unknown and needs to be solved (excluding slack) = **N − 1**\n\n**∴ Dimension of M = NL × (N − 1).**"
         },
         {
           "type": "text",
@@ -566,7 +566,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (C):** Bus 3 is the infinite bus (Slack). Bus 1 has maintained voltage magnitude (PV). Bus 2 has specified P and Q (PQ)."
+          "content": "**Solution:**\n\n- **Bus 1:** Current source controls voltage at 1.05 pu while δ₁ is variable. |V| and P are specified ⇒ **PV bus**.\n- **Bus 2:** The alternator injects specified real power and reactive power. P and Q are known ⇒ **PQ bus**.\n- **Bus 3:** It is an infinite bus where |V| and θ are given ⇒ **Slack bus**.\n\n**∴ Bus 3: Slack, Bus 2: PQ, Bus 1: PV.**"
         },
         {
           "type": "text",
@@ -584,7 +584,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (B):** Angles δ are already unknown for PV buses. Converting to PQ makes voltage magnitudes |V| also unknown for those buses. Hence, angles remain unchanged and magnitudes increase."
+          "content": "**Solution:**\n\nIn Newton-Raphson method, the unknowns are:\n- **Voltage angles (δ)** for all non-slack buses = **(N − 1) unknowns**, which remain unchanged.\n- **Voltage magnitudes (|V|)** for PQ buses only.\n\nWhen two PV buses are converted to PQ buses, the number of PQ buses increases by 2. Hence, the number of unknown voltage magnitudes increases by 2.\n\n**∴ The no. of unknown angles remain same while the no. of unknown voltage magnitudes increases by 2.**"
         },
         {
           "type": "text",
