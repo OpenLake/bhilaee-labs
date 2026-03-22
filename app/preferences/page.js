@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import PreferencesClient from './PreferencesClient';
-import styles from './Preferences.module.css';
+import styles from './PreferencesNew.module.css';
 
 export const metadata = {
     title: 'Preferences & Settings | Bhilai EE Labs',

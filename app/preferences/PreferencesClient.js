@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { updateProfile, clearAllBookmarks, clearAllObservations, clearAllHistory } from '@/lib/db';
+import { updateProfile, clearAllBookmarks, clearAllObservations, clearAllHistory, getStarredExperimentsDetailed, getAllSavedObservations } from '@/lib/db';
 import { labs } from '@/data/labs';
-import styles from './Preferences.module.css';
+import styles from './PreferencesNew.module.css';
 
 export default function PreferencesClient() {
     const router = useRouter();
@@ -14,6 +14,7 @@ export default function PreferencesClient() {
     // -- State Definitions --
     const [profile, setProfile] = useState({ name: '', rollNumber: '' });
     const [appSettings, setAppSettings] = useState({ theme: 'dark', pinnedLabs: [] });
+    const [stats, setStats] = useState({ observations: 0, bookmarks: 0 });
     const [printPrefs, setPrintPrefs] = useState({
         theory: true,
         apparatus: true,
@@ -66,6 +67,45 @@ export default function PreferencesClient() {
             }
         }
     }, [user, dbProfile, authLoading]);
+
+    // Independent stats fetcher
+    useEffect(() => {
+        const fetchStats = async () => {
+            let obsCount = 0;
+            let starredCount = 0;
+
+            try {
+                if (user) {
+                    // Cloud Data
+                    const { data: starred } = await getStarredExperimentsDetailed(user.id);
+                    starredCount = starred?.length || 0;
+
+                    const { data: obs } = await getAllSavedObservations(user.id);
+                    obsCount = obs?.length || 0;
+                } else {
+                    // Local Data (Guest)
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key && key.includes('-draftData')) obsCount++;
+                    }
+                    const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
+                    starredCount = bookmarks.length;
+                }
+                setStats({ observations: obsCount, bookmarks: starredCount });
+            } catch (e) {
+                console.error("Stats fetching failed", e);
+            }
+        };
+
+        if (!authLoading) {
+            fetchStats();
+        }
+
+        // Sync with instant updates (like unstarring from another tab)
+        const handleUpdate = () => fetchStats();
+        window.addEventListener('workspace-updated', handleUpdate);
+        return () => window.removeEventListener('workspace-updated', handleUpdate);
+    }, [user, authLoading]);
 
     // Handle external updates (e.g. from ThemeToggle in Header)
     useEffect(() => {
@@ -205,107 +245,164 @@ export default function PreferencesClient() {
     }
 
     return (
-        <div className={styles.prefGrid}>
-            
-            {/* Section A: User Profile */}
-            <section className={styles.sectionCard}>
-                <div className={styles.sectionHeader}>
-                    <h2>👤 User Profile</h2>
-                    <p>Details used for generating reports and personalizing your session.</p>
-                </div>
-                <div className={styles.sectionBody}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="name">Full Name</label>
-                        <input 
-                            type="text" 
-                            id="name" 
-                            name="name" 
-                            value={profile.name} 
-                            onChange={handleProfileChange}
-                            placeholder="e.g. Akshay Ravikanti"
-                        />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="rollNumber">Roll Number / ID</label>
-                        <input 
-                            type="text" 
-                            id="rollNumber" 
-                            name="rollNumber" 
-                            value={profile.rollNumber} 
-                            onChange={handleProfileChange}
-                            placeholder="e.g. 12040080"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* Section B: App Settings */}
-            <section className={styles.sectionCard}>
-                <div className={styles.sectionHeader}>
-                    <h2>📱 Application Settings</h2>
-                    <p>Customize how the app looks and behaves.</p>
-                </div>
-                <div className={styles.sectionBody}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="theme">Application Theme</label>
-                        <select id="theme" name="theme" value={appSettings.theme} onChange={handleAppChange}>
-                            <option value="system">System Default</option>
-                            <option value="light">Light Mode</option>
-                            <option value="dark">Dark Mode</option>
-                        </select>
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label>Pinned / Favorite Labs</label>
-                        <div className={styles.multiSelectContainer}>
-                            {labs.map(lab => (
-                                <label key={lab.id} className={styles.checkboxRow}>
-                                    <input 
-                                        type="checkbox"
-                                        checked={appSettings.pinnedLabs.includes(lab.id)}
-                                        onChange={() => handleLabPinToggle(lab.id)}
-                                    />
-                                    <span>{lab.name}</span>
-                                </label>
-                            ))}
+        <div className={styles.container}>
+            <div className={styles.prefGrid}>
+                
+                {/* Left Column */}
+                <div className={styles.column}>
+                    
+                    {/* Section A: User Identity */}
+                    <section className={styles.sectionCard}>
+                        <div className={styles.sectionHeader}>
+                            <h2><span className="material-symbols-outlined">fingerprint</span> USER IDENTITY</h2>
+                            <p>Identity parameters for report headers and session tracking.</p>
                         </div>
-                        <small className={styles.helpText}>Pinned labs will appear at the top of your homepage.</small>
-                    </div>
-                </div>
-            </section>
+                        <div className={styles.sectionBody}>
+                            <div className={styles.inputGroup}>
+                                <label htmlFor="name">Research Personnel Name</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    value={profile.name} 
+                                    onChange={handleProfileChange}
+                                    placeholder="e.g. Dr. Akshay Ravikanti"
+                                />
+                            </div>
+                            <div className={styles.inputGroup}>
+                                <label htmlFor="rollNumber">Lab Roll Number / ID</label>
+                                <input 
+                                    type="text" 
+                                    id="rollNumber" 
+                                    name="rollNumber" 
+                                    value={profile.rollNumber} 
+                                    onChange={handleProfileChange}
+                                    placeholder="e.g. BIT-EE-2024-008"
+                                />
+                            </div>
+                        </div>
+                    </section>
 
-            {/* Section C: Print Preferences */}
-            <section className={styles.sectionCard} data-tour="print-prefs">
-                <div className={styles.sectionHeader}>
-                    <h2>🖨️ Print Preferences (Paper Saver)</h2>
-                    <p>Select which sections to include when exporting an experiment to PDF.</p>
+                    {/* Section B: Environment Parameters */}
+                    <section className={styles.sectionCard}>
+                        <div className={styles.sectionHeader}>
+                            <h2><span className="material-symbols-outlined">settings_applications</span> ENVIRONMENT PARAMETERS</h2>
+                            <p>Customize the visual interface and priority access.</p>
+                        </div>
+                        <div className={styles.sectionBody}>
+                            <div className={styles.inputGroup}>
+                                <label>Visual Interface Mode</label>
+                                <div className={styles.themeToggleGrid}>
+                                    {[
+                                        { id: 'light', icon: 'light_mode', label: 'Lab Light' },
+                                        { id: 'dark', icon: 'dark_mode', label: 'Visual Dark' },
+                                        { id: 'system', icon: 'monitor_weight', label: 'System Sync' }
+                                    ].map(t => (
+                                        <button 
+                                            key={t.id}
+                                            className={`${styles.themeBtn} ${appSettings.theme === t.id ? styles.themeBtnActive : ''}`}
+                                            onClick={() => handleAppChange({ target: { name: 'theme', value: t.id } })}
+                                        >
+                                            <span className="material-symbols-outlined">{t.icon}</span>
+                                            <span>{t.label}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className={styles.inputGroup}>
+                                <label>Priority laboratory access (Pinned)</label>
+                                <div className={styles.labTagGroup}>
+                                    {labs.map(lab => {
+                                        const isPinned = appSettings.pinnedLabs.includes(lab.id);
+                                        return (
+                                            <div 
+                                                key={lab.id} 
+                                                className={`${styles.labTag} ${!isPinned ? styles.labTagUnselected : ''}`}
+                                                onClick={() => handleLabPinToggle(lab.id)}
+                                            >
+                                                {lab.name}
+                                                {isPinned && <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>close</span>}
+                                                {!isPinned && <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>add</span>}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <small className={styles.helpText}>Pinned labs appear at the top of your homepage dashboard.</small>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <div className={styles.sectionBody}>
-                    <div className={styles.toggleList}>
-                        {Object.entries({
-                            theory: "Theory Background",
-                            apparatus: "Apparatus & Components",
-                            procedure: "Step-by-Step Procedures",
-                            observation: "Observations & Tables",
-                            calculation: "Calculations & Results"
-                        }).map(([key, label]) => (
-                            <label key={key} className={styles.toggleRow}>
-                                <div className={styles.toggleInfo}>
-                                    <strong>Include {label}</strong>
-                                </div>
-                                <div className={`${styles.switch} ${printPrefs[key] ? styles.switchActive : ''}`}>
-                                    <input 
-                                        type="checkbox" 
-                                        checked={Boolean(printPrefs[key])}
-                                        onChange={() => handlePrintToggle(key)}
-                                        className={styles.hiddenCheckbox}
-                                    />
-                                    <span className={styles.slider}></span>
-                                </div>
-                            </label>
-                        ))}
+
+                {/* Right Column */}
+                <div className={styles.column}>
+                    
+                    {/* Section C: Report Generation */}
+                    <section className={styles.sectionCard}>
+                        <div className={styles.sectionHeader}>
+                            <h2><span className="material-symbols-outlined">print</span> REPORT GENERATION</h2>
+                            <p>Select components for PDF export and documentation.</p>
+                        </div>
+                        <div className={styles.sectionBody}>
+                            <div className={styles.toggleList}>
+                                {[
+                                    { key: 'theory', label: 'Theoretical Framework', desc: 'Include background and principles', icon: 'menu_book' },
+                                    { key: 'apparatus', label: 'Apparatus Inventory', desc: 'List technical specifications', icon: 'precision_manufacturing' },
+                                    { key: 'procedure', label: 'Procedural Steps', desc: 'Sequence of operations', icon: 'reorder' },
+                                    { key: 'observation', label: 'Data Observations', desc: 'Telemetry tables and logs', icon: 'monitoring' },
+                                    { key: 'calculation', label: 'Result Calculations', desc: 'Formulas and final outputs', icon: 'calculate' }
+                                ].map(item => (
+                                    <div key={item.key} className={styles.toggleRow} onClick={() => handlePrintToggle(item.key)}>
+                                        <div className={styles.toggleInfo}>
+                                            <span className={`material-symbols-outlined ${styles.toggleIcon}`}>{item.icon}</span>
+                                            <div className={styles.toggleText}>
+                                                <strong>{item.label}</strong>
+                                                <span>{item.desc}</span>
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.switch} ${printPrefs[item.key] ? styles.switchActive : ''}`}>
+                                            <span className={styles.slider}></span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Section E: Laboratory Activity (Useful Replacement) */}
+                    <div className={styles.statusCard}>
+                        <div className={styles.statusHeader}>
+                            <div className={styles.statusIndicator}>
+                                <div className={styles.statusDot}></div>
+                                LAB STATUS: ACTIVE
+                            </div>
+                            <span className={styles.versionTag}>V2.1.0-STABLE</span>
+                        </div>
+                        
+                        <div className={styles.metricsGrid}>
+                            <div className={styles.metricItem}>
+                                <span className={styles.metricLabel}>Total Observations</span>
+                                <span className={styles.metricValue}>{stats.observations} Tables</span>
+                            </div>
+                            <div className={styles.metricItem}>
+                                <span className={styles.metricLabel}>Starred Experiments</span>
+                                <span className={styles.metricValue}>{stats.bookmarks} Saved</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.metricItem}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                                <span className={styles.metricLabel}>Local Storage Integrity</span>
+                                <span className={styles.versionTag}>Nominal</span>
+                            </div>
+                            <div className={styles.progressBar}>
+                                <div className={styles.progressFill} style={{ width: '100%' }}></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+
+            </div>
 
             {/* Save Button Bar */}
             <div className={styles.saveBar}>
@@ -316,34 +413,31 @@ export default function PreferencesClient() {
             </div>
 
             {/* Section D: Danger Zone */}
-            <section className={`${styles.sectionCard} ${styles.dangerZone}`}>
-                <div className={styles.sectionHeader}>
-                    <h2 className={styles.dangerTitle}>⚠️ Danger Zone</h2>
-                    <p>Manage local storage data. These actions cannot be undone.</p>
+            <section className={styles.dangerZone}>
+                <div className={styles.dangerHeader}>
+                    <h3><span className="material-symbols-outlined">warning</span> CRUCIAL: MAINTENANCE</h3>
                 </div>
-                <div className={styles.sectionBody}>
-                    <div className={styles.dangerActions}>
-                        <div className={styles.dangerRow}>
-                            <div className={styles.dangerInfo}>
-                                <strong>Clear Saved Table Data</strong>
-                                <span>Wipes all manually entered observations and plots across all labs.</span>
-                            </div>
-                            <button onClick={clearTableData} className={styles.dangerBtn}>Clear Data</button>
+                <div className={styles.dangerGrid}>
+                    <div className={styles.dangerActionCard} onClick={clearTableData}>
+                        <div className={styles.dangerInfo}>
+                            <strong>Clear Observations</strong>
+                            <p>PURGE ALL LOCAL TELEMETRY LOGS</p>
                         </div>
-                        <div className={styles.dangerRow}>
-                            <div className={styles.dangerInfo}>
-                                <strong>Clear Bookmarks</strong>
-                                <span>Removes all starred experiments from your profile.</span>
-                            </div>
-                            <button onClick={clearStarred} className={styles.dangerBtn}>Clear Stars</button>
+                        <span className={`material-symbols-outlined ${styles.dangerIcon}`}>delete_sweep</span>
+                    </div>
+                    <div className={styles.dangerActionCard} onClick={clearStarred}>
+                        <div className={styles.dangerInfo}>
+                            <strong>Delete Bookmarks</strong>
+                            <p>WIPE STARRED EXPERIMENT CACHE</p>
                         </div>
-                        <div className={styles.dangerRow}>
-                            <div className={styles.dangerInfo}>
-                                <strong>Factory Reset</strong>
-                                <span>Wipes everything: preferences, bookmarks, and all saved data.</span>
-                            </div>
-                            <button onClick={factoryReset} className={styles.factoryBtn}>Factory Reset</button>
+                        <span className={`material-symbols-outlined ${styles.dangerIcon}`}>bookmark_remove</span>
+                    </div>
+                    <div className={styles.dangerActionCard} onClick={factoryReset}>
+                        <div className={styles.dangerInfo}>
+                            <strong>Factory Reset</strong>
+                            <p>RESTORE OS TO INITIAL DEFAULTS</p>
                         </div>
+                        <span className={`material-symbols-outlined ${styles.dangerIcon}`}>factory</span>
                     </div>
                 </div>
             </section>
