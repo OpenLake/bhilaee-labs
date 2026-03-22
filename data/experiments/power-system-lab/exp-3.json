@@ -1,0 +1,788 @@
+{
+  "id": "exp-3",
+  "title": "Power Flow Analysis using Newton-Raphson Method",
+  "labId": "power-system-lab",
+  "status": "Software Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB",
+    "experimentType": "software",
+    "status": "software-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To analyse power flow in complex network using the Newton-Raphson method for faster convergence."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Sl. No.",
+            "Apparatus / Software",
+            "Technical Specification",
+            "Quantities"
+          ],
+          "rows": [
+            [
+              "1",
+              "MATLAB",
+              "R2023 or compatible",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The Newton-Raphson (NR) method is a numerical technique for solving systems of nonlinear equations. It is a gradient-based method that uses derivatives to update unknowns through repeated steps until the power-flow mismatches disappear. In load-flow studies, we find the steady-state bus voltages and power flows depending on the given constraints."
+        },
+        {
+          "type": "text",
+          "content": "**Mismatch Vector and Jacobian Matrix in Load Flow**"
+        },
+        {
+          "type": "text",
+          "content": "The Newton-Raphson load flow solution is based on the relation between the mismatch vector and the correction vector via the Jacobian matrix:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix} = \\begin{bmatrix} \\frac{\\partial P}{\\partial \\delta} & \\frac{\\partial P}{\\partial |V|} \\\\ \\frac{\\partial Q}{\\partial \\delta} & \\frac{\\partial Q}{\\partial |V|} \\end{bmatrix} \\begin{bmatrix} \\Delta \\delta \\\\ \\Delta |V| \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "The mismatch vectors are defined as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta P = P_{specified} - P_{calculated}"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta Q = Q_{specified} - Q_{calculated}"
+        },
+        {
+          "type": "text",
+          "content": "**Jacobian Submatrix Structure**"
+        },
+        {
+          "type": "text",
+          "content": "The Jacobian matrix can be decomposed into four submatrices:"
+        },
+        {
+          "type": "equation",
+          "value": "J = \\begin{bmatrix} J_1 & J_2 \\\\ J_3 & J_4 \\end{bmatrix} = \\begin{bmatrix} H & N \\\\ J & L \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "**Static Load Flow Equations**"
+        },
+        {
+          "type": "text",
+          "content": "Real Power at Any Bus:"
+        },
+        {
+          "type": "equation",
+          "value": "P_i = \\sum_{k=1}^{n} |V_i||V_k||Y_{ik}| \\cos(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "For k = i (diagonal term):"
+        },
+        {
+          "type": "equation",
+          "value": "P_i = |V_i|^2 |Y_{ii}| \\cos(\\theta_{ii}) + \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_i||V_k||Y_{ik}| \\cos(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "Reactive Power at Any Bus:"
+        },
+        {
+          "type": "equation",
+          "value": "-Q_i = \\sum_{k=1}^{n} |V_i||V_k||Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "For k = i (diagonal term):"
+        },
+        {
+          "type": "equation",
+          "value": "Q_i = -|V_i|^2 |Y_{ii}| \\sin(\\theta_{ii}) - \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_i||V_k||Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "**Jacobian Matrix Elements**"
+        },
+        {
+          "type": "text",
+          "content": "J1 = ∂P/∂δ — Diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_1(i,i) = -\\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_i||V_k||Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "J1 = ∂P/∂δ — Off-diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_1(i,j) = |V_i||V_j||Y_{ij}| \\sin(\\theta_{ij} + \\delta_j - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "J2 = ∂P/∂|V| — Diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_2(i,i) = \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_k||Y_{ik}| \\cos(\\theta_{ik} + \\delta_k - \\delta_i) + 2|V_i||Y_{ii}| \\cos(\\theta_{ii})"
+        },
+        {
+          "type": "text",
+          "content": "J2 = ∂P/∂|V| — Off-diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_2(i,j) = |V_i||Y_{ij}| \\cos(\\theta_{ij} + \\delta_j - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "J3 = ∂Q/∂δ — Diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_3(i,i) = \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_i||V_k||Y_{ik}| \\cos(\\theta_{ik} + \\delta_k - \\delta_i) - |V_i|^2 |Y_{ii}| \\sin(\\theta_{ii})"
+        },
+        {
+          "type": "text",
+          "content": "J3 = ∂Q/∂δ — Off-diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_3(i,j) = -|V_i||V_j||Y_{ij}| \\cos(\\theta_{ij} + \\delta_j - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "J4 = ∂Q/∂|V| — Diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_4(i,i) = -\\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} |V_k||Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i) - 2|V_i||Y_{ii}| \\sin(\\theta_{ii})"
+        },
+        {
+          "type": "text",
+          "content": "J4 = ∂Q/∂|V| — Off-diagonal Elements:"
+        },
+        {
+          "type": "equation",
+          "value": "J_4(i,j) = -|V_i||Y_{ij}| \\sin(\\theta_{ij} + \\delta_j - \\delta_i)"
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Flowchart for Newton-Raphson Method**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "START",
+            "Input System Data: Bus data (P, Q, V, δ), Ybus matrix",
+            "Initialize: Vi = 1.0∠0, Set k = 0",
+            "Calculate P_calc_i, Q_calc_i for all buses",
+            "Calculate Mismatches: ΔPi = P_spec_i − P_calc_i, ΔQi = Q_spec_i − Q_calc_i",
+            "Check Convergence: if |ΔP| < ε and |ΔQ| < ε → Print Results and END",
+            "Form Jacobian Matrix J = [∂P/∂δ, ∂P/∂V; ∂Q/∂δ, ∂Q/∂V]",
+            "Solve: J · [Δδ; ΔV] = [ΔP; ΔQ]",
+            "Update Values: δ(k+1) = δ(k) + Δδ, V(k+1) = V(k) + ΔV",
+            "Set k = k + 1 and return to Step 4"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Three-Bus Power System — Q11**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig-q11-three-bus-system",
+          "caption": "Three-bus power system for Q11 (V1 = 1.05+j0.0, loads and generator at buses 2 and 3)"
+        },
+        {
+          "type": "text",
+          "content": "**Three-Bus Power System — Q8**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig9-three-bus-q8",
+          "caption": "Figure 9: Three-bus power system for Question 8"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Step 1: Initialization**"
+        },
+        {
+          "type": "text",
+          "content": "Construct the bus admittance matrix Ybus. Set iteration count r = 0 and tolerance ε = 10⁻⁴. Define bus types: Bus 1 as Slack bus, Buses 2 to m as PV buses (generator buses), and Buses m+1 to n as PQ buses (load buses)."
+        },
+        {
+          "type": "text",
+          "content": "**Step 2: Initial Assumption**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Voltage magnitudes for PQ buses: |Vi| = 1.0 p.u. for i = m+1, …, n",
+            "Voltage angles: δi = 0 for PV and PQ buses (i = 2, …, n)"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Step 3: Compute Specified Power**"
+        },
+        {
+          "type": "equation",
+          "value": "P_i = P_{Gi} - P_{Di},\\quad i = 2, 3, \\ldots, n"
+        },
+        {
+          "type": "equation",
+          "value": "Q_i = Q_{Gi} - Q_{Di},\\quad i = m+1, \\ldots, n"
+        },
+        {
+          "type": "text",
+          "content": "**Step 4: Mismatch Calculation**"
+        },
+        {
+          "type": "text",
+          "content": "Using assumed voltages, compute Pi and Qi from load flow equations, then calculate mismatch vectors:"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta P_i = P_i^{specified} - P_i^{calculated},\\quad i = 2, \\ldots, n"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta Q_i = Q_i^{specified} - Q_i^{calculated},\\quad i = m+1, \\ldots, n"
+        },
+        {
+          "type": "text",
+          "content": "**Step 5: Jacobian Construction**"
+        },
+        {
+          "type": "text",
+          "content": "Form the Jacobian matrix J = [H N; J L] with elements calculated from the partial derivatives of P and Q with respect to δ and |V|."
+        },
+        {
+          "type": "text",
+          "content": "**Step 6: Compute Correction Vector**"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta \\delta \\\\ \\Delta |V| \\end{bmatrix} = J^{-1} \\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "**Step 7: Update Voltages**"
+        },
+        {
+          "type": "equation",
+          "value": "\\delta_i^{r+1} = \\delta_i^r + \\Delta \\delta_i,\\quad i = 2, \\ldots, n"
+        },
+        {
+          "type": "equation",
+          "value": "|V_i|^{r+1} = |V_i|^r + \\Delta|V_i|,\\quad i = m+1, \\ldots, n"
+        },
+        {
+          "type": "text",
+          "content": "**Step 8: Recalculate Power**"
+        },
+        {
+          "type": "text",
+          "content": "Compute Pi and Qi using the updated voltages for all buses i = 2, …, n."
+        },
+        {
+          "type": "text",
+          "content": "**Step 9: Check Reactive Power Limits**"
+        },
+        {
+          "type": "text",
+          "content": "For PV buses (i = 2, …, m), check if Qi violates limits. If violated, convert the PV bus to a PQ bus by fixing Qi at the limit."
+        },
+        {
+          "type": "text",
+          "content": "**Step 10: Recompute Mismatch Vector**"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta P_i = P_i^{specified} - P_i^{calculated},\\quad i = 2, \\ldots, n"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta Q_i = Q_i^{specified} - Q_i^{calculated},\\quad i = m+1, \\ldots, n"
+        },
+        {
+          "type": "text",
+          "content": "**Step 11: Convergence Check**"
+        },
+        {
+          "type": "text",
+          "content": "If max|ΔPi| > ε or max|ΔQi| > ε, increment r and return to Step 5. Otherwise, proceed to the final step."
+        },
+        {
+          "type": "text",
+          "content": "**Step 12: Converged Solution**"
+        },
+        {
+          "type": "text",
+          "content": "Load flow has converged. Record the number of iterations needed: r + 1."
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB was used to implement the Newton-Raphson load flow algorithm. The code forms the Ybus matrix, builds Jacobian submatrices, iteratively updates voltage magnitudes and angles, checks reactive power limits, and reports converged bus voltages and power flows."
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 1)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig12-matlab-nr-q10-part1",
+          "caption": "Figure 12: MATLAB Code for Newton-Raphson Method (Part 1)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 2)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig13-matlab-nr-q10-part2",
+          "caption": "Figure 13: MATLAB Code for Newton-Raphson Method (Part 2)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 3)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig14-matlab-nr-q10-part3",
+          "caption": "Figure 14: MATLAB Code for Newton-Raphson Method (Part 3)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q11 (Mismatch Calculation)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig16-matlab-nr-q11",
+          "caption": "Figure 16: MATLAB Code for Newton-Raphson Method (Q11)"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Q10 — Output of Newton-Raphson Load Flow Solution**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig15-output-nr-q10",
+          "caption": "Figure 15: Output of the Newton-Raphson Load Flow Solution (Q10)"
+        },
+        {
+          "type": "text",
+          "content": "**Q11 — Output of Newton-Raphson Load Flow Solution**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig17-output-nr-q11",
+          "caption": "Figure 17: Output of the Newton-Raphson Load Flow Solution (Q11)"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Q1.** A power system consists of 300 buses, out of which 20 buses are generator bus, 25 buses are ones with reactive power support and 15 buses are the ones with fixed shunt capacitors. All the other buses are load buses. It is proposed to perform a load analysis in the system using the Newton-Raphson method. The size of the Jacobian matrix is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 553 × 553",
+            "(b) 540 × 540",
+            "(c) 555 × 555",
+            "(d) 554 × 554"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-solution-q1",
+          "caption": "Figure 1: Solution for Q1"
+        },
+        {
+          "type": "text",
+          "content": "**Q2.** A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar coordinates, the size of the Jacobian is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 189 × 189",
+            "(b) 100 × 100",
+            "(c) 90 × 90",
+            "(d) 180 × 180"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-solution-q2",
+          "caption": "Figure 2: Solution for Q2"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-solution-q2-cont",
+          "caption": "Figure 3: Solution for Q2 (Continuation)"
+        },
+        {
+          "type": "text",
+          "content": "**Q3.** In a load flow problem solved by Newton-Raphson method with polar coordinates, the size of the Jacobian is 100 × 100. If there are 20 PV buses in addition to PQ buses and a slack bus, the total number of buses in the system is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 58",
+            "(b) 55",
+            "(c) 61",
+            "(d) 63"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-solution-q3",
+          "caption": "Figure 4: Solution for Q3"
+        },
+        {
+          "type": "text",
+          "content": "**Q4.** A 10-bus power system consists of four generator buses indexed as G1, G2, G3, G4 and six load buses indexed as L1, L2, L3, L4, L5, L6. The generator bus G1 is considered as slack bus, and the load buses L3 and L4 are voltage controlled buses. The generator at bus G2 cannot supply the required reactive power demand, and hence it is operating at its maximum reactive power limit. The number of non-linear equations required for solving the load flow problem using Newton-Raphson method in polar form is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 14",
+            "(b) 16",
+            "(c) 6",
+            "(d) 8"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-solution-q4",
+          "caption": "Figure 5: Solution for Q4"
+        },
+        {
+          "type": "text",
+          "content": "**Q5.** A 1000 × 1000 bus admittance matrix for an electric power system has 8000 non-zero elements. The minimum number of branches (transmission lines and transformers) in this system are:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 3000",
+            "(b) 3200",
+            "(c) 3500",
+            "(d) 7000"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig6-solution-q5",
+          "caption": "Figure 6: Solution for Q5"
+        },
+        {
+          "type": "text",
+          "content": "**Q6.** A 183-bus power system has 150 PQ buses and 32 PV buses. In the general case, to obtain the load flow solution using Newton-Raphson method in polar coordinates, the minimum number of simultaneous equations to be solved is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(a) 222",
+            "(b) 321",
+            "(c) 332",
+            "(d) 336"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig7-solution-q6",
+          "caption": "Figure 7: Solution for Q6"
+        },
+        {
+          "type": "text",
+          "content": "**Q7.** Consider a power system consisting of N buses. Buses in this power system are categorized into slack bus, PV buses, and PQ buses for load flow study. The number of PQ buses is NL. The balanced Newton-Raphson method is used to carry out load flow study in polar form. H, S, M, and R are sub-matrices of the Jacobian matrix J as shown below:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix} = \\begin{bmatrix} H & S \\\\ M & R \\end{bmatrix} \\begin{bmatrix} \\Delta \\delta \\\\ \\Delta |V| \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "The dimension of the sub-matrix M is:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(A) NL × (N − 1)",
+            "(B) (N − 1) × (N − 1 + NL)",
+            "(C) NL × (N − 1 + NL)",
+            "(D) (N − 1) × (N − 1 − NL)"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig8-solution-q7",
+          "caption": "Figure 8: Solution for Q7"
+        },
+        {
+          "type": "text",
+          "content": "**Q8.** The three-bus power system shown in the figure has one alternator connected to bus 2 which supplies 200 MW and 40 MVAr power. Bus 3 is an infinite bus having a voltage of magnitude V3 = 1.0 p.u. and angle of 0° − 15°. A variable current source, I∠ϕ, is connected at bus 1 and controlled such that the magnitude of the bus 1 voltage is maintained at 1.05 p.u. and the phase angle of the source current, ϕ = θ1 ± π/2, where θ1 is the phase angle of the bus 1 voltage. The three buses can be categorized for load flow analysis as:"
+        },
+        {
+          "type": "image",
+          "assetId": "fig9-three-bus-q8",
+          "caption": "Figure 9: Three-bus power system for Question 8"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(A) Bus 1: Slack bus, Bus 2: PV bus, Bus 3: PQ bus",
+            "(B) Bus 3: Slack bus, Bus 2: PV bus, Bus 1: PV bus",
+            "(C) Bus 3: Slack bus, Bus 1: PV bus, Bus 2: PQ bus",
+            "(D) Bus 1: Slack bus, Bus 2: PV bus, Bus 3: PV bus"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig10-solution-q8",
+          "caption": "Figure 10: Solution for Q8"
+        },
+        {
+          "type": "text",
+          "content": "**Q9.** In a 100-bus power system, there are 10 generators. In a particular iteration of the Newton-Raphson load flow technique (in polar coordinates), two of the PV buses are converted to PQ type. In this iteration:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "(A) the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes increases by two.",
+            "(B) the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes increases by two.",
+            "(C) the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes decreases by two.",
+            "(D) the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes decreases by two."
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "fig11-solution-q9",
+          "caption": "Figure 11: Solution for Q9"
+        },
+        {
+          "type": "text",
+          "content": "**Q10.** Consider the following three-bus system. Each of the three transmission lines has a series impedance of 0.02 + j0.08 p.u. and a total shunt admittance of j0.02 p.u. The specified quantities at the buses (all in p.u.) are given in the table below:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Bus",
+            "PD",
+            "QD",
+            "PG",
+            "QG",
+            "Voltage"
+          ],
+          "rows": [
+            ["1", "2.0", "1.0", "–", "–", "1.04∠0°"],
+            ["2", "0.0", "0.0", "0.5", "1.0", "–"],
+            ["3", "1.5", "0.6", "0.0", "QG3 = ?", "1.04∠0°"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "A controllable reactive power source is available at bus 3 with limits:"
+        },
+        {
+          "type": "equation",
+          "value": "0 \\le Q_{G3} \\le 1.5 \\text{ p.u.}"
+        },
+        {
+          "type": "text",
+          "content": "Find the load-flow solution using the Newton-Raphson method. A MATLAB code was implemented using the provided line impedances and bus data to form the Ybus and construct the Jacobian submatrices. The Newton-Raphson algorithm updates the unknown voltage magnitudes and phase angles repeatedly until convergence. Refer to Figures 12, 13, and 14 for the complete MATLAB code and Figure 15 for the output."
+        },
+        {
+          "type": "text",
+          "content": "**Q11.** For the power system shown in the following figure, the bus admittance matrix Ybus is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "Y_{bus} = \\begin{bmatrix} 3.05 - j9.0 & -2.0 + j6.0 & -1.0 + j3.0 \\\\ -2.0 + j6.0 & 2.5 - j7.5 & -0.5 + j1.5 \\\\ -1.0 + j3.0 & -0.5 + j1.5 & 1.5 - j4.5 \\end{bmatrix}"
+        },
+        {
+          "type": "image",
+          "assetId": "fig-q11-three-bus-system",
+          "caption": "Three-bus power system for Q11"
+        },
+        {
+          "type": "text",
+          "content": "(i) For each bus k, specify the bus type and determine which of the variables Vk, δk, Pk, Qk are input data, and which are unknown."
+        },
+        {
+          "type": "text",
+          "content": "(ii) Assume an initial estimate of Vk = 1.0∠0° and δk = 0° and calculate the bus real and reactive power mismatches to be used in the first iteration of the Newton-Raphson power flow method."
+        },
+        {
+          "type": "text",
+          "content": "**Solution:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Bus 1 (Slack Bus): V1 = 1.05 pu, δ1 = 0° are specified. Known: V1, δ1. Unknown: P1, Q1.",
+            "Bus 2 (PQ Bus): P2 = 1.5 pu, Q2 = 1.0 pu are specified. Known: P2, Q2. Unknown: V2, δ2.",
+            "Bus 3 (PV Bus): P3 = 1.2 pu, V3 = 1.02 pu are specified. Known: P3, V3. Unknown: Q3, δ3."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Thus: Bus 1: Slack, Bus 2: PQ, Bus 3: PV. A MATLAB code was implemented using the given Ybus to compute P_calc, Q_calc, and the mismatch vector at the initial flat-start estimate. Refer to Figure 16 for the MATLAB code and Figure 17 for the output."
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The Newton-Raphson method was successfully applied to the problems. Key results are summarized below."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Problem",
+            "System",
+            "Iterations",
+            "Key Result"
+          ],
+          "rows": [
+            ["Q1", "300-bus Jacobian size", "–", "Jacobian size = 554 \u00d7 554 (answer: d)"],
+            ["Q2", "100-bus Jacobian size", "–", "Jacobian size = 189 \u00d7 189 (answer: a)"],
+            ["Q3", "Jacobian 100\u00d7100, m=20", "–", "Total buses n = 61 (answer: c)"],
+            ["Q4", "10-bus, G2 at Q-limit", "–", "No. of non-linear equations = 14 (answer: a)"],
+            ["Q5", "1000-bus, 8000 non-zero elements", "–", "Minimum branches = 3500 (answer: c)"],
+            ["Q6", "183-bus, 150 PQ, 32 PV", "–", "Minimum simultaneous equations = 332 (answer: c)"],
+            ["Q7", "N-bus, NL PQ buses", "–", "Dimension of M = NL \u00d7 (N\u22121) (answer: A)"],
+            ["Q8", "3-bus classification", "–", "Bus 3: Slack, Bus 2: PQ, Bus 1: PV (answer: C)"],
+            ["Q9", "100-bus, 2 PV \u2192 PQ", "–", "Unknown angles unchanged, magnitudes increase by 2 (answer: B)"],
+            ["Q10", "3-bus NR load flow", "4", "V1=1.040000\u22200.0000\u00b0, V2=1.085523\u2220\u22121.4280\u00b0, V3=1.047644\u2220\u22123.8299\u00b0"],
+            ["Q11", "3-bus mismatch (1st iter)", "1", "\u0394P2=\u22121.3900 pu, \u0394P3=0.6204 pu, \u0394Q2=\u22120.6700 pu"]
+          ]
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** What is the Newton-Raphson method and why does it converge faster than Gauss-Seidel for load flow analysis?\n\n**A:** The Newton-Raphson method is an iterative numerical technique that solves a system of nonlinear equations by linearizing them at each iteration using the Jacobian matrix and solving for corrections to the unknowns. It converges quadratically, meaning the number of correct digits approximately doubles with each iteration, compared to the linear convergence of Gauss-Seidel. This makes NR far more efficient for large, complex networks, typically converging in 3\u20135 iterations regardless of system size, whereas Gauss-Seidel may require hundreds of iterations for large systems.",
+            "**Q:** How is the size of the Jacobian matrix determined in the Newton-Raphson load flow method in polar coordinates?\n\n**A:** The size of the Jacobian matrix in NR polar coordinates is given by (2n \u2212 m \u2212 1) \u00d7 (2n \u2212 m \u2212 1), where n is the total number of buses and m is the number of PV buses (excluding the slack bus). This is because the unknowns are: (n \u2212 1) voltage angles \u03b4 for all non-slack buses, and (n \u2212 1 \u2212 m) voltage magnitudes |V| for PQ buses only. The Jacobian has one row and column per unknown, giving a total dimension of (2n \u2212 m \u2212 1).",
+            "**Q:** What are the four submatrices of the Jacobian in Newton-Raphson load flow and what do they represent?\n\n**A:** The Jacobian is partitioned as J = [H N; J L], where: H (= J1) = \u2202P/\u2202\u03b4 represents the sensitivity of real power injections to voltage angle changes; N (= J2) = \u2202P/\u2202|V| represents the sensitivity of real power injections to voltage magnitude changes; J (= J3) = \u2202Q/\u2202\u03b4 represents the sensitivity of reactive power injections to voltage angle changes; L (= J4) = \u2202Q/\u2202|V| represents the sensitivity of reactive power injections to voltage magnitude changes. Together these four submatrices form the complete linearized power-angle and reactive power-voltage relationships of the network.",
+            "**Q:** What is the significance of converting a PV bus to a PQ bus during Newton-Raphson iterations, and what effect does it have on the Jacobian?\n\n**A:** A PV bus is converted to a PQ bus when the reactive power Q computed at that bus during an iteration violates the generator's reactive power limits (Qmin or Qmax). Once converted, the voltage magnitude |V| at that bus is no longer fixed \u2014 it becomes an unknown. As a result, the number of unknown voltage magnitudes increases by one for each such conversion, the size of the lower submatrices (J3, J4) of the Jacobian expands accordingly, and the mismatch vector gains an additional \u0394Q equation. The number of unknown voltage angles remains unchanged since \u03b4 was already an unknown for that bus.",
+            "**Q:** How is the mismatch vector computed in the first iteration of Newton-Raphson, and what does it represent physically?\n\n**A:** In the first iteration, the bus voltages are initialized at the flat start (|V| = 1.0 pu, \u03b4 = 0\u00b0 for all non-slack buses). The calculated real and reactive power at each non-slack bus is computed using the load flow equations with these initial values and the Ybus. The mismatch vector is then: \u0394P = P_specified \u2212 P_calculated and \u0394Q = Q_specified \u2212 Q_calculated. Physically, the mismatch represents the imbalance between the scheduled (specified) power injections and the power flows that would actually occur in the network at the current voltage estimates. A zero mismatch indicates a converged solution.",
+            "**Q:** How does the sparsity of the Ybus matrix relate to the minimum number of branches in a power system, and why is sparsity important for Newton-Raphson computations?\n\n**A:** In the Ybus matrix of an n-bus system, the n diagonal elements always exist (self-admittances). Each transmission line or transformer between two buses contributes exactly two off-diagonal non-zero elements (Yij and Yji). Therefore, if the total number of non-zero elements is T, the number of off-diagonal non-zero elements is T \u2212 n, and the minimum number of branches is (T \u2212 n) / 2. For a 1000-bus system with 8000 non-zero elements: off-diagonal elements = 8000 \u2212 1000 = 7000, so minimum branches = 7000 / 2 = 3500. Sparsity is critical for NR computations because it allows the use of sparse matrix storage and sparse LU factorization, drastically reducing both memory usage and computation time for the Jacobian inversion step in each iteration."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this lab, we completed the Newton-Raphson method for load flow analysis. We analysed power flow for a 3-bus system using the Newton-Raphson method. We created the bus admittance matrix, categorized bus types, and built the Jacobian submatrices. We ran the iterative algorithm in MATLAB and checked the code step by step with the provided system data."
+        },
+        {
+          "type": "text",
+          "content": "The Newton-Raphson method offers fast and reliable convergence compared to other iterative techniques like Gauss-Seidel. It also shows the importance of modeling buses properly, setting reactive power limits, and making conversions like PV bus to PQ bus whenever necessary. Overall, the implementation and results confirm the effectiveness of the Newton-Raphson method in practical load flow studies for large, complex networks."
+        }
+      ]
+    }
+  }
+}
