@@ -1,56 +1,57 @@
 {
-  "id": "exp-2",
-  "labId": "power-system-lab",
-  "assets": [
-    {
-      "assetId": "code1_1",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code1_1.png"
-    },
-    {
-      "assetId": "code1_2",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code1_2.png"
-    },
-    {
-      "assetId": "output1",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/output1.png"
-    },
-    {
-      "assetId": "code2_1",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code2_1.png"
-    },
-    {
-      "assetId": "code2_2",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code2_2.png"
-    },
-    {
-      "assetId": "output2",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/output2.png"
-    },
-    {
-      "assetId": "code3_1",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code3_1.png"
-    },
-    {
-      "assetId": "code3_2",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code3_2.png"
-    },
-    {
-      "assetId": "code3_3",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/code3_3.png"
-    },
-    {
-      "assetId": "output3",
-      "type": "image",
-      "path": "assets/labs/power-system-lab/exp-2/output3.png"
-    }
-  ]
+  "code1_1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code1_1.png",
+    "description": "MATLAB Code for Problem 1 (Part 1)"
+  },
+  "code1_2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code1_2.png",
+    "description": "MATLAB Code for Problem 1 (Part 2)"
+  },
+  "output1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/output1.png",
+    "description": "Output after first iteration (Problem 1)"
+  },
+  "code2_1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code2_1.png",
+    "description": "MATLAB Code for Problem 2 (Part 1)"
+  },
+  "code2_2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code2_2.png",
+    "description": "MATLAB Code for Problem 2 (Part 2)"
+  },
+  "output2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/output2.png",
+    "description": "Final Converged Results (Problem 2)"
+  },
+  "code3_1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code3_1.png",
+    "description": "MATLAB Code for Problem 3 (Part 1)"
+  },
+  "code3_2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code3_2.png",
+    "description": "MATLAB Code for Problem 3 (Part 2)"
+  },
+  "code3_3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/code3_3.png",
+    "description": "MATLAB Code for Problem 3 (Part 3)"
+  },
+  "output3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/output3.png",
+    "description": "Final Converged Results (Problem 3)"
+  },
+  "fig-problem3-diagram": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-2/problem3-diagram.png",
+    "description": "Single-line diagram for Problem 3"
+  }
 }
