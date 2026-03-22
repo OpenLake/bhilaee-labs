@@ -196,17 +196,17 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Formation of Bus Admittance Matrix (Y-Bus) for Transmission Systems",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Software Oriented",
+          "completeness": 1
         },
         {
           "id": "2",
-          "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
+          "title": "Experiment 2",
           "fileName": "exp-2.json",
-          "status": "Hardware Oriented",
-          "completeness": 1
+          "status": "Guide Only",
+          "completeness": 0.1
         },
         {
           "id": "3",
@@ -355,14 +355,14 @@
           "id": "3",
           "title": "Implementing Closed-Loop Control of a Buck Converter Using PID Controller",
           "fileName": "exp-3.json",
-          "status": "Simulation Oriented",
+          "status": "Software Oriented",
           "completeness": 1
         },
         {
           "id": "4",
           "title": "Time Domain Analysis of First, Second and Third Order Systems",
           "fileName": "exp-4.json",
-          "status": "Simulation Oriented",
+          "status": "Software Oriented",
           "completeness": 1
         },
         {
@@ -421,10 +421,10 @@
         },
         {
           "id": "2",
-          "title": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
+          "title": "Experiment 2",
           "fileName": "exp-2.json",
-          "status": "Hardware Oriented",
-          "completeness": 1
+          "status": "Guide Only",
+          "completeness": 0.1
         },
         {
           "id": "3",

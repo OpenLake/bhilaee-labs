@@ -1,0 +1,67 @@
+{
+  "fig1-3bus-short-transmission": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig1-3bus-short-transmission.png",
+    "description": "Figure 1: 3-Bus Power System (Short Transmission Line)"
+  },
+  "fig2-3bus-long-transmission": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig2-3bus-long-transmission.png",
+    "description": "Figure 2: 3-Bus Power System (Long Transmission Line with Shunt Admittances)"
+  },
+  "fig3-matlab-code-q1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig3-matlab-code-q1.png",
+    "description": "Figure 3: MATLAB code used for Q1"
+  },
+  "fig5-matlab-code-q2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig5-matlab-code-q2.png",
+    "description": "Figure 5: MATLAB code used for Q2"
+  },
+  "fig7-matlab-code-q3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig7-matlab-code-q3.png",
+    "description": "Figure 7: MATLAB code used for Q3"
+  },
+  "fig10-matlab-code-q4": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig10-matlab-code-q4.png",
+    "description": "Figure 10: MATLAB code used for Q4"
+  },
+  "fig4-ybus-q1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig4-ybus-q1.png",
+    "description": "Figure 4: Computed Ybus for Q1"
+  },
+  "fig6-ybus-q2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig6-ybus-q2.png",
+    "description": "Figure 6: Computed Ybus for Q2"
+  },
+  "fig8-ybus-q3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig8-ybus-q3.png",
+    "description": "Figure 8: Computed Ybus for Q3"
+  },
+  "fig9-ybus-q3-polar": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig9-ybus-q3-polar.png",
+    "description": "Figure 9: Computed Ybus for Q3 Polar Form"
+  },
+  "fig11-ybus-q4": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig11-ybus-q4.png",
+    "description": "Figure 11: Computed Ybus for Q4"
+  },
+  "fig-q2-network-diagram": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig-q2-network-diagram.png",
+    "description": "3-Bus network with generators as ideal voltage sources (Q2)"
+  },
+  "fig-q4-transformer-network": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-1/fig-q4-transformer-network.png",
+    "description": "Two-bus system with transmission line of admittance Y and ideal transformers (Q4)"
+  }
+}
