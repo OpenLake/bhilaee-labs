@@ -243,40 +243,6 @@
       "content": [
         {
           "type": "text",
-          "content": "**Flowchart for Y-Bus Formation \u2014 Short Transmission Line**"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "Start",
-            "Read inputs: nbus, From_Bus, To_Bus, R, X",
-            "Create Ybus = zeros(nbus, nbus)",
-            "Compute Y = 1 / (R + jX)",
-            "For each line: set Yij = Yij \u2212 Y, Yji = Yij, Yii = Yii + Y, Yjj = Yjj + Y",
-            "Display Ybus",
-            "End"
-          ]
-        },
-        {
-          "type": "text",
-          "content": "**Flowchart for Y-Bus Formation \u2014 Long Transmission Line**"
-        },
-        {
-          "type": "list",
-          "style": "ordered",
-          "items": [
-            "Start",
-            "Read inputs: nbus, From_Bus, To_Bus, R, X, B",
-            "Create Ybus = zeros(nbus, nbus)",
-            "Compute Y = 1 / (R + jX)",
-            "For each line: set Yij = Yij \u2212 Y, Yji = Yij, Yii = Yii + Y + jB/2, Yjj = Yjj + Y + jB/2",
-            "Display Ybus",
-            "End"
-          ]
-        },
-        {
-          "type": "text",
           "content": "**Circuit Diagram \u2014 3-Bus Power System (Short Transmission)**"
         },
         {
