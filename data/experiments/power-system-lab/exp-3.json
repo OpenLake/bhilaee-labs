@@ -337,74 +337,14 @@
     "simulation": {
       "id": "simulation",
       "title": "Simulation / Execution",
-      "isApplicable": true,
-      "content": [
-        {
-          "type": "text",
-          "content": "MATLAB was used to implement the Newton-Raphson load flow algorithm. The code forms the Ybus matrix, builds Jacobian submatrices, iteratively updates voltage magnitudes and angles, checks reactive power limits, and reports converged bus voltages and power flows."
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 1)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig12-matlab-nr-q10-part1",
-          "caption": "Figure 12: MATLAB Code for Newton-Raphson Method (Part 1)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 2)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig13-matlab-nr-q10-part2",
-          "caption": "Figure 13: MATLAB Code for Newton-Raphson Method (Part 2)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q10 (Three-Bus System, Part 3)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig14-matlab-nr-q10-part3",
-          "caption": "Figure 14: MATLAB Code for Newton-Raphson Method (Part 3)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q11 (Mismatch Calculation)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig16-matlab-nr-q11",
-          "caption": "Figure 16: MATLAB Code for Newton-Raphson Method (Q11)"
-        }
-      ]
+      "isApplicable": false,
+      "content": []
     },
     "observation": {
       "id": "observation",
       "title": "Observations",
-      "isApplicable": true,
-      "content": [
-        {
-          "type": "text",
-          "content": "**Q10 — Output of Newton-Raphson Load Flow Solution**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig15-output-nr-q10",
-          "caption": "Figure 15: Output of the Newton-Raphson Load Flow Solution (Q10)"
-        },
-        {
-          "type": "text",
-          "content": "**Q11 — Output of Newton-Raphson Load Flow Solution**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig17-output-nr-q11",
-          "caption": "Figure 17: Output of the Newton-Raphson Load Flow Solution (Q11)"
-        }
-      ]
+      "isApplicable": false,
+      "content": []
     },
     "calculation": {
       "id": "calculation",
@@ -427,7 +367,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (d):** For a 300-bus system with 20 generator buses and 25 reactive support buses (total 45 PV-capable buses, subtract 1 for the slack bus = 44 PV buses) and 15 fixed capacitors (PQ):\nJacobian Size = (n-1) + (n-1-m) = 299 + (299-44) = 299 + 255 = **554**."
+          "content": "**Solution:**\n\nTotal number of buses (n) = 300\nNumber of PV buses (including generator buses and buses with reactive support) = m = 45\nSlack bus is excluded from m\n\nJacobian size = 2n \u2212 m \u2212 1\n= 2(300) \u2212 45 \u2212 1 = 600 \u2212 46\n\nSize of Jacobian = **554 \u00d7 554**"
         },
         {
           "type": "text",
@@ -437,19 +377,19 @@
           "type": "list",
           "style": "unordered",
           "items": [
-            "(a) 189 × 189",
-            "(b) 100 × 100",
-            "(c) 90 × 90",
-            "(d) 180 × 180"
+            "(a) 189 \u00d7 189",
+            "(b) 100 \u00d7 100",
+            "(c) 90 \u00d7 90",
+            "(d) 180 \u00d7 180"
           ]
         },
         {
           "type": "text",
-          "content": "**Solution (a):** n = 100, m = 10-1 = 9 PV buses.\nJacobian Size = (100-1) + (100-1-9) = 99 + 90 = **189**."
+          "content": "**Solution:**\n\nThe size of Jacobian matrix in Newton-Raphson method is given by = **2n \u2212 m \u2212 1**\n\nwhere,\nn = total no. of buses\nm = number of PV buses (generator excluding the slack bus)\n\nGiven: n = 100\nGenerator buses = 10\n\nJacobian size = 2 \u00d7 100 \u2212 10 \u2212 1 = 200 \u2212 11\n= **189 \u00d7 189**"
         },
         {
           "type": "text",
-          "content": "**Q3.** In a load flow problem solved by Newton-Raphson method with polar coordinates, the size of the Jacobian is 100 × 100. If there are 20 PV buses in addition to PQ buses and a slack bus, the total number of buses in the system is:"
+          "content": "**Q3.** In a load flow problem solved by Newton-Raphson method with polar coordinates, the size of the Jacobian is 100 \u00d7 100. If there are 20 PV buses in addition to PQ buses and a slack bus, the total number of buses in the system is:"
         },
         {
           "type": "list",
@@ -463,7 +403,7 @@
         },
         {
           "type": "text",
-          "content": "**Solution (c):** Size S = 2n - m - 2\n100 = 2n - 20 - 2 \n122 = 2n \n**n = 61**."
+          "content": "**Solution:**\n\nThe size of Jacobian in Newton-Raphson method is given by = **2n \u2212 m \u2212 1**\n\nwhere,\nn is the total no. of buses and m is the number of PV buses\n\nGiven: Jacobian size = 100, m = 20\n\n100 = 2n \u2212 20 \u2212 1\n100 = 2n \u2212 21 \u21d2 2n = 121\n\nn = 60.5 \u2248 61\n\n\u2234 **n = 61**"
         },
         {
           "type": "text",
@@ -616,7 +556,27 @@
         },
         {
           "type": "text",
-          "content": "Find the load-flow solution using the Newton-Raphson method. A MATLAB code was implemented using the provided line impedances and bus data to form the Ybus and construct the Jacobian submatrices. The Newton-Raphson algorithm updates the unknown voltage magnitudes and phase angles repeatedly until convergence. Refer to Figures 12, 13, and 14 for the complete MATLAB code and Figure 15 for the output."
+          "content": "Find the load-flow solution using the Newton-Raphson method. A MATLAB code was implemented using the provided line impedances and bus data to form the Ybus and construct the Jacobian submatrices. The Newton-Raphson algorithm updates the unknown voltage magnitudes and phase angles repeatedly until convergence."
+        },
+        {
+          "type": "image",
+          "assetId": "fig12-matlab-nr-q10-part1",
+          "caption": "Figure 12: MATLAB Code for Newton-Raphson Method (Part 1)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig13-matlab-nr-q10-part2",
+          "caption": "Figure 13: MATLAB Code for Newton-Raphson Method (Part 2)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig14-matlab-nr-q10-part3",
+          "caption": "Figure 14: MATLAB Code for Newton-Raphson Method (Part 3)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig15-output-nr-q10",
+          "caption": "Figure 15: Output of the Newton-Raphson Load Flow Solution"
         },
         {
           "type": "text",
