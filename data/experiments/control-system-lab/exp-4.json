@@ -247,12 +247,7 @@
       "content": [
         {
           "type": "text",
-          "content": "MATLAB simulations were performed for all six systems to obtain their impulse, step, ramp, and parabolic responses, and to compute time domain specifications. The system models used are shown in Figure 1."
-        },
-        {
-          "type": "image",
-          "assetId": "fig1-system-models",
-          "caption": "Figure 1: System models used for time domain analysis"
+          "content": "MATLAB simulations were performed for all six systems to obtain their impulse, step, ramp, and parabolic responses, and to compute time domain specifications."
         }
       ]
     },
@@ -267,8 +262,28 @@
         },
         {
           "type": "image",
-          "assetId": "fig2-first-order-matlab",
-          "caption": "Figure 2: MATLAB simulation output for first order system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig2a-first-order-impulse",
+          "caption": "Impulse Response for first order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2b-first-order-step",
+          "caption": "Step Response for first order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2c-first-order-ramp",
+          "caption": "Ramp Response for first order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2d-first-order-parabolic",
+          "caption": "Parabolic Response for first order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2e-first-order-specs",
+          "caption": "Step Response Specifications for first order system"
         },
         {
           "type": "table",
@@ -536,11 +551,6 @@
           "value": "G_1(s) = \\frac{3}{0.6s + 1} \\Rightarrow K = 3,\\; \\tau = 0.6"
         },
         {
-          "type": "image",
-          "assetId": "fig7-system1-handwritten",
-          "caption": "Figure 7: Handwritten calculations for System 1 (impulse, step, ramp, parabolic responses and time domain specs)"
-        },
-        {
           "type": "text",
           "content": "Key results: td = 0.693 \u00d7 0.6 = 0.4158 s, tr = 2.2 \u00d7 0.6 = 1.32 s, ts = 4\u03c4 = 2.4 s, steady-state value = 3, steady-state error = \u22124 (for ramp input)."
         },
@@ -553,11 +563,6 @@
           "value": "G_2(s) = \\frac{121}{s^2 + 121} \\Rightarrow \\omega_n^2 = 121 \\Rightarrow \\omega_n = 11,\\; 2\\zeta\\omega_n = 0 \\Rightarrow \\zeta = 0"
         },
         {
-          "type": "image",
-          "assetId": "fig8-system2-handwritten",
-          "caption": "Figure 8: Handwritten calculations for System 2 (impulse, step, ramp, parabolic responses)"
-        },
-        {
           "type": "text",
           "content": "**System 3 \u2014 Underdamped Second Order**"
         },
@@ -566,32 +571,12 @@
           "value": "G_3(s) = \\frac{144}{s^2 + 19.2s + 144} \\Rightarrow \\omega_n = 12,\\; 2\\zeta\\omega_n = 19.2 \\Rightarrow \\zeta = 0.8"
         },
         {
-          "type": "image",
-          "assetId": "fig9-system3-handwritten-1",
-          "caption": "Figure 9: Handwritten calculations for System 3 \u2014 Part 1 (impulse, step, ramp responses)"
-        },
-        {
-          "type": "image",
-          "assetId": "fig10-system3-handwritten-2",
-          "caption": "Figure 10: Handwritten calculations for System 3 \u2014 Part 2 (parabolic response)"
-        },
-        {
           "type": "text",
           "content": "**System 4 \u2014 Critically Damped Second Order**"
         },
         {
           "type": "equation",
           "value": "G_4(s) = \\frac{144}{s^2 + 24s + 144} \\Rightarrow 2\\zeta\\omega_n = 24 \\Rightarrow \\zeta = 1"
-        },
-        {
-          "type": "image",
-          "assetId": "fig11-system4-handwritten-1",
-          "caption": "Figure 11: Handwritten calculations for System 4 \u2014 Part 1"
-        },
-        {
-          "type": "image",
-          "assetId": "fig12-system4-handwritten-2",
-          "caption": "Figure 12: Handwritten calculations for System 4 \u2014 Part 2"
         },
         {
           "type": "text",
@@ -606,16 +591,6 @@
           "content": "Poles: s = \u22122.06, s = \u221269.94 (factored as (s + 2.06)(s + 69.94))."
         },
         {
-          "type": "image",
-          "assetId": "fig13-system5-handwritten-1",
-          "caption": "Figure 13: Handwritten calculations for System 5 \u2014 Part 1"
-        },
-        {
-          "type": "image",
-          "assetId": "fig14-system5-handwritten-2",
-          "caption": "Figure 14: Handwritten calculations for System 5 \u2014 Part 2"
-        },
-        {
           "type": "text",
           "content": "**System 6 \u2014 Third Order**"
         },
@@ -626,16 +601,6 @@
         {
           "type": "text",
           "content": "Poles: s\u2081 = \u221236, s\u2082,\u2083 = \u22127 \u00b1 j\u221a147 \u2248 \u22127 \u00b1 j12.12. The complex conjugate poles s\u2082, s\u2083 are dominant (closer to imaginary axis)."
-        },
-        {
-          "type": "image",
-          "assetId": "fig15-system6-handwritten-1",
-          "caption": "Figure 15: Handwritten calculations for System 6 \u2014 Part 1 (impulse response)"
-        },
-        {
-          "type": "image",
-          "assetId": "fig16-system6-handwritten-2",
-          "caption": "Figure 16: Handwritten calculations for System 6 \u2014 Part 2 (step, ramp, parabolic responses)"
         }
       ]
     },

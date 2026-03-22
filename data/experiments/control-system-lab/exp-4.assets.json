@@ -1,14 +1,4 @@
 {
-  "fig1-system-models": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig1-system-models.png",
-    "description": "System models used for time domain analysis"
-  },
-  "fig2-first-order-matlab": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig2-first-order-matlab.png",
-    "description": "MATLAB simulation output for first order system"
-  },
   "fig-undamped-matlab": {
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig-undamped-matlab.png",
@@ -34,54 +24,29 @@
     "path": "/assets/labs/control-system-lab/exp-4/fig6-third-order-matlab.png",
     "description": "MATLAB simulation output for third order system"
   },
-  "fig7-system1-handwritten": {
+  "fig2a-first-order-impulse": {
     "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig7-system1-handwritten.png",
-    "description": "Handwritten calculations for System 1"
+    "path": "/assets/labs/control-system-lab/exp-4/fig2a-first-order-impulse.png",
+    "description": "Impulse Response for first order system"
   },
-  "fig8-system2-handwritten": {
+  "fig2b-first-order-step": {
     "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig8-system2-handwritten.png",
-    "description": "Handwritten calculations for System 2"
+    "path": "/assets/labs/control-system-lab/exp-4/fig2b-first-order-step.png",
+    "description": "Step Response for first order system"
   },
-  "fig9-system3-handwritten-1": {
+  "fig2c-first-order-ramp": {
     "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig9-system3-handwritten-1.png",
-    "description": "Handwritten calculations for System 3 \u2014 Part 1"
+    "path": "/assets/labs/control-system-lab/exp-4/fig2c-first-order-ramp.png",
+    "description": "Ramp Response for first order system"
   },
-  "fig10-system3-handwritten-2": {
+  "fig2d-first-order-parabolic": {
     "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig10-system3-handwritten-2.png",
-    "description": "Handwritten calculations for System 3 \u2014 Part 2"
+    "path": "/assets/labs/control-system-lab/exp-4/fig2d-first-order-parabolic.png",
+    "description": "Parabolic Response for first order system"
   },
-  "fig11-system4-handwritten-1": {
+  "fig2e-first-order-specs": {
     "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig11-system4-handwritten-1.png",
-    "description": "Handwritten calculations for System 4 \u2014 Part 1"
-  },
-  "fig12-system4-handwritten-2": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig12-system4-handwritten-2.png",
-    "description": "Handwritten calculations for System 4 \u2014 Part 2"
-  },
-  "fig13-system5-handwritten-1": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig13-system5-handwritten-1.png",
-    "description": "Handwritten calculations for System 5 \u2014 Part 1"
-  },
-  "fig14-system5-handwritten-2": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig14-system5-handwritten-2.png",
-    "description": "Handwritten calculations for System 5 \u2014 Part 2"
-  },
-  "fig15-system6-handwritten-1": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig15-system6-handwritten-1.png",
-    "description": "Handwritten calculations for System 6 \u2014 Part 1"
-  },
-  "fig16-system6-handwritten-2": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig16-system6-handwritten-2.png",
-    "description": "Handwritten calculations for System 6 \u2014 Part 2"
+    "path": "/assets/labs/control-system-lab/exp-4/fig2e-first-order-specs.png",
+    "description": "Step Response Specifications for first order system"
   }
 }
