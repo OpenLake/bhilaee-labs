@@ -332,8 +332,23 @@
         },
         {
           "type": "image",
-          "assetId": "fig-undamped-matlab",
-          "caption": "MATLAB simulation output for second order undamped system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig3a-undamped-impulse",
+          "caption": "Impulse Response for undamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3b-undamped-step",
+          "caption": "Step Response for undamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3c-undamped-ramp",
+          "caption": "Ramp Response for undamped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3d-undamped-parabolic",
+          "caption": "Parabolic Response for undamped second order system"
         },
         {
           "type": "text",
