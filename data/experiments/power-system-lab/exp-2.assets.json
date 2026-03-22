@@ -26,6 +26,31 @@
       "assetId": "code2_2",
       "type": "image",
       "path": "assets/labs/power-system-lab/exp-2/code2_2.png"
+    },
+    {
+      "assetId": "output2",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/output2.png"
+    },
+    {
+      "assetId": "code3_1",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/code3_1.png"
+    },
+    {
+      "assetId": "code3_2",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/code3_2.png"
+    },
+    {
+      "assetId": "code3_3",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/code3_3.png"
+    },
+    {
+      "assetId": "output3",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/output3.png"
     }
   ]
 }

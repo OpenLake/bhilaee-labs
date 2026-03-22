@@ -216,6 +216,25 @@
           "type": "image",
           "assetId": "code2_2",
           "caption": "MATLAB Code for Problem 2 (Part 2)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Problem 3 (Three-Bus System with Line Flows)**"
+        },
+        {
+          "type": "image",
+          "assetId": "code3_1",
+          "caption": "MATLAB Code for Problem 3 (Part 1)"
+        },
+        {
+          "type": "image",
+          "assetId": "code3_2",
+          "caption": "MATLAB Code for Problem 3 (Part 2)"
+        },
+        {
+          "type": "image",
+          "assetId": "code3_3",
+          "caption": "MATLAB Code for Problem 3 (Part 3)"
         }
       ]
     },
@@ -232,6 +251,24 @@
           "type": "image",
           "assetId": "output1",
           "caption": "Output after first iteration (Problem 1)"
+        },
+        {
+          "type": "text",
+          "content": "**Problem 2 — Final Converged Results**"
+        },
+        {
+          "type": "image",
+          "assetId": "output2",
+          "caption": "Final Converged Results (Problem 2)"
+        },
+        {
+          "type": "text",
+          "content": "**Problem 3 — Final Converged Results (Bus Voltages, Line Flows, and Losses)**"
+        },
+        {
+          "type": "image",
+          "assetId": "output3",
+          "caption": "Final Converged Results — Bus Voltages, Line Flows, and Losses (Problem 3)"
         }
       ]
     },
