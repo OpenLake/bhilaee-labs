@@ -1,9 +1,4 @@
 {
-  "fig6-third-order-matlab": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig6-third-order-matlab.png",
-    "description": "MATLAB simulation output for third order system"
-  },
   "fig2a-first-order-impulse": {
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig2a-first-order-impulse.png",
@@ -118,5 +113,30 @@
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig6d-overdamped-parabolic.png",
     "description": "Parabolic Response for overdamped second order system"
+  },
+  "fig7a-third-order-impulse": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7a-third-order-impulse.png",
+    "description": "Impulse Response for third order LTI system"
+  },
+  "fig7b-third-order-step": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7b-third-order-step.png",
+    "description": "Step Response for third order LTI system"
+  },
+  "fig7c-third-order-ramp": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7c-third-order-ramp.png",
+    "description": "Ramp Response for third order LTI system"
+  },
+  "fig7d-third-order-parabolic": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7d-third-order-parabolic.png",
+    "description": "Parabolic Response for third order LTI system"
+  },
+  "fig7e-third-order-specs": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig7e-third-order-specs.png",
+    "description": "Step Response Specifications for third order system"
   }
 }

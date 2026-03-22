@@ -565,8 +565,28 @@
         },
         {
           "type": "image",
-          "assetId": "fig6-third-order-matlab",
-          "caption": "Figure 6: MATLAB simulation output for third order system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig7a-third-order-impulse",
+          "caption": "Impulse Response for third order LTI system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7b-third-order-step",
+          "caption": "Step Response for third order LTI system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7c-third-order-ramp",
+          "caption": "Ramp Response for third order LTI system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7d-third-order-parabolic",
+          "caption": "Parabolic Response for third order LTI system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7e-third-order-specs",
+          "caption": "Step Response Specifications for third order system"
         },
         {
           "type": "table",
