@@ -243,7 +243,7 @@
       "content": [
         {
           "type": "text",
-          "content": "**Circuit Diagram \u2014 3-Bus Power System (Short Transmission)**"
+          "content": "**Circuit Diagram — 3-Bus Power System (Short Transmission)**"
         },
         {
           "type": "image",
@@ -252,7 +252,7 @@
         },
         {
           "type": "text",
-          "content": "**Circuit Diagram \u2014 3-Bus Power System (Long Transmission)**"
+          "content": "**Circuit Diagram — 3-Bus Power System (Long Transmission)**"
         },
         {
           "type": "image",
@@ -271,11 +271,11 @@
           "style": "ordered",
           "items": [
             "Define the number of buses (nbus) and line data (From Bus, To Bus, R, X, and B if applicable).",
-            "Initialize the Ybus matrix as a zero matrix of size nbus \u00d7 nbus.",
+            "Initialize the Ybus matrix as a zero matrix of size nbus × nbus.",
             "For each transmission line, compute the series admittance Y = 1 / (R + jX).",
-            "For short lines: update off-diagonal elements Yij = Yji = \u2212Y and diagonal elements Yii, Yjj += Y.",
+            "For short lines: update off-diagonal elements Yij = Yji = −Y and diagonal elements Yii, Yjj += Y.",
             "For long lines: additionally add jB/2 to each of the two diagonal elements Yii and Yjj.",
-            "For systems with ideal transformers: use the turns ratio formulation to populate the 2\u00d72 Ybus.",
+            "For systems with ideal transformers: use the turns ratio formulation to populate the 2×2 Ybus.",
             "For junction-based networks: apply KCL at the junction node, solve for Vt, and express bus currents in terms of bus voltages to obtain Ybus.",
             "Display the computed Ybus matrix in rectangular (complex) form.",
             "Convert Ybus elements to polar form (magnitude and angle in degrees) for verification.",
@@ -309,7 +309,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code \u2014 Q1 (3-Bus, Long Transmission with Line Charging)**"
+          "content": "**MATLAB Code — Q1 (3-Bus, Long Transmission with Line Charging)**"
         },
         {
           "type": "image",
@@ -318,7 +318,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code \u2014 Q2 (3-Bus, Junction Network)**"
+          "content": "**MATLAB Code — Q2 (3-Bus, Junction Network)**"
         },
         {
           "type": "image",
@@ -327,7 +327,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code \u2014 Q3 (10-Bus System)**"
+          "content": "**MATLAB Code — Q3 (10-Bus System)**"
         },
         {
           "type": "image",
@@ -336,7 +336,7 @@
         },
         {
           "type": "text",
-          "content": "**MATLAB Code \u2014 Q4 (2-Bus with Ideal Transformers)**"
+          "content": "**MATLAB Code — Q4 (2-Bus with Ideal Transformers)**"
         },
         {
           "type": "image",
@@ -352,7 +352,7 @@
       "content": [
         {
           "type": "text",
-          "content": "**Q1 \u2014 Computed Ybus (3-Bus, Long Transmission Line)**"
+          "content": "**Q1 — Computed Ybus (3-Bus, Long Transmission Line)**"
         },
         {
           "type": "image",
@@ -361,7 +361,7 @@
         },
         {
           "type": "text",
-          "content": "**Q2 \u2014 Computed Ybus (3-Bus, Junction Network)**"
+          "content": "**Q2 — Computed Ybus (3-Bus, Junction Network)**"
         },
         {
           "type": "image",
@@ -370,7 +370,7 @@
         },
         {
           "type": "text",
-          "content": "**Q3 \u2014 Computed Ybus (10-Bus System)**"
+          "content": "**Q3 — Computed Ybus (10-Bus System)**"
         },
         {
           "type": "image",
@@ -384,7 +384,7 @@
         },
         {
           "type": "text",
-          "content": "**Q4 \u2014 Computed Ybus (2-Bus System with Ideal Transformers)**"
+          "content": "**Q4 — Computed Ybus (2-Bus System with Ideal Transformers)**"
         },
         {
           "type": "image",
@@ -493,7 +493,7 @@
         },
         {
           "type": "text",
-          "content": "Now substitute Vt into i1 = Y1(V1 \u2212 Vt):"
+          "content": "Now substitute Vt into i1 = Y1(V1 − Vt):"
         },
         {
           "type": "equation",
@@ -718,27 +718,27 @@
               "3-Bus Junction Network",
               "3",
               "3 + shunt",
-              "Symmetric Ybus with equal diagonal (\u22120.75j) and off-diagonal (+0.25j) entries due to uniform impedances."
+              "Symmetric Ybus with equal diagonal (−0.75j) and off-diagonal (+0.25j) entries due to uniform impedances."
             ],
             [
               "Q3",
               "10-Bus Short Transmission",
               "10",
               "11",
-              "Sparse symmetric 10\u00d710 Ybus; zero entries where no direct line exists between buses."
+              "Sparse symmetric 10×10 Ybus; zero entries where no direct line exists between buses."
             ],
             [
               "Q4",
               "2-Bus with Transformers",
               "2",
               "1",
-              "Ybus diagonal elements scale as ti\u00b2 and tj\u00b2; off-diagonal elements scale as \u2212ti\u00b7tj."
+              "Ybus diagonal elements scale as ti² and tj²; off-diagonal elements scale as −ti·tj."
             ]
           ]
         },
         {
           "type": "text",
-          "content": "For Q1, including line charging susceptances (B/2 = 0.5, 0.8, 0.0) modified the diagonal elements of the Ybus compared to the short-line model, while the off-diagonal elements remained equal to the negative series admittances. For Q3, the 10\u00d710 Ybus confirmed the sparse nature of admittance matrices in large power systems, with most off-diagonal entries being zero due to limited inter-bus connectivity. The transformer-coupled system in Q4 produced a 2\u00d72 Ybus whose entries are entirely determined by the line admittance Y and the turns ratios t1 and t2."
+          "content": "For Q1, including line charging susceptances (B/2 = 0.5, 0.8, 0.0) modified the diagonal elements of the Ybus compared to the short-line model, while the off-diagonal elements remained equal to the negative series admittances. For Q3, the 10×10 Ybus confirmed the sparse nature of admittance matrices in large power systems, with most off-diagonal entries being zero due to limited inter-bus connectivity. The transformer-coupled system in Q4 produced a 2×2 Ybus whose entries are entirely determined by the line admittance Y and the turns ratios t1 and t2."
         }
       ]
     },
@@ -749,7 +749,7 @@
       "content": [
         {
           "type": "text",
-          "content": "**Q:** What is the bus admittance matrix (Ybus) and why is it important in power system analysis?"
+          "content": "**Q1.** What is the bus admittance matrix (Ybus) and why is it important in power system analysis?"
         },
         {
           "type": "text",
@@ -757,15 +757,15 @@
         },
         {
           "type": "text",
-          "content": "**Q:** How are the diagonal and off-diagonal elements of the Ybus matrix formed using the direct inspection method?"
+          "content": "**Q2.** How are the diagonal and off-diagonal elements of the Ybus matrix formed using the direct inspection method?"
         },
         {
           "type": "text",
-          "content": "**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i \u2260 j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly."
+          "content": "**A:** Using the direct inspection method, the diagonal element Yii of the Ybus is the sum of all admittances connected to bus i, including both series line admittances and any shunt admittances at that bus. The off-diagonal element Yij (i ≠ j) is the negative of the total admittance directly connected between bus i and bus j. This method allows rapid construction of the Ybus without writing KCL equations explicitly."
         },
         {
           "type": "text",
-          "content": "**Q:** How does line charging affect the Ybus matrix in long transmission line models compared to short transmission line models?"
+          "content": "**Q3.** How does line charging affect the Ybus matrix in long transmission line models compared to short transmission line models?"
         },
         {
           "type": "text",
@@ -773,7 +773,7 @@
         },
         {
           "type": "text",
-          "content": "**Q:** What is the significance of the sparsity of the Ybus matrix in large power systems?"
+          "content": "**Q4.** What is the significance of the sparsity of the Ybus matrix in large power systems?"
         },
         {
           "type": "text",
@@ -781,19 +781,19 @@
         },
         {
           "type": "text",
-          "content": "**Q:** How does the presence of ideal transformers with off-nominal turns ratios affect the Ybus matrix structure?"
+          "content": "**Q5.** How does the presence of ideal transformers with off-nominal turns ratios affect the Ybus matrix structure?"
         },
         {
           "type": "text",
-          "content": "**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2\u00d72 Ybus is no longer symmetric in general if ti \u2260 tj. The diagonal elements become ti\u00b2Y and tj\u00b2Y, and the off-diagonal elements become \u2212ti\u00b7tj\u00b7Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus."
+          "content": "**A:** When ideal transformers with turns ratios 1:ti and tj:1 are placed at the two ends of a transmission line, the resulting 2×2 Ybus is no longer symmetric in general if ti ≠ tj. The diagonal elements become ti²Y and tj²Y, and the off-diagonal elements become −ti·tj·Y. This asymmetry means the Ybus loses its standard symmetric property, which must be accounted for in load flow and fault analysis algorithms that typically assume a symmetric Ybus."
         },
         {
           "type": "text",
-          "content": "**Q:** In Q2, why is the junction voltage Vt eliminated before forming the Ybus?"
+          "content": "**Q6.** In Q2, why is the junction voltage Vt eliminated before forming the Ybus?"
         },
         {
           "type": "text",
-          "content": "**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3\u00d73 Ybus that directly relates the injected bus currents to the bus voltages."
+          "content": "**A:** The junction node Vt is an internal node that has no external current injection. In the Ybus formulation, only bus nodes (where generators or loads are connected) are retained. The internal junction node is eliminated by applying KCL at that node and expressing Vt in terms of the bus voltages V1, V2, and V3. This process, known as Kron reduction or node elimination, reduces the network to only the external bus nodes, yielding a 3×3 Ybus that directly relates the injected bus currents to the bus voltages."
         }
       ]
     },

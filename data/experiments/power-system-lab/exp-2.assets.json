@@ -1,0 +1,46 @@
+{
+  "id": "exp-2",
+  "labId": "power-system-lab",
+  "assets": [
+    {
+      "assetId": "fig1-matlab-code-p1",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig1-matlab-code-p1.png"
+    },
+    {
+      "assetId": "fig2-output-p1",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig2-output-p1.png"
+    },
+    {
+      "assetId": "fig3-matlab-code-p2",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig3-matlab-code-p2.png"
+    },
+    {
+      "assetId": "fig4-output-p2",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig4-output-p2.png"
+    },
+    {
+      "assetId": "fig5-one-line-diagram-3bus",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig5-one-line-diagram-3bus.png"
+    },
+    {
+      "assetId": "fig6-matlab-code-p3",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig6-matlab-code-p3.png"
+    },
+    {
+      "assetId": "fig7-matlab-code-p3-continued",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig7-matlab-code-p3-continued.png"
+    },
+    {
+      "assetId": "fig8-output-p3",
+      "type": "image",
+      "path": "assets/labs/power-system-lab/exp-2/fig8-output-p3.png"
+    }
+  ]
+}

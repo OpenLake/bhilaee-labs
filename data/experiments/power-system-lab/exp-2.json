@@ -1,0 +1,539 @@
+{
+  "id": "exp-2",
+  "title": "Load Flow Analysis using Gauss-Seidel Iterative Method",
+  "labId": "power-system-lab",
+  "status": "Software Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB",
+    "experimentType": "software",
+    "status": "software-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To perform Load Flow Analysis of a given power system using the Gauss-Seidel Iterative Method."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Technical Specification", "Quantities"],
+          "rows": [
+            ["1", "MATLAB", "R2023 or compatible", "1"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Load flow analysis is an essential tool in power system engineering. It helps determine the steady-state operating conditions of an electrical network. This analysis gives the voltage magnitude and phase angle at each bus, along with the real and reactive power flows through transmission lines. Among the various methods, the Gauss-Seidel iterative method is popular because it is simple and easy to implement, especially for small to medium-sized power systems."
+        },
+        {
+          "type": "text",
+          "content": "The Gauss-Seidel method starts by assuming initial voltage values for all non-slack buses. It then updates the bus voltages using the network equations until the solution stabilizes within a set tolerance. The method treats the system as a series of linear equations based on bus admittances. This allows for separate updates for PQ and PV buses while keeping the slack bus voltage fixed. Its iterative approach refines both bus voltages and line flows at each step. This process ultimately provides a consistent and accurate representation of the system's steady-state operation."
+        },
+        {
+          "type": "text",
+          "content": "**Y-Bus Matrix Relation**"
+        },
+        {
+          "type": "text",
+          "content": "The Y-Bus matrix relation is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} I_1 \\\\ I_2 \\\\ \\vdots \\\\ I_n \\end{bmatrix} = \\begin{bmatrix} Y_{11} & Y_{12} & \\cdots & Y_{1n} \\\\ Y_{21} & Y_{22} & \\cdots & Y_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ Y_{n1} & Y_{n2} & \\cdots & Y_{nn} \\end{bmatrix} \\begin{bmatrix} V_1 \\\\ V_2 \\\\ \\vdots \\\\ V_n \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "**Bus Current Equations**"
+        },
+        {
+          "type": "text",
+          "content": "The bus current equations are given by:"
+        },
+        {
+          "type": "equation",
+          "value": "I_i = \\sum_{k=1}^{n} Y_{ik} V_k"
+        },
+        {
+          "type": "equation",
+          "value": "I_i = Y_{ii} V_i + \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} Y_{ik} V_k"
+        },
+        {
+          "type": "equation",
+          "value": "V_i = \\frac{1}{Y_{ii}} \\left[ I_i - \\sum_{\\substack{k=1 \\\\ k \\neq i}}^{n} Y_{ik} V_k \\right]"
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Flowchart for Load Flow Analysis (Gauss-Seidel Method)**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Start",
+            "Convert impedance to admittance",
+            "Assume initial guess",
+            "Find reactive power (Q2) for busbar 2",
+            "Find V2 by equation",
+            "Fix the magnitude",
+            "Substitute the new value of V2 back into equation, recalculate and reset",
+            "Calculate V3 by equation and then recalculate",
+            "Check convergence — if accurate: End; else loop back"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**One-Line Diagram — Three-Bus System (Problem 3)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-one-line-diagram-3bus",
+          "caption": "Figure 5: One-Line Diagram of the Three-Bus System"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Step 1: Identify Bus Types**"
+        },
+        {
+          "type": "text",
+          "content": "Determine the type of each bus in the system: Slack, PV, or PQ."
+        },
+        {
+          "type": "text",
+          "content": "**Step 2: Form Y-Bus and Initialize Voltages**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Form the Y-Bus matrix for the system.",
+            "Slack bus: voltage magnitude and angle fixed.",
+            "PV and PQ buses: start with 1.0 + j0.0 p.u."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Step 3: Iterative Update of Bus Voltages**"
+        },
+        {
+          "type": "text",
+          "content": "For each iteration, perform the following:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "PQ bus: Update voltage using Gauss-Seidel formula.",
+            "PV bus: Compute reactive power from current voltages, then update voltage angle while keeping voltage magnitude |Vk| fixed.",
+            "Slack bus: No update; voltage remains fixed."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "PQ bus voltage update:"
+        },
+        {
+          "type": "equation",
+          "value": "V_k = \\frac{1}{Y_{kk}} \\left[ \\frac{P_k - jQ_k}{V_k^*} - \\sum_{\\substack{i=1 \\\\ i \\neq k}}^{n} Y_{ki} V_i \\right]"
+        },
+        {
+          "type": "text",
+          "content": "PV bus reactive power computation:"
+        },
+        {
+          "type": "equation",
+          "value": "Q_k = -\\mathrm{Im}\\left( V_k \\sum_{i=1}^{n} Y_{ki} V_i \\right)"
+        },
+        {
+          "type": "text",
+          "content": "**Step 4: Convergence Check**"
+        },
+        {
+          "type": "text",
+          "content": "Compute voltage difference for all buses except Slack:"
+        },
+        {
+          "type": "equation",
+          "value": "e_i^{(k)} = \\left| V_i^{(k)} - V_i^{(k-1)} \\right|, \\quad i = 2, 3, \\ldots, n"
+        },
+        {
+          "type": "text",
+          "content": "Compute maximum error:"
+        },
+        {
+          "type": "equation",
+          "value": "e^{(k)} = \\max\\left( e_2^{(k)},\\, e_3^{(k)},\\, \\ldots,\\, e_n^{(k)} \\right)"
+        },
+        {
+          "type": "text",
+          "content": "**Step 5: Iteration Control**"
+        },
+        {
+          "type": "text",
+          "content": "If e(k) ≤ (tolerance), stop and print results. Otherwise, increment k = k + 1 and return to Step 3."
+        },
+        {
+          "type": "text",
+          "content": "**Step 6: Compute Power Flows**"
+        },
+        {
+          "type": "text",
+          "content": "After convergence, compute real and reactive power flow in each line using the voltage values obtained and the equations given in the Formulas Used section."
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB was used to implement the Gauss-Seidel iterative method for all three problems. The code forms the Y-Bus matrix, initializes bus voltages, performs iterative updates, checks convergence, and computes final power flows and losses."
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Problem 1 (4-Bus System)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-matlab-code-p1",
+          "caption": "Figure 1: MATLAB code for Gauss-Seidel solution (Problem 1)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Problem 2 (4-Bus System with Bus-Pair Admittances)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-matlab-code-p2",
+          "caption": "Figure 3: MATLAB Code for Gauss-Seidel Load Flow (Problem 2)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Problem 3 (Three-Bus System with Line Flows)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6-matlab-code-p3",
+          "caption": "Figure 6: MATLAB Code for Gauss-Seidel Load Flow (Problem 3)"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7-matlab-code-p3-continued",
+          "caption": "Figure 7: MATLAB Code (Continued) — Line Flows and Losses (Problem 3)"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Problem 1 — Output after First Iteration**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-output-p1",
+          "caption": "Figure 2: Output after first iteration (Problem 1)"
+        },
+        {
+          "type": "text",
+          "content": "**Problem 2 — Final Converged Results**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-output-p2",
+          "caption": "Figure 4: Final Converged Results (Problem 2)"
+        },
+        {
+          "type": "text",
+          "content": "**Problem 3 — Final Converged Results (Bus Voltages, Line Flows, and Losses)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig8-output-p3",
+          "caption": "Figure 8: Final Converged Results — Bus Voltages, Line Flows, and Losses (Problem 3)"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Formulas Used**"
+        },
+        {
+          "type": "equation",
+          "value": "V_k = |V_k| \\angle \\delta_k"
+        },
+        {
+          "type": "equation",
+          "value": "S_i^* = V_i^* \\sum_{k=1}^{n} Y_{ik} V_k"
+        },
+        {
+          "type": "equation",
+          "value": "P_i - jQ_i = |V_i| \\angle{-\\delta_i} \\sum_{k=1}^{n} |Y_{ik}| \\angle \\theta^* |V_k| \\angle \\delta_k"
+        },
+        {
+          "type": "equation",
+          "value": "P_i - jQ_i = \\sum_{k=1}^{n} |V_i||V_k||Y_{ik}| \\angle (\\delta_k + \\theta_k - \\delta_i)"
+        },
+        {
+          "type": "equation",
+          "value": "P_i = \\sum_{k=1}^{n} |V_i||V_k||Y_{ik}| \\cos(\\theta_k + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "equation",
+          "value": "-Q_i = \\sum_{k=1}^{n} |V_i||V_k||Y_{ik}| \\sin(\\theta_k + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "equation",
+          "value": "V_k = \\frac{1}{Y_{kk}} \\left[ \\frac{P_k - jQ_k}{V_k^*} - \\sum_{\\substack{i=1 \\\\ i \\neq k}}^{n} Y_{ki} V_i \\right]"
+        },
+        {
+          "type": "text",
+          "content": "where Pk, Qk are the active and reactive power at bus k; Ykk is the self-admittance of bus k; Yki is the mutual admittance between bus k and bus i; and Vk is the voltage at bus k."
+        },
+        {
+          "type": "text",
+          "content": "**Solved Problems**"
+        },
+        {
+          "type": "text",
+          "content": "**Problem 1**"
+        },
+        {
+          "type": "text",
+          "content": "**Question:** Consider a 4-bus power system with the following line impedances: Z12 = j0.1 pu, Z23 = j0.2 pu, Z34 = j0.25 pu, Z14 = j0.3 pu. The bus data is specified as:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Bus 1 (Slack Bus): V1 = 1.06∠0°",
+            "Bus 2 (Generator Bus): P2 = 0.4 pu, Q2 = 0.2 pu, |V2| = 1.04",
+            "Bus 3 (PQ Bus): P3 = −0.3 pu, Q3 = −0.2 pu",
+            "Bus 4 (PQ Bus): P4 = −0.5 pu, Q4 = −0.4 pu"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Apply the Gauss-Seidel iterative method and determine the bus voltages V2, V3, V4 after the first iteration."
+        },
+        {
+          "type": "text",
+          "content": "**Solution:** A MATLAB code was implemented considering the given line impedances and bus data, updating the bus voltages step by step using the Gauss-Seidel algorithm. Refer to Figure 1 for the complete MATLAB code and Figure 2 for the output."
+        },
+        {
+          "type": "text",
+          "content": "**Problem 2**"
+        },
+        {
+          "type": "text",
+          "content": "**Question:** The bus-pair admittances and bus data are provided below:"
+        },
+        {
+          "type": "table",
+          "headers": ["Bus-Pair", "Admittance (p.u.)"],
+          "rows": [
+            ["1 – 2", "2.0 – j8.0"],
+            ["1 – 3", "1.0 – j4.0"],
+            ["2 – 3", "0.666 – j2.664"],
+            ["2 – 4", "1.0 – j4.0"],
+            ["3 – 4", "2.0 – j8.0"]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": ["Bus No.", "P (p.u.)", "Q (p.u.)", "V (p.u.)", "Remarks"],
+          "rows": [
+            ["1", "–", "–", "1.06∠0°", "Slack bus"],
+            ["2", "+0.50", "+0.20", "1.0 + j0.0", "PQ bus"],
+            ["3", "+0.40", "+0.30", "1.0 + j0.0", "PQ bus"],
+            ["4", "+0.30", "+0.10", "1.0 + j0.0", "PQ bus"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Solution:** A MATLAB code was implemented considering the given bus-pair admittances and bus data, updating the bus voltages iteratively using the Gauss-Seidel algorithm. Refer to Figure 3 for the complete MATLAB code and Figure 4 for the final converged results."
+        },
+        {
+          "type": "text",
+          "content": "**Problem 3**"
+        },
+        {
+          "type": "text",
+          "content": "**Question:** A simple three-bus power system has generators at buses 1 and 3. The voltage magnitude at bus 1 is 1.05 pu. The voltage magnitude at bus 3 is fixed at 1.04 pu with a real power generation of 200 MW. A load of 400 MW and 250 Mvar is connected at bus 2. Line impedances are given in per unit on a 100 MVA base, and line charging susceptances are neglected. Determine the power flow solution using the Gauss-Seidel method, including line flows and line losses."
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-one-line-diagram-3bus",
+          "caption": "Figure 5: One-Line Diagram of the Three-Bus System"
+        },
+        {
+          "type": "text",
+          "content": "**Solution:** A MATLAB code was implemented considering the given line impedances and bus data, updating the bus voltages step by step using the Gauss-Seidel algorithm. After convergence, line flows and losses were computed. Refer to Figure 6 and Figure 7 for the complete MATLAB code and Figure 8 for the final converged results including bus voltages, line flows, and losses."
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The Gauss-Seidel iterative method was successfully applied to all three problems. The results are summarized below."
+        },
+        {
+          "type": "table",
+          "headers": ["Problem", "Network", "Buses", "Iterations", "Key Result"],
+          "rows": [
+            ["Problem 1", "4-Bus System", "4", "1 (first iteration only)", "V2 = 1.0400∠1.43°, V3 = 1.0000∠−1.08°, V4 = 0.9758∠−4.61°"],
+            ["Problem 2", "4-Bus System", "4", "8 (tol = 0.001)", "V1 = 1.0600∠0.00°, V2 = 1.1118∠3.65°, V3 = 1.1334∠4.48°, V4 = 1.1381∠5.17°"],
+            ["Problem 3", "3-Bus System", "3", "3 (tol = 0.001)", "V1 = 1.05000∠0.000°, V2 = 0.97168∠−2.297°, V3 = 1.04000∠0.164°; Total loss: P = 18.33 MW, Q = 36.78 Mvar"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "The results demonstrate that the Gauss-Seidel method converges reliably for small to medium-sized networks. The number of iterations required depends on the network size, initial guess, and tolerance setting. For Problem 3, the line flow analysis confirmed that bus 1 (slack) supplies the deficit real and reactive power, and the total system losses were computed accurately from the converged bus voltages."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Q1. What is load flow analysis and why is it important in power system engineering?**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** Load flow analysis (also called power flow analysis) is the steady-state study of an electrical power network. It determines the voltage magnitude and phase angle at each bus, as well as the real and reactive power flows through every transmission line, for a given set of generation and load conditions. It is important because it provides the operating conditions of the network, which are needed for system planning, expansion, and security assessment. Without load flow results, it is impossible to determine whether line loadings, bus voltages, and transformer tap settings are within acceptable limits."
+        },
+        {
+          "type": "text",
+          "content": "**Q2. What are the three types of buses in a load flow problem and what quantities are specified for each?**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** The three bus types are: (1) Slack Bus (Reference Bus) — voltage magnitude |V| and angle δ are specified (usually |V| = 1.0 pu, δ = 0°); real and reactive power are unknowns that balance the system. (2) PV Bus (Generator Bus) — real power P and voltage magnitude |V| are specified; reactive power Q and voltage angle δ are unknowns. (3) PQ Bus (Load Bus) — real power P and reactive power Q are specified; voltage magnitude |V| and angle δ are unknowns."
+        },
+        {
+          "type": "text",
+          "content": "**Q3. Explain the Gauss-Seidel iterative update formula for a PQ bus.**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** For a PQ bus k, the voltage is updated at each iteration using:"
+        },
+        {
+          "type": "equation",
+          "value": "V_k^{(new)} = \\frac{1}{Y_{kk}} \\left[ \\frac{P_k - jQ_k}{\\left(V_k^{(old)}\\right)^*} - \\sum_{\\substack{i=1 \\\\ i \\neq k}}^{n} Y_{ki} V_i \\right]"
+        },
+        {
+          "type": "text",
+          "content": "The key feature of the Gauss-Seidel method (compared to Gauss-Jacobi) is that the most recently updated voltage values are immediately used in the same iteration for subsequent bus updates, which generally leads to faster convergence."
+        },
+        {
+          "type": "text",
+          "content": "**Q4. How is a PV bus handled differently from a PQ bus in the Gauss-Seidel method?**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** For a PV bus, the voltage magnitude |Vk| is fixed and must not change. The Gauss-Seidel update is first applied to obtain a temporary complex voltage Vk_temp (as if it were a PQ bus, using the scheduled real power P and computing reactive power Q from the current iteration). The updated voltage is then rescaled to enforce the fixed magnitude: Vk_new = |Vk_specified| × (Vk_temp / |Vk_temp|). This preserves the voltage angle update from the iterative formula while maintaining the specified voltage magnitude."
+        },
+        {
+          "type": "text",
+          "content": "**Q5. What is the convergence criterion used in the Gauss-Seidel method and what factors affect convergence?**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** Convergence is checked by computing the maximum absolute voltage difference between successive iterations across all non-slack buses: e(k) = max(|Vi(k) − Vi(k−1)|) for i = 2, 3, …, n. The iteration stops when e(k) ≤ tolerance. Factors that affect convergence include: the choice of tolerance (tighter tolerance requires more iterations), the quality of the initial guess (flat start at 1.0∠0° is standard), the size and connectivity of the network (larger or more heavily loaded systems may converge more slowly), and the presence of PV buses (which require the magnitude-correction step). The Gauss-Seidel method may fail to converge for heavily loaded or ill-conditioned systems."
+        },
+        {
+          "type": "text",
+          "content": "**Q6. How are line flows and line losses computed after the load flow solution has converged?**"
+        },
+        {
+          "type": "text",
+          "content": "**A:** Once the bus voltages have converged, the complex power flow from bus i to bus j through a line of admittance y = 1/Z is computed as:"
+        },
+        {
+          "type": "equation",
+          "value": "S_{ij} = V_i \\cdot \\left[(V_i - V_j) \\cdot y\\right]^* = V_i \\cdot I_{ij}^*"
+        },
+        {
+          "type": "text",
+          "content": "Similarly, the power flow from bus j to bus i is Sji = Vj · Iji*. The complex line loss on that line is the sum of flows in both directions: Loss = Sij + Sji. The total system loss is the sum of losses across all lines. The real part gives active power loss (MW) and the imaginary part gives reactive power loss (Mvar)."
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this lab, we successfully conducted Load Flow Analysis on various power systems using the Gauss-Seidel Iterative Method. We began by studying the theoretical background, including Y-Bus matrix formation, current expressions, and the iterative process for different types of buses. We used MATLAB to solve multiple problems, which allowed us to observe how bus voltages converge and to calculate real and reactive power flows in the system. This experience improved our understanding of how bus voltages change over time and how system data influences the overall solution."
+        },
+        {
+          "type": "text",
+          "content": "We also applied the method to different example systems, including 4-bus and 3-bus networks, and verified our results with MATLAB outputs. We noticed that initial guesses, bus types, and convergence criteria play a crucial role in achieving accurate solutions. The practical exercises reinforced the theories we learned, and the graphical representation of results made interpreting the power flow solutions easier. Overall, the lab offered a well-rounded experience in both the analytical and computational sides of power system load flow studies."
+        }
+      ]
+    }
+  }
+}

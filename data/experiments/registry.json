@@ -263,6 +263,13 @@
           "fileName": "exp-10.json",
           "status": "Guide Only",
           "completeness": 0.1
+        },
+        {
+          "id": "exp-2",
+          "title": "Load Flow Analysis using Gauss-Seidel Iterative Method",
+          "fileName": "exp-2.json",
+          "status": "Software-Oriented",
+          "completeness": 1
         }
       ]
     },
