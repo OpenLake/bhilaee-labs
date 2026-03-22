@@ -1,9 +1,4 @@
 {
-  "fig4-critically-damped-matlab": {
-    "type": "image",
-    "path": "/assets/labs/control-system-lab/exp-4/fig4-critically-damped-matlab.png",
-    "description": "MATLAB simulation output for second order critically damped system"
-  },
   "fig5-overdamped-matlab": {
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig5-overdamped-matlab.png",
@@ -83,5 +78,30 @@
     "type": "image",
     "path": "/assets/labs/control-system-lab/exp-4/fig4e-underdamped-specs.png",
     "description": "Step Response Specifications for underdamped system"
+  },
+  "fig5a-critically-damped-impulse": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5a-critically-damped-impulse.png",
+    "description": "Impulse Response for critically damped second order system"
+  },
+  "fig5b-critically-damped-step": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5b-critically-damped-step.png",
+    "description": "Step Response for critically damped second order system"
+  },
+  "fig5c-critically-damped-ramp": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5c-critically-damped-ramp.png",
+    "description": "Ramp Response for critically damped second order system"
+  },
+  "fig5d-critically-damped-parabolic": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5d-critically-damped-parabolic.png",
+    "description": "Parabolic Response for critically damped second order system"
+  },
+  "fig5e-critically-damped-specs": {
+    "type": "image",
+    "path": "/assets/labs/control-system-lab/exp-4/fig5e-critically-damped-specs.png",
+    "description": "Step Response Specifications for critically damped system"
   }
 }

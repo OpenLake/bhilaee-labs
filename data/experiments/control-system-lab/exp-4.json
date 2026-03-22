@@ -430,8 +430,28 @@
         },
         {
           "type": "image",
-          "assetId": "fig4-critically-damped-matlab",
-          "caption": "Figure 4: MATLAB simulation output for second order critically damped system (Impulse, Step, Ramp, Parabolic responses)"
+          "assetId": "fig5a-critically-damped-impulse",
+          "caption": "Impulse Response for critically damped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5b-critically-damped-step",
+          "caption": "Step Response for critically damped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5c-critically-damped-ramp",
+          "caption": "Ramp Response for critically damped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5d-critically-damped-parabolic",
+          "caption": "Parabolic Response for critically damped second order system"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5e-critically-damped-specs",
+          "caption": "Step Response Specifications for critically damped system"
         },
         {
           "type": "table",
