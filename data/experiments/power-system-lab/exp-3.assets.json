@@ -1,0 +1,32 @@
+{
+  "fig9-three-bus-q8": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig9-three-bus-q8.png",
+    "description": "Figure for fig9-three-bus-q8"
+  },
+  "fig-q11-three-bus-system": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig-q11-three-bus-system.png",
+    "description": "Figure for fig-q11-three-bus-system"
+  },
+  "fig12-matlab-nr-q10-part1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig12-matlab-nr-q10-part1.png",
+    "description": "Figure for fig12-matlab-nr-q10-part1"
+  },
+  "fig13-matlab-nr-q10-part2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig13-matlab-nr-q10-part2.png",
+    "description": "Figure for fig13-matlab-nr-q10-part2"
+  },
+  "fig14-matlab-nr-q10-part3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig14-matlab-nr-q10-part3.png",
+    "description": "Figure for fig14-matlab-nr-q10-part3"
+  },
+  "fig15-output-nr-q10": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-3/fig15-output-nr-q10.png",
+    "description": "Figure for fig15-output-nr-q10"
+  }
+}

@@ -465,9 +465,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig1-solution-q1",
-          "caption": "Figure 1: Solution for Q1"
+          "type": "text",
+          "content": "**Solution (d):** For a 300-bus system with 20 generator buses and 25 reactive support buses (total 45 PV-capable buses, subtract 1 for the slack bus = 44 PV buses) and 15 fixed capacitors (PQ):\nJacobian Size = (n-1) + (n-1-m) = 299 + (299-44) = 299 + 255 = **554**."
         },
         {
           "type": "text",
@@ -484,14 +483,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig2-solution-q2",
-          "caption": "Figure 2: Solution for Q2"
-        },
-        {
-          "type": "image",
-          "assetId": "fig3-solution-q2-cont",
-          "caption": "Figure 3: Solution for Q2 (Continuation)"
+          "type": "text",
+          "content": "**Solution (a):** n = 100, m = 10-1 = 9 PV buses.\nJacobian Size = (100-1) + (100-1-9) = 99 + 90 = **189**."
         },
         {
           "type": "text",
@@ -508,9 +501,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig4-solution-q3",
-          "caption": "Figure 4: Solution for Q3"
+          "type": "text",
+          "content": "**Solution (c):** Size S = 2n - m - 2\n100 = 2n - 20 - 2 \n122 = 2n \n**n = 61**."
         },
         {
           "type": "text",
@@ -527,9 +519,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig5-solution-q4",
-          "caption": "Figure 5: Solution for Q4"
+          "type": "text",
+          "content": "**Solution (a):** n = 10, Slack = 1, PV = G3, G4, L3, L4 (Total 4), PQ = G2 (violated), L1, L2, L5, L6 (Total 5).\nEquations = (n-1) + PQ = 9 + 5 = **14**."
         },
         {
           "type": "text",
@@ -546,9 +537,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig6-solution-q5",
-          "caption": "Figure 6: Solution for Q5"
+          "type": "text",
+          "content": "**Solution (c):** T = n + 2b \n8000 = 1000 + 2b\n7000 = 2b \n**b = 3500**."
         },
         {
           "type": "text",
@@ -565,9 +555,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig7-solution-q6",
-          "caption": "Figure 7: Solution for Q6"
+          "type": "text",
+          "content": "**Solution (c):** n = 183, m = 32.\nSize = (183-1) + (183-1-32) = 182 + 150 = **332**."
         },
         {
           "type": "text",
@@ -592,9 +581,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig8-solution-q7",
-          "caption": "Figure 8: Solution for Q7"
+          "type": "text",
+          "content": "**Solution (A):** M = ∂Q/∂δ. \nRows = No. of Q mismatch equations = NL (PQ buses).\nColumns = No. of unknown angles = N-1 (excluding slack).\n**Dimension = NL × (N-1)**."
         },
         {
           "type": "text",
@@ -616,9 +604,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig10-solution-q8",
-          "caption": "Figure 10: Solution for Q8"
+          "type": "text",
+          "content": "**Solution (C):** Bus 3 is the infinite bus (Slack). Bus 1 has maintained voltage magnitude (PV). Bus 2 has specified P and Q (PQ)."
         },
         {
           "type": "text",
@@ -635,9 +622,8 @@
           ]
         },
         {
-          "type": "image",
-          "assetId": "fig11-solution-q9",
-          "caption": "Figure 11: Solution for Q9"
+          "type": "text",
+          "content": "**Solution (B):** Angles δ are already unknown for PV buses. Converting to PQ makes voltage magnitudes |V| also unknown for those buses. Hence, angles remain unchanged and magnitudes increase."
         },
         {
           "type": "text",
