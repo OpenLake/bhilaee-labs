@@ -1,0 +1,465 @@
+{
+  "id": "exp-4",
+  "title": "Fast Decoupled Load Flow (FDLF) Method for Power Flow Analysis",
+  "labId": "power-system-lab",
+  "status": "Software Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB",
+    "experimentType": "software",
+    "status": "software-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To understand and implement the Fast Decoupled Load Flow (FDLF) method for solving power flow problems in electrical power systems and verify the results using MATLAB coding."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Technical Specification", "Quantities"],
+          "rows": [
+            ["1", "MATLAB", "R2023 or compatible", "1"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Idea Behind FDLF**"
+        },
+        {
+          "type": "text",
+          "content": "In the Newton–Raphson formulation, the real and reactive power equations are linearized. The real and reactive power at bus i are expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "P_i = |V_i|^2 |Y_{ik}| \\cos\\theta_{ik} + \\sum_{k \\neq i} |V_i||V_k||Y_{ik}| \\cos(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "equation",
+          "value": "Q_i = |V_i|^2 |Y_{ik}| \\sin\\theta_{ik} + \\sum_{k \\neq i} |V_i||V_k||Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i)"
+        },
+        {
+          "type": "text",
+          "content": "These can be expressed in matrix form as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix} = \\begin{bmatrix} \\frac{\\partial P}{\\partial \\delta} & \\frac{\\partial P}{\\partial |V|} \\\\ \\frac{\\partial Q}{\\partial \\delta} & \\frac{\\partial Q}{\\partial |V|} \\end{bmatrix} \\begin{bmatrix} \\Delta\\delta \\\\ \\Delta|V| \\end{bmatrix} = \\begin{bmatrix} J_1 & J_2 \\\\ J_3 & J_4 \\end{bmatrix} \\begin{bmatrix} \\Delta\\delta \\\\ \\Delta|V| \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "Or equivalently:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix} = \\begin{bmatrix} H & N \\\\ M & L \\end{bmatrix} \\begin{bmatrix} \\Delta\\delta \\\\ \\Delta|V|/|V| \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "**Decoupling Assumptions**"
+        },
+        {
+          "type": "text",
+          "content": "In the Fast Decoupled Load Flow method, the following assumptions are made to simplify the Jacobian and achieve decoupling between real and reactive power equations:"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Bus voltage magnitudes are close to 1.0 p.u.",
+            "Angle differences between bus voltages are small (δi − δj ≈ 0).",
+            "Line resistance is negligible compared to reactance (G ≪ B).",
+            "Reactive power terms depending on conductance are neglected (Q ≪ BV²).",
+            "Coupling terms ∂P/∂|V| and ∂Q/∂δ are considered insignificant."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "With these assumptions, real power mismatch ΔP is mainly sensitive to voltage angles δ, and reactive power mismatch ΔQ is mainly sensitive to voltage magnitudes |V|. Thus, the Jacobian reduces to:"
+        },
+        {
+          "type": "equation",
+          "value": "\\begin{bmatrix} \\Delta P \\\\ \\Delta Q \\end{bmatrix} \\approx \\begin{bmatrix} H & 0 \\\\ 0 & L \\end{bmatrix} \\begin{bmatrix} \\Delta\\delta \\\\ \\Delta|V|/|V| \\end{bmatrix}"
+        },
+        {
+          "type": "text",
+          "content": "Expanding:"
+        },
+        {
+          "type": "equation",
+          "value": "|\\Delta P| = |H|\\,|\\Delta\\delta|"
+        },
+        {
+          "type": "equation",
+          "value": "|\\Delta Q| = |L|\\,\\left|\\frac{\\Delta|V|}{|V|}\\right|"
+        },
+        {
+          "type": "text",
+          "content": "**Jacobian Elements**"
+        },
+        {
+          "type": "text",
+          "content": "Off-diagonal element of H:"
+        },
+        {
+          "type": "equation",
+          "value": "H_{ik} = \\frac{\\partial P_i}{\\partial \\delta_k} = |V_i V_k Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i) = |V_i V_k|\\left(-G_{ik}\\cos(\\delta_k-\\delta_i) + B_{ik}\\sin(\\delta_k-\\delta_i)\\right)"
+        },
+        {
+          "type": "text",
+          "content": "Off-diagonal element of L:"
+        },
+        {
+          "type": "equation",
+          "value": "L_{ik} = \\frac{\\partial Q_i}{\\partial |V_k|} / |V_k| = |V_i V_k Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i) = |V_i V_k|\\left(-B_{ik}\\cos(\\delta_k-\\delta_i) + G_{ik}\\sin(\\delta_k-\\delta_i)\\right)"
+        },
+        {
+          "type": "text",
+          "content": "From the above two expressions:"
+        },
+        {
+          "type": "equation",
+          "value": "H_{ik} = -L_{ik} = |V_i V_k|\\left(G_{ik}\\sin(\\delta_k-\\delta_i) - B_{ik}\\cos(\\delta_k-\\delta_i)\\right)"
+        },
+        {
+          "type": "text",
+          "content": "Diagonal element of H:"
+        },
+        {
+          "type": "equation",
+          "value": "H_{ii} = \\frac{\\partial P_i}{\\partial \\delta_i} = -\\sum_{k \\neq i} |V_i V_k Y_{ik}| \\sin(\\theta_{ik} + \\delta_k - \\delta_i) = -Q_i - V_i^2 B_{ii}"
+        },
+        {
+          "type": "text",
+          "content": "Diagonal element of L:"
+        },
+        {
+          "type": "equation",
+          "value": "L_{ii} = \\frac{\\partial Q_i}{\\partial |V_i|} / |V_i| = Q_i - V_i^2 B_{ii}"
+        },
+        {
+          "type": "text",
+          "content": "**FDLF Approximations**"
+        },
+        {
+          "type": "text",
+          "content": "Applying cos(δk − δi) ≈ 1, sin(δk − δi) ≈ 0, and Qi ≪ BiiVi²:"
+        },
+        {
+          "type": "equation",
+          "value": "L_{ik} = H_{ik} = -|V_i V_k| B_{ik}, \\quad i \\neq p"
+        },
+        {
+          "type": "equation",
+          "value": "L_{pp} = H_{pp} = -B_{pp}|V_p|^2"
+        },
+        {
+          "type": "text",
+          "content": "**Final Reduced Equations**"
+        },
+        {
+          "type": "equation",
+          "value": "|\\Delta P| = |V|^2 B' \\Delta\\delta"
+        },
+        {
+          "type": "equation",
+          "value": "|\\Delta Q_i| = |V|^2 B'' \\frac{\\Delta E_i}{E_i}"
+        },
+        {
+          "type": "text",
+          "content": "**Further Decoupling**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Omit from B′ the effects of phase-shifters.",
+            "Omit from B′ network elements affecting MVAr flows (shunt reactors, off-nominal transformer taps).",
+            "Divide equations by Vi, assume Vp ≈ 1 p.u., neglect series resistance."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "With these further simplifications:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{\\Delta P}{V} = B' \\Delta\\delta"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{\\Delta Q_i}{V} = B'' \\Delta E"
+        },
+        {
+          "type": "text",
+          "content": "Here B′ and B″ are sparse, real, and constant across iterations, requiring inversion only once, which makes the FDLF method computationally efficient."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Start the FDLF procedure.",
+            "Input bus data (Pd, Qd, Pg, Qg, V, type) and line data (impedance, admittance, tap ratios, limits).",
+            "Form the bus admittance matrix Ybus.",
+            "Construct the decoupled matrices: B′ from the imaginary part of Ybus (ignoring resistance), and B″ for reactive power equations.",
+            "Initialize bus voltages using a flat start: |V| = 1.0 p.u., δ = 0° (except slack bus).",
+            "Compute the mismatches: ΔPi = Pispec − Picalc, ΔQi = Qispec − Qicalc.",
+            "Solve for angle corrections: Δδ = −[B′]⁻¹ ΔP.",
+            "Solve for voltage magnitude corrections: Δ|V| = −[B″]⁻¹ ΔQ.",
+            "Update state variables: δ(k+1) = δ(k) + Δδ, |V|(k+1) = |V|(k) + Δ|V|.",
+            "Check convergence: max(|ΔP|, |ΔQ|) ≤ ε. If satisfied, go to Step 11; otherwise, repeat from Step 6.",
+            "Print final bus voltages, angles, and power flows."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB was used to implement the FDLF method for both problems. The code forms the Ybus matrix, constructs the decoupled B′ and B″ matrices, performs iterative updates of voltage angles and magnitudes, and checks convergence at each iteration."
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q1 (Part 1)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-matlab-code-q1-part1",
+          "caption": "Figure 2: MATLAB Code for Fast-Decoupled Method — Q1 (Part 1)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q1 (Part 2)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-matlab-code-q1-part2",
+          "caption": "Figure 3: MATLAB Code for Fast-Decoupled Method — Q1 (Part 2)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q1 (Part 3)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-matlab-code-q1-part3",
+          "caption": "Figure 4: MATLAB Code for Fast-Decoupled Method — Q1 (Part 3)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q2 (Part 1)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6-matlab-code-q2-part1",
+          "caption": "Figure 6: MATLAB Code for Fast-Decoupled Method — Q2 (Part 1)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q2 (Part 2)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7-matlab-code-q2-part2",
+          "caption": "Figure 7: MATLAB Code for Fast-Decoupled Method — Q2 (Part 2)"
+        },
+        {
+          "type": "text",
+          "content": "**MATLAB Code — Q2 (Part 3)**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig8-matlab-code-q2-part3",
+          "caption": "Figure 8: MATLAB Code for Fast-Decoupled Method — Q2 (Part 3)"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Q1 — Output of the Fast-Decoupled Load Flow Solution**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-output-q1",
+          "caption": "Figure 5: Output of the Fast-Decoupled Load Flow Solution (Q1)"
+        },
+        {
+          "type": "text",
+          "content": "**Q2 — Output of the Fast-Decoupled Load Flow Solution**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig9-output-q2",
+          "caption": "Figure 9: Output of the Fast-Decoupled Load Flow Solution (Q2)"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Q1.** Figure 6.12 shows the one-line diagram of a simple three-bus power system with generators at buses 1 and 3. The magnitude of voltage at bus 1 is adjusted to 1.05 pu. Voltage magnitude at bus 3 is fixed at 1.04 pu with a real power generation of 200 MW. A load consisting of 400 MW and 250 Mvar is taken from bus 2. Line impedances are marked in per unit on a 100 MVA base, and the line charging susceptances are neglected. Obtain the power flow solution by the fast decoupled method including line flows and line losses."
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-one-line-diagram-3bus-q1",
+          "caption": "Figure 1: One-line diagram of the 3-bus system (Q1)"
+        },
+        {
+          "type": "text",
+          "content": "**Solution:** A MATLAB code was written to solve this problem using the FDLF method. The code takes the bus data and line impedances to create the Ybus matrix and builds the decoupled B′ and B″ matrices. The FDLF algorithm updates bus voltage angles and magnitudes step by step using the decoupled equations until convergence. The solution converged in 12 iterations (tol = 0.001). The final bus voltages obtained are:"
+        },
+        {
+          "type": "table",
+          "headers": ["Bus", "|V| (pu)", "Angle (rad)"],
+          "rows": [
+            ["1", "1.050000", "0.000000"],
+            ["2", "0.971665", "−0.047066"],
+            ["3", "1.040000", "−0.008706"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Q2.** Consider a three-bus system, where each of the three lines has a series impedance of 0.02 + j0.08 pu and a total shunt admittance of j0.02 pu. The specified quantities of the buses are tabulated below (all values in pu):"
+        },
+        {
+          "type": "table",
+          "headers": ["Bus", "PD", "QD", "PG", "QG", "Voltage"],
+          "rows": [
+            ["1", "2.0", "1.0", "Unspecified", "Unspecified", "1.04 + j0"],
+            ["2", "0.0", "0.0", "0.5", "1.0", "Unspecified"],
+            ["3", "1.5", "0.6", "0.0", "QG3 = ?", "1.04"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "A controllable reactive power source is available at bus 3 with the constraint 0 ≤ QG ≤ 1.5 pu. Find the load flow solution using the Fast Decoupled Load Flow (FDLF) method."
+        },
+        {
+          "type": "text",
+          "content": "**Solution:** A MATLAB code was written to solve this problem using the FDLF method. The code takes the bus data and line impedances to create the Ybus matrix and builds the decoupled B′ and B″ matrices. The FDLF algorithm updates bus voltage angles and magnitudes step by step until convergence. The solution converged in 8 iterations (tol = 0.001). The final bus voltages obtained are:"
+        },
+        {
+          "type": "table",
+          "headers": ["Bus", "|V| (pu)", "Angle (rad)"],
+          "rows": [
+            ["1", "1.050000", "0.000000"],
+            ["2", "1.086721", "−0.022511"],
+            ["3", "1.040000", "−0.062565"]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The Fast Decoupled Load Flow method was successfully applied to both three-bus systems. The results are summarized below."
+        },
+        {
+          "type": "table",
+          "headers": ["Problem", "Network", "Buses", "Iterations (tol = 0.001)", "Key Result"],
+          "rows": [
+            ["Q1", "3-Bus, no shunt admittance", "3", "12", "V1 = 1.0500∠0.000 rad, V2 = 0.9717∠−0.047 rad, V3 = 1.0400∠−0.009 rad"],
+            ["Q2", "3-Bus, with shunt admittance j0.02 pu", "3", "8", "V1 = 1.0500∠0.000 rad, V2 = 1.0867∠−0.023 rad, V3 = 1.0400∠−0.063 rad"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "The FDLF method converged reliably for both systems. Q1 required more iterations (12) compared to Q2 (8), reflecting the difference in system loading and network parameters. The presence of shunt admittances in Q2 modified the Ybus diagonal elements and the B″ matrix, which affected the reactive power updates and consequently the convergence profile. In both cases, the decoupled B′ and B″ matrices remained constant throughout iterations, confirming the computational efficiency advantage of the FDLF method over the full Newton-Raphson approach."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q1. What is the Fast Decoupled Load Flow (FDLF) method and what is its key advantage over the Newton-Raphson method?**\n\n**A:** The FDLF method is a simplified form of the Newton-Raphson load flow method in which the full Jacobian matrix is replaced by two smaller, constant, decoupled matrices B′ and B″. The key advantage is computational efficiency: since B′ and B″ are real, sparse, and constant across all iterations, they need to be factorized only once at the start. Each iteration then requires only two back-substitution operations instead of a full Jacobian update and factorization. This makes FDLF significantly faster per iteration, especially for large power systems, while still achieving acceptable accuracy.",
+            "**Q2. What are the four main assumptions used to decouple the real and reactive power equations in the FDLF method?**\n\n**A:** The four main assumptions are: (1) Bus voltage magnitudes are close to 1.0 p.u., so |Vi| ≈ |Vk| ≈ 1. (2) Voltage angle differences between adjacent buses are small, so cos(δi − δk) ≈ 1 and sin(δi − δk) ≈ 0. (3) Line resistance is negligible compared to reactance, so G ≪ B for all lines. (4) Reactive power Qi is much smaller than BiiVi², so the Qi term in the diagonal Jacobian elements can be neglected. Together, these assumptions eliminate the off-diagonal coupling sub-matrices (N and M) from the Jacobian.",
+            "**Q3. How are the B′ and B″ matrices constructed and what do they physically represent?**\n\n**A:** B′ is constructed from the imaginary part (susceptance) of the Ybus matrix, excluding the slack bus row and column. Series resistances are neglected in forming B′, and shunt reactors and off-nominal transformer taps are also omitted so that B′ captures only the network susceptance relevant to real power-angle sensitivity. B″ is similarly formed from the imaginary part of Ybus for PQ buses only, but it includes the effects of shunt admittances. Physically, B′ represents the sensitivity of real power injections to voltage angle changes, and B″ represents the sensitivity of reactive power injections to voltage magnitude changes.",
+            "**Q4. How does the FDLF method handle PV buses differently from PQ buses during iteration?**\n\n**A:** For PV buses, the voltage magnitude is fixed at its scheduled value throughout iterations; only the voltage angle is updated. In the FDLF formulation, the voltage magnitude correction ΔV from the B″ equation is not applied to PV buses — instead, after computing the new angle from the B′ equation, the voltage phasor is updated by maintaining the specified magnitude and using only the new angle. PQ buses, on the other hand, receive both angle and magnitude updates from the B′ and B″ equations respectively at every iteration.",
+            "**Q5. Why does Q1 require more iterations than Q2 to converge, even though both are three-bus systems?**\n\n**A:** Q1 requires 12 iterations while Q2 requires only 8 iterations. The primary reason is the difference in loading conditions and network parameters. Q1 has a heavier load (400 MW, 250 Mvar at bus 2) relative to system size, resulting in larger initial mismatches and a longer convergence path. Q2, despite including shunt admittances (j0.02 pu at each bus), has a more balanced loading profile. The shunt admittances in Q2 increase the diagonal dominance of Ybus, which improves the conditioning of B′ and B″ and leads to faster convergence.",
+            "**Q6. What is the significance of the flat start initialization in the FDLF method and when might it fail?**\n\n**A:** The flat start sets all non-slack bus voltages to 1.0∠0° p.u. at the beginning of the iteration. This is the standard starting point for FDLF because the method's decoupling assumptions (small angle differences, voltages near 1.0 pu) are most valid near this initial point, making the early iterations physically meaningful. The flat start may fail to lead to convergence in heavily loaded systems where the actual operating voltages deviate significantly from 1.0 pu, in systems with voltage collapse conditions near the operating point, or in poorly conditioned networks with very low X/R ratios where the decoupling approximation breaks down. In such cases, a better initial estimate or a more robust method such as Newton-Raphson may be needed."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, we completed the Fast Decoupled Load Flow (FDLF) method for load flow analysis. We analyzed power flow for a 3-bus system using the FDLF method. We formed the bus admittance matrix, categorized bus types, and constructed the decoupled B′ and B″ matrices. We ran an iterative algorithm in MATLAB and verified results step-by-step with the provided system data."
+        },
+        {
+          "type": "text",
+          "content": "The FDLF method provides better computational efficiency and faster convergence than other iterative techniques such as Gauss-Seidel, while using less computational effort than Newton-Raphson. It highlights the need for precise bus modeling, manages voltage and reactive power limits, and allows for necessary approximations to differentiate between real and reactive power equations. Overall, the implementation and results show that the FDLF method is effective for practical load flow studies in medium to large power systems."
+        }
+      ]
+    }
+  }
+}
