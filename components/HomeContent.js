@@ -7,6 +7,79 @@ import SearchBar from './SearchBar';
 import ExperimentCard from './ExperimentCard';
 import styles from './SearchBar.module.css';
 
+// Simple SVG Icons for the Labs
+const LabIcon = ({ type }) => {
+    const icons = {
+        bolt: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+        ),
+        chip: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <line x1="9" y1="1" x2="9" y2="4" />
+                <line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" />
+                <line x1="15" y1="20" x2="15" y2="23" />
+                <line x1="20" y1="9" x2="23" y2="9" />
+                <line x1="20" y1="15" x2="23" y2="15" />
+                <line x1="1" y1="9" x2="4" y2="9" />
+                <line x1="1" y1="15" x2="4" y2="15" />
+            </svg>
+        ),
+        sliders: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="4" y1="21" x2="4" y2="14" />
+                <line x1="4" y1="10" x2="4" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12" y2="3" />
+                <line x1="20" y1="21" x2="20" y2="16" />
+                <line x1="20" y1="12" x2="20" y2="3" />
+                <line x1="2" y1="14" x2="6" y2="14" />
+                <line x1="10" y1="8" x2="14" y2="8" />
+                <line x1="18" y1="16" x2="22" y2="16" />
+            </svg>
+        ),
+        tower: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 21L12 3L3 21" />
+                <path d="M12 3v18" />
+                <path d="M4.5 18h15" />
+                <path d="M7 13h10" />
+            </svg>
+        ),
+        waves: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 10s3-2 5-2 5 2 8 2 5-2 7-2" />
+                <path d="M2 14s3-2 5-2 5 2 8 2 5-2 7-2" />
+                <path d="M2 18s3-2 5-2 5 2 8 2 5-2 7-2" />
+            </svg>
+        ),
+        "waves-alt": (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="2" />
+                <path d="M16.2 7.8a6 6 0 1 1-8.4 0" />
+                <path d="M19 5a10 10 0 1 1-14 0" />
+            </svg>
+        ),
+        plug: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 2v2H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h4v2l3 3v5h2v-5l3-3v-2h4a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-4V2" />
+                <line x1="12" y1="22" x2="12" y2="13" />
+            </svg>
+        ),
+        "bolt-alt": (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M13 7l-4 6h3l-1 4 4-6h-3l1-4z" />
+            </svg>
+        )
+    };
+    return <div className="lab-icon">{icons[type] || icons.bolt}</div>;
+};
+
 export default function HomeContent({ labs, allExperiments }) {
     const { profile, user } = useAuth();
     const [query, setQuery] = useState('');
@@ -115,12 +188,31 @@ export default function HomeContent({ labs, allExperiments }) {
                             const isPinned = pinnedIds.includes(lab.id);
                             return (
                                 <Link key={lab.id} href={`/lab/${lab.id}`} className={`lab-card ${isPinned ? 'lab-card-pinned' : ''}`}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                        <h3>{lab.name}</h3>
-                                        {isPinned && <span title="Pinned Lab" style={{ fontSize: '1.2rem' }}>📌</span>}
+                                    <div className="lab-card-header">
+                                        <div className="lab-icon-box">
+                                            <LabIcon type={lab.icon} />
+                                        </div>
+                                        <span className="lab-code-badge">{lab.code}</span>
                                     </div>
-                                    <p className="lab-code">{lab.code}</p>
-                                    <p className="lab-description">{lab.description}</p>
+                                    <div className="lab-card-body">
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                            <h3>{lab.name}</h3>
+                                            {isPinned && <span title="Pinned Lab" className="pin-indicator">📌</span>}
+                                        </div>
+                                        <p className="lab-description">{lab.description}</p>
+                                    </div>
+                                    <div className="lab-card-footer">
+                                        <div className="lab-exp-count">
+                                            <span className="exp-icon">⚗</span>
+                                            <span>{lab.totalExperiments || lab.experiments.length} Experiments</span>
+                                        </div>
+                                        <div className="lab-card-arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                                <polyline points="12 5 19 12 12 19" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </Link>
                             );
                         })}

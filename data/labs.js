@@ -23,7 +23,8 @@ const labMetadata = [
     focus: "Fundamental circuit laws and theorems",
     nature: "Circuit-based",
     prerequisites: "12th Grade Physics, Basic Network Theory, AC Fundamentals",
-    totalExperiments: 9
+    totalExperiments: 9,
+    icon: "bolt"
   },
   {
     id: "digital-electronics",
@@ -33,7 +34,8 @@ const labMetadata = [
     focus: "Combinational logic synthesis & FPGA implementation",
     nature: "Hardware Implementation",
     prerequisites: "ECL101 (Basic Electronics Engineering), EEL203 (Digital Circuits)",
-    totalExperiments: 8
+    totalExperiments: 8,
+    icon: "chip"
   },
   {
     id: "devices-and-circuits",
@@ -43,7 +45,8 @@ const labMetadata = [
     focus: "Semiconductor devices and amplifiers",
     nature: "Analog Circuits & Semiconductor Devices",
     prerequisites: "ECL101 (Basic Electronics Engineering), EEL101 (Basic Electrical Engineering), EEL202 (Analog Circuits)",
-    totalExperiments: 8
+    totalExperiments: 8,
+    icon: "waves"
   },
   {
     id: "power-system-lab",
@@ -53,7 +56,8 @@ const labMetadata = [
     focus: "Grid analysis and protection",
     nature: "System Analysis",
     prerequisites: "Electric Machines",
-    totalExperiments: 10
+    totalExperiments: 10,
+    icon: "tower"
   },
   {
     id: "sensor-lab",
@@ -63,7 +67,8 @@ const labMetadata = [
     focus: "Transducers and measurements",
     nature: "Transducer Characterisation",
     prerequisites: "EEL208 (Sensor and Instrumentation)",
-    totalExperiments: 9
+    totalExperiments: 9,
+    icon: "waves-alt"
   },
   {
     id: "control-system-lab",
@@ -73,7 +78,8 @@ const labMetadata = [
     focus: "Stability and controller design",
     nature: "Design & Analysis",
     prerequisites: "Signals and Systems",
-    totalExperiments: 10
+    totalExperiments: 10,
+    icon: "sliders"
   },
   {
     id: "power-electronics-lab",
@@ -83,7 +89,8 @@ const labMetadata = [
     focus: "Power conversion and drives",
     nature: "Hardware & Simulation",
     prerequisites: "Power Systems",
-    totalExperiments: 10
+    totalExperiments: 10,
+    icon: "plug"
   },
   {
     id: "instrumentation-lab",
@@ -93,7 +100,8 @@ const labMetadata = [
     focus: "Data acquisition and conditioning",
     nature: "Measurement-based",
     prerequisites: "Sensors & Transducers",
-    totalExperiments: 10
+    totalExperiments: 10,
+    icon: "waves"
   },
   {
     id: "machines-lab",
@@ -103,7 +111,8 @@ const labMetadata = [
     focus: "Electromechanical conversion",
     nature: "Hardware-Oriented",
     prerequisites: "Basic Electrical Engg",
-    totalExperiments: 10
+    totalExperiments: 10,
+    icon: "bolt-alt"
   }
 ];
 
