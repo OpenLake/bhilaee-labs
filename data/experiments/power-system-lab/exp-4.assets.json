@@ -1,60 +1,47 @@
 {
-  "labId": "power-system-lab",
-  "experimentId": "exp-4",
-  "assets": {
-    "fig1-one-line-diagram-3bus-q1": {
-      "id": "fig1-one-line-diagram-3bus-q1",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/fig1.png",
-      "caption": "Figure 1: One-line diagram of the 3-bus system (Q1)"
-    },
-    "fig2-matlab-code-q1-part1": {
-      "id": "fig2-matlab-code-q1-part1",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code1_part1.png",
-      "caption": "Figure 2: MATLAB Code for Fast-Decoupled Method — Q1 (Part 1)"
-    },
-    "fig3-matlab-code-q1-part2": {
-      "id": "fig3-matlab-code-q1-part2",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code1_part2.png",
-      "caption": "Figure 3: MATLAB Code for Fast-Decoupled Method — Q1 (Part 2)"
-    },
-    "fig4-matlab-code-q1-part3": {
-      "id": "fig4-matlab-code-q1-part3",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code1_part3.png",
-      "caption": "Figure 4: MATLAB Code for Fast-Decoupled Method — Q1 (Part 3)"
-    },
-    "fig5-output-q1": {
-      "id": "fig5-output-q1",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/output1.png",
-      "caption": "Figure 5: Output of the Fast-Decoupled Load Flow Solution (Q1)"
-    },
-    "fig6-matlab-code-q2-part1": {
-      "id": "fig6-matlab-code-q2-part1",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code2_part1.png",
-      "caption": "Figure 6: MATLAB Code for Fast-Decoupled Method — Q2 (Part 1)"
-    },
-    "fig7-matlab-code-q2-part2": {
-      "id": "fig7-matlab-code-q2-part2",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code2_part2.png",
-      "caption": "Figure 7: MATLAB Code for Fast-Decoupled Method — Q2 (Part 2)"
-    },
-    "fig8-matlab-code-q2-part3": {
-      "id": "fig8-matlab-code-q2-part3",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/code2_part3.png",
-      "caption": "Figure 8: MATLAB Code for Fast-Decoupled Method — Q2 (Part 3)"
-    },
-    "fig9-output-q2": {
-      "id": "fig9-output-q2",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-4/output2.png",
-      "caption": "Figure 9: Output of the Fast-Decoupled Load Flow Solution (Q2)"
-    }
+  "fig1-one-line-diagram-3bus-q1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/fig1.png",
+    "description": "Figure 1: One-line diagram of the 3-bus system (Q1)"
+  },
+  "fig2-matlab-code-q1-part1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code1_part1.png",
+    "description": "Figure 2: MATLAB Code for Fast-Decoupled Method — Q1 (Part 1)"
+  },
+  "fig3-matlab-code-q1-part2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code1_part2.png",
+    "description": "Figure 3: MATLAB Code for Fast-Decoupled Method — Q1 (Part 2)"
+  },
+  "fig4-matlab-code-q1-part3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code1_part3.png",
+    "description": "Figure 4: MATLAB Code for Fast-Decoupled Method — Q1 (Part 3)"
+  },
+  "fig5-output-q1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/output1.png",
+    "description": "Figure 5: Output of the Fast-Decoupled Load Flow Solution (Q1)"
+  },
+  "fig6-matlab-code-q2-part1": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code2_part1.png",
+    "description": "Figure 6: MATLAB Code for Fast-Decoupled Method — Q2 (Part 1)"
+  },
+  "fig7-matlab-code-q2-part2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code2_part2.png",
+    "description": "Figure 7: MATLAB Code for Fast-Decoupled Method — Q2 (Part 2)"
+  },
+  "fig8-matlab-code-q2-part3": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/code2_part3.png",
+    "description": "Figure 8: MATLAB Code for Fast-Decoupled Method — Q2 (Part 3)"
+  },
+  "fig9-output-q2": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-4/output2.png",
+    "description": "Figure 9: Output of the Fast-Decoupled Load Flow Solution (Q2)"
   }
 }
