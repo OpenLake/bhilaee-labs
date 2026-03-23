@@ -1,48 +1,37 @@
 {
-  "experimentId": "exp-9",
-  "labId": "power-system-lab",
-  "assets": [
-    {
-      "id": "fig1-simulink-core-tcr-model",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig1.png",
-      "alt": "Simulink model of the TCR setup"
-    },
-    {
-      "id": "fig2-simulink-complete-tcr-setup",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig2.png",
-      "alt": "Complete Simulink setup including measurement and display blocks"
-    },
-    {
-      "id": "fig3-tcr-waveforms",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig3.png",
-      "alt": "Time-domain waveforms obtained from the simulation"
-    },
-    {
-      "id": "fig4-fft-vs",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig4.png",
-      "alt": "FFT plot of the source voltage VS"
-    },
-    {
-      "id": "fig5-fft-vload",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig5.png",
-      "alt": "FFT plot of the load voltage Vload"
-    },
-    {
-      "id": "fig6-fft-iload",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig6.png",
-      "alt": "FFT plot of the load current Iload"
-    },
-    {
-      "id": "fig7-fft-itcr",
-      "type": "image",
-      "path": "/assets/labs/power-system-lab/exp-9/fig7.png",
-      "alt": "FFT plot of the TCR current ITCR"
-    }
-  ]
+  "fig1-simulink-core-tcr-model": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig1.png",
+    "description": "Figure 1: Simulink model of the Thyristor-Controlled Reactor (TCR) setup"
+  },
+  "fig2-simulink-complete-tcr-setup": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig2.png",
+    "description": "Figure 2: Complete Simulink setup of the model of the Thyristor-Controlled Reactor including measurement and display blocks"
+  },
+  "fig3-tcr-waveforms": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig3.png",
+    "description": "Figure 3: Waveforms obtained from the TCR model simulation"
+  },
+  "fig4-fft-vs": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig4.png",
+    "description": "Figure 4: FFT plot of the source voltage VS showing THD"
+  },
+  "fig5-fft-vload": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig5.png",
+    "description": "Figure 5: FFT plot of the load voltage Vload showing THD"
+  },
+  "fig6-fft-iload": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig6.png",
+    "description": "Figure 6: FFT plot of the load current Iload showing THD"
+  },
+  "fig7-fft-itcr": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-9/fig7.png",
+    "description": "Figure 7: FFT plot of the TCR current ITCR showing THD"
+  }
 }
