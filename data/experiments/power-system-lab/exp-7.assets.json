@@ -1,0 +1,57 @@
+{
+  "fig1-simulink-core-pi-model": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig1.png",
+    "description": "Figure 1: Simulink model of the medium transmission line using nominal Pi model"
+  },
+  "fig2-simulink-complete-setup": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig2.png",
+    "description": "Figure 2: Complete Simulink setup of the medium transmission line model including measurement and display blocks"
+  },
+  "fig3-simulink-sil-readings": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig3.png",
+    "description": "Figure 3: Simulink model showing measured voltage, current, and power readings for loading condition ZL = ZC (Loading = SIL)"
+  },
+  "fig4-waveforms-sil-vi": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig4.png",
+    "description": "Figure 4: Voltage and current waveforms for loading condition ZL = ZC"
+  },
+  "fig5-waveforms-sil-power": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig5.png",
+    "description": "Figure 5: Active and reactive power waveforms for loading condition ZL = ZC"
+  },
+  "fig6-simulink-overload-readings": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig6.png",
+    "description": "Figure 6: Simulink model showing measured readings for loading condition ZL < ZC (Loading > SIL)"
+  },
+  "fig7-waveforms-overload-vi": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig7.png",
+    "description": "Figure 7: Voltage and current waveforms for loading condition ZL < ZC"
+  },
+  "fig8-waveforms-overload-power": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig8.png",
+    "description": "Figure 8: Active and reactive power waveforms for loading condition ZL < ZC"
+  },
+  "fig9-Underload-readings": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig9.png",
+    "description": "Figure 9: Simulink model showing measured readings for loading condition ZL > ZC (Loading < SIL)"
+  },
+  "fig10-waveforms-underload-vi": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig10.png",
+    "description": "Figure 10: Voltage and current waveforms for loading condition ZL > ZC"
+  },
+  "fig11-waveforms-underload-power": {
+    "type": "image",
+    "path": "/assets/labs/power-system-lab/exp-7/fig11.png",
+    "description": "Figure 11: Active and reactive power waveforms for loading condition ZL > ZC"
+  }
+}

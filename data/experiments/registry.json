@@ -238,10 +238,10 @@
         },
         {
           "id": "7",
-          "title": "Experiment 7",
+          "title": "Studying the Significance of Surge Impedance and the Surge Impedance Loading (SIL) of a Transmission Line",
           "fileName": "exp-7.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Software Oriented",
+          "completeness": 1
         },
         {
           "id": "8",
