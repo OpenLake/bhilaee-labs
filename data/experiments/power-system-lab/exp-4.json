@@ -284,33 +284,6 @@
           "type": "image",
           "assetId": "fig4-matlab-code-q1-part3",
           "caption": "Figure 4: MATLAB Code for Fast-Decoupled Method — Q1 (Part 3)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q2 (Part 1)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig6-matlab-code-q2-part1",
-          "caption": "Figure 6: MATLAB Code for Fast-Decoupled Method — Q2 (Part 1)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q2 (Part 2)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig7-matlab-code-q2-part2",
-          "caption": "Figure 7: MATLAB Code for Fast-Decoupled Method — Q2 (Part 2)"
-        },
-        {
-          "type": "text",
-          "content": "**MATLAB Code — Q2 (Part 3)**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig8-matlab-code-q2-part3",
-          "caption": "Figure 8: MATLAB Code for Fast-Decoupled Method — Q2 (Part 3)"
         }
       ]
     },
@@ -327,15 +300,6 @@
           "type": "image",
           "assetId": "fig5-output-q1",
           "caption": "Figure 5: Output of the Fast-Decoupled Load Flow Solution (Q1)"
-        },
-        {
-          "type": "text",
-          "content": "**Q2 — Output of the Fast-Decoupled Load Flow Solution**"
-        },
-        {
-          "type": "image",
-          "assetId": "fig9-output-q2",
-          "caption": "Figure 9: Output of the Fast-Decoupled Load Flow Solution (Q2)"
         }
       ]
     },
