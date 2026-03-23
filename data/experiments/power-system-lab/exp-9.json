@@ -1,0 +1,352 @@
+{
+  "id": "exp-9",
+  "title": "Study and Analysis of Performance of Thyristor-Controlled Reactor (TCR) in Power Systems",
+  "labId": "power-system-lab",
+  "status": "Software Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "MATLAB/Simulink",
+    "experimentType": "software",
+    "status": "software-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To model a Thyristor-Controlled Reactor (TCR) in MATLAB/Simulink and study its performance under different firing angle conditions. This experiment focuses on analyzing the waveforms, observing harmonic distortion, and computing the Total Harmonic Distortion (THD) using FFT analysis."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "AC Voltage Source",
+            "Current Measurement",
+            "Voltage Measurement",
+            "Thyristor",
+            "Series RLC Branch",
+            "Pulse Generator",
+            "Powergui, Displays, and Scopes"
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Source Voltage",
+              "230 V"
+            ],
+            [
+              "Frequency",
+              "50 Hz"
+            ],
+            [
+              "Series Inductance",
+              "1 × 10⁻² H"
+            ],
+            [
+              "Series Capacitance",
+              "250 × 10⁻⁹ F"
+            ],
+            [
+              "Series Resistance",
+              "1 × 10⁻⁹ Ω"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In power systems, compensation devices play an important role in managing reactive power and keeping voltage levels stable, even when the system's load changes. If reactive power is not balanced properly, it can cause voltage to drop too much or rise unexpectedly along transmission lines, which leads to poor power quality and makes the system less efficient. By controlling how reactive power flows, compensation devices help in maintaining system stability and lowering energy losses."
+        },
+        {
+          "type": "text",
+          "content": "These devices can be connected in two ways: shunt or series, depending on what the power system needs. Shunt compensation devices either supply or absorb reactive power. Capacitor banks supply reactive power to the system, while shunt reactors absorb it. There are also more advanced solutions, like Static Var Compensators (SVCs), which use power electronics to adjust reactive power smoothly and continuously instead of in fixed steps. This allows for quicker and more precise control, making SVCs ideal for power systems that experience rapid changes in load."
+        },
+        {
+          "type": "text",
+          "content": "A Thyristor-Controlled Reactor (TCR) is an important part of SVC-based shunt compensation systems. It is made up of an inductor connected in series with a pair of thyristors connected in opposite directions. This arrangement lets current flow and can be controlled during both halves of the AC cycle. By changing the firing angle α of the thyristors, the inductive reactance of the TCR can be adjusted. This allows the system to absorb the right amount of reactive power, enabling proper regulation of system voltages."
+        },
+        {
+          "type": "text",
+          "content": "A TCR works based on carefully timing when the thyristors are switched on. By delaying the gate signal to the thyristors, the amount of each AC cycle that passes through the reactor can be controlled. If the thyristors start conducting early in the cycle, the reactor draws a large inductive current, absorbing the maximum amount of reactive power. If conduction is delayed until later in the cycle, the reactor only conducts for a short period, absorbing much less reactive power. By adjusting this delay, the system can smoothly shift between full inductive loading and almost no reactive power absorption."
+        },
+        {
+          "type": "text",
+          "content": "TCRs are especially helpful when system voltage tends to rise, such as when transmission lines are lightly loaded. In these situations, the reactor absorbs the extra reactive energy, helping to keep voltage levels stable. A typical TCR setup includes two main parts: a pair of thyristors connected in opposite directions to control current in both halves of the AC cycle, and a reactor that provides the needed inductance."
+        },
+        {
+          "type": "text",
+          "content": "One important aspect of TCR operation is that when the conduction period gets shorter, the current waveform becomes distorted, showing sharp jumps and creating harmonics. These harmonics can be detected and measured using FFT (Fast Fourier Transform) analysis, and higher firing angles usually lead to more pronounced harmonics. In real-world applications, the TCR is commonly part of a larger compensation system, sometimes working with capacitor banks as part of an SVC."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Core Simulink Model — TCR Setup**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig1-simulink-core-tcr-model",
+          "caption": "Figure 1: Simulink model of the Thyristor-Controlled Reactor (TCR) setup"
+        },
+        {
+          "type": "text",
+          "content": "The above figure shows only the core Simulink model of the Thyristor-Controlled Reactor (TCR). Additional components such as measurement blocks, scopes, and display units are included later to observe the outputs."
+        },
+        {
+          "type": "text",
+          "content": "**Complete Simulink Setup**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig2-simulink-complete-tcr-setup",
+          "caption": "Figure 2: Complete Simulink setup of the model of the Thyristor-Controlled Reactor including measurement and display blocks"
+        },
+        {
+          "type": "text",
+          "content": "The above figure shows the complete Simulink model of the TCR setup. The model includes the reactor branch, two thyristors, and the firing pulse generation circuit that controls the conduction angle of the TCR. Scopes and displays capture waveforms such as line voltage, reactor current, and reactive power variations as the firing angle is adjusted."
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Open MATLAB/Simulink and build the TCR model using an AC Voltage Source, Series RLC Branch (as the reactor), two anti-parallel Thyristors, and Pulse Generator blocks for firing pulses.",
+            "Connect Current Measurement and Voltage Measurement blocks at appropriate nodes to measure IS, VL, ITCR, VT, Iload, and Vload.",
+            "Connect Power Measurement blocks to compute active and reactive power at the source and load.",
+            "Add Scope blocks to observe time-domain waveforms of all measured signals.",
+            "Set the firing angle α of the Pulse Generator to the desired value and run the simulation.",
+            "Observe and record the waveforms for VS, VL, ITCR, Vload, and Iload.",
+            "Open the FFT Analysis tool in Powergui. Select each signal (VS, Vload, Iload, ITCR) and compute the THD.",
+            "Record the THD values for each signal and compare with expected behavior.",
+            "Repeat the simulation for different firing angles and note the change in ITCR waveform and THD."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB/Simulink was used to simulate the TCR model with the parameters listed in the apparatus section. The firing pulses for the two thyristors were generated using Pulse Generator blocks. FFT analysis was performed using the Powergui FFT Analysis tool on the steady-state waveforms of VS, Vload, Iload, and ITCR."
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Time-Domain Waveforms**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig3-tcr-waveforms",
+          "caption": "Figure 3: Waveforms obtained from the TCR model simulation. The legend clearly indicates the corresponding signals."
+        },
+        {
+          "type": "text",
+          "content": "**FFT Analysis**"
+        },
+        {
+          "type": "text",
+          "content": "FFT analysis was performed for the following waveforms: Source voltage VS, Load voltage Vload, Load current Iload, and TCR current ITCR. Gate pulses and reactor voltages were excluded from FFT analysis as they are switching signals and do not affect actual power quality waveforms."
+        },
+        {
+          "type": "text",
+          "content": "**1. FFT of VS**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig4-fft-vs",
+          "caption": "Figure 4: FFT plot of the source voltage VS showing THD"
+        },
+        {
+          "type": "text",
+          "content": "The THD of the source voltage is observed to be 0.00%. This is expected because VS is the input supply waveform provided as an ideal sinusoid in the simulation, confirmed by the clean sinusoidal waveform visible in the scope output."
+        },
+        {
+          "type": "text",
+          "content": "**2. FFT of Vload**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig5-fft-vload",
+          "caption": "Figure 5: FFT plot of the load voltage Vload showing THD"
+        },
+        {
+          "type": "text",
+          "content": "The THD of the load voltage is also observed to be 0.00%. The load voltage maintains a clean sinusoidal shape, confirmed by the scope waveform."
+        },
+        {
+          "type": "text",
+          "content": "**3. FFT of Iload**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig6-fft-iload",
+          "caption": "Figure 6: FFT plot of the load current Iload showing THD"
+        },
+        {
+          "type": "text",
+          "content": "The THD of the load current is approximately 0.06%, which is negligible. The load current is very close to a sinusoidal waveform with no significant distortion."
+        },
+        {
+          "type": "text",
+          "content": "**4. FFT of ITCR**"
+        },
+        {
+          "type": "image",
+          "assetId": "fig7-fft-itcr",
+          "caption": "Figure 7: FFT plot of the TCR current ITCR showing THD"
+        },
+        {
+          "type": "text",
+          "content": "The TCR current ITCR is heavily distorted due to thyristor switching and deviates significantly from a pure sinusoidal shape. The FFT analysis shows a THD of 78.32%, with the fundamental component at 50 Hz having a magnitude of 15.2 A."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Signal",
+            "Fundamental (Hz)",
+            "Fundamental Magnitude",
+            "THD (%)"
+          ],
+          "rows": [
+            [
+              "VS",
+              "50",
+              "230 V",
+              "0.00"
+            ],
+            [
+              "Vload",
+              "50",
+              "230 V",
+              "0.00"
+            ],
+            [
+              "Iload",
+              "50",
+              "18.01 A",
+              "0.06"
+            ],
+            [
+              "ITCR",
+              "50",
+              "15.2 A",
+              "78.32"
+            ]
+          ]
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": false,
+      "content": []
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The simulated waveforms provide a clear picture of how each signal behaves in the TCR system. Throughout the simulation, the source voltage stays purely sinusoidal (THD = 0%), showing that the AC supply does not introduce any harmonic distortion. Similarly, the load voltage maintains a clean sinusoidal shape (THD = 0%)."
+        },
+        {
+          "type": "text",
+          "content": "The load current is nearly perfect as well, displaying only a very slight distortion with a THD of about 0.06%. This means the current drawn by the load is almost entirely sinusoidal. However, the current flowing through the TCR branch shows significant distortion: due to thyristor switching, the ITCR waveform changes abruptly during each cycle, resulting in a high THD of 78.32%."
+        },
+        {
+          "type": "text",
+          "content": "These results confirm the expected behavior of a Thyristor-Controlled Reactor: the non-linear switching action mainly affects the reactor current, while the source and load waveforms remain largely undisturbed and free from distortion. The harmonics are confined to the TCR branch and do not significantly propagate to the source or load."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** What is a Thyristor-Controlled Reactor (TCR) and what is its primary function in a power system?\n\n**A:** A TCR is a shunt-connected reactive power compensation device consisting of an inductor in series with two anti-parallel thyristors. Its primary function is to provide continuously variable inductive reactive power absorption, allowing the system to regulate bus voltage by absorbing excess reactive power. By adjusting the firing angle α of the thyristors, the effective inductive reactance of the TCR can be varied between maximum absorption (α = 90°, full conduction) and zero absorption (α = 180°, no conduction), enabling smooth and fast reactive power control.",
+            "**Q:** How does the firing angle α control the reactive power absorbed by the TCR?\n\n**A:** The firing angle α is the delay angle from the zero-crossing of the voltage at which the thyristor gate pulse is applied. At α = 90°, the thyristors fire immediately at the voltage peak for an inductive load, allowing full conduction for the entire half-cycle, which corresponds to maximum reactive power absorption. As α increases toward 180°, the thyristors conduct for progressively shorter intervals, reducing the fundamental component of the current and hence reducing reactive power absorption. At α = 180°, the thyristors never conduct and the reactor is effectively disconnected. The relationship between the reactive power absorbed and firing angle is: QTCR = (V²/XL) × (2(π − α) + sin(2α))/π.",
+            "**Q:** Why does the ITCR waveform have a high THD while VS and Vload have zero THD?\n\n**A:** The thyristors in the TCR are non-linear switching devices that abruptly switch the reactor in and out of circuit during each AC cycle. When the firing angle is not at 90° (full conduction), the resulting ITCR waveform is a chopped sinusoid with sharp edges at the switching instants. This waveform is rich in odd harmonics (3rd, 5th, 7th, etc.), leading to a high THD of 78.32% in this simulation. In contrast, VS is an ideal sinusoidal voltage source that inherently has no harmonics. Vload maintains zero THD because the load impedance is linear, and the harmonic currents generated by the TCR flow primarily through the low-impedance TCR path rather than through the load. The source impedance is also very low, preventing harmonic voltages from developing.",
+            "**Q:** What harmonics are typically generated by a single-phase TCR and how can they be mitigated?\n\n**A:** A single-phase TCR generates odd-order harmonics: 3rd, 5th, 7th, 9th, 11th, etc. The dominant harmonics are the lower-order ones (3rd and 5th), which have the highest magnitude relative to the fundamental. In a three-phase TCR arrangement, the three phases are typically connected in delta, which cancels out the triplen harmonics (3rd, 9th, 15th, etc.) by circulating them within the delta loop. The remaining harmonics (5th, 7th, 11th, 13th, etc.) are mitigated using passive harmonic filters (tuned LC filters) connected in shunt at the TCR bus, or using active filters, or by employing a 12-pulse TCR configuration using two delta-connected TCRs fed from transformers with different winding connections.",
+            "**Q:** What is the difference between a TCR and a TSC (Thyristor-Switched Capacitor), and how are they used together in an SVC?\n\n**A:** A TCR uses thyristors to continuously vary the conduction of a reactor, providing smoothly adjustable inductive reactive power absorption. A TSC uses thyristors to switch capacitor banks in and out of circuit in discrete steps, providing stepwise capacitive reactive power supply. The key difference is that TCR provides continuous control while TSC provides discrete steps. In an SVC, both are typically combined: TSC banks provide the capacitive reactive power in discrete steps to cover the required capacitive range, while the TCR provides fine, continuous control to fill in between TSC steps and to absorb reactive power in the inductive range. This combination provides a wide, smooth, and fast reactive power control range from full capacitive to full inductive.",
+            "**Q:** Why is FFT analysis important for evaluating TCR performance, and what does the THD value indicate?\n\n**A:** FFT (Fast Fourier Transform) analysis decomposes a periodic waveform into its constituent frequency components, revealing the magnitude of the fundamental frequency component and all harmonic components. For a TCR, FFT analysis is essential to quantify the harmonic content injected into the power system by the thyristor switching. The Total Harmonic Distortion (THD) is a single figure of merit defined as the ratio of the RMS value of all harmonic components to the RMS value of the fundamental: THD = √(ΣVₙ²)/V₁ × 100%. A high THD (like the 78.32% observed for ITCR) indicates severe waveform distortion, which is expected for the TCR current. Power quality standards (such as IEEE 519) impose limits on THD at the point of common coupling, which is why harmonic filters are necessary in practical SVC installations."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The simulation of the Thyristor-Controlled Reactor (TCR) successfully demonstrates how thyristor-based switching affects the harmonic behaviour of the system. While the source voltage and load voltage remain perfectly sinusoidal (THD = 0%), the TCR branch current shows significant distortion due to controlled firing, reflected in the high THD value of 78.32% obtained from the FFT analysis."
+        },
+        {
+          "type": "text",
+          "content": "The results confirm that the TCR introduces harmonics only in its own branch without adversely affecting the load or supply waveforms. This validates the expected behaviour of TCR-based reactive power control, where the switching nonlinearity is confined to the reactor path while the rest of the system maintains clean sinusoidal performance. Overall, the experiment provides a clear understanding of how a TCR operates as a continuously variable reactive power absorber and the harmonic implications of its thyristor switching action."
+        }
+      ]
+    }
+  }
+}
