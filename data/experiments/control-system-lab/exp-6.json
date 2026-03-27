@@ -1,0 +1,402 @@
+{
+  "id": "exp-6",
+  "title": "Controlling Systems Using NVIS3000A Kit",
+  "labId": "control-system-lab",
+  "status": "Hardware Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "Hardware / Process Control Trainer",
+    "experimentType": "hardware",
+    "status": "hardware_oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To study and observe voltage-to-frequency, frequency-to-voltage, and voltage-to-current converters.",
+            "To study and implement temperature control using open-loop, closed-loop (ON/OFF), P, PI, and PID controllers.",
+            "To study and implement light intensity control using open-loop, closed-loop (ON/OFF), P, PI, and PID controllers."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Quantities"],
+          "rows": [
+            ["1", "NVIS3000A Process Control Trainer Kit", "1"],
+            ["2", "PC with NVIS Control Software", "1"],
+            ["3", "Multimeter", "1"],
+            ["4", "Connecting / Patch Cords", "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A voltage-to-frequency (V/F) converter is a circuit that converts an input voltage into a proportional output frequency. The output is typically a pulse train whose frequency varies linearly with the magnitude of the applied input voltage. Such converters are widely used in signal processing, analog-to-digital conversion, and communication systems due to their good noise immunity and ease of transmission over long distances."
+        },
+        {
+          "type": "text",
+          "content": "A frequency-to-voltage (F/V) converter performs the inverse operation: it converts an input frequency signal into a proportional DC voltage output. These converters are commonly used in instrumentation systems where frequency-based signals from sensors or encoders need to be represented in voltage form for measurement and control purposes."
+        },
+        {
+          "type": "text",
+          "content": "A voltage-to-current (V/I) converter produces an output current that is directly proportional to the applied input voltage. It is widely used in industrial instrumentation, especially in current-loop systems, because current signals are less affected by noise and voltage drops over long transmission lines."
+        },
+        {
+          "type": "text",
+          "content": "A non-inverting amplifier is an op-amp configuration in which the input signal is applied to the non-inverting terminal. The voltage gain is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "A_v = 1 + \\frac{R_f}{R_{in}}"
+        },
+        {
+          "type": "text",
+          "content": "where Rf is the feedback resistor and Rin is the input resistor. This configuration provides high input impedance and low output impedance, making it suitable for buffering and signal conditioning."
+        },
+        {
+          "type": "text",
+          "content": "In control systems, open-loop operation means the control action is independent of the output — there is no feedback mechanism. In a closed-loop system, feedback continuously compares the output with the desired reference and adjusts the input accordingly. Control strategies in increasing order of sophistication include: ON/OFF control (switches the actuator fully ON or OFF based on error), P control (output proportional to error), PI control (adds integration to eliminate steady-state error), and PID control (adds a derivative term to predict system behaviour and improve stability)."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Part A — Signal Converter Characterization:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the NVIS3000A kit as per the manual and power it on.",
+            "For the V/F converter: apply different known DC input voltages and measure the corresponding output frequency. Tabulate the readings.",
+            "For the F/V converter: apply known input frequency signals and measure the corresponding DC output voltage. Tabulate the readings.",
+            "For the non-inverting amplifier: apply known input voltages and measure output voltages at three different gain settings (R1, R2, R3). Tabulate the readings.",
+            "For the V/I converter: apply different input voltages and measure the corresponding output current. Tabulate the readings."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Part B — Temperature Control:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the temperature sensor and heater to the NVIS3000A kit. Open the temperature control software on the PC.",
+            "Set a desired temperature setpoint. Run open-loop (manual) control and observe the temperature response; record the plot.",
+            "Switch to closed-loop ON/OFF control. Observe the oscillatory behaviour around the setpoint; record the plot.",
+            "Switch to P control. Adjust Kp and observe reduction in oscillations; note the residual steady-state error.",
+            "Switch to PI control. Adjust Kp and Ki to eliminate steady-state error; record the plot.",
+            "Switch to PID control. Adjust Kp, Ki, and Kd for the best response (minimum overshoot, fast settling, zero steady-state error); record the plot."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Part C — Light Intensity Control:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the LDR sensor and lamp to the NVIS3000A kit. Open the light intensity control software on the PC.",
+            "Set a desired LDR voltage setpoint and repeat the same controller sequence: open-loop → ON/OFF → P → PI → PID.",
+            "Record the LDR Voltage vs Time plots for each control strategy.",
+            "Compare the responses across all controller types for both temperature and light intensity."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Voltage-to-Frequency Converter:"
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Input Voltage (V)", "Output Frequency (kHz)"],
+          "rows": [
+            ["1", "0.02", "0.013"],
+            ["2", "0.50", "0.510"],
+            ["3", "1.50", "1.460"],
+            ["4", "2.60", "2.550"],
+            ["5", "3.60", "3.480"],
+            ["6", "5.00", "4.900"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Frequency-to-Voltage Converter:"
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Input Voltage (V)", "Input Frequency (kHz)", "Output Voltage (V)"],
+          "rows": [
+            ["1", "1.05", "1.08", "1.03"],
+            ["2", "2.00", "2.10", "2.05"],
+            ["3", "3.45", "3.60", "3.30"],
+            ["4", "4.10", "4.00", "4.12"],
+            ["5", "4.50", "4.70", "4.60"],
+            ["6", "5.00", "5.20", "5.05"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Non-Inverting Amplifier (output voltages at three gain settings):"
+        },
+        {
+          "type": "table",
+          "headers": ["Input (V)", "R1 Output (V)", "R2 Output (V)", "R3 Output (V)"],
+          "rows": [
+            ["1",  "2.05",  "5.30",  "10.50"],
+            ["2",  "4.10",  "10.20", "11.00"],
+            ["3",  "6.10",  "11.00", "11.20"],
+            ["4",  "8.05",  "11.10", "11.20"],
+            ["5",  "10.00", "11.00", "11.10"],
+            ["6",  "12.00", "11.10", "11.15"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Voltage-to-Current Converter:"
+        },
+        {
+          "type": "table",
+          "headers": ["Input Voltage (V)", "Output Current (A)"],
+          "rows": [
+            ["1", "0.0052"],
+            ["2", "0.0091"],
+            ["3", "0.0105"],
+            ["4", "0.0148"],
+            ["5", "0.0185"],
+            ["6", "0.0200"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Temperature Control — Observed Responses:"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-temp-openloop",
+          "caption": "Figure 1: Open-loop temperature control — Temperature (°C) vs Time. No feedback; significant deviation from the setpoint is observed.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-temp-onoff",
+          "caption": "Figure 2: Closed-loop ON/OFF temperature control — Persistent oscillations around the setpoint due to continuous switching.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-temp-p",
+          "caption": "Figure 3: Closed-loop proportional (P) temperature control — Smoother response with reduced oscillations; residual steady-state error is present.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-temp-pi",
+          "caption": "Figure 4: Closed-loop PI temperature control — Steady-state error is eliminated; some overshoot is visible.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-temp-pid",
+          "caption": "Figure 5: Closed-loop PID temperature control — Best performance with minimal overshoot, fast settling, and zero steady-state error.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "text",
+          "content": "Light Intensity Control — Observed Responses:"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-light-openloop",
+          "caption": "Figure 6: Open-loop light intensity control — LDR Voltage vs Time. Without feedback, the system cannot compensate for ambient disturbances.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-light-onoff",
+          "caption": "Figure 7: Closed-loop ON/OFF light intensity control — Lamp switches fully ON/OFF, causing oscillations around the setpoint.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-light-p",
+          "caption": "Figure 8: Closed-loop proportional (P) light intensity control — Smoother lamp modulation and reduced fluctuations; steady-state error persists.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-light-pi",
+          "caption": "Figure 9: Closed-loop PI light intensity control — Steady-state error eliminated; more accurate intensity regulation achieved.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-light-pid",
+          "caption": "Figure 10: Closed-loop PID light intensity control — Best performance with minimal overshoot and improved settling time.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "text",
+          "content": "The temperature control experiment demonstrates that as control strategies advance from open-loop through ON/OFF, P, PI, to PID, the system achieves progressively better stability, accuracy, and dynamic response. The same trend was confirmed in the light intensity control experiment, validating the universal applicability of these control strategies."
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "V/F Converter — Sensitivity calculated from extreme data points:"
+        },
+        {
+          "type": "equation",
+          "value": "S_{V/F} = \\frac{4.900 - 0.013}{5.00 - 0.02} = \\frac{4.887}{4.98} \\approx 0.981\\,\\text{kHz/V}"
+        },
+        {
+          "type": "text",
+          "content": "F/V Converter — Sensitivity calculated from extreme data points:"
+        },
+        {
+          "type": "equation",
+          "value": "S_{F/V} = \\frac{5.05 - 1.03}{5.20 - 1.08} = \\frac{4.02}{4.12} \\approx 0.976\\,\\text{V/kHz}"
+        },
+        {
+          "type": "text",
+          "content": "Non-Inverting Amplifier — Gains estimated from the linear region (input 1–2 V):"
+        },
+        {
+          "type": "equation",
+          "value": "A_{v,R1} = \\frac{4.10 - 2.05}{2 - 1} = 2.05,\\quad A_{v,R2} = \\frac{10.20 - 5.30}{2 - 1} = 4.90"
+        },
+        {
+          "type": "text",
+          "content": "The R3 output saturates at approximately 10.5–11.2 V for inputs ≥ 2 V due to the op-amp supply rail limit of ±12 V; the linear gain at R3 is approximately 10.5 (observed at 1 V input)."
+        },
+        {
+          "type": "text",
+          "content": "V/I Converter — Transconductance estimated from extreme data points:"
+        },
+        {
+          "type": "equation",
+          "value": "G_m = \\frac{0.0200 - 0.0052}{6 - 1} = \\frac{0.0148}{5} = 0.00296\\,\\text{A/V} \\approx 2.96\\,\\text{mA/V}"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The V/F converter exhibited a near-linear characteristic with a sensitivity of approximately 0.981 kHz/V over the 0–5 V input range, confirming its linear voltage-to-frequency conversion behaviour.",
+            "The F/V converter demonstrated the inverse linear relationship with a sensitivity of approximately 0.976 V/kHz, validating its correct operation.",
+            "The non-inverting amplifier output followed the input without phase inversion. Op-amp output saturation was observed near ±11 V for higher gain settings (R2, R3), consistent with the ±12 V supply limitation.",
+            "The V/I converter showed a proportional relationship between input voltage and output current with a transconductance of approximately 2.96 mA/V.",
+            "In temperature control: open-loop resulted in uncontrolled deviation; ON/OFF maintained temperature near setpoint with persistent oscillations; P control reduced oscillations but left steady-state error; PI eliminated steady-state error; PID achieved the best response with minimal overshoot and fast settling.",
+            "In light intensity control: the same progressive improvement was observed from open-loop through PID, confirming that advanced closed-loop strategies provide better accuracy, faster response, and improved stability across different physical process types."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, various signal conversion circuits and control systems were studied using the NVIS3000A setup. The V/F and F/V converters were confirmed to exhibit linear input-output characteristics with sensitivities close to unity. The V/I converter demonstrated a direct proportional relationship between input voltage and output current. The non-inverting amplifier verified correct phase-preserving amplification, with op-amp saturation observed at the supply rail limits for higher gain settings."
+        },
+        {
+          "type": "text",
+          "content": "The control system experiments were carried out for both temperature and light intensity under open-loop and closed-loop conditions. Open-loop operation showed significant deviations from the setpoint due to the absence of feedback. Closed-loop ON/OFF control improved regulation but introduced oscillations. P, PI, and PID controllers progressively improved performance, with PID providing the best stability, accuracy, and dynamic response for both processes. The experiment successfully demonstrates the importance of feedback, sensor integration, and appropriate controller selection in achieving precise and stable process control in real-world applications."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** In the V/F converter experiment, small deviations from perfect linearity are observed. What are the likely physical causes of this non-linearity, and how would you quantify the linearity error?\n\n**A:** Non-linearity in a V/F converter arises from several sources: (1) The timing capacitor has a voltage-dependent capacitance (voltage coefficient), causing the oscillator period to deviate from ideal. (2) The internal comparator's finite offset voltage shifts the effective threshold, introducing a fixed frequency offset most prominent at low input voltages. (3) Power supply variation changes the reference voltage and alters conversion gain. (4) Temperature-dependent changes in resistor values and transistor parameters cause drift. Linearity error is quantified as the maximum deviation of measured output frequency from the best-fit straight line, expressed as a percentage of full-scale output frequency: Linearity error (%) = (max deviation / full-scale output) \u00d7 100.",
+
+            "**Q:** The non-inverting amplifier output saturates at approximately \u00b111 V even though the supply is \u00b112 V. Why does this happen, and what does it reveal about the op-amp's output swing specification?\n\n**A:** Real op-amps have a finite output voltage swing that is always somewhat less than the supply rail \u2014 this is the output saturation voltage Vsat. For standard op-amps (e.g., LM741), the output can typically swing to within 1\u20132 V of the supply, giving a maximum of approximately \u00b110\u201311 V with a \u00b112 V supply. Rail-to-rail op-amps have a much smaller Vsat (tens of millivolts). The observed saturation at ~\u00b111 V confirms the op-amp is not rail-to-rail, and Vcc \u2212 Vsat \u2248 12 \u2212 1 = 11 V. For higher gain settings, this means the amplifier enters saturation at lower input voltages than predicted by the gain formula alone, which must be accounted for in the design to keep signals within the linear operating range.",
+
+            "**Q:** In the ON/OFF temperature control experiment, the temperature oscillates continuously around the setpoint. What fundamental property of ON/OFF control causes this, and how would oscillation amplitude and frequency change with a larger thermal mass?\n\n**A:** ON/OFF control applies only two discrete control outputs: fully ON or fully OFF. When temperature falls below the setpoint, the heater is switched fully ON; when it rises above, it is switched fully OFF. The system's thermal lag means the temperature continues to change for some time after the switch event due to stored energy in the heater and surroundings, causing inherent overshoot in both directions \u2014 resulting in continuous oscillation around the setpoint. With a larger thermal mass, the system responds more slowly to heater switching, causing larger temperature swings (greater oscillation amplitude) and a lower oscillation frequency. A smaller thermal mass would produce faster, smaller oscillations.",
+
+            "**Q:** Why does adding integral action in PI control increase overshoot compared to P control alone?\n\n**A:** The PI controller transfer function C(s) = Kp + Ki/s = (Kp\u00b7s + Ki)/s introduces an integrator pole at s = 0, which adds \u221290\u00b0 phase lag across all frequencies to the open-loop response. This reduces the phase margin of the closed-loop system compared to pure P control with the same Kp. Lower phase margin corresponds to a lower effective damping ratio \u03b6 of the dominant closed-loop poles. Since maximum overshoot Mp = exp(\u2212\u03c0\u03b6/\u221a(1\u2212\u03b6\u00b2)) \u00d7 100%, a lower \u03b6 directly produces higher overshoot. Physically, the integrator accumulates a large value during the initial rising transient and drives the output past the setpoint before it can be corrected.",
+
+            "**Q:** Why is a V/I converter preferred over a voltage signal for transmitting sensor data over long distances in industrial process control?\n\n**A:** When a voltage signal is transmitted over a long cable, the cable resistance causes a voltage drop that changes the received voltage at the far end \u2014 this error increases with cable length and varies with load impedance. In contrast, a V/I converter generates a current signal (typically 4\u201320 mA) from a high-impedance source. The same current flows through the entire series loop regardless of cable resistance (within compliance limits), so the received current is identical to the transmitted current. Current signals are also far less susceptible to electromagnetic interference and ground loop noise. The 4 mA live-zero convention further allows cable-break detection, since 0 mA indicates a fault rather than a valid zero measurement.",
+
+            "**Q:** The LDR used in the light intensity control experiment has a nonlinear resistance-versus-illuminance characteristic. How does this affect the performance of P, PI, and PID controllers, and what calibration step would compensate for it?\n\n**A:** The LDR resistance varies approximately as R = k\u00b7E^(\u2212\u03b3), making the sensitivity (change in LDR voltage per unit illuminance change) non-constant \u2014 higher at low light levels and lower at bright conditions. For a fixed-gain linear controller, the effective loop gain changes with operating point: at low light levels the gain is high (risk of oscillation), and at high levels the gain is low (sluggish response). Gains tuned for one operating point may be sub-optimal or unstable at another. To compensate, the LDR output should be linearized before the error computation \u2014 using a software lookup table, a logarithmic amplifier circuit (since log(V) linearizes the exponential LDR characteristic), or by replacing the LDR with a photodiode or phototransistor that provides a more linear illuminance-to-current response."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}

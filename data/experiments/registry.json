@@ -374,10 +374,10 @@
         },
         {
           "id": "6",
-          "title": "Experiment 6",
+          "title": "Controlling Systems Using NVIS3000A Kit",
           "fileName": "exp-6.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "7",
