@@ -381,10 +381,10 @@
         },
         {
           "id": "7",
-          "title": "Experiment 7",
+          "title": "DC Motor Speed Control in Open Loop, Closed Loop, and Using P, PI, and PID Controllers",
           "fileName": "exp-7.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware Oriented",
+          "completeness": 1
         },
         {
           "id": "8",

@@ -1,0 +1,22 @@
+{
+    "exp7-dcmotor-openloop": {
+        "path": "/assets/labs/control-system-lab/exp-7/exp7-dcmotor-openloop.png",
+        "description": "Open-loop DC Motor Speed Control"
+    },
+    "exp7-dcmotor-onoff": {
+        "path": "/assets/labs/control-system-lab/exp-7/exp7-dcmotor-onoff.png",
+        "description": "Closed-loop ON/OFF DC Motor Speed Control"
+    },
+    "exp7-dcmotor-p": {
+        "path": "/assets/labs/control-system-lab/exp-7/exp7-dcmotor-p.png",
+        "description": "Closed-loop Proportional (P) DC Motor Speed Control"
+    },
+    "exp7-dcmotor-pi": {
+        "path": "/assets/labs/control-system-lab/exp-7/exp7-dcmotor-pi.png",
+        "description": "Closed-loop Proportional-Integral (PI) DC Motor Speed Control"
+    },
+    "exp7-dcmotor-pid": {
+        "path": "/assets/labs/control-system-lab/exp-7/exp7-dcmotor-pid.png",
+        "description": "Closed-loop Proportional-Integral-Derivative (PID) DC Motor Speed Control"
+    }
+}

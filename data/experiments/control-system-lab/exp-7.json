@@ -1,0 +1,260 @@
+{
+  "id": "exp-7",
+  "title": "DC Motor Speed Control in Open Loop, Closed Loop, and Using P, PI, and PID Controllers",
+  "labId": "control-system-lab",
+  "status": "Hardware Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "Hardware / Process Control Trainer",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To study the speed control of a DC motor in open-loop configuration.",
+            "To study the speed control of a DC motor in closed-loop configuration.",
+            "To implement and analyze P, PI, and PID controllers for DC motor speed control."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Quantities"],
+          "rows": [
+            ["1", "NVIS 3000A Control System Lab Kit", "1"],
+            ["2", "NVIS 630 DAQ (Data Acquisition Unit)", "1"],
+            ["3", "DC Motor Module", "1"],
+            ["4", "Multimeters", "As required"],
+            ["5", "DSO (Digital Storage Oscilloscope)", "1"],
+            ["6", "PC / Laptop with NVIS 3000A Control System Lab Software", "1"],
+            ["7", "Patch Cords", "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A DC motor converts electrical energy into mechanical energy, and its speed can be controlled by varying the applied armature voltage. The speed of a DC motor is approximately given by:"
+        },
+        {
+          "type": "equation",
+          "value": "N \\propto \\frac{V - I_a R_a}{\\phi}"
+        },
+        {
+          "type": "text",
+          "content": "where V is the applied voltage, Ia is the armature current, Ra is the armature resistance, and φ is the magnetic flux. For constant flux, the motor speed is directly proportional to the applied armature voltage."
+        },
+        {
+          "type": "text",
+          "content": "In an open-loop control system, the input voltage is applied directly to the motor without any feedback. The motor runs at a speed determined solely by the input, but there is no mechanism to correct deviations caused by disturbances such as load changes or supply fluctuations."
+        },
+        {
+          "type": "text",
+          "content": "In a closed-loop system, the actual motor speed is continuously measured and compared with the desired reference speed. The difference between the reference and actual speed — the error signal — is used to adjust the input to the motor. This feedback mechanism improves system accuracy, stability, and disturbance rejection."
+        },
+        {
+          "type": "text",
+          "content": "Controllers are used in closed-loop systems to improve performance. The control action is based on the error signal e(t)."
+        },
+        {
+          "type": "text",
+          "content": "Proportional (P) Controller — provides an output proportional to the error. It improves response speed but cannot eliminate steady-state error completely:"
+        },
+        {
+          "type": "equation",
+          "value": "u(t) = K_p e(t)"
+        },
+        {
+          "type": "text",
+          "content": "Proportional-Integral (PI) Controller — the integral action eliminates steady-state error by accumulating past errors, resulting in improved accuracy:"
+        },
+        {
+          "type": "equation",
+          "value": "u(t) = K_p e(t) + K_i \\int e(t)\\,dt"
+        },
+        {
+          "type": "text",
+          "content": "Proportional-Integral-Derivative (PID) Controller — the derivative action predicts future error trends, improving system stability and reducing overshoot. The PID controller provides the best overall performance:"
+        },
+        {
+          "type": "equation",
+          "value": "u(t) = K_p e(t) + K_i \\int e(t)\\,dt + K_d \\frac{de(t)}{dt}"
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the DC motor module to the NVIS 3000A kit and NVIS 630 DAQ as per the manual.",
+            "Open the NVIS 3000A control system lab software on the PC.",
+            "Set the desired reference speed (setpoint) in the software.",
+            "Run the motor in open-loop mode and record the Speed (RPM) vs Time plot.",
+            "Switch to closed-loop ON/OFF control and record the Speed (RPM) vs Time plot.",
+            "Switch to closed-loop proportional (P) control and record the Speed (RPM) vs Time plot.",
+            "Switch to PI control and record the Speed (RPM) vs Time plot.",
+            "Switch to PID control and record the Speed (RPM) vs Time plot.",
+            "Compare the Speed (RPM) vs Time plots for all control strategies."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Speed (RPM) vs Time plots were recorded from the NVIS 3000A software for each control strategy applied to the DC motor."
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-dcmotor-openloop",
+          "caption": "Figure 1: Open-loop speed control — Speed (RPM) vs Time.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-dcmotor-onoff",
+          "caption": "Figure 2: Closed-loop ON/OFF control — Speed (RPM) vs Time.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-dcmotor-p",
+          "caption": "Figure 3: Closed-loop proportional (P) control — Speed (RPM) vs Time.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-dcmotor-pi",
+          "caption": "Figure 4: Closed-loop proportional-integral (PI) control — Speed (RPM) vs Time.",
+          "role": "observation-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-dcmotor-pid",
+          "caption": "Figure 5: Closed-loop proportional-integral-derivative (PID) control — Speed (RPM) vs Time.",
+          "role": "observation-plot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The DC motor speed is related to the armature voltage by the back-EMF equation:"
+        },
+        {
+          "type": "equation",
+          "value": "E_b = V - I_a R_a \\approx V \\quad (\\text{at no load})"
+        },
+        {
+          "type": "text",
+          "content": "The motor speed is proportional to the back-EMF for constant flux:"
+        },
+        {
+          "type": "equation",
+          "value": "N = \\frac{E_b}{K_\\phi} = \\frac{V - I_a R_a}{K_\\phi}"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The DC motor speed control experiment demonstrates that system performance improves significantly with the use of feedback and advanced controllers."
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Open-loop control: Motor speed tracked the input voltage but could not correct for load disturbances.",
+            "Closed-loop ON/OFF control: Speed was maintained near the setpoint but with persistent oscillations.",
+            "Proportional (P) control: Oscillations were significantly reduced and the response became smoother; however, a steady-state speed error remained.",
+            "PI control: Steady-state error was completely eliminated through integral action.",
+            "PID control: Provided the best overall performance — reduced overshoot, minimized settling time, and eliminated steady-state error."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, DC motor speed control was successfully studied and implemented in both open-loop and closed-loop configurations. The experiment highlights the importance of feedback control and proper controller tuning in achieving accurate and stable motor speed control. Among all methods, the PID controller proved to be the most effective for practical applications requiring precision and reliability."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The DC motor speed is said to be proportional to the applied armature voltage for constant flux. However, in practice, the open-loop speed drops when a mechanical load is applied even without changing the input voltage. Explain this using the motor speed equation.\n\n**A:** The motor speed equation is N ∝ (V − Ia·Ra)/φ. When a mechanical load is applied, the motor must produce more torque, which requires a larger armature current Ia. This increased Ia causes a larger voltage drop across the armature resistance Ra, reducing the effective back-EMF available and therefore reducing the speed — even though V has not changed.",
+            "**Q:** In the ON/OFF closed-loop speed control experiment, the motor speed oscillates continuously around the setpoint. Why does this oscillation occur?\n\n**A:** ON/OFF control applies only two discrete control outputs: fully ON or fully OFF. When motor speed falls below the setpoint, the drive is switched fully ON. The motor accelerates and overshoots the setpoint due to mechanical inertia. When the speed exceeds the setpoint, the drive is switched OFF, the motor decelerates, undershoots, and the cycle repeats.",
+            "**Q:** Explain why P control still has a steady-state speed error even though the motor speed is fed back.\n\n**A:** P control provides an output proportional to the error. For the motor to run at a non-zero speed, there must be a non-zero input voltage, which in turn requires a non-zero error signal from the controller. This means the actual speed can never exactly reach the setpoint, as the error would then be zero and the input voltage would vanish.",
+            "**Q:** In the PI controller, why does adding the integral term eliminate steady-state error?\n\n**A:** The integral term accumulates the error over time. Even if the error is very small, the integral continues to grow as long as any error exists. This increasing control signal eventually drives the plant to the exact setpoint, at which point the error becomes zero and the integral term stops growing, holding the system at the setpoint.",
+            "**Q:** How does the derivative term of a PID controller help reduce overshoot?\n\n**A:** The derivative term acts on the rate of change of error. As the speed rapidly approaches the setpoint, the error is decreasing quickly, making the derivative term negative. This pre-emptively reduces the drive voltage, acting as a brake to slow down the acceleration before the speed overshoots the setpoint."
+          ]
+        }
+      ]
+    }
+  }
+}
