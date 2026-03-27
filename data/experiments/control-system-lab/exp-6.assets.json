@@ -30,31 +30,31 @@
         "description": "Closed-loop PID temperature control"
     },
     "exp6-light-openloop": {
-        "path": "/assets/placeholder.png",
+        "path": "/assets/labs/control-system-lab/exp-6/exp6-light-openloop.png",
         "type": "image",
         "role": "observation-plot",
         "description": "Open-loop light intensity control"
     },
     "exp6-light-onoff": {
-        "path": "/assets/placeholder.png",
+        "path": "/assets/labs/control-system-lab/exp-6/exp6-light-onoff.png",
         "type": "image",
         "role": "observation-plot",
         "description": "Closed-loop ON/OFF light intensity control"
     },
     "exp6-light-p": {
-        "path": "/assets/placeholder.png",
+        "path": "/assets/labs/control-system-lab/exp-6/exp6-light-p.png",
         "type": "image",
         "role": "observation-plot",
         "description": "Closed-loop proportional (P) light intensity control"
     },
     "exp6-light-pi": {
-        "path": "/assets/placeholder.png",
+        "path": "/assets/labs/control-system-lab/exp-6/exp6-light-pi.png",
         "type": "image",
         "role": "observation-plot",
         "description": "Closed-loop PI light intensity control"
     },
     "exp6-light-pid": {
-        "path": "/assets/placeholder.png",
+        "path": "/assets/labs/control-system-lab/exp-6/exp6-light-pid.png",
         "type": "image",
         "role": "observation-plot",
         "description": "Closed-loop PID light intensity control"
