@@ -1,0 +1,14 @@
+{
+    "exp-thermocouple-kit-circuit": {
+        "path": "/assets/labs/instrumentation-lab/exp-6/exp-thermocouple-kit-circuit.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "K-type thermocouple setup showing the Scientech 2302 experimental kit"
+    },
+    "exp-thermocouple-voltage-vs-deltaT-plot": {
+        "path": "/assets/labs/instrumentation-lab/exp-6/exp-thermocouple-voltage-vs-deltaT-plot.png",
+        "type": "image",
+        "role": "characteristic-plot",
+        "description": "Plot of thermocouple output voltage vs temperature difference"
+    }
+}

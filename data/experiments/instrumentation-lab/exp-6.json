@@ -1,0 +1,265 @@
+{
+    "id": "exp-6",
+    "title": "Characteristics of K Type Thermocouple",
+    "labId": "instrumentation-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "simulationId": "instrumentation_lab-exp6",
+        "simulationType": "Hardware / Transducer Characterisation",
+        "experimentType": "hardware",
+        "status": "hardware-oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the characteristics of a K-type thermocouple by measuring the thermoelectric voltage generated for different temperatures, to analyze the relationship between temperature and output voltage, and to verify its suitability for temperature measurement applications."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        ["Scientech 2302 TechBook", "1"],
+                        ["TechBook Power Supply", "1"],
+                        ["Mains Cord", "1"],
+                        ["Multimeter", "1"],
+                        ["Patch Cords", "As required"]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A thermocouple is an electromechanical transducer used to measure temperature based on the Seebeck effect, which states that an electromotive force (emf) is generated when two dissimilar metals are joined together and subjected to a temperature difference."
+                },
+                {
+                    "type": "text",
+                    "content": "A K-type thermocouple consists of two different metals, namely Chromel and Alumel. One junction, called the hot junction, is exposed to the temperature to be measured, while the other junction, called the cold (reference) junction, is maintained at a known temperature."
+                },
+                {
+                    "type": "text",
+                    "content": "When the hot junction is heated, a temperature difference is created between the two junctions, resulting in the generation of a thermoelectric voltage. This voltage is a function of the temperature difference and is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E \\propto (T_{hot} - T_{cold})"
+                },
+                {
+                    "type": "text",
+                    "content": "The generated emf is usually very small (in millivolts) and is measured using a suitable measuring instrument such as a millivoltmeter."
+                },
+                {
+                    "type": "text",
+                    "content": "The relationship between temperature and generated emf is nonlinear over a wide temperature range but can be approximated as linear within a limited range. In this experiment, a K-type thermocouple is used to measure temperature for different heating conditions. The corresponding output voltage is recorded, and the relationship between temperature and emf is analyzed to study the characteristics and sensitivity of the thermocouple."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp-thermocouple-kit-circuit",
+                    "caption": "Figure 1: K-type thermocouple setup showing the Scientech 2302 experimental kit with thermocouple, IC temperature sensor, instrumentation amplifier, ×100 amplifier, DC amplifier, heater element, NTC thermistor, and associated signal conditioning circuitry.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Set the offset control of the amplifier by short-circuiting the input connections to the instrumentation amplifier and adjust it for zero indication on the voltmeter.",
+                        "Reconnect the thermocouple output to the instrumentation amplifier and ensure that the output voltage remains zero when both the hot and cold junctions are at the same temperature.",
+                        "Connect the circuit as per the given diagram: connect the positive output of the thermocouple to the B input of the instrumentation amplifier; connect the negative output of the thermocouple to the A input of the instrumentation amplifier; connect the output of the instrumentation amplifier to the input of the ×100 amplifier; connect the output of the ×100 amplifier to the input of the DC amplifier; connect a digital multimeter (in 200 mV DC range) between the output of the DC amplifier and ground.",
+                        "Connect the TechBook Power Supply to the Scientech 2302 and switch it ON.",
+                        "Measure the temperatures of the hot and cold junctions using the IC temperature sensor by connecting a digital multimeter between its output and ground.",
+                        "Record the corresponding voltage values from the thermocouple and temperature sensor.",
+                        "Apply +12V supply to the heater and record the thermocouple output voltage and corresponding temperatures at regular intervals (e.g., every 1 minute).",
+                        "Tabulate all observed readings.",
+                        "Switch OFF the power supply and disconnect the heater supply.",
+                        "Plot a graph of thermocouple output voltage versus temperature difference between the hot and cold junctions."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Readings were taken at regular 1-minute intervals after applying +12V to the heater. The hot junction temperature rose gradually while the cold junction remained at 25°C (298 K). The corresponding thermocouple output voltages were recorded."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Time (min)",
+                        "Hot Temp. (°C)",
+                        "Cold Temp. (°C)",
+                        "ΔT (K)",
+                        "Output Voltage (mV)"
+                    ],
+                    "rows": [
+                        ["1", "32", "25", "7",  "0.260"],
+                        ["2", "33", "25", "8",  "0.295"],
+                        ["3", "35", "25", "10", "0.380"],
+                        ["4", "37", "25", "12", "0.441"],
+                        ["5", "38", "25", "13", "0.495"]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp-thermocouple-voltage-vs-deltaT-plot",
+                    "caption": "Figure 2: Plot of thermocouple output voltage vs temperature difference (ΔT) between the hot and cold junctions. The graph shows an approximately linear increase in output voltage with increasing ΔT over the observed range of 7–13 K.",
+                    "role": "characteristic-plot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Assuming a linear relationship between thermocouple output voltage E and temperature difference ΔT:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E = S \\cdot \\Delta T + E_0"
+                },
+                {
+                    "type": "text",
+                    "content": "where S is the Seebeck sensitivity (slope in mV/K) and E₀ is the offset voltage. Using the first and last measured data points:"
+                },
+                {
+                    "type": "equation",
+                    "value": "(\\Delta T_1,\\, E_1) = (7\\,\\text{K},\\; 0.260\\,\\text{mV}), \\quad (\\Delta T_2,\\, E_2) = (13\\,\\text{K},\\; 0.495\\,\\text{mV})"
+                },
+                {
+                    "type": "text",
+                    "content": "The sensitivity (slope) is calculated as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "S = \\frac{E_2 - E_1}{\\Delta T_2 - \\Delta T_1} = \\frac{0.495 - 0.260}{13 - 7} = \\frac{0.235}{6} \\approx 0.0392\\,\\text{mV/K}"
+                },
+                {
+                    "type": "text",
+                    "content": "The offset voltage at ΔT = 0:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E_0 = E_1 - S \\cdot \\Delta T_1 = 0.260 - (0.0392 \\times 7) = 0.260 - 0.2744 \\approx -0.014\\,\\text{mV}"
+                },
+                {
+                    "type": "text",
+                    "content": "Hence, the derived linear calibration equation is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E \\approx 0.0392\\,\\Delta T - 0.014"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The K-type thermocouple output voltage increased consistently with rising temperature difference between the hot and cold junctions over the observed range of ΔT = 7 K to 13 K.",
+                        "The measured Seebeck sensitivity is approximately S ≈ 0.0392 mV/K, with a near-zero offset of E₀ ≈ −0.014 mV, consistent with the nominal sensitivity of K-type thermocouples (~0.041 mV/K per standard tables).",
+                        "The relationship between ΔT and output voltage was found to be approximately linear over the observed temperature range, validating the linear approximation within a limited operating range.",
+                        "The cold junction temperature remained stable at 25°C throughout the experiment, ensuring that variations in output voltage were attributable solely to changes in the hot junction temperature.",
+                        "The derived calibration equation E ≈ 0.0392·ΔT − 0.014 closely fits the measured data, confirming the proper functioning and reliability of the thermocouple for temperature measurement in this range."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The characteristics of the K-type thermocouple were successfully studied by measuring the thermoelectric voltage generated for different temperature conditions. The thermocouple produced output voltages corresponding to the temperature difference between the hot and cold junctions. It was observed that the output voltage increased with an increase in temperature difference, confirming the proper functioning of the thermocouple. The relationship between temperature difference and thermocouple output voltage was plotted and found to be approximately linear over the observed range, with a measured sensitivity of approximately 0.039 mV/K. This validates the sensitivity and reliability of the K-type thermocouple for temperature measurement applications. The experiment effectively demonstrated the working principle of the Seebeck effect and the suitability of the K-type thermocouple for practical temperature sensing and measurement."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** The K-type thermocouple uses Chromel and Alumel as its two dissimilar metals. What property of these materials makes them suitable for thermocouple use, and why is K-type preferred over J-type or T-type for general-purpose measurements?\n\n**A:** The suitability of Chromel and Alumel arises from their stable and well-characterised Seebeck coefficients across a wide temperature range, their oxidation resistance, and their low electrical resistivity relative to their thermoelectric output. K-type thermocouples are preferred for general-purpose use because they cover a broad operating range (approximately −200°C to +1260°C), have a relatively high Seebeck coefficient (~41 µV/°C), and exhibit good chemical stability in oxidising atmospheres. J-type (Iron–Constantan) has a higher output but is limited to about 760°C and corrodes in moist environments. T-type (Copper–Constantan) is highly accurate at low temperatures but unsuitable above 350°C. K-type thus offers the best balance of range, sensitivity, and robustness for most industrial and laboratory applications.",
+
+                        "**Q:** In this experiment, the cold junction was maintained at room temperature (25°C) rather than 0°C. How does this affect the measured output voltage, and what is cold junction compensation?\n\n**A:** Standard thermocouple voltage tables (e.g., IEC 60584) are referenced to a cold junction temperature of 0°C. When the cold junction is at a different temperature (here 25°C), the measured emf is the difference between the emf at the hot junction temperature and the emf at the cold junction temperature, rather than the absolute emf referenced to 0°C. This means the output voltage is lower than the tabulated value for the same hot junction temperature, introducing a systematic negative offset. Cold junction compensation (CJC) corrects for this by measuring the actual cold junction temperature (using an IC temperature sensor, as in this experiment, or a thermistor/RTD) and electronically adding the equivalent voltage offset corresponding to that temperature, so that the final output corresponds to the standard 0°C reference. Without CJC, all temperature readings will be underestimated by an amount proportional to the cold junction temperature.",
+
+                        "**Q:** The experiment uses a signal chain of: thermocouple → instrumentation amplifier → ×100 amplifier → DC amplifier → multimeter. Why is an instrumentation amplifier used as the first stage rather than a standard op-amp amplifier?\n\n**A:** The thermocouple output is a differential voltage of very small magnitude (tens of microvolts to a few millivolts) riding on a large common-mode voltage, especially when the thermocouple is connected to a grounded heater or metallic structure. A standard op-amp in inverting or non-inverting configuration amplifies both the differential signal and any common-mode noise equally unless carefully trimmed. An instrumentation amplifier (INA) is specifically designed with very high common-mode rejection ratio (CMRR, typically >80–100 dB), high input impedance on both inputs, and a precisely matched internal structure that amplifies only the differential signal between its two inputs while rejecting common-mode interference. This ensures that noise from the power supply, ground loops, and electromagnetic interference is suppressed, and only the true thermoelectric emf is amplified and passed to subsequent stages.",
+
+                        "**Q:** The observation table shows that the output voltage at ΔT = 7 K is 0.260 mV, but the standard Seebeck coefficient of a K-type thermocouple is approximately 41 µV/°C, which would predict 0.287 mV for ΔT = 7 K. What factors could account for this discrepancy?\n\n**A:** Several factors can cause the measured output to differ from the theoretical value: (1) Amplifier gain error — the ×100 and DC amplifier stages may not have precisely the gain assumed; any deviation directly scales the output. (2) Offset null error — if the amplifier zero was not perfectly set before the experiment, a systematic offset shifts all readings. (3) Cold junction temperature uncertainty — the IC temperature sensor has a finite accuracy (typically ±1–2°C); an error in measuring Tcold directly changes the computed ΔT. (4) The standard Seebeck coefficient of 41 µV/°C is an average over a wide range; within the narrow 25–38°C range of this experiment, the local coefficient may differ slightly. (5) Contact resistance at patch cord connections and loading of the high-impedance thermocouple output by the amplifier input can cause a small voltage drop. These combined systematic and random errors account for the observed discrepancy.",
+
+                        "**Q:** If the heater were left on for a much longer duration, would the thermocouple output voltage continue to increase linearly with ΔT? What physical limits would be reached?\n\n**A:** No, the output would not remain linear indefinitely. Over a wide temperature range, the Seebeck coefficient of the K-type thermocouple is itself a function of temperature, causing the emf–temperature relationship to be nonlinear. Within the narrow range observed in this experiment (25–38°C), a linear approximation is valid. At higher temperatures, several physical limits are reached: (1) The Scientech 2302 kit and its heater are rated for a specific maximum temperature; exceeding it risks damage to the sensor and kit components. (2) The amplifier chain has a finite output voltage range (rail-to-rail limit); at high emf values, the output will clip and saturate, destroying the linear relationship. (3) The K-type thermocouple itself has a maximum operating temperature of approximately 1260°C in oxidising atmospheres, beyond which the Chromel wire undergoes preferential oxidation, permanently altering its Seebeck coefficient. (4) The adhesive and insulation materials of the setup have their own thermal limits. Thus, linearity holds only within the calibrated, safe operating range of the complete measurement system.",
+
+                        "**Q:** How would you determine the sensitivity of this thermocouple setup experimentally without using the standard thermocouple tables, and what sources of error would affect the accuracy of your determination?\n\n**A:** To determine the sensitivity experimentally: apply a series of known, stable temperature differences ΔT (measured independently using a calibrated reference thermometer or RTD at both junctions simultaneously) and record the corresponding amplified output voltage at each step. Plot output voltage versus ΔT and fit a straight line; the slope gives the effective system sensitivity in mV/K (which combines the Seebeck coefficient of the thermocouple and the total amplifier gain). Dividing this slope by the total amplifier gain gives the intrinsic Seebeck coefficient. Sources of error in this determination include: (1) Temperature measurement error at either junction due to thermometer calibration uncertainty or poor thermal contact. (2) Amplifier gain drift with temperature or supply voltage fluctuation. (3) Insufficient stabilisation time at each temperature step, causing the reading to be taken before thermal equilibrium is reached. (4) Common-mode noise and ground loop interference at low emf levels. (5) Non-linearity of the amplifier at the extremes of its input range. To minimise these errors, sufficient stabilisation time should be allowed at each step, the reference thermometer should be calibrated, and the amplifier should be zeroed carefully before measurements begin."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
