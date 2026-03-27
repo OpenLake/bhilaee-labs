@@ -2,12 +2,12 @@
   "id": "exp-5",
   "title": "Hardware Implementation and Analysis of a PID Controlled System",
   "labId": "control-system-lab",
-  "status": "Completed",
+  "status": "Hardware Oriented",
   "meta": {
     "simulationId": "",
     "simulationType": "Hardware / Analog Op-Amp Circuits",
     "experimentType": "hardware",
-    "status": "completed",
+    "status": "hardware_oriented",
     "difficulty": "intermediate",
     "estimatedTimeMinutes": 120,
     "version": "2.0",
@@ -105,8 +105,14 @@
       "content": [
         {
           "type": "image",
+          "assetId": "exp5-closed-loop-circuit",
+          "caption": "Figure 1: Complete closed-loop PID control system implementation using operational amplifiers.",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
           "assetId": "exp5-opamp-plant-circuit",
-          "caption": "Figure 1: Op-amp based mass-spring-damper plant realization. The circuit uses two cascaded integrators (10 kΩ / 10 µF and 100 kΩ / 10 µF), a summing amplifier with 5 kΩ and 10 kΩ feedback resistors, powered by a ±12 V dual supply, to realize X(s)/F(s) = 10 / (s² + 10s + 20).",
+          "caption": "Figure 2: Op-amp based mass-spring-damper plant realization. The circuit uses two cascaded integrators (10 kΩ / 10 µF and 100 kΩ / 10 µF), a summing amplifier with 5 kΩ and 10 kΩ feedback resistors, powered by a ±12 V dual supply, to realize X(s)/F(s) = 10 / (s² + 10s + 20).",
           "role": "circuit-diagram"
         }
       ]

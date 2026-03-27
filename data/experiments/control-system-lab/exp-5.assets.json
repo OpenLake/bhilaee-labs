@@ -1,4 +1,10 @@
 {
+    "exp5-closed-loop-circuit": {
+        "path": "/assets/labs/control-system-lab/exp-5/exp5-closed-loop-circuit.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Complete closed-loop PID control system implementation"
+    },
     "exp5-opamp-plant-circuit": {
         "path": "/assets/labs/control-system-lab/exp-5/exp5-opamp-plant-circuit.png",
         "type": "image",
