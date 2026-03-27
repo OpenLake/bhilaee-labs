@@ -1,0 +1,282 @@
+{
+  "id": "exp-5",
+  "title": "Hardware Implementation and Analysis of a PID Controlled System",
+  "labId": "control-system-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "Hardware / Analog Op-Amp Circuits",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To implement a second-order plant using op-amp circuits.",
+            "To realize P, PI, PD, and PID controllers using analog hardware.",
+            "To study the effect of Kp, Ki, and Kd on system response.",
+            "To observe time-domain performance using an oscilloscope."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Technical Specification", "Quantities"],
+          "rows": [
+            ["1", "Operational Amplifiers (Op-Amps)", "Standard laboratory op-amp ICs (e.g., LM741 / TL071)", "As required"],
+            ["2", "Resistors and Capacitors", "10 kΩ, 5 kΩ, 100 kΩ resistors; 10 µF capacitors", "As required"],
+            ["3", "DC Power Supply", "±12 V dual supply", "1"],
+            ["4", "Oscilloscope", "Digital / Analog, dual-channel", "1"],
+            ["5", "Function Generator", "For step input signal generation", "1"],
+            ["6", "Breadboard and Connecting Wires", "—", "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A mass-spring-damper system is a standard example of a second-order dynamic system. It consists of a mass, a spring, and a damper, and its motion is governed by the differential equation:"
+        },
+        {
+          "type": "equation",
+          "value": "m\\frac{d^2x(t)}{dt^2} + b\\frac{dx(t)}{dt} + kx(t) = f(t)"
+        },
+        {
+          "type": "text",
+          "content": "where m is the mass, b is the damping coefficient, k is the spring constant, and f(t) is the applied force. Taking the Laplace transform (assuming zero initial conditions), the transfer function is:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{X(s)}{F(s)} = \\frac{1}{ms^2 + bs + k}"
+        },
+        {
+          "type": "text",
+          "content": "For practical hardware implementation, the transfer function is chosen as:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{X(s)}{F(s)} = \\frac{10}{s^2 + 10s + 20}"
+        },
+        {
+          "type": "text",
+          "content": "This represents a stable and overdamped second-order system. The mechanical system is implemented using analog op-amp circuits: two cascaded integrators realize the double integration of the state equation, while a summing amplifier combines the damping and stiffness feedback terms. Scaling factors are introduced to keep voltage levels within the ±12 V op-amp rail limits."
+        },
+        {
+          "type": "text",
+          "content": "The output of a PID controller is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "u(t) = K_p e(t) + K_i \\int e(t)\\,dt + K_d \\frac{de(t)}{dt}"
+        },
+        {
+          "type": "text",
+          "content": "where e(t) is the error signal, and Kp, Ki, and Kd are the proportional, integral, and derivative gains respectively. In analog hardware, the PID controller is realized using an inverting amplifier for proportional control, an integrator circuit for integral action, and a differentiator circuit for derivative action. Kp is adjusted using a proportional potentiometer, Ki is varied by changing the resistance in the integrator circuit, and Kd is controlled by adjusting the resistance in the differentiator circuit."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp5-opamp-plant-circuit",
+          "caption": "Figure 1: Op-amp based mass-spring-damper plant realization. The circuit uses two cascaded integrators (10 kΩ / 10 µF and 100 kΩ / 10 µF), a summing amplifier with 5 kΩ and 10 kΩ feedback resistors, powered by a ±12 V dual supply, to realize X(s)/F(s) = 10 / (s² + 10s + 20).",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Assemble the op-amp based mass-spring-damper plant on the breadboard as per the circuit diagram using the specified resistor and capacitor values.",
+            "Apply a step input (low-frequency square wave of appropriate amplitude) from the function generator to the plant input.",
+            "Connect the oscilloscope to the plant output and verify the open-loop overdamped step response.",
+            "Realize the proportional (P) controller by connecting an inverting amplifier with adjustable gain Kp in the forward path. Observe and record the closed-loop step response.",
+            "Extend the circuit to a PI controller by adding an integrator stage in parallel with the proportional path. Adjust Ki and observe the effect on steady-state error.",
+            "Extend to a PD controller by adding a differentiator stage. Adjust Kd and observe the improvement in damping and reduction of overshoot.",
+            "Combine all three actions to realize the full PID controller. Tune Kp, Ki, and Kd to achieve the best overall response.",
+            "For each controller configuration, record the oscilloscope waveform and note the qualitative changes in rise time, overshoot, settling time, and steady-state error.",
+            "Tabulate and compare the observed effects of increasing each gain parameter on the system response."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The effect of each controller gain on key time-domain performance parameters was recorded and is summarized below."
+        },
+        {
+          "type": "table",
+          "headers": ["Parameter", "Increase Kp", "Increase Ki", "Increase Kd"],
+          "rows": [
+            ["Rise Time",         "Decreases",    "Slight decrease", "Slight decrease"],
+            ["Overshoot",         "Increases",    "Increases",       "Decreases"],
+            ["Settling Time",     "Small change", "Increases",       "Decreases"],
+            ["Steady-State Error","Decreases",    "Eliminates",      "Small change"],
+            ["Stability",         "Reduces",      "Reduces",         "Improves"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Oscilloscope waveforms were captured for three different controller configurations."
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-oscilloscope-response1",
+          "caption": "Figure 2: Observed oscilloscope response — Configuration 1.",
+          "role": "oscilloscope-waveform"
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-oscilloscope-response2",
+          "caption": "Figure 3: Observed oscilloscope response — Configuration 2.",
+          "role": "oscilloscope-waveform"
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-oscilloscope-response3",
+          "caption": "Figure 4: Observed oscilloscope response — Configuration 3.",
+          "role": "oscilloscope-waveform"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The plant transfer function parameters are derived from the chosen component values. With m = 1, b = 10, k = 20:"
+        },
+        {
+          "type": "equation",
+          "value": "\\omega_n = \\sqrt{\\frac{k}{m}} = \\sqrt{20} \\approx 4.47\\,\\text{rad/s}"
+        },
+        {
+          "type": "equation",
+          "value": "\\zeta = \\frac{b}{2\\sqrt{mk}} = \\frac{10}{2\\sqrt{20}} \\approx 1.118"
+        },
+        {
+          "type": "text",
+          "content": "Since ζ > 1, the open-loop plant is overdamped. The two real poles are located at:"
+        },
+        {
+          "type": "equation",
+          "value": "s_{1,2} = -\\zeta\\omega_n \\pm \\omega_n\\sqrt{\\zeta^2 - 1} = -5 \\pm \\sqrt{5} \\approx -2.76,\\;-7.24"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The PID controller realized using operational amplifiers significantly improves the overall system performance compared to P, PI, and PD controllers."
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Proportional (P) control reduced rise time but introduced overshoot and left a residual steady-state error.",
+            "Integral (I) action (PI controller) eliminated steady-state error but adversely affected stability and increased settling time.",
+            "Derivative (D) action (PD controller) improved damping, reduced overshoot, and decreased settling time.",
+            "The combined PID controller provided the best overall performance: fast rise, reduced overshoot, short settling time, and zero steady-state error.",
+            "The observed oscilloscope waveforms confirmed the qualitative trends predicted by the gain-effect table."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, a second-order system based on the mass-spring-damper model was successfully implemented using operational amplifier circuits. The theoretical model was translated into an equivalent electrical analog using integrators and summing amplifiers, allowing the dynamic behavior of the system to be observed in real time. The implemented system exhibited stable and overdamped characteristics, validating the chosen parameters and design approach."
+        },
+        {
+          "type": "text",
+          "content": "Various controllers including P, PI, PD, and PID were realized using analog hardware components. Each controller was studied by observing its effect on system response using an oscilloscope. Proportional control reduced rise time but introduced overshoot; integral control eliminated steady-state error but affected stability; derivative control improved damping and reduced overshoot. The combined PID controller provided the best overall performance by balancing all these effects, making it highly suitable for practical control applications."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** Why is the mass-spring-damper system used as the plant in this experiment, and how is it electrically analogous to a series RLC circuit?\n\n**A:** The mass-spring-damper governing equation m\u00b7\u1e8f + b\u00b7\u1e81 + k\u00b7x = f(t) has the same mathematical form as the series RLC voltage equation L\u00b7\u1e8f + R\u00b7\u1e81 + (1/C)\u00b7q = v(t), where mass m corresponds to inductance L, damping coefficient b to resistance R, spring constant k to 1/C, applied force f(t) to voltage v(t), and displacement x(t) to charge q(t). This electrical analogy allows the mechanical system to be physically implemented using op-amp integrator and summing circuits, enabling real-time observation of mechanical dynamics using standard electrical instruments without requiring actual mechanical components.",
+
+            "**Q:** In the op-amp realization of the plant, why are two cascaded integrators used, and how do the summing amplifier feedback connections set the values of damping b and stiffness k?\n\n**A:** The governing equation is rearranged as \u1e8f = [f(t) \u2212 b\u00b7\u1e81 \u2212 k\u00b7x]/m, expressing the highest derivative in terms of lower-order signals. The first integrator integrates \u1e8f to produce \u1e81, and the second integrates \u1e81 to produce x. The summing amplifier reconstructs \u1e8f by combining f(t), the \u2212b\u00b7\u1e81 damping feedback (scaled by b/m), and the \u2212k\u00b7x stiffness feedback (scaled by k/m). For the transfer function 10/(s\u00b2+10s+20), the summing amplifier feedback resistors are chosen so that the damping term coefficient equals 10 and the stiffness term equals 20.",
+
+            "**Q:** Why does the proportional controller alone always leave a non-zero steady-state error for a step input, and how does the integral term eliminate it?\n\n**A:** With a P controller, the control output is u(t) = Kp\u00b7e(t). At steady state, a non-zero error ess must persist so that Kp\u00b7ess provides the necessary control output to hold the plant at the correct output. The integral term Ki\u00b7\u222be(t)dt accumulates even a very small error over time, building up a non-zero control output until the error is driven exactly to zero. At steady state, the integral term holds the required control output while e(t) = 0, thereby eliminating steady-state error entirely.",
+
+            "**Q:** What is integrator windup and what is its practical consequence in the hardware op-amp PID circuit?\n\n**A:** Integrator windup occurs when the integrator output accumulates to a large value during a period when the controller output is saturated at the op-amp rail (\u00b112 V in this experiment). When the error eventually reverses sign, the large accumulated integral takes a long time to unwind, causing excessive overshoot and delayed settling. In the hardware circuit, this manifests as the op-amp rail-saturating during the initial transient; the integrator capacitor charges to a large voltage, and the response exhibits significant overshoot even after the error reverses. Practical anti-windup schemes include clamping the integrator output or using back-calculation of the integrator state.",
+
+            "**Q:** Why is a pure differentiator problematic in the hardware PID circuit and what modification is typically made?\n\n**A:** A pure differentiator has a transfer function Kd\u00b7s whose gain grows without bound with frequency (magnitude = Kd\u00b7\u03c9). High-frequency noise in the error signal (from measurement, supply ripple, or quantization) is amplified by this unbounded gain, producing a large noisy derivative signal that can destabilize the system. The standard modification is a first-order filtered derivative: D(s) = Kd\u00b7s/(\u03c4f\u00b7s + 1), implemented by adding a small resistor in series with the feedback capacitor of the differentiator op-amp. The filter time constant \u03c4f attenuates high-frequency noise while still providing useful derivative action within the control bandwidth.",
+
+            "**Q:** Given the plant G(s) = 10/(s\u00b2+10s+20), derive the closed-loop transfer function with C(s) = Kp and find the Kp for critically damped closed-loop response.\n\n**A:** The closed-loop transfer function with unity feedback is T(s) = 10Kp / (s\u00b2 + 10s + 20 + 10Kp). The characteristic equation is s\u00b2 + 10s + (20 + 10Kp) = 0. Comparing with s\u00b2 + 2\u03b6\u03c9n\u00b7s + \u03c9n\u00b2 = 0: \u03c9n = \u221a(20 + 10Kp) and \u03b6 = 5/\u221a(20 + 10Kp). For critical damping \u03b6 = 1: 5/\u221a(20 + 10Kp) = 1 \u2192 20 + 10Kp = 25 \u2192 Kp = 0.5. A proportional gain of Kp = 0.5 places the closed-loop system at critical damping with \u03c9n = 5 rad/s and a double pole at s = \u22125."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}

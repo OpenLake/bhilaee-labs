@@ -1,0 +1,26 @@
+{
+    "exp5-opamp-plant-circuit": {
+        "path": "/assets/labs/control-system-lab/exp-5/exp5-opamp-plant-circuit.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Op-amp based mass-spring-damper plant realization"
+    },
+    "exp5-oscilloscope-response1": {
+        "path": "/assets/labs/control-system-lab/exp-5/exp5-oscilloscope-response1.png",
+        "type": "image",
+        "role": "oscilloscope-waveform",
+        "description": "Observed oscilloscope response — Configuration 1"
+    },
+    "exp5-oscilloscope-response2": {
+        "path": "/assets/labs/control-system-lab/exp-5/exp5-oscilloscope-response2.png",
+        "type": "image",
+        "role": "oscilloscope-waveform",
+        "description": "Observed oscilloscope response — Configuration 2"
+    },
+    "exp5-oscilloscope-response3": {
+        "path": "/assets/labs/control-system-lab/exp-5/exp5-oscilloscope-response3.png",
+        "type": "image",
+        "role": "oscilloscope-waveform",
+        "description": "Observed oscilloscope response — Configuration 3"
+    }
+}

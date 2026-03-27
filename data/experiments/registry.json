@@ -367,10 +367,10 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Hardware Implementation and Analysis of a PID Controlled System",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Completed",
+          "completeness": 1
         },
         {
           "id": "6",
