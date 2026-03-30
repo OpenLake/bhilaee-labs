@@ -1,0 +1,314 @@
+{
+  "id": "exp-8",
+  "title": "V and Inverted-V Curves of a Synchronous Machine",
+  "labId": "electrical-machines-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "Hardware / Electrical Machines",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To study the starting methods of a synchronous machine and the effect of variation of field current upon the stator current and power factor of a synchronous motor at various loads."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus", "Technical Specification", "Quantities"],
+          "rows": [
+            ["1",  "Synchronous Motor",         "3-phase, rated voltage and current as per nameplate", "1"],
+            ["2",  "DC Generator (coupled)",     "Coupled to synchronous motor shaft",                  "1"],
+            ["3",  "3-Phase Variable AC Supply", "220 V, 50 Hz, 3-phase",                               "1"],
+            ["4",  "Variable DC Power Supply",   "For rotor field excitation",                           "1"],
+            ["5",  "Ammeter (AC)",               "For stator current Is measurement",                   "1"],
+            ["6",  "Ammeter (DC)",               "For field current If measurement",                    "1"],
+            ["7",  "Power Factor Meter",         "3-phase, appropriate voltage and current rating",     "1"],
+            ["8",  "Voltmeter (DC)",             "For field circuit voltage measurement",                "1"],
+            ["9",  "Lamp Load",                  "Resistive load for DC generator output",              "1"],
+            ["10", "MCB (AC and DC)",            "Appropriate ratings",                                 "2"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The V-curve of a synchronous machine shows its performance in terms of the variation of armature current with field current when the load and input voltage to the machine are kept constant. When a synchronous machine is connected to an infinite bus, the current input to the stator depends upon the shaft load and the excitation (field current)."
+        },
+        {
+          "type": "text",
+          "content": "At a constant load, if the excitation is changed, the power factor of the machine changes. When the field current is small (machine is under-excited), the power factor is low and lagging. As the excitation is increased, the power factor improves until, at a certain field current called normal excitation, the power factor reaches unity and the machine draws minimum armature current. If the excitation is further increased, the machine becomes over-excited, draws more line current, and the power factor becomes leading and decreases. The constraint governing this behaviour is that the active power delivered must remain constant:"
+        },
+        {
+          "type": "equation",
+          "value": "P = V I_a \\cos\\phi = \\text{constant}"
+        },
+        {
+          "type": "text",
+          "content": "Because of their characteristic shape, the graphs of armature current (Ia) versus field current (If) are called V-curves. When the V-curves at different load conditions are plotted and points on different curves having the same power factor are connected, the resulting curve is called the compounding curve. When the power factor is plotted against field current, the resulting curves have an inverted-V shape and are called inverted-V curves."
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-v-curve-synchronous-motor",
+          "caption": "Figure 1: V-Curve of Synchronous Motor — Armature Current vs Field Current at no load, half load, and full load. The minimum of each curve corresponds to unity power factor (normal excitation). Left of minimum: lagging PF (under-excited); right of minimum: leading PF (over-excited). The dashed line connecting minima is the unity PF compounding curve.",
+          "role": "theory-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-inverted-v-curve-synchronous-motor",
+          "caption": "Figure 2: Inverted V-Curve of Synchronous Motor — Power Factor vs Field Current at no load, half load, and full load. The peak of each curve at unity PF shifts rightward with increasing load, indicating that higher field current is needed for unity PF at higher loads.",
+          "role": "theory-diagram"
+        },
+        {
+          "type": "text",
+          "content": "A synchronous machine does not possess starting torque but once brought near to synchronous speed, it is capable of developing torque. Synchronous machines can be started either by an auxiliary machine coupled to the shaft or by running the machine as an induction motor until it attains a speed near synchronous speed."
+        },
+        {
+          "type": "text",
+          "content": "The induction motor starting method is most common. In this method, the field circuit of the synchronous machine is closed through a high resistance and a reduced voltage is applied across the stator windings. The three-phase balanced supply sets up a rotating magnetic field at synchronous speed. This field interlinks with the damper winding — short-circuited copper grids placed on the pole shoes — which behaves like the squirrel-cage rotor of an induction motor. The motor thus starts as an induction motor, accelerates in the direction of the rotating field, and approaches synchronous speed. At that point, the field circuit is connected to the variable DC power supply and the DC excitation voltage is raised to its rated stator current value, pulling the rotor into synchronism."
+        },
+        {
+          "type": "text",
+          "content": "To reverse the direction of rotation of a synchronous motor, the direction of the rotating magnetic field must be reversed, which is achieved by changing the phase sequence of the voltage applied to the armature windings."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp8-synchronous-machine-circuit",
+          "caption": "Figure 3: Experiment setup of synchronous machine. The circuit shows the synchronous motor (3-phase stator connected to 220 V, 50 Hz, 3-phase variable AC supply through an MCB and power factor meter; stator ammeter Is in series) mechanically coupled to a DC generator (shunt field and armature; field ammeter If and voltmeter V in the field circuit; variable DC power supply for rotor field excitation through an MCB). The DC generator output is connected to a lamp load.",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Write down the nameplate specifications of the synchronous machine and the coupled DC generator in the observation book.",
+            "Draw the circuit diagram as shown in Figure 3 and clearly mark all meter ranges according to the machine specifications.",
+            "Make the connections as shown in Figure 3 and get the circuit checked by the Lab Staff / TA before energizing.",
+            "To start the synchronous machine: connect the three-phase variable power supply to the stator winding and gradually increase from zero voltage to the rated voltage level (induction motor starting with field closed through high resistance).",
+            "As soon as the machine attains its rated speed (or near to synchronous speed), connect the rotor field of the synchronous machine to the variable DC power supply and increase the DC voltage up to the rated stator current to pull the rotor into synchronism.",
+            "Connect the mechanically coupled DC generator output to the lamp load as shown in Figure 3.",
+            "Part A — No-Load V and Inverted-V Curves: With no output from the coupled DC generator (no load on synchronous motor), vary the field current If of the synchronous machine using the variable DC supply. For each value of If, record the stator armature current Is and power factor. Cover the full range from under-excitation to over-excitation.",
+            "After completing the no-load observations, bring the field current back to the value at which the armature current is minimum (unity PF condition).",
+            "Part B — 50% Load V and Inverted-V Curves: Increase the load on the synchronous machine by loading the coupled DC generator with the lamp load such that the stator current reads 50% of its full rated value at unity power factor. Vary the field current and record the corresponding values of armature current and power factor.",
+            "Part C — 100% Load V and Inverted-V Curves: Increase the load further such that the stator current reads 100% of its full rated value at unity power factor. Vary the field current and record the corresponding armature current and power factor values. Then stop the machine safely.",
+            "Plot V-curves (Is vs If) for no load, 50% load, and 100% load on the same graph. Draw the unity PF compounding curve and mark the leading and lagging PF regions.",
+            "Plot Inverted-V curves (Power Factor vs If) for no load, 50% load, and 100% load on the same graph. Mark the leading and lagging PF regions."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Readings were taken at three load conditions: no load, 50% load, and 100% (full) load. For each load condition, the field current If was varied and the corresponding stator armature current Is and power factor (cos φ) were recorded."
+        },
+        {
+          "type": "text",
+          "content": "Table 1: No-Load Condition"
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Field Current If (A)", "Stator Current Is (A)", "Power Factor (cos φ)", "PF Nature"],
+          "rows": [
+            ["1", "0.1", "1.5", "0.30", "Lagging"],
+            ["2", "0.2", "1.1", "0.50", "Lagging"],
+            ["3", "0.4", "0.6", "0.85", "Lagging"],
+            ["4", "0.5", "0.45", "1.00", "Unity"],
+            ["5", "0.6", "0.65", "0.88", "Leading"],
+            ["6", "0.8", "1.2", "0.60", "Leading"],
+            ["7", "1.0", "1.8", "0.40", "Leading"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Table 2: 50% Load Condition"
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Field Current If (A)", "Stator Current Is (A)", "Power Factor (cos φ)", "PF Nature"],
+          "rows": [
+            ["1", "0.3", "3.5", "0.50", "Lagging"],
+            ["2", "0.4", "3.0", "0.65", "Lagging"],
+            ["3", "0.6", "2.2", "0.90", "Lagging"],
+            ["4", "0.7", "2.05", "1.00", "Unity"],
+            ["5", "0.8", "2.25", "0.92", "Leading"],
+            ["6", "1.0", "3.2", "0.65", "Leading"],
+            ["7", "1.2", "4.0", "0.45", "Leading"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Table 3: 100% (Full) Load Condition"
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Field Current If (A)", "Stator Current Is (A)", "Power Factor (cos φ)", "PF Nature"],
+          "rows": [
+            ["1", "0.5", "5.5", "0.70", "Lagging"],
+            ["2", "0.6", "5.1", "0.82", "Lagging"],
+            ["3", "0.8", "4.4", "0.95", "Lagging"],
+            ["4", "0.9", "4.15", "1.00", "Unity"],
+            ["5", "1.0", "4.45", "0.96", "Leading"],
+            ["6", "1.2", "5.2", "0.80", "Leading"],
+            ["7", "1.4", "6.5", "0.60", "Leading"]
+          ]
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "At each operating point, the active power input to the synchronous motor is constant for a given load. The relationship between stator current, terminal voltage, and power factor is:"
+        },
+        {
+          "type": "equation",
+          "value": "P = \\sqrt{3}\\, V_L\\, I_s \\cos\\phi = \\text{constant (for a given load)}"
+        },
+        {
+          "type": "text",
+          "content": "where VL is the line voltage, Is is the stator (armature) current, and cos φ is the power factor. As the field current is varied at constant load, Is and cos φ change such that their product remains constant."
+        },
+        {
+          "type": "text",
+          "content": "The synchronous reactance Xs relates the stator current phasor to the excitation EMF Ef and terminal voltage V through the phasor equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\vec{E}_f = \\vec{V} + j X_s \\vec{I}_a"
+        },
+        {
+          "type": "text",
+          "content": "Under normal (unity PF) excitation, the armature current Ia is in phase with V and takes its minimum value for the given load. The field current If corresponding to this condition gives the normal excitation point (minimum of the V-curve)."
+        },
+        {
+          "type": "text",
+          "content": "For under-excitation (If less than normal), Ef < V, the motor absorbs reactive power (lagging PF). For over-excitation (If greater than normal), Ef > V, the motor supplies reactive power to the system (leading PF). The reactive power absorbed or supplied is:"
+        },
+        {
+          "type": "equation",
+          "value": "Q = \\sqrt{3}\\, V_L\\, I_s \\sin\\phi"
+        },
+        {
+          "type": "text",
+          "content": "The power factor angle φ for each observation is computed from the measured power factor value (cos φ read from the power factor meter), and the nature (leading or lagging) is noted from the meter deflection."
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The V-curves (Is vs If) at no load, 50% load, and 100% load each exhibit a characteristic V-shape. The minimum stator current for each curve occurs at the normal excitation (unity power factor) condition.",
+            "As the load increases, the minimum stator current at unity PF increases, and the field current required to achieve unity PF also increases — confirming that higher loads require greater excitation for operation at unity power factor.",
+            "Below the normal excitation value (under-excited region), the motor operates at a lagging power factor and absorbs reactive power from the supply. Above normal excitation (over-excited region), the motor operates at a leading power factor and supplies reactive power to the system, behaving like a capacitor.",
+            "The inverted V-curves (PF vs If) confirm that the power factor reaches a maximum value of unity at the normal excitation point for each load, with the peak shifting to a higher field current as load increases.",
+            "The unity PF compounding curve, drawn by connecting the minimum points of the V-curves, shows an upward trend, indicating that a higher field current is required to maintain unity power factor as the mechanical load increases.",
+            "The experiment successfully validates the theoretical V-curve and inverted V-curve characteristics of the synchronous machine, and demonstrates the machine's ability to control power factor by varying field excitation."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, the V-curves and inverted V-curves of a synchronous machine were studied and plotted for no-load, 50% load, and 100% load conditions. The experiment confirmed that for a given load, the stator armature current is minimum at normal excitation (unity power factor), and increases for both under-excitation (lagging PF) and over-excitation (leading PF). The unity PF compounding curve was drawn by connecting the minima of the V-curves at different loads, and it was observed that the required field current for unity power factor increases with load."
+        },
+        {
+          "type": "text",
+          "content": "The induction motor starting method was studied, in which the synchronous machine is started with the field winding closed through a high resistance. The damper winding provides the starting torque similar to a squirrel-cage induction motor, and the machine is pulled into synchronism by applying DC field excitation once the rotor approaches synchronous speed. The experiment demonstrated the important property of synchronous machines — namely that they can be operated at leading, unity, or lagging power factor simply by controlling the field excitation — making them valuable for power factor correction in industrial power systems."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** A synchronous motor is said to draw minimum armature current at unity power factor for a given load. Explain physically why this minimum occurs at unity PF and not at some other power factor.\n\n**A:** The active power delivered by the motor is P = V·Ia·cos φ = constant for a given mechanical load. For a fixed P and fixed V, the product Ia·cos φ is fixed. The armature current Ia = P/(V·cos φ) is minimum when cos φ = 1 (i.e., φ = 0), because any deviation from unity PF — whether leading or lagging — means cos φ < 1, requiring a larger Ia to supply the same P. Geometrically, at unity PF the armature current phasor Ia is entirely in phase with the terminal voltage V, and there is no reactive component. Any change in excitation from the normal value introduces a reactive component of current (either inductive for under-excitation or capacitive for over-excitation), which adds in quadrature to the active component and increases the magnitude of the total phasor Ia. Hence the minimum of the V-curve occurs precisely at unity power factor.",
+
+            "**Q:** Why does the field current required for unity power factor increase with increasing mechanical load, causing the V-curve minima to shift rightward at higher loads?\n\n**A:** At unity PF, the phasor relationship between the excitation EMF Ef, terminal voltage V, and armature current Ia (which is in phase with V at unity PF) is: Ef = √(V² + (Xs·Ia)²), where Xs is the synchronous reactance. As the mechanical load increases, the torque requirement increases, which increases the armature current Ia at unity PF. Substituting a larger Ia into the equation, Ef must increase to maintain this phasor balance. Since Ef is directly proportional to the field current If (through the magnetic flux: Ef = 4.44·f·N·φ ∝ If in the linear region), a larger Ef requires a larger If. Therefore, the unity PF operating point — and consequently the minimum of the V-curve — shifts to a higher field current as load increases.",
+
+            "**Q:** An over-excited synchronous motor is often used for power factor correction in industrial plants. Explain the physical mechanism by which the over-excited synchronous motor improves the power factor of the supply system.\n\n**A:** In an over-excited synchronous motor, the excitation EMF Ef exceeds the terminal voltage V in magnitude. From the phasor diagram, this causes the armature current Ia to lead the terminal voltage V (the motor draws leading current). From the perspective of the supply system, a leading current is equivalent to supplying reactive (capacitive) power: Q = V·Ia·sin φ, where φ is a leading angle. Industrial loads such as induction motors, transformers, and fluorescent lighting are predominantly inductive and draw lagging current from the supply, absorbing reactive power and reducing the overall supply power factor below unity. By connecting an over-excited synchronous motor in parallel with these loads, the leading reactive current from the motor partially or fully cancels the lagging reactive current drawn by the inductive loads, reducing the total reactive power demand from the supply, improving the overall power factor, and reducing line current and transmission losses. This is the synchronous condenser principle.",
+
+            "**Q:** In the induction motor starting method for a synchronous machine, why is the field winding closed through a high resistance rather than being left open-circuited during starting?\n\n**A:** During starting, the stator three-phase supply creates a rotating magnetic field at synchronous speed Ns. The stationary rotor (or slow-moving rotor during acceleration) has a large relative velocity with respect to this rotating field — the slip s ≈ 1 initially. This rotating field sweeps across the rotor field winding at nearly supply frequency (50 Hz). If the field winding were open-circuited, this rapidly changing flux would induce a very high EMF in the field winding (by transformer action), since the field winding has many turns and is designed for DC, not AC. This high induced voltage could damage the field winding insulation and present a safety hazard. Closing the field winding through a high resistance provides a discharge path for this induced current, limiting the induced voltage to a safe level while also providing some damping torque that aids acceleration. The resistance is made high (not a short circuit) to limit the large induced current that would otherwise flow and produce excessive I²R heating, and to avoid creating a significant braking torque that would oppose the starting.",
+
+            "**Q:** The damper winding of a synchronous motor plays a critical role during starting. What is its function during normal steady-state synchronous operation, and why is it still important even after synchronism is achieved?\n\n**A:** During starting, the damper winding (short-circuited copper bars embedded in the pole faces) behaves like a squirrel-cage rotor and provides the induction torque needed to accelerate the motor to near-synchronous speed. During normal steady-state operation, the rotor rotates exactly at synchronous speed, so there is no relative motion between the rotor (and its damper bars) and the rotating stator field — no EMF is induced in the damper bars and they carry no current. However, the damper winding still serves a critical function: it provides damping of oscillations. In practice, sudden load changes or supply voltage disturbances cause the rotor to momentarily deviate from its synchronous position — it oscillates about the equilibrium torque angle (hunting). During this oscillation, the rotor is no longer exactly at synchronous speed; the relative motion between the rotor and the stator field induces currents in the damper bars, which by Lenz's law produce a torque opposing the oscillation. This damping torque quickly suppresses the hunting and restores stable synchronous operation. Without the damper winding, a synchronous machine would hunt continuously and potentially pull out of synchronism under even minor disturbances.",
+
+            "**Q:** In the V-curve experiment, the power factor meter reading changes from lagging to leading as the field current is increased through the unity PF point. What fundamental change in the machine's reactive power exchange with the supply system corresponds to this transition, and how does it manifest in the phasor diagram?\n\n**A:** At unity PF (normal excitation), the synchronous motor neither absorbs nor supplies reactive power — the entire stator current is active (in phase with V), and Q = 0. In the under-excited (lagging PF) region, the motor's Ef < V; the phasor diagram shows that the armature current Ia lags the terminal voltage V. The lagging component of current represents reactive power absorbed from the supply (Q > 0, inductive behaviour) — the motor behaves like an inductor, consuming VArs. In the over-excited (leading PF) region, Ef > V; the phasor diagram shows Ia leading V. The leading component of current represents reactive power supplied to the system (Q < 0, capacitive behaviour) — the motor behaves like a capacitor, generating VArs and injecting them into the supply bus. The transition through the unity PF point (normal excitation) is thus the boundary between reactive power consumption and reactive power generation, corresponding in the phasor diagram to the rotation of the Ia phasor from a position lagging V (under-excitation) through alignment with V (unity PF) to a position leading V (over-excitation)."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}

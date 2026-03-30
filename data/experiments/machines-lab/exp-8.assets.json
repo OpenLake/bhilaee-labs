@@ -1,0 +1,14 @@
+{
+    "exp8-v-curve-synchronous-motor": {
+        "path": "/assets/labs/machines-lab/exp-8/exp8-v-curve-synchronous-motor.png",
+        "description": "V-Curve of Synchronous Motor"
+    },
+    "exp8-inverted-v-curve-synchronous-motor": {
+        "path": "/assets/labs/machines-lab/exp-8/exp8-inverted-v-curve-synchronous-motor.png",
+        "description": "Inverted V-Curve of Synchronous Motor"
+    },
+    "exp8-synchronous-machine-circuit": {
+        "path": "/assets/labs/machines-lab/exp-8/exp8-synchronous-machine-circuit.png",
+        "description": "Circuit Diagram for Synchronous Machine Experiment"
+    }
+}
