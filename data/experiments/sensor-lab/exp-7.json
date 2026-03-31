@@ -2,10 +2,9 @@
     "id": "exp-7",
     "title": "Measurement of Displacement Using an LVDT",
     "labId": "sensor-lab",
-    "status": "Completed",
+    "status": "Simulation Available",
     "meta": {
-        "simulationId": "sensor_lab-exp7",
-        "simulationType": "Hardware / Transducer Characterisation",
+        "simulationId": "sensor_lab-lvdt",
         "experimentType": "hardware",
         "status": "completed",
         "difficulty": "intermediate",
@@ -127,7 +126,7 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
+            "isApplicable": true,
             "route": "default",
             "content": []
         },
