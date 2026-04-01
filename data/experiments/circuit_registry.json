@@ -470,6 +470,66 @@
     "role": "circuit-diagram"
   },
   {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "1",
+    "experimentTitle": "Formation of Bus Admittance Matrix (Y-Bus) for Transmission Systems",
+    "assetId": "fig1-3bus-short-transmission",
+    "path": "/assets/labs/power-system-lab/exp-1/fig1-3bus-short-transmission.png",
+    "caption": "Figure 1: 3-Bus Power System (Short Transmission Line)",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "1",
+    "experimentTitle": "Formation of Bus Admittance Matrix (Y-Bus) for Transmission Systems",
+    "assetId": "fig2-3bus-long-transmission",
+    "path": "/assets/labs/power-system-lab/exp-1/fig2-3bus-long-transmission.png",
+    "caption": "Figure 2: 3-Bus Power System (Long Transmission Line with Shunt Admittances)",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "7",
+    "experimentTitle": "Studying the Significance of Surge Impedance and the Surge Impedance Loading (SIL) of a Transmission Line",
+    "assetId": "fig1-simulink-core-pi-model",
+    "path": "/assets/labs/power-system-lab/exp-7/fig1.png",
+    "caption": "Figure 1: Simulink model of the medium transmission line using nominal Pi model",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "7",
+    "experimentTitle": "Studying the Significance of Surge Impedance and the Surge Impedance Loading (SIL) of a Transmission Line",
+    "assetId": "fig2-simulink-complete-setup",
+    "path": "/assets/labs/power-system-lab/exp-7/fig2.png",
+    "caption": "Figure 2: Complete Simulink setup of the medium transmission line model including measurement and display blocks",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "9",
+    "experimentTitle": "Study and Analysis of Performance of Thyristor-Controlled Reactor (TCR) in Power Systems",
+    "assetId": "fig1-simulink-core-tcr-model",
+    "path": "/assets/labs/power-system-lab/exp-9/fig1.png",
+    "caption": "Figure 1: Simulink model of the Thyristor-Controlled Reactor (TCR) setup",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "power-system-lab",
+    "labName": "Power System Lab",
+    "experimentId": "9",
+    "experimentTitle": "Study and Analysis of Performance of Thyristor-Controlled Reactor (TCR) in Power Systems",
+    "assetId": "fig2-simulink-complete-tcr-setup",
+    "path": "/assets/labs/power-system-lab/exp-9/fig2.png",
+    "caption": "Figure 2: Complete Simulink setup of the model of the Thyristor-Controlled Reactor including measurement and display blocks",
+    "role": "circuit-diagram"
+  },
+  {
     "labId": "sensor-lab",
     "labName": "Sensor Lab",
     "experimentId": "1",
@@ -610,6 +670,66 @@
     "role": "diagram"
   },
   {
+    "labId": "control-system-lab",
+    "labName": "Control System Lab",
+    "experimentId": "2",
+    "experimentTitle": "Modeling and Control of Magnetic Levitation Systems using PD Controller",
+    "assetId": "fig2a-circuit-diagram",
+    "path": "/assets/labs/control-system-lab/exp-2/fig2a-circuit-diagram.png",
+    "caption": "Figure 2: Digital control circuit/model used for magnetic levitation",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "control-system-lab",
+    "labName": "Control System Lab",
+    "experimentId": "3",
+    "experimentTitle": "Implementing Closed-Loop Control of a Buck Converter Using PID Controller",
+    "assetId": "fig2-open-loop-simulink",
+    "path": "/assets/labs/control-system-lab/exp-3/fig2-open-loop-simulink.png",
+    "caption": "Figure 2: Open-loop Simulink model of the buck converter",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "control-system-lab",
+    "labName": "Control System Lab",
+    "experimentId": "3",
+    "experimentTitle": "Implementing Closed-Loop Control of a Buck Converter Using PID Controller",
+    "assetId": "fig3-closed-loop-simulink",
+    "path": "/assets/labs/control-system-lab/exp-3/fig3-closed-loop-simulink.png",
+    "caption": "Figure 3: Closed-loop Simulink model of the buck converter",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "control-system-lab",
+    "labName": "Control System Lab",
+    "experimentId": "5",
+    "experimentTitle": "Hardware Implementation and Analysis of a PID Controlled System",
+    "assetId": "exp5-closed-loop-circuit",
+    "path": "/assets/labs/control-system-lab/exp-5/exp5-closed-loop-circuit.png",
+    "caption": "Figure 1: Complete closed-loop PID control system implementation using operational amplifiers.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "control-system-lab",
+    "labName": "Control System Lab",
+    "experimentId": "5",
+    "experimentTitle": "Hardware Implementation and Analysis of a PID Controlled System",
+    "assetId": "exp5-opamp-plant-circuit",
+    "path": "/assets/labs/control-system-lab/exp-5/exp5-opamp-plant-circuit.png",
+    "caption": "Figure 2: Op-amp based mass-spring-damper plant realization. The circuit uses two cascaded integrators (10 kΩ / 10 µF and 100 kΩ / 10 µF), a summing amplifier with 5 kΩ and 10 kΩ feedback resistors, powered by a ±12 V dual supply, to realize X(s)/F(s) = 10 / (s² + 10s + 20).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "instrumentation-lab",
+    "labName": "Instrumentation Lab",
+    "experimentId": "6",
+    "experimentTitle": "Characteristics of K Type Thermocouple",
+    "assetId": "exp-thermocouple-kit-circuit",
+    "path": "/assets/labs/instrumentation-lab/exp-6/exp-thermocouple-kit-circuit.png",
+    "caption": "Figure 1: K-type thermocouple setup showing the Scientech 2302 experimental kit with thermocouple, IC temperature sensor, instrumentation amplifier, ×100 amplifier, DC amplifier, heater element, NTC thermistor, and associated signal conditioning circuitry.",
+    "role": "circuit-diagram"
+  },
+  {
     "labId": "machines-lab",
     "labName": "Machines Lab",
     "experimentId": "1",
@@ -627,6 +747,146 @@
     "assetId": "fig3-short-circuit-test",
     "path": "/assets/labs/basic-electrical-engineering/exp-5/fig3-sc-test.png",
     "caption": "Figure 3: Short Circuit Test on Transformer",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "2",
+    "experimentTitle": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
+    "assetId": "fig1-polarity-test",
+    "path": "/assets/labs/machines-lab/exp-2/fig1-polarity-test.png",
+    "caption": "Figure 1: Circuit Diagram for Polarity Test",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "2",
+    "experimentTitle": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
+    "assetId": "fig2-ratio-test",
+    "path": "/assets/labs/machines-lab/exp-2/fig2-ratio-test.png",
+    "caption": "Figure 2: Circuit Diagram for Voltage Ratio Test",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "2",
+    "experimentTitle": "Polarity, Voltage Ratio, and Voltage Regulation Test of a Single-Phase Transformer",
+    "assetId": "fig3-voltage-regulation-test",
+    "path": "/assets/labs/machines-lab/exp-2/fig3-voltage-regulation-test.png",
+    "caption": "Figure 3: Circuit Diagram for Voltage Regulation Test",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "3",
+    "experimentTitle": "Sumpner's (Back to Back) Test of Single-Phase Transformers",
+    "assetId": "fig4-sumpners-test",
+    "path": "/assets/labs/machines-lab/exp-3/fig4-sumpners-test.png",
+    "caption": "Figure 4: Circuit Diagram for Sumpner's (Back to Back) Test on Two Identical Single-Phase Transformers",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "4",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Synchronous Generator",
+    "assetId": "fig3-open-circuit-test-circuit",
+    "path": "/assets/labs/machines-lab/exp-4/fig3-open-circuit-test-circuit.png",
+    "caption": "Figure 3: Circuit Diagram for Open Circuit Test — DC Motor driving Synchronous Generator with open armature terminals",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "4",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Synchronous Generator",
+    "assetId": "fig4-short-circuit-test-circuit",
+    "path": "/assets/labs/machines-lab/exp-4/fig4-short-circuit-test-circuit.png",
+    "caption": "Figure 4: Circuit Diagram for Short Circuit Test — DC Motor driving Synchronous Generator with short-circuited armature terminals",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "4",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Synchronous Generator",
+    "assetId": "fig5-armature-resistance-test-circuit",
+    "path": "/assets/labs/machines-lab/exp-4/fig5-armature-resistance-test-circuit.png",
+    "caption": "Figure 5: Circuit Diagram for Armature Resistance Measurement — DC supply applied between two armature terminals (field winding open)",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "5",
+    "experimentTitle": "Speed Control of a DC Shunt Motor",
+    "assetId": "fig1-dc-shunt-motor-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-8/fig1-dc-shunt-motor-circuit.png",
+    "caption": "Fig. 1: Circuit diagram for the study of speed control of a D.C. Shunt Motor. The armature rheostat (20 Ω, 10 A) is connected in series with the armature, and the field rheostat (300 Ω, 2 A) is connected in series with the field winding.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "6",
+    "experimentTitle": "OCC and External Characteristics of DC Shunt Generator",
+    "assetId": "fig4-experiment-connection-diagram",
+    "path": "/assets/labs/machines-lab/exp-6/fig4-experiment-connection-diagram.png",
+    "caption": "Figure 4: Experiment Connection Diagram — 3 Phase Slip Ring Induction Motor coupled with Self-Excited DC Shunt Generator",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "8",
+    "experimentTitle": "V and Inverted-V Curves of a Synchronous Machine",
+    "assetId": "exp8-synchronous-machine-circuit",
+    "path": "/assets/labs/machines-lab/exp-8/exp8-synchronous-machine-circuit.png",
+    "caption": "Figure 3: Experiment setup of synchronous machine. The circuit shows the synchronous motor (3-phase stator connected to 220 V, 50 Hz, 3-phase variable AC supply through an MCB and power factor meter; stator ammeter Is in series) mechanically coupled to a DC generator (shunt field and armature; field ammeter If and voltmeter V in the field circuit; variable DC power supply for rotor field excitation through an MCB). The DC generator output is connected to a lamp load.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "9",
+    "experimentTitle": "Three-Phase Transformer Connections using Three Single Phase Transformers",
+    "assetId": "fig5-star-star-lab-setup",
+    "path": "/assets/labs/machines-lab/exp-9/fig5-star-star-lab-setup.png",
+    "caption": "Fig 5: Star-Star configuration using three single phase transformers Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "9",
+    "experimentTitle": "Three-Phase Transformer Connections using Three Single Phase Transformers",
+    "assetId": "fig6-delta-delta-lab-setup",
+    "path": "/assets/labs/machines-lab/exp-9/fig6-delta-delta-lab-setup.png",
+    "caption": "Fig 6: Delta-Delta configuration using three single phase transformer Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "9",
+    "experimentTitle": "Three-Phase Transformer Connections using Three Single Phase Transformers",
+    "assetId": "fig7-star-delta-lab-setup",
+    "path": "/assets/labs/machines-lab/exp-9/fig7-star-delta-lab-setup.png",
+    "caption": "Fig 7: Star-delta configuration using three single phase transformers Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "9",
+    "experimentTitle": "Three-Phase Transformer Connections using Three Single Phase Transformers",
+    "assetId": "fig8-delta-star-lab-setup",
+    "path": "/assets/labs/machines-lab/exp-9/fig8-delta-star-lab-setup.png",
+    "caption": "Fig 8: Delta-Star configuration using three single phase transformers Lab set-up.",
     "role": "circuit-diagram"
   }
 ]
