@@ -287,14 +287,14 @@
           "id": "3",
           "title": "Study of Thermistor Characteristics and Key Performance Parameters",
           "fileName": "exp-3.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {
           "id": "4",
           "title": "Study of RTD (Pt-100) Characteristics and Key Performance Parameters",
           "fileName": "exp-4.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {

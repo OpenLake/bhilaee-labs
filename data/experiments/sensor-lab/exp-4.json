@@ -2,10 +2,10 @@
     "id": "exp-4",
     "title": "Study of RTD (Pt-100) Characteristics and Key Performance Parameters",
     "labId": "sensor-lab",
-    "status": "Completed",
+    "status": "Simulation Available",
     "meta": {
-        "simulationId": "sensor_lab-exp4",
-        "simulationType": "MATLAB Curve Fitting / Data Analysis",
+        "simulationId": "sensor_lab-rtd",
+        "simulationHint": "Try reducing the supply voltage if temp rise is too rapid.",
         "experimentType": "hardware",
         "status": "completed",
         "difficulty": "intermediate",

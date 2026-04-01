@@ -2,10 +2,10 @@
   "id": "exp-3",
   "title": "Study of Thermistor Characteristics and Key Performance Parameters",
   "labId": "sensor-lab",
-  "status": "Completed",
+  "status": "Simulation Available",
   "meta": {
-    "simulationId": "sensor_lab-exp3b",
-    "simulationType": "MATLAB Curve Fitting / Data Analysis",
+    "simulationId": "sensor_lab-thermistor",
+    "simulationHint": "Try reducing the supply voltage if temp rise is too rapid.",
     "experimentType": "hardware",
     "status": "completed",
     "difficulty": "intermediate",

@@ -157,6 +157,15 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                                         Launch Simulator
                                     </a>
                                     {(() => {
+                                        const simHint = experiment.meta?.simulationHint;
+                                        if (simHint) {
+                                            return (
+                                                <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#666' }}>
+                                                    {simHint}
+                                                </p>
+                                            );
+                                        }
+
                                         const simType = experiment.meta?.simulationType ||
                                             (experiment.title.toLowerCase().includes('transient') ? 'Transient' : null);
 
