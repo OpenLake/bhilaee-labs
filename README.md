@@ -112,6 +112,33 @@ To make a new experiment launchable from the guide:
 
 *(Note: Multiple experiments can share the same `simulationId` if they utilize the same base circuit).*
 
+### Simulation Hints
+
+Below the "Launch Simulator" button, an optional hint message can be displayed to guide users. Two mechanisms are supported, in priority order:
+
+| Meta Field | Behavior | Example Output |
+|------------|----------|----------------|
+| `simulationHint` | Displays the raw string as-is | *Try reducing the supply voltage if temp rise is too rapid.* |
+| `simulationType` | Wraps value in a "set the simulation type" sentence | *Running this experiment? Please set the simulation type to **Transient**.* |
+
+If neither field is present, no hint is shown.
+
+---
+
+## 📊 Lab Coverage
+
+| Lab | Experiments | Simulation Available | Hardware / Software | Guide Only |
+|-----|:-----------:|:--------------------:|:-------------------:|:----------:|
+| Basic Electrical Engineering | 9 | 7 | 2 | 0 |
+| Devices & Circuits | 8 | 5 | 3 | 0 |
+| Sensor Lab | 9 | 7 | 2 | 0 |
+| Machines Lab | 10 | 2 | 7 | 1 |
+| Digital Electronics | 8 | 0 | 8 | 0 |
+| Control System Lab | 10 | 0 | 7 | 3 |
+| Power System Lab | 10 | 0 | 6 | 4 |
+| Instrumentation Lab | 10 | 0 | 6 | 4 |
+| Power Electronics Lab | 10 | 0 | 0 | 10 |
+
 ---
 
 ## 🚀 Getting Started (Development)
