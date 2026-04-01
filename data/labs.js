@@ -55,7 +55,7 @@ const labMetadata = [
     description: "Power generation, transmission, distribution, and protection systems",
     focus: "Grid analysis and protection",
     nature: "System Analysis",
-    prerequisites: "Electric Machines",
+    prerequisites: "EEL207 (Power System Analysis)",
     totalExperiments: 10,
     icon: "tower"
   },
@@ -77,7 +77,7 @@ const labMetadata = [
     description: "Feedback control, stability analysis, and controller design",
     focus: "Stability and controller design",
     nature: "Design & Analysis",
-    prerequisites: "Signals and Systems",
+    prerequisites: "EEL205 (Control Systems)",
     totalExperiments: 10,
     icon: "sliders"
   },
@@ -88,7 +88,7 @@ const labMetadata = [
     description: "Power converters, rectifiers, inverters, and motor drives",
     focus: "Power conversion and drives",
     nature: "Hardware & Simulation",
-    prerequisites: "Power Systems",
+    prerequisites: "EEL201 (Circuits and Systems), EEL207 (Power System Analysis), EEL303 (Power Electronics)",
     totalExperiments: 10,
     icon: "plug"
   },
@@ -99,7 +99,7 @@ const labMetadata = [
     description: "Measurement instruments, signal conditioning, and data acquisition",
     focus: "Data acquisition and conditioning",
     nature: "Measurement-based",
-    prerequisites: "Sensors & Transducers",
+    prerequisites: "EEL208 (Sensor and Instrumentation)",
     totalExperiments: 10,
     icon: "waves"
   },
@@ -110,7 +110,7 @@ const labMetadata = [
     description: "DC machines, AC machines, transformers, and special machines",
     focus: "Electromechanical conversion",
     nature: "Hardware-Oriented",
-    prerequisites: "Basic Electrical Engg",
+    prerequisites: "EEL206 (Electrical Machines I), EEL301 (Electrical Machines II)",
     totalExperiments: 10,
     icon: "bolt-alt"
   }
