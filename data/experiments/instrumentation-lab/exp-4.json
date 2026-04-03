@@ -2,10 +2,10 @@
   "id": "exp-4",
   "title": "Detection of rain intensity through Analog and Digital rain sensors interfaced with ESP32",
   "labId": "instrumentation-lab",
-  "status": "Guide Only",
+  "status": "Hardware-Oriented",
   "meta": {
     "experimentType": "hardware",
-    "status": "guide-only",
+    "status": "hardware-oriented",
     "difficulty": "intermediate",
     "estimatedTimeMinutes": 120,
     "version": "1.0.0",

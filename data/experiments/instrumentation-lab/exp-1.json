@@ -2,10 +2,10 @@
   "id": "exp-1",
   "title": "Object Detection using an IR sensor and ESP32",
   "labId": "instrumentation-lab",
-  "status": "Guide Only",
+  "status": "Hardware-Oriented",
   "meta": {
     "experimentType": "hardware",
-    "status": "guide-only",
+    "status": "hardware-oriented",
     "difficulty": "beginner",
     "estimatedTimeMinutes": 60,
     "version": "1.0.0",
