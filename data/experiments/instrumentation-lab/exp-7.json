@@ -1,7 +1,7 @@
 {
   "id": "exp-7",
   "title": "Study of Optical Transducer",
-  "labId": "sensor-lab",
+  "labId": "instrumentation-lab",
   "status": "Completed",
   "meta": {
     "simulationId": "sensor_lab-exp7",
@@ -108,25 +108,25 @@
         {
           "type": "image",
           "assetId": "exp7-scientech2301-kit-setup",
-          "caption": "Figure 1: Experimental kit setup — Scientech 2301 TechBook for Study of Optical Transducers, showing the photovoltaic cell, photoconductive cell, phototransistor, lamp filament, wirewound potentiometer, carbon potentiometer, slide potentiometer, power amplifier, current amplifier, DC amplifier, buffer, comparator, electronic switch, and relay sections.",
+          "caption": "Figure 1: Experimental kit setup — Scientech 2301 TechBook.",
           "role": "kit-photo"
         },
         {
           "type": "image",
           "assetId": "exp7-filament-lamp-circuit",
-          "caption": "Figure 2: Circuit diagram of the filament lamp setup. The wirewound potentiometer (10 kΩ, socket A to +12 V, socket C to GND, wiper B to power amplifier input) drives the power amplifier output to the lamp filament. A voltmeter (−V+) is connected across the lamp and a series ammeter (A) measures current.",
+          "caption": "Figure 2: Circuit diagram of the filament lamp setup.",
           "role": "circuit-diagram"
         },
         {
           "type": "image",
           "assetId": "exp7-photovoltaic-cell-circuit",
-          "caption": "Figure 3: Circuit diagram of the photovoltaic cell setup. The filament lamp (driven by wirewound potentiometer and power amplifier) illuminates the photovoltaic cell. A voltmeter is connected across the photovoltaic cell output terminals to measure the open-circuit output voltage.",
+          "caption": "Figure 3: Circuit diagram of the photovoltaic cell setup.",
           "role": "circuit-diagram"
         },
         {
           "type": "image",
           "assetId": "exp7-photoconductive-cell-circuit",
-          "caption": "Figure 4: Circuit diagram of the photoconductive cell setup. The filament lamp illuminates the LDR (photoconductive cell). The cell output is connected to the slide potentiometer (10 kΩ, between +5 V and GND, adjusted to ~3 kΩ load resistance). A voltmeter measures the LDR output voltage across the load.",
+          "caption": "Figure 4: Circuit diagram of the photoconductive cell setup.",
           "role": "circuit-diagram"
         }
       ]
@@ -231,19 +231,19 @@
         {
           "type": "image",
           "assetId": "exp7-filament-lamp-power-resistance-plot",
-          "caption": "Figure 5: Power (W) and Resistance (Ω) vs Voltage (V) for the filament lamp. Both power and resistance increase monotonically with applied voltage, confirming the nonlinear, positive-temperature-coefficient behaviour of the tungsten filament. Resistance rises from 23.17 Ω at 1.089 V to 54.40 Ω at 10.01 V.",
+          "caption": "Figure 5: Power (W) and Resistance (Ω) vs Voltage (V) for the filament lamp.",
           "role": "characteristic-plot"
         },
         {
           "type": "image",
           "assetId": "exp7-photovoltaic-cell-output-plot",
-          "caption": "Figure 6: Photovoltaic cell open-circuit output voltage (V) vs lamp voltage (V). The output voltage increases from 2.07 V at zero illumination to 2.37 V at maximum lamp voltage (10 V), showing a nonlinear increase with light intensity — more pronounced at higher lamp voltages.",
+          "caption": "Figure 6: Photovoltaic cell open-circuit output voltage (V) vs lamp voltage (V).",
           "role": "characteristic-plot"
         },
         {
           "type": "image",
           "assetId": "exp7-ldr-output-plot",
-          "caption": "Figure 7: Photoconductive cell (LDR) output voltage (V) vs lamp voltage (V). The output voltage decreases from 1.19 V in darkness to 0.00 V at full illumination (10 V lamp voltage), confirming the inverse relationship between LDR resistance and incident light intensity.",
+          "caption": "Figure 7: Photoconductive cell (LDR) output voltage (V) vs lamp voltage (V).",
           "role": "characteristic-plot"
         }
       ]

@@ -1,48 +1,37 @@
 {
-  "labId": "instrumentation-lab",
-  "experimentId": "7",
-  "assets": {
-    "exp7-scientech2301-kit-setup": {
-      "id": "exp7-scientech2301-kit-setup",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-scientech2301-kit-setup.png",
-      "type": "image",
-      "caption": "Figure 1: Experimental kit setup — Scientech 2301 TechBook"
-    },
-    "exp7-filament-lamp-circuit": {
-      "id": "exp7-filament-lamp-circuit",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-filament-lamp-circuit.png",
-      "type": "image",
-      "caption": "Figure 2: Circuit diagram of the filament lamp setup"
-    },
-    "exp7-photovoltaic-cell-circuit": {
-      "id": "exp7-photovoltaic-cell-circuit",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photovoltaic-cell-circuit.png",
-      "type": "image",
-      "caption": "Figure 3: Circuit diagram of the photovoltaic cell setup"
-    },
-    "exp7-photoconductive-cell-circuit": {
-      "id": "exp7-photoconductive-cell-circuit",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photoconductive-cell-circuit.png",
-      "type": "image",
-      "caption": "Figure 4: Circuit diagram of the photoconductive cell setup"
-    },
-    "exp7-filament-lamp-power-resistance-plot": {
-      "id": "exp7-filament-lamp-power-resistance-plot",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-filament-lamp-power-resistance-plot.png",
-      "type": "image",
-      "caption": "Figure 5: Power (W) and Resistance (Ω) vs Voltage (V) for the filament lamp"
-    },
-    "exp7-photovoltaic-cell-output-plot": {
-      "id": "exp7-photovoltaic-cell-output-plot",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photovoltaic-cell-output-plot.png",
-      "type": "image",
-      "caption": "Figure 6: Photovoltaic cell open-circuit output voltage (V) vs lamp voltage (V)"
-    },
-    "exp7-ldr-output-plot": {
-      "id": "exp7-ldr-output-plot",
-      "path": "/assets/labs/instrumentation-lab/exp-7/exp7-ldr-output-plot.png",
-      "type": "image",
-      "caption": "Figure 7: Photoconductive cell (LDR) output voltage (V) vs lamp voltage (V)"
-    }
+  "exp7-scientech2301-kit-setup": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-scientech2301-kit-setup.png",
+    "description": "Figure 1: Experimental kit setup — Scientech 2301 TechBook"
+  },
+  "exp7-filament-lamp-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-filament-lamp-circuit.png",
+    "description": "Figure 2: Circuit diagram of the filament lamp setup"
+  },
+  "exp7-photovoltaic-cell-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photovoltaic-cell-circuit.png",
+    "description": "Figure 3: Circuit diagram of the photovoltaic cell setup"
+  },
+  "exp7-photoconductive-cell-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photoconductive-cell-circuit.png",
+    "description": "Figure 4: Circuit diagram of the photoconductive cell setup"
+  },
+  "exp7-filament-lamp-power-resistance-plot": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-filament-lamp-power-resistance-plot.png",
+    "description": "Figure 5: Power (W) and Resistance (Ω) vs Voltage (V) for the filament lamp"
+  },
+  "exp7-photovoltaic-cell-output-plot": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-photovoltaic-cell-output-plot.png",
+    "description": "Figure 6: Photovoltaic cell open-circuit output voltage (V) vs lamp voltage (V)"
+  },
+  "exp7-ldr-output-plot": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-7/exp7-ldr-output-plot.png",
+    "description": "Figure 7: Photoconductive cell (LDR) output voltage (V) vs lamp voltage (V)"
   }
 }
