@@ -1,0 +1,370 @@
+{
+  "id": "exp-7",
+  "title": "Study of Optical Transducer",
+  "labId": "sensor-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "sensor_lab-exp7",
+    "simulationType": "Hardware / Transducer Characterisation",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 90,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "To study the characteristics of a filament lamp by analyzing the variation of current with applied voltage and understanding its non-linear behavior.",
+            "To study the characteristics of a photovoltaic cell by observing the relationship between light intensity and output voltage/current, and evaluating its energy conversion capability.",
+            "To study the characteristics of a photoconductive cell (LDR) by analyzing the change in resistance with respect to incident light intensity."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Component", "Quantity"],
+          "rows": [
+            ["1", "Scientech 2301 TechBook", "1"],
+            ["2", "TechBook Power Supply", "1"],
+            ["3", "Mains Cord", "1"],
+            ["4", "Multimeter", "1"],
+            ["5", "Patch Cords", "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Optical transducers are devices that convert light energy into an electrical signal. These sensors operate over a range of electromagnetic radiation from infrared to ultraviolet and are widely used in measurement, automation, and control systems. They are also known as photoelectric devices. Optical transducers can be broadly classified into two categories: active devices, which generate electrical output directly when exposed to light (such as photovoltaic cells), and passive devices, whose electrical properties change with incident light (such as photoconductive cells)."
+        },
+        {
+          "type": "text",
+          "content": "A filament lamp consists of a tungsten filament enclosed in a glass bulb filled with inert gases. As the applied voltage increases, the filament temperature rises, resulting in increased light intensity. The power supplied to the lamp is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "P = VI = I^2 R = \\frac{V^2}{R}"
+        },
+        {
+          "type": "text",
+          "content": "Since the resistance of the tungsten filament increases with temperature (due to its positive temperature coefficient of resistance), the V-I characteristics of the lamp are nonlinear — it does not obey Ohm's law."
+        },
+        {
+          "type": "text",
+          "content": "A photovoltaic cell is a semiconductor device that converts light energy directly into electrical energy using the photovoltaic effect. When light falls on the PN junction, photons with energy greater than the bandgap generate electron-hole pairs. The built-in electric field at the junction separates these carriers, producing an open-circuit voltage and a short-circuit current. The output current is proportional to light intensity:"
+        },
+        {
+          "type": "equation",
+          "value": "I \\propto \\text{Light Intensity}"
+        },
+        {
+          "type": "text",
+          "content": "The energy conversion efficiency of a photovoltaic cell is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "\\eta = \\frac{P_{out}}{P_{in}} \\times 100\\%"
+        },
+        {
+          "type": "text",
+          "content": "A photoconductive cell (LDR — Light Dependent Resistor) is a passive optical transducer whose resistance decreases with increasing incident light intensity. When photons strike the semiconductor material, they generate additional charge carriers (electron-hole pairs), increasing conductivity and reducing resistance. The resistance-illuminance relationship is approximately:"
+        },
+        {
+          "type": "equation",
+          "value": "R \\propto \\frac{1}{I^{\\gamma}}"
+        },
+        {
+          "type": "text",
+          "content": "where I is the light intensity and γ is a material-dependent constant. In darkness, the resistance is very high (dark resistance), while under strong illumination it decreases significantly due to the increased density of photogenerated charge carriers. Semiconductor optical devices such as photodiodes and phototransistors operate on the same principle of photogenerated carrier control but offer faster response times and higher sensitivity."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp7-scientech2301-kit-setup",
+          "caption": "Figure 1: Experimental kit setup — Scientech 2301 TechBook for Study of Optical Transducers, showing the photovoltaic cell, photoconductive cell, phototransistor, lamp filament, wirewound potentiometer, carbon potentiometer, slide potentiometer, power amplifier, current amplifier, DC amplifier, buffer, comparator, electronic switch, and relay sections.",
+          "role": "kit-photo"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-filament-lamp-circuit",
+          "caption": "Figure 2: Circuit diagram of the filament lamp setup. The wirewound potentiometer (10 kΩ, socket A to +12 V, socket C to GND, wiper B to power amplifier input) drives the power amplifier output to the lamp filament. A voltmeter (−V+) is connected across the lamp and a series ammeter (A) measures current.",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-photovoltaic-cell-circuit",
+          "caption": "Figure 3: Circuit diagram of the photovoltaic cell setup. The filament lamp (driven by wirewound potentiometer and power amplifier) illuminates the photovoltaic cell. A voltmeter is connected across the photovoltaic cell output terminals to measure the open-circuit output voltage.",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-photoconductive-cell-circuit",
+          "caption": "Figure 4: Circuit diagram of the photoconductive cell setup. The filament lamp illuminates the LDR (photoconductive cell). The cell output is connected to the slide potentiometer (10 kΩ, between +5 V and GND, adjusted to ~3 kΩ load resistance). A voltmeter measures the LDR output voltage across the load.",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the circuit as shown in the respective circuit diagrams for each transducer.",
+            "Filament Lamp Setup: Connect socket A of the wirewound potentiometer to +12 V and socket C to ground. Connect socket B (wiper) to the input of the power amplifier. Connect the output of the power amplifier to the filament lamp. Connect a digital multimeter as voltmeter across the lamp and ground, and an ammeter in series with the lamp.",
+            "Photovoltaic Cell Setup: Connect the photovoltaic cell output to the measurement terminals. Connect a digital multimeter to measure the output voltage across the cell. Ensure proper illumination of the cell using the filament lamp.",
+            "Photoconductive Cell Setup: Connect the photoconductive cell output to the slide potentiometer input. Connect the potentiometer between +5 V and ground. Connect a digital multimeter to measure the output voltage. Adjust the potentiometer to set the load resistance to approximately 3 kΩ.",
+            "Place the opaque enclosure over the setup to eliminate external light interference.",
+            "Connect the TechBook Power Supply to the Scientech 2301 kit and switch it ON.",
+            "Set the wirewound potentiometer to minimum initially to ensure zero output voltage.",
+            "Gradually increase the lamp voltage in steps (from 0 V to 10 V) using the potentiometer. At each step, record the filament lamp voltage, current, power, and resistance; the photovoltaic cell open-circuit output voltage; and the LDR output voltage.",
+            "Record all readings systematically in tabular form.",
+            "After completing all observations, switch OFF the power supply."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Table 1: Filament Lamp Characteristics — Voltage, current, power, and calculated resistance recorded for increasing applied voltage."
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Voltage (V)", "Current (A)", "Power (W)", "Resistance (Ω)"],
+          "rows": [
+            ["1",  "1.089",  "0.047", "0.051", "23.17"],
+            ["2",  "2.024",  "0.069", "0.140", "29.33"],
+            ["3",  "3.011",  "0.089", "0.268", "33.83"],
+            ["4",  "4.021",  "0.105", "0.422", "38.30"],
+            ["5",  "5.086",  "0.122", "0.620", "41.69"],
+            ["6",  "6.000",  "0.135", "0.810", "44.44"],
+            ["7",  "7.060",  "0.149", "1.052", "47.38"],
+            ["8",  "8.090",  "0.162", "1.310", "49.94"],
+            ["9",  "9.030",  "0.173", "1.562", "52.20"],
+            ["10", "10.010", "0.184", "1.842", "54.40"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Table 2: Photovoltaic Cell Characteristics — Open-circuit output voltage of the photovoltaic cell recorded as the lamp voltage (and hence illumination intensity) is increased."
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Lamp Voltage (V)", "Open Circuit Output Voltage (V)"],
+          "rows": [
+            ["1",  "0",  "2.07"],
+            ["2",  "1",  "2.08"],
+            ["3",  "2",  "2.09"],
+            ["4",  "3",  "2.10"],
+            ["5",  "4",  "2.11"],
+            ["6",  "5",  "2.14"],
+            ["7",  "6",  "2.18"],
+            ["8",  "7",  "2.24"],
+            ["9",  "8",  "2.29"],
+            ["10", "9",  "2.32"],
+            ["11", "10", "2.37"]
+          ]
+        },
+        {
+          "type": "text",
+          "content": "Table 3: Photoconductive Cell (LDR) Characteristics — Output voltage across the load resistance decreases as the lamp voltage (and hence illumination) increases, reflecting the reduction in LDR resistance with light."
+        },
+        {
+          "type": "table",
+          "headers": ["S. No.", "Lamp Voltage (V)", "LDR Output Voltage (V)"],
+          "rows": [
+            ["1",  "0",  "1.190"],
+            ["2",  "1",  "1.180"],
+            ["3",  "2",  "1.170"],
+            ["4",  "3",  "1.080"],
+            ["5",  "4",  "0.900"],
+            ["6",  "5",  "0.620"],
+            ["7",  "6",  "0.470"],
+            ["8",  "7",  "0.240"],
+            ["9",  "8",  "0.193"],
+            ["10", "9",  "0.020"],
+            ["11", "10", "0.000"]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-filament-lamp-power-resistance-plot",
+          "caption": "Figure 5: Power (W) and Resistance (Ω) vs Voltage (V) for the filament lamp. Both power and resistance increase monotonically with applied voltage, confirming the nonlinear, positive-temperature-coefficient behaviour of the tungsten filament. Resistance rises from 23.17 Ω at 1.089 V to 54.40 Ω at 10.01 V.",
+          "role": "characteristic-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-photovoltaic-cell-output-plot",
+          "caption": "Figure 6: Photovoltaic cell open-circuit output voltage (V) vs lamp voltage (V). The output voltage increases from 2.07 V at zero illumination to 2.37 V at maximum lamp voltage (10 V), showing a nonlinear increase with light intensity — more pronounced at higher lamp voltages.",
+          "role": "characteristic-plot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp7-ldr-output-plot",
+          "caption": "Figure 7: Photoconductive cell (LDR) output voltage (V) vs lamp voltage (V). The output voltage decreases from 1.19 V in darkness to 0.00 V at full illumination (10 V lamp voltage), confirming the inverse relationship between LDR resistance and incident light intensity.",
+          "role": "characteristic-plot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Filament Lamp — Resistance at each operating point is calculated from the measured voltage and current using Ohm's law:"
+        },
+        {
+          "type": "equation",
+          "value": "R = \\frac{V}{I}"
+        },
+        {
+          "type": "text",
+          "content": "For example, at V = 1.089 V, I = 0.047 A: R = 1.089 / 0.047 = 23.17 Ω. At V = 10.010 V, I = 0.184 A: R = 10.010 / 0.184 = 54.40 Ω. The resistance increase from 23.17 Ω to 54.40 Ω (a factor of ~2.35) over the voltage range confirms the positive temperature coefficient of tungsten."
+        },
+        {
+          "type": "text",
+          "content": "Filament Lamp — Power at each point:"
+        },
+        {
+          "type": "equation",
+          "value": "P = V \\times I"
+        },
+        {
+          "type": "text",
+          "content": "At V = 10.010 V, I = 0.184 A: P = 10.010 × 0.184 = 1.842 W (maximum recorded power)."
+        },
+        {
+          "type": "text",
+          "content": "Photovoltaic Cell — Sensitivity (slope) of open-circuit voltage with lamp voltage, calculated from extreme data points:"
+        },
+        {
+          "type": "equation",
+          "value": "S_{PV} = \\frac{V_{oc,max} - V_{oc,min}}{V_{lamp,max} - V_{lamp,min}} = \\frac{2.37 - 2.07}{10 - 0} = \\frac{0.30}{10} = 0.030\\,\\text{V/V}"
+        },
+        {
+          "type": "text",
+          "content": "LDR — The output voltage across the load (RL ≈ 3 kΩ slide potentiometer setting) is given by the voltage divider formed by the LDR resistance and the load resistance:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{out} = V_{supply} \\times \\frac{R_L}{R_{LDR} + R_L}"
+        },
+        {
+          "type": "text",
+          "content": "As illumination increases, RLDR decreases, reducing the fraction RL/(RLDR + RL) and therefore Vout. At maximum illumination (lamp = 10 V), Vout = 0.00 V, implying RLDR ≈ 0 relative to RL at that light level, or the LDR resistance has dropped to a value much smaller than 3 kΩ. At zero illumination, Vout = 1.19 V with a 5 V supply, giving: RLDR = RL × (5/1.19 − 1) = 3000 × 3.202 ≈ 9.6 kΩ (dark resistance)."
+        },
+        {
+          "type": "equation",
+          "value": "R_{LDR,dark} = R_L \\times \\left(\\frac{V_{supply}}{V_{out}} - 1\\right) = 3000 \\times \\left(\\frac{5}{1.19} - 1\\right) \\approx 9606\\,\\Omega \\approx 9.6\\,\\text{k}\\Omega"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The filament lamp exhibited a nonlinear V-I characteristic: as the applied voltage increased from 1.089 V to 10.010 V, the current increased sub-linearly from 0.047 A to 0.184 A. The filament resistance increased from 23.17 Ω to 54.40 Ω, confirming the positive temperature coefficient of tungsten and the non-ohmic behaviour of the lamp.",
+            "The power consumed by the filament lamp increased from 0.051 W to 1.842 W over the measured voltage range, with both power and resistance increasing monotonically as shown in Figure 5.",
+            "The photovoltaic cell generated an open-circuit output voltage of 2.07 V even at zero lamp input (due to ambient residual light inside the enclosure). The output voltage increased to 2.37 V at maximum lamp voltage (10 V), a total variation of 0.30 V, with the increase becoming more pronounced at higher lamp voltages — indicating the nonlinear relationship between illumination and photovoltaic output in this range.",
+            "The photoconductive cell (LDR) output voltage decreased from 1.19 V in near-darkness to 0.00 V at maximum illumination (lamp voltage = 10 V), confirming the inverse relationship between LDR resistance and light intensity. The estimated dark resistance is approximately 9.6 kΩ.",
+            "The LDR response is strongly nonlinear: the output voltage drops rapidly between lamp voltages of 4 V and 9 V (from 0.90 V to 0.02 V), indicating the highest sensitivity in this intermediate illumination range."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The characteristics of three different optical transducers — the filament lamp, photovoltaic cell, and photoconductive cell — were successfully studied using the Scientech 2301 TechBook. The filament lamp exhibited a nonlinear V-I characteristic due to the increase in filament resistance with temperature, confirming its behaviour as a positive temperature coefficient (PTC) device. As the applied voltage increased, the current increased nonlinearly, resulting in an increase in both power dissipation and resistance."
+        },
+        {
+          "type": "text",
+          "content": "The photovoltaic cell generated an increasing output voltage with increasing light intensity, confirming its ability to convert light energy into electrical energy as an active transducer. The photoconductive cell showed a clear decrease in output voltage (and hence resistance) with increasing illumination, verifying its operation as a light-dependent resistor. The plotted graphs for all three devices showed the expected characteristic behaviour, and the experiment successfully demonstrated the working principles of different optical transducers, confirming their suitability for light sensing and measurement applications."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The filament lamp's resistance increased from 23.17 Ω at 1.089 V to 54.40 Ω at 10.010 V — a factor of approximately 2.35. Tungsten has a resistivity that follows the relation ρ(T) = ρ₀[1 + α(T − T₀)]. Estimate the approximate filament temperature at 10 V, given that the temperature coefficient of resistance for tungsten is α ≈ 4.5 × 10⁻³ /°C and the filament resistance at room temperature (25°C) is approximately 10 Ω.\n\n**A:** Using R(T) = R₀[1 + α(T − T₀)]: at 10 V, R = 54.40 Ω, R₀ = 10 Ω, α = 4.5 × 10⁻³ /°C, T₀ = 25°C. Rearranging: T − T₀ = (R/R₀ − 1)/α = (54.40/10 − 1) / (4.5 × 10⁻³) = 4.44 / 0.0045 ≈ 987°C. Therefore T ≈ 25 + 987 ≈ 1012°C. Note: this is a rough estimate using the linear approximation; the actual filament temperature at full incandescent brightness can reach 2500–3000°C, where the resistivity relationship becomes nonlinear and the simple formula underestimates the true temperature.",
+
+            "**Q:** In the photovoltaic cell experiment, the open-circuit voltage at zero lamp input (V = 0) was measured as 2.07 V rather than 0 V. What physical explanation accounts for this non-zero reading, and how would you design the experiment to eliminate or correct for it?\n\n**A:** The non-zero open-circuit voltage at zero lamp input arises from residual ambient light reaching the photovoltaic cell even inside the opaque enclosure — small gaps, reflections from internal surfaces, or the thermal (infrared) emission of the enclosure walls can generate photogenerated carriers and produce a small open-circuit voltage. Additionally, the photovoltaic cell may have a small built-in offset from its own internal dark current characteristics. To eliminate this: (1) improve the light-tightness of the enclosure by using blackened interior surfaces and sealing all gaps; (2) perform a dark measurement with the lamp fully off and zero volts applied, and subtract this offset from all subsequent readings (baseline correction); (3) use a reference cell in the same enclosure without illumination and compute the differential output. The corrected photovoltaic output would then represent only the incremental voltage due to the lamp illumination.",
+
+            "**Q:** The LDR output voltage dropped from 1.19 V to 0.00 V as the lamp voltage increased from 0 V to 10 V. The LDR is connected in a voltage divider with a 3 kΩ load. Calculate the LDR resistance at lamp voltage = 5 V, where the output voltage was 0.62 V, given a 5 V supply.\n\n**A:** From the voltage divider formula Vout = Vsupply × RL / (RLDR + RL): RLDR + RL = Vsupply × RL / Vout = 5 × 3000 / 0.62 = 15000 / 0.62 ≈ 24193.5 Ω. Therefore RLDR = 24193.5 − 3000 ≈ 21193.5 Ω ≈ 21.2 kΩ at lamp voltage = 5 V. Comparing with the dark resistance of ~9.6 kΩ at 0 V lamp: the LDR resistance is actually higher at 5 V lamp than at 0 V in these calculations, which would imply more resistance at moderate light. This apparent inconsistency suggests that the lamp at 0 V (no power) still emits some light, so the '0 V lamp' condition is not complete darkness — the LDR was already partially illuminated. The experiment confirms that the LDR is highly sensitive in the intermediate illumination range (4–9 V lamp), where resistance changes most rapidly.",
+
+            "**Q:** A photovoltaic cell and a photoconductive cell are both sensitive to light, but they are classified differently as active and passive transducers respectively. Explain the fundamental difference in their operating principles and the circuit implications of each classification.\n\n**A:** A photovoltaic cell is an active transducer — it generates its own EMF (open-circuit voltage) and can deliver current to an external load without any external power supply. The photovoltaic effect at the PN junction creates a built-in separation of photogenerated electron-hole pairs: electrons accumulate on the N-side and holes on the P-side, creating a voltage. The cell is essentially a current source whose short-circuit current is proportional to illumination, in parallel with an ideal diode. In a circuit, it is treated like a battery — it can directly power a load. A photoconductive cell (LDR) is a passive transducer — it has no internal EMF and cannot generate power on its own. It simply modulates its resistance in response to light. In a circuit, an external power supply is always required to produce a measurable output — typically the LDR is used in a voltage divider or bridge configuration where the change in resistance is converted to a change in voltage. This fundamental difference means photovoltaic cells are suited for energy harvesting and self-powered sensing, while LDRs are used in powered measurement and control circuits where their resistance variation provides the sensing signal.",
+
+            "**Q:** The filament lamp is used as the light source for both the photovoltaic and photoconductive cell experiments. Discuss two limitations of using a tungsten filament lamp as a calibrated light source in transducer characterisation experiments, and suggest a more suitable alternative.\n\n**A:** Two significant limitations of a filament lamp as a calibrated light source are: (1) Spectral instability with voltage — the colour temperature of the lamp changes significantly with filament temperature (and hence with applied voltage). At low voltages, the lamp emits predominantly infrared radiation; at full voltage, it emits a broader visible and near-IR spectrum. Since photovoltaic cells and LDRs have wavelength-dependent sensitivity (spectral response curves), the relationship between lamp voltage and sensor output is influenced not just by total light power but also by this spectral shift, making it impossible to maintain a spectrally stable calibration across the full voltage range. (2) Thermal drift and warm-up time — the tungsten filament takes time to reach thermal equilibrium after each voltage change. During this warm-up period, the resistance, temperature, and light output are all changing, meaning readings taken immediately after a voltage step are not representative of the steady-state illumination. A more suitable alternative is an LED-based light source: LEDs have a stable, narrow spectral output that does not shift significantly with drive current, reach steady-state output almost instantaneously (microsecond response), and their optical power can be precisely controlled by setting the drive current — making them far superior for calibrated, repeatable transducer characterisation.",
+
+            "**Q:** In this experiment, the photoconductive cell output voltage reaches 0.00 V at a lamp voltage of 10 V, suggesting that the LDR resistance has dropped to near zero. Discuss whether a true resistance of zero is physically achievable in an LDR, and what physical mechanisms set a lower limit on the LDR's illuminated resistance.\n\n**A:** A true zero resistance is not physically achievable in any real LDR. Several physical mechanisms set a lower limit on the minimum (illuminated) resistance: (1) Series resistance — the ohmic contact resistance at the metal-semiconductor interfaces and the resistance of the connecting leads and electrode pads contribute a fixed irreducible resistance regardless of illumination. (2) Bulk conductivity limit — even at saturation photogeneration (where every incoming photon creates an electron-hole pair that contributes to conduction), there is a maximum carrier density limited by the rate of recombination — the steady-state carrier density equals the generation rate divided by the carrier lifetime. Once generation exceeds what recombination can balance, the incremental effect of additional photons diminishes. (3) Carrier mobility — the conductivity is σ = q(n·μₙ + p·μₚ), where μₙ and μₚ are the electron and hole mobilities. These are material constants that set an upper bound on conductivity per carrier. (4) Ohmic heating — at very high illumination and conductivity, the current through the LDR with the supply voltage generates I²R heating that raises the semiconductor temperature, which in turn affects carrier mobility and introduces secondary thermal conductivity effects. Therefore, the measured 0.00 V output at 10 V lamp voltage reflects the resolution limit of the multimeter (which cannot resolve the very small voltage across the low but non-zero LDR resistance) rather than a truly zero LDR resistance."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}
