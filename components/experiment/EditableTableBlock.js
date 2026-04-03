@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useAuth } from '@/context/AuthContext';
-import { saveObservation, getSavedObservations } from '@/lib/db';
+import { saveObservation, getSavedObservations, deleteObservation } from '@/lib/db';
 import styles from './Experiment.module.css';
 
 const PlotPanel = dynamic(() => import('./PlotPanel'), { ssr: false });
@@ -201,12 +201,20 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
         }
     };
 
-    const handleReset = () => {
-        if (confirm("Reset table to its default experimental values? Current changes will be lost.")) {
+    const handleReset = async () => {
+        if (confirm("Reset table to its default experimental values? Current changes will be lost and deleted from the cloud.")) {
             setCurrentRows(block.rows || []);
             setIsEditing(false);
             setIsTweaking(false);
             setPreTweakRows(null);
+
+            if (user) {
+                const { error } = await deleteObservation(user.id, experimentId, sectionId);
+                if (error) console.error('Failed to reset observation in cloud', error);
+            } else {
+                const localKey = `${experimentId}-draftData-${sectionId}`;
+                localStorage.removeItem(localKey);
+            }
         }
     };
 
