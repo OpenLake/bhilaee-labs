@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getRecentlyViewed } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
@@ -12,6 +12,7 @@ export default function HistoryPage() {
     const { user, loading: authLoading } = useAuth();
     const [historyItems, setHistoryItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const timeoutRef = useRef(null);
 
     useEffect(() => {
         if (!authLoading && user) {
@@ -23,12 +24,15 @@ export default function HistoryPage() {
         // Listen for instant updates
         const handleUpdate = () => fetchHistory();
         window.addEventListener('workspace-updated', handleUpdate);
-        return () => window.removeEventListener('workspace-updated', handleUpdate);
+        return () => {
+    window.removeEventListener('workspace-updated', handleUpdate);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+};;
     }, [user, authLoading]);
 
     const fetchHistory = async () => {
         // Safety timeout to prevent infinite "Loading..."
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
             setLoading(false);
             console.warn('Fetch timed out (4s)');
         }, 4000);
@@ -54,7 +58,7 @@ export default function HistoryPage() {
                 setHistoryItems(enriched);
             }
         } finally {
-            clearTimeout(timeout);
+           clearTimeout(timeoutRef.current);
             setLoading(false);
         }
     };

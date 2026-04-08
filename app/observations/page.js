@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getAllSavedObservations } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
@@ -13,6 +13,7 @@ export default function ObservationsPage() {
     const { user, loading: authLoading } = useAuth();
     const [savedTables, setSavedTables] = useState([]);
     const [loading, setLoading] = useState(true);
+    const timeoutRef = useRef(null);
 
     useEffect(() => {
         if (!authLoading && user) {
@@ -23,11 +24,14 @@ export default function ObservationsPage() {
 
         const handleUpdate = () => fetchObservations();
         window.addEventListener('workspace-updated', handleUpdate);
-        return () => window.removeEventListener('workspace-updated', handleUpdate);
+        return () => {
+    window.removeEventListener('workspace-updated', handleUpdate);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+};
     }, [user, authLoading]);
 
     const fetchObservations = async () => {
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
             setLoading(false);
             console.warn('Fetch timed out for observations');
         }, 8000);
@@ -81,7 +85,7 @@ export default function ObservationsPage() {
                 setSavedTables([]);
             }
         } finally {
-            clearTimeout(timeout);
+            clearTimeout(timeoutRef.current);
             setLoading(false);
         }
     };
