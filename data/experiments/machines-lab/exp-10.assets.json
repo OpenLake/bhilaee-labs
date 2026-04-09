@@ -1,6 +1,6 @@
 {
   "exp10-vfd-induction-motor-circuit": {
-    "url": "https://placehold.co/600x400?text=VFD+Induction+Motor+Circuit+Diagram",
-    "caption": "Circuit Diagram for V/f Speed Control of Induction Motor"
+    "path": "/assets/labs/machines-lab/exp-10/exp10_vfd_circuit.png",
+    "description": "Figure 1: V/f operation of a three-phase induction motor using a Variable Frequency Drive."
   }
 }
