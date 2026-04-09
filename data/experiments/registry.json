@@ -627,10 +627,10 @@
         },
         {
           "id": "10",
-          "title": "Experiment 10",
+          "title": "Speed Control of Three-Phase Induction Motor Using VFD with Constant V/f Control",
           "fileName": "exp-10.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Completed",
+          "completeness": 1
         }
       ]
     }
