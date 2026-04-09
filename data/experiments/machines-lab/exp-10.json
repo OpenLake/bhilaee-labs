@@ -107,7 +107,7 @@
         {
           "type": "image",
           "assetId": "exp10-vfd-induction-motor-circuit",
-          "caption": "Figure 1: V/f operation of a three-phase induction motor using a Variable Frequency Drive. The VFD receives the fixed-frequency, fixed-voltage three-phase AC mains supply and outputs a variable-frequency, variable-voltage three-phase supply to the stator windings of the induction motor. The squirrel-cage rotor winding is short-circuited internally.",
+          "caption": "Figure 1: V/f operation of a three-phase induction motor using a Variable Frequency Drive.",
           "role": "circuit-diagram"
         }
       ]
