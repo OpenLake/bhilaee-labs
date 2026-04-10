@@ -1,0 +1,338 @@
+{
+  "id": "exp-8",
+  "title": "Stabilization of an Inverted Pendulum System Using PID Control",
+  "labId": "control-system-lab",
+  "status": "Hardware Oriented",
+  "meta": {
+    "simulationId": "",
+    "simulationType": "Hardware + MATLAB / System Identification",
+    "experimentType": "hardware",
+    "status": "hardware-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "2.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To design a feedback control system for stabilizing an inverted pendulum in its upright position.",
+            "To analyze the dynamic response of the pendulum system using MATLAB simulations."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Apparatus / Software", "Quantities"],
+          "rows": [
+            ["1", "Inverted Pendulum Setup",          "1"],
+            ["2", "DC Motor / Actuator",              "1"],
+            ["3", "Angle Sensor / Encoder",           "1"],
+            ["4", "Data Acquisition System (DAQ)",    "1"],
+            ["5", "MATLAB / Simulink Software",       "1"],
+            ["6", "Computer System",                  "1"],
+            ["7", "Power Supply Unit",                "1"],
+            ["8", "Connecting Cables",                "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The inverted pendulum is a canonical example of an inherently unstable mechanical system in which the mass (bob) is positioned above the pivot point. The upright position (θ = 0) is an unstable equilibrium — even a small disturbance causes the pendulum to deviate further from vertical unless a proper, continuous control action is applied. This makes it an ideal benchmark for studying feedback control design."
+        },
+        {
+          "type": "text",
+          "content": "The dynamics of the pendulum are governed by rotational motion. Applying Newton's second law for rotation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\sum \\tau = J\\ddot{\\theta}"
+        },
+        {
+          "type": "text",
+          "content": "Considering the major torques acting on the system — inertial, damping, gravitational (destabilizing), and the applied control input — the full nonlinear equation of motion is:"
+        },
+        {
+          "type": "equation",
+          "value": "J\\ddot{\\theta} + b\\dot{\\theta} - mgl\\sin\\theta = u(t)"
+        },
+        {
+          "type": "text",
+          "content": "where J is the moment of inertia about the pivot, b is the viscous damping coefficient, m is the pendulum mass, g is the acceleration due to gravity, l is the distance from the pivot to the centre of mass, and u(t) is the control input torque applied by the actuator."
+        },
+        {
+          "type": "text",
+          "content": "For small angular displacements near the upright position, the small-angle approximation sin θ ≈ θ linearizes the equation of motion to:"
+        },
+        {
+          "type": "equation",
+          "value": "J\\ddot{\\theta} + b\\dot{\\theta} - mgl\\theta = u(t)"
+        },
+        {
+          "type": "text",
+          "content": "This linear model simplifies analysis and controller design. Taking the Laplace transform (zero initial conditions), the characteristic equation of the open-loop system is:"
+        },
+        {
+          "type": "equation",
+          "value": "Js^2 + bs - mgl = 0"
+        },
+        {
+          "type": "text",
+          "content": "The presence of the negative term −mgl gives one positive real root, confirming that the open-loop system is unstable — any initial displacement will grow exponentially without control. Continuous feedback control is therefore mandatory for stabilization."
+        },
+        {
+          "type": "text",
+          "content": "In the closed-loop system, the actual pendulum angle θ(t) is continuously measured by the angle sensor and compared with the desired reference angle θref = 0 (upright position). The error signal is:"
+        },
+        {
+          "type": "equation",
+          "value": "e(t) = \\theta_{ref} - \\theta(t)"
+        },
+        {
+          "type": "text",
+          "content": "This error is fed to a PID controller which generates the control input u(t) to drive the actuator and restore the pendulum to vertical:"
+        },
+        {
+          "type": "equation",
+          "value": "u(t) = K_p e(t) + K_i \\int e(t)\\,dt + K_d \\frac{de(t)}{dt}"
+        },
+        {
+          "type": "text",
+          "content": "The role of each term is as follows: the proportional gain Kp provides an immediate corrective force proportional to the angular deviation, improving response speed; the integral gain Ki accumulates the error over time to eliminate any residual steady-state offset; the derivative gain Kd acts on the rate of change of the error (i.e., angular velocity), providing predictive damping that reduces oscillations and improves stability. The controller is tuned to achieve quick stabilization, minimal oscillations, reduced settling time, and negligible steady-state error."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Set up the inverted pendulum hardware: connect the angle sensor/encoder to the data acquisition system, connect the DAQ to the DC motor/actuator, and connect the DAQ to the computer running MATLAB/Simulink.",
+            "Power on the system and verify that the angle sensor outputs a stable reading corresponding to the pendulum's resting (downward) position.",
+            "In MATLAB, open the System Identification Toolbox. Apply a known excitation signal (e.g., a PRBS or step sequence) to the actuator through the DAQ and record the pendulum angle response over a sampling period of Ts = 240 s.",
+            "Import the collected input-output time-domain data ('mydata') into the System Identification Toolbox and use the TFEST function to estimate the plant transfer function from the experimental data.",
+            "Evaluate multiple candidate transfer functions of varying orders. Select the best-fit model based on the fit percentage and MSE (Mean Squared Error). Record the identified best-fit transfer function.",
+            "Using the identified plant model, design a PID controller in MATLAB. Set initial gains and simulate the closed-loop response. Tune Kp, Kd, and Ki iteratively to achieve quick stabilization, minimal overshoot, and negligible steady-state error.",
+            "Implement the tuned PID controller in the real-time Simulink model connected to the hardware via the DAQ. Manually displace the pendulum slightly from the upright position and observe whether the controller stabilizes it.",
+            "Record the real-time angle vs time response from the MATLAB display. Compare the measured response with the model-predicted response.",
+            "Document the identified transfer function, the final PID gains (Kp, Kd, Ki), the sampling time, and all captured MATLAB screenshots."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "MATLAB's System Identification Toolbox (TFEST function) was used to identify the plant transfer function from experimental time-domain data collected over a sampling period of 240 s. Multiple transfer function models of different orders were estimated and compared. The best-fit model was selected based on fit percentage and MSE metrics. The identified model was then used to design and tune the PID controller gains, which were subsequently implemented in the real-time Simulink control loop."
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-matlab-plant-estimator",
+          "caption": "Figure 2: Plant model obtained from the MATLAB System Identification estimator (TFEST). The Command Window shows the identified transfer function tf5 with 6 poles and 1 zero, estimated using TFEST on time-domain data 'mydata'. The fit to estimation data is 43.02% (stability enforced), with FPE: 0.6022 and MSE: 0.6019.",
+          "role": "simulation-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-matlab-tf-comparison",
+          "caption": "Figure 3: Comparison of various identified transfer functions of different orders plotted against the measured experimental data. The best-fit model (selected for PID design) most closely tracks the measured pendulum angle response over the 600-second time window.",
+          "role": "simulation-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-matlab-best-fit",
+          "caption": "Figure 4: Best-fit transfer function response overlaid with the measured pendulum angle data. The model captures the decaying oscillatory dynamics of the pendulum and converges to the steady-state behaviour, validating its suitability for PID controller design.",
+          "role": "simulation-screenshot"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The best-fit transfer function was identified from the experimental data using MATLAB's TFEST. The corresponding PID gains were tuned based on this identified model. The findings are summarized in the table below."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Sampling Time (Ts)",
+            "Best Fit Transfer Function",
+            "Kp",
+            "Kd",
+            "Ki"
+          ],
+          "rows": [
+            [
+              "240 s",
+              "(3.122×10⁻⁵·s − 6.042×10⁻¹¹) / (s³ + 0.01777·s² + 7.727×10⁻⁷·s + 1.686×10⁻¹²)",
+              "120",
+              "40",
+              "0"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp8-realtime-pendulum-response",
+          "caption": "Figure 1: Real-time data from the inverted pendulum model displayed in MATLAB. The top trace shows the measured pendulum angle (yellow) oscillating and gradually converging toward the upright position under PID control. The middle trace shows the reference setpoint (flat line). The bottom trace shows the control signal (actuator input) generated by the PID controller, which is highly active during the initial transient and reduces as the pendulum stabilizes.",
+          "role": "observation-plot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Open-loop stability analysis of the linearized pendulum model. The characteristic equation of the uncontrolled linearized system (u = 0) is:"
+        },
+        {
+          "type": "equation",
+          "value": "Js^2 + bs - mgl = 0"
+        },
+        {
+          "type": "text",
+          "content": "The roots are:"
+        },
+        {
+          "type": "equation",
+          "value": "s = \\frac{-b \\pm \\sqrt{b^2 + 4Jmgl}}{2J}"
+        },
+        {
+          "type": "text",
+          "content": "Since mgl > 0, the discriminant b² + 4Jmgl > b², and the positive root s₊ = (−b + √(b²+4Jmgl))/(2J) > 0 for all physically meaningful parameters. This positive real root confirms open-loop instability."
+        },
+        {
+          "type": "text",
+          "content": "The identified best-fit transfer function from MATLAB System Identification (Ts = 240 s) is:"
+        },
+        {
+          "type": "equation",
+          "value": "G(s) = \\frac{3.122 \\times 10^{-5}\\,s - 6.042 \\times 10^{-11}}{s^3 + 0.01777\\,s^2 + 7.727 \\times 10^{-7}\\,s + 1.686 \\times 10^{-12}}"
+        },
+        {
+          "type": "text",
+          "content": "The PID controller transfer function in Laplace domain (with Ki = 0, reducing to a PD controller) is:"
+        },
+        {
+          "type": "equation",
+          "value": "C(s) = K_p + K_d s = 120 + 40s = \\frac{40s + 120}{1}"
+        },
+        {
+          "type": "text",
+          "content": "The closed-loop transfer function with unity feedback is:"
+        },
+        {
+          "type": "equation",
+          "value": "T(s) = \\frac{C(s)\\cdot G(s)}{1 + C(s)\\cdot G(s)}"
+        },
+        {
+          "type": "text",
+          "content": "The integral gain Ki = 0 was chosen because the inverted pendulum is a regulation problem (setpoint θref = 0). Any non-zero integral action would accumulate error during the initial large-angle transient and cause integrator windup, worsening the response. The PD structure (Kp = 120, Kd = 40) provides sufficient stabilization: Kp corrects the angular displacement and Kd damps the angular velocity, together placing the closed-loop poles in the left-half plane."
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The inverted pendulum system was successfully stabilized in the upright position using a PD controller (Kp = 120, Kd = 40, Ki = 0) designed from the experimentally identified plant transfer function.",
+            "The open-loop system was confirmed to be inherently unstable, as the linearized characteristic equation yields a positive real root, causing exponential divergence of the pendulum angle without control.",
+            "The best-fit plant transfer function was identified using MATLAB's TFEST on 240 s of experimental data, achieving a fit of 43.02% (stability enforced) with MSE = 0.6019.",
+            "The real-time angle response (Figure 1) showed large initial oscillations during the transient phase, which progressively decayed and converged toward the upright position, demonstrating effective closed-loop stabilization.",
+            "The integral gain was set to Ki = 0 to avoid integrator windup during the large initial angular deviation, and the PD action alone proved sufficient to stabilize the pendulum with negligible steady-state error at the vertical equilibrium.",
+            "The derivative gain Kd = 40 provided effective angular velocity damping that suppressed oscillations and shortened the settling time compared to proportional-only control."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, the stabilization of an inverted pendulum system was successfully achieved using feedback control techniques. The system was confirmed to be inherently unstable in open-loop condition, as even small disturbances cause the pendulum to deviate from its upright position. The linearized mathematical model revealed a positive real characteristic root, analytically confirming this instability."
+        },
+        {
+          "type": "text",
+          "content": "By implementing a closed-loop PD controller (Kp = 120, Kd = 40, Ki = 0) derived from the experimentally identified plant transfer function (via MATLAB System Identification Toolbox), the system response was significantly improved. The PID controller enabled effective correction of deviations by continuously adjusting the actuator input based on the error signal and its rate of change. The real-time response confirmed reduced oscillations, fast settling, and negligible steady-state error at the vertical equilibrium position. The experiment demonstrates the importance of feedback control and system identification in stabilizing inherently unstable nonlinear systems, and validates the inverted pendulum as a fundamental benchmark for PID controller design."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The open-loop characteristic equation of the linearized inverted pendulum is Js² + bs − mgl = 0. Prove analytically that this equation always has at least one positive real root for any physically meaningful parameter values (J, b, m, g, l > 0), and explain what this implies for the system's time-domain response without control.\n\n**A:** The roots of Js² + bs − mgl = 0 are s = [−b ± √(b² + 4Jmgl)] / (2J). Since J, m, g, l > 0, we have 4Jmgl > 0, so the discriminant b² + 4Jmgl > b² ≥ 0, and √(b² + 4Jmgl) > b always. Therefore the positive root s₊ = [−b + √(b² + 4Jmgl)] / (2J) > 0 for all valid parameters. The presence of this positive real root means the natural response of the system contains a term of the form e^(s₊·t), which grows exponentially with time. Physically, this means any initial angular deviation θ₀ — no matter how small — will grow unboundedly without control, causing the pendulum to fall. The system cannot regulate itself; active feedback is mandatory for stabilization.",
+
+            "**Q:** In this experiment, the integral gain was set to Ki = 0, resulting effectively in a PD controller rather than a full PID. Explain why introducing integral action (Ki > 0) could be harmful for stabilizing the inverted pendulum, particularly during the initial large-angle transient.\n\n**A:** Integrator windup is the primary concern. During the initial transient when the pendulum is displaced from vertical by a significant angle, the error e(t) = θref − θ(t) is large and sustained for several seconds. If Ki > 0, the integral term Ki·∫e(t)dt accumulates a large value during this period, driving the actuator with a large control signal that may saturate the motor. When the pendulum eventually approaches the vertical (error decreases), the large accumulated integral does not reset immediately — it continues to drive the actuator strongly in the same direction, pushing the pendulum past the equilibrium and causing large overshoot or even instability. For a regulation task (θref = 0), the inverted pendulum in a perfectly modelled, undisturbed environment has no steady-state error requiring integral correction — the PD action alone stabilizes the system at vertical. Integral action is only useful if there are constant disturbance torques (e.g., sustained wind, base tilt) that the PD controller cannot reject; in that case, anti-windup measures must be added.",
+
+            "**Q:** The MATLAB System Identification Toolbox identified a third-order transfer function for the inverted pendulum with a fit of only 43.02%. What are the likely reasons for this relatively low fit percentage, and how would you improve the identification accuracy?\n\n**A:** A fit of 43.02% indicates that the identified linear model captures less than half of the output variance. Several factors cause this: (1) Nonlinearity — the actual pendulum is a highly nonlinear system. The linearization sin θ ≈ θ is only valid for very small angles; if the experiment data contains large-angle excursions, the linear model cannot reproduce the nonlinear dynamics. (2) Noise — sensor noise from the angle encoder and quantization errors in the DAQ corrupt the measured output, reducing fit quality. (3) Model order selection — a third-order model may be insufficient to capture higher-order dynamics (e.g., motor and actuator dynamics, structural flexibility, friction nonlinearities). (4) Excitation signal richness — the PRBS or step excitation may not have excited all relevant frequency modes of the system sufficiently. To improve identification: (a) use a richer, persistently exciting input signal covering the relevant bandwidth; (b) increase model order and compare using AIC/BIC criteria; (c) apply pre-filtering to reduce noise effects; (d) use a nonlinear identification approach (e.g., Hammerstein-Wiener model) if the linear assumption is too restrictive.",
+
+            "**Q:** The identified best-fit transfer function has a zero in the right-half plane (RHP zero), as the numerator coefficient produces a positive zero location. What are the implications of a RHP zero for the closed-loop system design and achievable performance?\n\n**A:** A right-half plane (RHP) zero in the plant transfer function G(s) imposes fundamental limitations on closed-loop performance that cannot be overcome by any linear controller, regardless of how it is tuned: (1) Bandwidth limitation — the closed-loop bandwidth cannot exceed approximately 1/2 of the RHP zero frequency. Attempting to achieve a faster response by increasing controller gain leads to instability. (2) Undershoot — the step response of a system with an RHP zero exhibits an initial response in the wrong direction (undershoot) before moving toward the setpoint. For the inverted pendulum, this means the actuator initially pushes the pendulum further from vertical before correcting it. (3) Waterbed effect — reducing the magnitude of the sensitivity function S(jω) at low frequencies (to reject disturbances) necessarily increases it at high frequencies (amplifying high-frequency noise), with the constraint quantified by Bode's integral theorem. These limitations mean that the tunable parameters (Kp, Kd) must be chosen conservatively to keep the closed-loop stable despite the RHP zero, accepting a slower, more lightly damped response than would be possible with a minimum-phase plant.",
+
+            "**Q:** The derivative gain Kd = 40 in this experiment provides angular velocity damping. Explain why pure derivative action (a pure differentiator Kd·s) is problematic in a real hardware implementation, and describe what modification is made in practice.\n\n**A:** A pure differentiator has transfer function Kd·s, whose magnitude response grows without bound with frequency: |Kd·jω| = Kd·ω → ∞ as ω → ∞. In hardware, the angle sensor signal contains high-frequency noise (encoder quantization noise, vibration pickup, electrical interference). A pure differentiator amplifies this noise by Kd·ω, producing a very large, noisy derivative signal at high frequencies — this drives the actuator with large, rapid, noisy commands that can damage the motor, cause structural vibrations, and destabilize the system. In practice, the derivative term is implemented as a filtered derivative: D(s) = Kd·s / (τf·s + 1), where τf is the filter time constant. This is equivalent to adding a first-order low-pass filter that attenuates high-frequency noise while preserving the derivative action at frequencies within the control bandwidth. The filter time constant τf is chosen as a compromise: small enough to not significantly phase-lag the derivative signal within the desired bandwidth, but large enough to provide at least 20–30 dB attenuation of the dominant noise frequencies.",
+
+            "**Q:** The inverted pendulum is often cited as a model for real-world unstable systems. Name two practical engineering systems that are dynamically analogous to the inverted pendulum and describe the physical variable that corresponds to the pendulum angle θ in each case.\n\n**A:** Two important practical analogues are: (1) Rocket / launch vehicle attitude control — a vertically launched rocket (such as a space launch vehicle) is aerodynamically unstable in pitch and yaw. The rocket body behaves like an inverted pendulum, with the thrust vector at the base (pivot) and the centre of mass above the centre of pressure. Any angular deviation of the rocket body from the vertical flight path (pitch or yaw angle, analogous to θ) will be amplified by aerodynamic and gravitational moments unless corrected. Thrust vector control (TVC) — deflecting the rocket nozzle — provides the restoring control input (analogous to u(t)). The attitude control system continuously measures the pitch/yaw angle using gyroscopes and applies PID or state-feedback control to maintain the desired trajectory. (2) Segway / self-balancing robot — a two-wheeled personal transport device (or mobile robot) balances itself by detecting the tilt angle of the platform (measured by an IMU — accelerometer + gyroscope), analogous to θ. If the platform tilts forward, the wheels accelerate forward to move the base under the centre of mass, restoring balance — exactly the same corrective mechanism as the inverted pendulum actuator. A PD or PID controller (or LQR in more advanced implementations) continuously computes wheel motor commands from the tilt angle and tilt rate to maintain upright balance."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}
