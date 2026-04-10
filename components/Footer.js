@@ -27,7 +27,7 @@ export default function Footer() {
                         <h3 className={styles.title}>Resources</h3>
                         <ul className={styles.linkList}>
                             <li className={styles.linkItem}>
-                                <a href="https://bhilaee-simulator.vercel.app/" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                                <a href="https://simulator.bhilaee.openlake.in/" target="_blank" rel="noopener noreferrer" className={styles.link}>
                                     Circuit Simulator ↗
                                 </a>
                             </li>

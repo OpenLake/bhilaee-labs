@@ -2,8 +2,8 @@
 
 A structured, interactive virtual laboratory platform designed for **Electrical & Electronics Engineering** students at IIT Bhilai. The platform provides comprehensive, digitized experiment guides complete with theory, observations, circuit diagrams, mathematical equations, and seamless, one-click access to an interactive circuit simulator.
 
-**Live Platform →** [bhilaee-labs.vercel.app](https://bhilaee-labs.vercel.app)  
-**Companion Simulator →** [Bhilai EE Circuit Simulator](https://bhilaee-simulator.vercel.app) · [Repository](https://github.com/RavikantiAkshay/basic-simulator)
+**Live Platform →** [https://labs.bhilaee.openlake.in/](https://labs.bhilaee.openlake.in/)  
+**Companion Simulator →** [Bhilai EE Circuit Simulator](https://simulator.bhilaee.openlake.in/) · [Repository](https://github.com/RavikantiAkshay/basic-simulator)
 
 ---
 
@@ -157,7 +157,7 @@ npm install
 ### 3. Environment Configuration
 Create a `.env.local` file in the root directory. You will need Supabase credentials for dashboard features to work locally:
 ```bash
-NEXT_PUBLIC_SIMULATOR_URL=https://bhilaee-simulator.vercel.app
+NEXT_PUBLIC_SIMULATOR_URL=https://simulator.bhilaee.openlake.in
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```

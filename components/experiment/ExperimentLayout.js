@@ -116,7 +116,7 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                         const isSimStatus = experiment.status === 'Simulation Available';
 
                         let simulatorUrl = null;
-                        const defaultSimUrl = process.env.NEXT_PUBLIC_SIMULATOR_URL || 'https://bhilaee-simulator.vercel.app';
+                        const defaultSimUrl = process.env.NEXT_PUBLIC_SIMULATOR_URL || 'https://simulator.bhilaee.openlake.in';
                         if (route && route !== 'default') {
                             simulatorUrl = route;
                         } else if (route === 'default' || isSimStatus) {
