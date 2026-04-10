@@ -1,6 +1,6 @@
 {
   "exp8-matlab-plant-estimator": {
-    "path": "/assets/labs/control-system-lab/exp-8/fig2-matlab-tfest.png",
+    "path": "/assets/labs/control-system-lab/exp-8/fig2-matlab-tfest.jpg",
     "description": "Figure 2: Plant model obtained from the MATLAB System Identification estimator (TFEST)."
   },
   "exp8-matlab-tf-comparison": {
@@ -12,7 +12,7 @@
     "description": "Figure 4: Best-fit transfer function response overlaid with the measured pendulum angle data."
   },
   "exp8-realtime-pendulum-response": {
-    "path": "/assets/labs/control-system-lab/exp-8/fig1-realtime-response.png",
+    "path": "/assets/labs/control-system-lab/exp-8/fig1-realtime-response.jpg",
     "description": "Figure 1: Real-time data from the inverted pendulum model displayed in MATLAB."
   }
 }
