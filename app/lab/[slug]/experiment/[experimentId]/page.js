@@ -6,6 +6,7 @@ import ExperimentLayout from '@/components/experiment/ExperimentLayout';
 import ContentBlock from '@/components/experiment/ContentBlock';
 import PrintSettingsWrapper from '@/components/experiment/PrintSettingsWrapper';
 import styles from '@/components/experiment/Experiment.module.css';
+import ExportButtonClient from "@/components/experiment/ExportButtonClient";
 
 /**
  * Validates and retrieves parameters (slug, experimentId).
@@ -28,9 +29,9 @@ export default async function ExperimentPage({ params }) {
 
     // Standardize ID to include labSlug to avoid collisions
     const fullExperimentId = `${slug}/${experimentId}`;
-
     return (
         <ExperimentLayout experiment={experiment} fullExperimentId={fullExperimentId}>
+            <ExportButtonClient experiment={experiment} />
             {SECTION_ORDER.map((sectionKey) => {
                 const section = experiment.sections[sectionKey];
                 // Safety check: if section data is missing for some reason
