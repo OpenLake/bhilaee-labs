@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getStarredExperimentsDetailed } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
@@ -12,6 +12,7 @@ export default function StarredPage() {
     const { user, loading: authLoading } = useAuth();
     const [starredItems, setStarredItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const timeoutRef = useRef(null);
 
     useEffect(() => {
         if (!authLoading && user) {
@@ -23,12 +24,15 @@ export default function StarredPage() {
         // Listen for instant updates
         const handleUpdate = () => fetchStarred();
         window.addEventListener('workspace-updated', handleUpdate);
-        return () => window.removeEventListener('workspace-updated', handleUpdate);
+        return () => {
+    window.removeEventListener('workspace-updated', handleUpdate);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+};
     }, [user, authLoading]);
 
     const fetchStarred = async () => {
         // Safety timeout to prevent infinite "Loading..."
-        const timeout = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
             setLoading(false);
             console.warn('Fetch timed out (4s)');
         }, 4000);
@@ -61,7 +65,7 @@ export default function StarredPage() {
                 setStarredItems(enriched);
             }
         } finally {
-            clearTimeout(timeout);
+            clearTimeout(timeoutRef.current);
             setLoading(false);
         }
     };
