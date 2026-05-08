@@ -56,23 +56,47 @@ export default function ObservationsPage() {
 
                     // Fetch full JSON using Server Action
                     const expData = await fetchExperimentData(labId, eId);
-                    if (!expData || !expData.sections || !expData.sections[obs.section_id]) return null;
-
-                    const section = expData.sections[obs.section_id];
-                    const tableBlock = section.content?.find(b => b.type === 'table');
                     
-                    // Fallback to empty structure if no table found (in case of schema changes)
-                    const headers = tableBlock?.headers || [];
+                    // Bypass section check for note-readings
+                    if (obs.section_id !== 'note-readings' && (!expData || !expData.sections || !expData.sections[obs.section_id])) {
+                        return null;
+                    }
+
+                    let headers = [];
+                    let rows = [];
+                    let sectionTitle = obs.section_id;
+                    let linkUrl = `/lab/${labId}/experiment/${eId}`;
+
+                    if (obs.section_id === 'note-readings') {
+                        sectionTitle = 'Custom Readings';
+                        linkUrl = '/readings'; // Link back to Note Readings page
+                        
+                        // Parse embedded headers for Note Readings
+                        if (obs.data && !Array.isArray(obs.data) && obs.data.headers && obs.data.rows) {
+                            headers = obs.data.headers;
+                            rows = obs.data.rows;
+                        } else {
+                            // Fallback if data is malformed
+                            rows = Array.isArray(obs.data) ? obs.data : [];
+                            headers = Array.from({ length: rows[0]?.length || 0 }, (_, i) => `Col ${i+1}`);
+                        }
+                    } else {
+                        const section = expData.sections[obs.section_id];
+                        sectionTitle = section.title || obs.section_id;
+                        const tableBlock = section.content?.find(b => b.type === 'table');
+                        headers = tableBlock?.headers || [];
+                        rows = obs.data || [];
+                    }
 
                     return {
                         id: `${obs.experiment_id}-${obs.section_id}`,
                         experimentName: foundExpMeta.name,
                         labName: foundExpMeta.labName,
-                        sectionTitle: section.title || obs.section_id,
+                        sectionTitle: sectionTitle,
                         updatedAt: obs.updated_at,
                         headers: headers,
-                        rows: obs.data || [],
-                        linkUrl: `/lab/${labId}/experiment/${eId}`
+                        rows: rows,
+                        linkUrl: linkUrl
                     };
                 }));
 

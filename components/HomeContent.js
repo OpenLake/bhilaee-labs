@@ -135,10 +135,6 @@ export default function HomeContent({ labs, allExperiments }) {
 
     return (
         <>
-            <div className="guide-teaser">
-                <span>Confused about how to use Bhilai EE Labs? Master the platform and discover all our powerful features with our comprehensive interactive Platform Guide</span>
-                <span className="guide-teaser-arrow">⤴</span>
-            </div>
             <section className="hero">
                 <div className="hero-pill">
                     <span className="hero-pill-icon">🎓</span> IIT Bhilai
