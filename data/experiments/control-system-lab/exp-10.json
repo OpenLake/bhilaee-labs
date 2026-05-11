@@ -84,7 +84,7 @@
         {
           "type": "image",
           "assetId": "exp10-nvis-servo-hardware-setup",
-          "caption": "Hardware setup: NVIS 630 DAQ connected via USB to the PC. The DAQ's position input terminals are wired to the servo motor position input on the NVIS 3000A kit. DC power supply (+12 V, −12 V, +5 V) provides power to the kit. The servo motor (RECKON 7W-47E) with position output and sensor-2 output terminals is mounted on the NVIS 3000A panel.",
+          "caption": "Hardware setup diagram: NVIS 630 DAQ connected via USB to the PC. The DAQ's position input terminals are wired to the servo motor position input on the NVIS 3000A kit. DC power supply (+12 V, −12 V, +5 V) provides power to the kit.",
           "role": "hardware-photo"
         },
         {
@@ -140,14 +140,20 @@
         },
         {
           "type": "image",
+          "assetId": "exp10-nvis-servo-physical-setup",
+          "caption": "Figure 1: Physical setup showing the RECKON 7W-47E servo motor and position input terminals mounted on the NVIS 3000A panel.",
+          "role": "observation-photo"
+        },
+        {
+          "type": "image",
           "assetId": "exp10-nvis-servo-angle-display",
-          "caption": "Figure 1: NVIS 3000A Servo Motor Control software display showing the real-time servo motor angle reading of 065° during position control. The COMS connection (NVIS 630 DAQ) is confirmed as connected.",
+          "caption": "Figure 2: NVIS 3000A Servo Motor Control software display showing the real-time servo motor angle reading of 065° during position control. The COMS connection (NVIS 630 DAQ) is confirmed as connected.",
           "role": "observation-screenshot"
         },
         {
           "type": "image",
           "assetId": "exp10-position-vs-time-plot",
-          "caption": "Figure 2: Servo motor position (in normalized units) vs time response from Simulink scope. The output rises rapidly from 0 to the desired setpoint of 10 units within approximately 2 seconds, showing a smooth first-order-like response with negligible overshoot and minimal steady-state error, confirming precise and stable position tracking under closed-loop control.",
+          "caption": "Figure 3: Servo motor position (in normalized units) vs time response from Simulink scope. The output rises rapidly from 0 to the desired setpoint of 10 units within approximately 2 seconds, showing a smooth first-order-like response with negligible overshoot and minimal steady-state error, confirming precise and stable position tracking under closed-loop control.",
           "role": "observation-plot"
         }
       ]
