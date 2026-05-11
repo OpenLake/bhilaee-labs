@@ -395,10 +395,10 @@
         },
         {
           "id": "9",
-          "title": "Experiment 9",
+          "title": "PID Controller Tuning Using Ziegler–Nichols Method",
           "fileName": "exp-9.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Software Oriented",
+          "completeness": 1
         },
         {
           "id": "10",

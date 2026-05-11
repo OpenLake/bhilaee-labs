@@ -1,0 +1,42 @@
+{
+  "exp9-simulink-block-diagrams-g1": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig-simulink-block-diagrams.png",
+    "description": "Simulink block diagram for G1 plant transfer function."
+  },
+  "exp9-simulink-block-diagrams-g2": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig-simulink-block-diagrams-g2.png",
+    "description": "Simulink block diagram for G2 plant transfer function."
+  },
+  "exp9-g1-ultimate-gain": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig1-g1-ultimate-gain.png",
+    "description": "Figure 1: G1(s) — Sustained oscillations at ultimate gain."
+  },
+  "exp9-g1-p-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig2-g1-p-controller.png",
+    "description": "Figure 2: G1(s) — P Controller response."
+  },
+  "exp9-g1-pi-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig3-g1-pi-controller.png",
+    "description": "Figure 3: G1(s) — PI Controller response."
+  },
+  "exp9-g1-pid-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig4-g1-pid-controller.png",
+    "description": "Figure 4: G1(s) — PID Controller response."
+  },
+  "exp9-g2-ultimate-gain": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig5-g2-ultimate-gain.png",
+    "description": "Figure 5: G2(s) — Sustained oscillations at ultimate gain."
+  },
+  "exp9-g2-p-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig6-g2-p-controller.png",
+    "description": "Figure 6: G2(s) — P Controller response."
+  },
+  "exp9-g2-pi-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig7-g2-pi-controller.png",
+    "description": "Figure 7: G2(s) — PI Controller response."
+  },
+  "exp9-g2-pid-controller": {
+    "path": "/assets/labs/control-system-lab/exp-9/fig8-g2-pid-controller.png",
+    "description": "Figure 8: G2(s) — PID Controller response."
+  }
+}
