@@ -1,18 +1,22 @@
 {
   "exp10-nvis-servo-hardware-setup": {
     "path": "/assets/labs/control-system-lab/exp-10/fig1-hardware-setup.png",
-    "description": "Hardware setup: NVIS 630 DAQ connected to NVIS 3000A kit and servo motor."
+    "description": "Hardware setup diagram: NVIS 630 DAQ connected to NVIS 3000A kit and servo motor."
   },
   "exp10-simulink-control-diagram": {
     "path": "/assets/labs/control-system-lab/exp-10/fig2-simulink-diagram.png",
     "description": "Simulink control block diagram for servo position control."
   },
   "exp10-nvis-servo-angle-display": {
-    "path": "/assets/labs/control-system-lab/exp-10/fig3-servo-angle-display.png",
+    "path": "/assets/labs/control-system-lab/exp-10/fig3-servo-angle-display.jpg",
     "description": "NVIS 3000A Servo Motor Control software display."
   },
+  "exp10-nvis-servo-physical-setup": {
+    "path": "/assets/labs/control-system-lab/exp-10/fig4-physical-setup.png",
+    "description": "Physical hardware setup showing the servo motor and position input."
+  },
   "exp10-position-vs-time-plot": {
-    "path": "/assets/labs/control-system-lab/exp-10/fig4-position-vs-time.png",
+    "path": "/assets/labs/control-system-lab/exp-10/fig5-position-vs-time.png",
     "description": "Servo motor position vs time response from Simulink scope."
   }
 }
