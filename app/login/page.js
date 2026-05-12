@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import styles from './Login.module.css';
 
@@ -13,6 +13,15 @@ export default function LoginPage() {
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
     const router = useRouter();
+    const searchParams = useSearchParams();
+
+    // Show error if redirected from a failed OAuth callback
+    useEffect(() => {
+        const callbackError = searchParams.get('error');
+        if (callbackError === 'auth_callback_failed') {
+            setError('Google sign-in failed. Please try again.');
+        }
+    }, [searchParams]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -34,7 +43,7 @@ export default function LoginPage() {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: window.location.origin
+                redirectTo: `${window.location.origin}/auth/callback`
             }
         });
         if (error) setError(error.message);
