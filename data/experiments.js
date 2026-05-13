@@ -67,8 +67,10 @@ export async function getExperiment(labSlug, experimentId) {
         }
 
     } catch (error) {
-        console.error(`ERROR loading content for ${labSlug}/${experimentId}:`, error);
-        console.error(`Current working directory: ${process.cwd()}`);
+        // Only log error if this wasn't a 'Guide Only' experiment (which is expected to use the skeleton)
+        if (experimentMeta.status !== 'Guide Only') {
+            console.error(`ERROR loading content for ${labSlug}/${experimentId}:`, error);
+        }
         // Fallback to skeleton (already created)
     }
 

@@ -142,10 +142,11 @@ export default function PreferencesClient() {
 
     const handleLabPinToggle = (labId) => {
         setAppSettings(prev => {
-            const isPinned = prev.pinnedLabs.includes(labId);
+            const pinnedLabs = prev.pinnedLabs || [];
+            const isPinned = pinnedLabs.includes(labId);
             const newPins = isPinned 
-                ? prev.pinnedLabs.filter(id => id !== labId)
-                : [...prev.pinnedLabs, labId];
+                ? pinnedLabs.filter(id => id !== labId)
+                : [...pinnedLabs, labId];
             return { ...prev, pinnedLabs: newPins };
         });
     };
@@ -163,7 +164,7 @@ export default function PreferencesClient() {
                     full_name: profile.name,
                     roll_number: profile.rollNumber,
                     theme: appSettings.theme,
-                    default_lab: appSettings.pinnedLabs.join(','),
+                    default_lab: (appSettings.pinnedLabs || []).join(','),
                     print_preferences: printPrefs
                 });
                 if (error) throw error;
@@ -314,7 +315,7 @@ export default function PreferencesClient() {
                                 <label>Priority laboratory access (Pinned)</label>
                                 <div className={styles.labTagGroup}>
                                     {labs.map(lab => {
-                                        const isPinned = appSettings.pinnedLabs.includes(lab.id);
+                                        const isPinned = (appSettings.pinnedLabs || []).includes(lab.id);
                                         return (
                                             <div 
                                                 key={lab.id} 
