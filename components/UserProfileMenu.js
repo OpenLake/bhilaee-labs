@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import styles from './Header.module.css';
+import styles from './UserProfileMenu.module.css';
 import PlatformGuideModal from './PlatformGuideModal';
 
 export default function UserProfileMenu() {
@@ -60,48 +60,10 @@ export default function UserProfileMenu() {
 
                     <div className={styles.divider}></div>
 
-                    {/* Group 1: Lab Resources */}
-                    <button 
-                        className={styles.dropdownItem} 
-                        onClick={() => {
-                            setIsOpen(false);
-                            setIsGuideOpen(true);
-                        }}
-                    >
-                        <span className={styles.menuIcon}>🔭</span>
-                        Platform Guide
-                    </button>
-                    <Link href="/starred" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>⭐</span>
-                        Starred Experiments
-                    </Link>
-                    <Link href="/history" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>🕒</span>
-                        Recently Viewed
-                    </Link>
-                    <Link href="/glossary" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>🧠</span>
-                        Viva & Glossary Prep
-                    </Link>
-                    <Link href="/gallery" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>🖼️</span>
-                        Circuit Diagram Gallery
-                    </Link>
-                    <Link href="/observations" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>📊</span>
-                        Saved Observations
-                    </Link>
-
-                    <div className={styles.divider}></div>
-
-                    {/* Group 2: App Settings & Support */}
+                    {/* Group 1: App Settings */}
                     <Link href="/preferences" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>⚙️</span>
                         Preferences
-                    </Link>
-                    <Link href="/support" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>💬</span>
-                        Support Hub
                     </Link>
 
                     <div className={styles.divider}></div>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import SearchBar from './SearchBar';
 import ExperimentCard from './ExperimentCard';
+import { HoverEffect } from './ui/card-hover-effect';
 import styles from './SearchBar.module.css';
 
 // Simple SVG Icons for the Labs
@@ -179,11 +180,14 @@ export default function HomeContent({ labs, allExperiments }) {
                     </div>
                 ) : (
                     /* Normal labs grid (Sorted) */
-                    <div className="labs-grid" data-tour="labs-grid">
-                        {sortedLabs.map((lab) => {
+                    /* Normal labs grid (Sorted) */
+                    <HoverEffect 
+                        items={sortedLabs}
+                        className="labs-grid"
+                        renderItem={(lab) => {
                             const isPinned = pinnedIds.includes(lab.id);
                             return (
-                                <Link key={lab.id} href={`/lab/${lab.id}`} className={`lab-card ${isPinned ? 'lab-card-pinned' : ''}`}>
+                                <Link href={`/lab/${lab.id}`} className={`lab-card ${isPinned ? 'lab-card-pinned' : ''}`} style={{ margin: 0, height: '100%' }}>
                                     <div className="lab-card-header">
                                         <div className="lab-icon-box">
                                             <LabIcon type={lab.icon} />
@@ -211,8 +215,8 @@ export default function HomeContent({ labs, allExperiments }) {
                                     </div>
                                 </Link>
                             );
-                        })}
-                    </div>
+                        }}
+                    />
                 )}
             </section>
         </>
