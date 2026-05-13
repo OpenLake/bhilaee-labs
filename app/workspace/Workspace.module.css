@@ -1,0 +1,213 @@
+.pageWrapper {
+    display: flex;
+    min-height: calc(100vh - 65px);
+    background: var(--bg-color);
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--bg-color);
+    border-right: 1px solid var(--border-color);
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 65px;
+    height: calc(100vh - 65px);
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.navItem:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+}
+
+.activeNavItem {
+    background: var(--bg-secondary);
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.navIcon {
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+.sidebarHeader {
+    padding: 0 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.sidebarHeader h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.sidebarHeader p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.workspaceContainer {
+    flex: 1;
+    padding: 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.titleSection h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.syncBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-color);
+    width: fit-content;
+}
+
+.syncIcon {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.workspaceCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.workspaceCard:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cardIconBox {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.workspaceCard:hover .cardIconBox {
+    border-color: var(--secondary-color);
+    background: rgba(var(--secondary-color-rgb), 0.1);
+}
+
+.cardIcon {
+    font-size: 28px;
+    color: var(--secondary-color);
+}
+
+.cardContent h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.workspaceCard:hover h2 {
+    color: var(--secondary-color);
+}
+
+.cardContent p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.cardGradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(var(--secondary-color-rgb), 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.workspaceCard:hover .cardGradient {
+    opacity: 1;
+}

@@ -1,224 +1,173 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/context/AuthContext';
-import { submitSupportTicket } from '@/lib/db';
-import styles from './Support.module.css';
+import HubSidebar from '@/components/HubSidebar';
+import styles from '../hub-layout.module.css';
 
 export default function SupportPage() {
-    const { user } = useAuth();
-    const [category, setCategory] = useState('simulation');
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [status, setStatus] = useState({ type: '', message: '' });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setStatus({ type: '', message: '' });
-
-        const formData = new FormData(e.target);
-        const ticketData = {
-            userId: user?.id || null,
-            category: category,
-            severity: formData.get('severity'),
-            subject: formData.get('subject'),
-            message: formData.get('message'),
-            contextUrl: formData.get('contextUrl')
-        };
-
-        const { error } = await submitSupportTicket(ticketData);
-
-        if (error) {
-            setStatus({ type: 'error', message: 'Failed to submit ticket. Please try again later.' });
-        } else {
-            setStatus({ type: 'success', message: 'Your ticket has been submitted successfully! We will look into it.' });
-            e.target.reset();
-            setCategory('simulation');
-        }
-        setIsSubmitting(false);
+    const handleOpenGuide = () => {
+        window.dispatchEvent(new CustomEvent('open-platform-guide'));
     };
 
+    const faqs = [
+        { q: "How do I reset a simulation module?", a: "Navigate to the top toolbar of any active lab environment and click the 'Purge Data' icon to restore default parameters.", icon: "refresh" },
+        { q: "Troubleshooting telemetry lag", a: "If live sensor data is lagging, ensure your connection supports WebSockets and try toggling the 'Low Bandwidth Mode' in Settings.", icon: "wifi_off" },
+        { q: "Where are my auto-graded results?", a: "Results are processed chronologically. Check the 'Submissions' tab on the left navigation panel for detailed rubrics.", icon: "grading" },
+        { q: "Adding custom components", a: "Only instructors can upload custom SPICE models. Students must use the approved components listed in the right-hand repository drawer.", icon: "extension" }
+    ];
+
     return (
-        <main className={styles.container}>
-            <nav className={styles.breadcrumb}>
-                <Link href="/">← Back to Home</Link>
-                <span> / Support Hub</span>
-            </nav>
+        <div className={styles.pageWrapper}>
+            <HubSidebar activeTab="support" />
 
-            <header className={styles.hero}>
-                <div className={styles.heroText}>
-                    <h1 className={styles.heroTitle}>How can we help?</h1>
-                    <p className={styles.heroSubtitle}>Report bugs, suggest features, or let us know if a simulation isn't working as expected.</p>
-                </div>
-                <div className={styles.heroDecoration}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                    </svg>
-                </div>
-            </header>
+            <main className={styles.contentContainer}>
+                {/* Hero Header - Theme Aware Background */}
+                <header style={{ 
+                    marginBottom: '3rem', 
+                    borderRadius: '24px', 
+                    background: 'var(--bg-secondary)', 
+                    backgroundImage: 'linear-gradient(rgba(var(--secondary-color-rgb), 0.05), rgba(var(--secondary-color-rgb), 0.05)), url("https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80")', 
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    padding: '3.5rem',
+                    border: '1px solid var(--border-color)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    minHeight: '220px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
+                    {/* Overlay to ensure readability in both themes */}
+                    <div style={{ 
+                        position: 'absolute', inset: 0, 
+                        background: 'var(--bg-secondary)', 
+                        opacity: 0.85, zIndex: 1 
+                    }}></div>
 
-            <div className={styles.grid}>
-                
-                <div className={styles.ticketWrapper}>
-                    {status.message && (
-                        <div className={`${styles.statusBanner} ${status.type === 'success' ? styles.success : styles.error}`}>
-                            {status.type === 'success' ? '✅' : '❌'} {status.message}
+                    <div style={{ position: 'relative', zIndex: 10, maxWidth: '750px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--secondary-color)', marginBottom: '1.25rem' }}>
+                            <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>support_agent</span>
+                            <span style={{ fontSize: '0.9rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Help Desk</span>
                         </div>
-                    )}
+                        <h1 className={styles.title} style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', color: 'var(--primary-color)' }}>Support Center</h1>
+                        <p className={styles.description} style={{ color: 'var(--text-color)', fontSize: '1.2rem', opacity: 0.9 }}>
+                            Access technical assistance, report anomalies in your simulation environments, or explore comprehensive platform guides.
+                        </p>
+                    </div>
+                </header>
 
-                    <form className={styles.premiumForm} onSubmit={handleSubmit} data-tour="support-form">
+                <div className={styles.bentoGrid}>
+                    {/* Path 1: Support Hub */}
+                    <div className={`${styles.bentoCard} ${styles.span5}`}>
+                        <div style={{ 
+                            position: 'absolute', top: '0', right: '0', 
+                            padding: '24px', opacity: 0.05, pointerEvents: 'none' 
+                        }}>
+                            <span className="material-symbols-outlined" style={{ fontSize: '150px', color: 'var(--primary-color)' }}>engineering</span>
+                        </div>
+                        <div className={styles.cardIconBox} style={{ color: 'var(--secondary-color)', background: 'rgba(var(--secondary-color-rgb), 0.1)' }}>
+                            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>confirmation_number</span>
+                        </div>
+                        <h2 className={styles.cardTitle}>Support Hub</h2>
+                        <p className={styles.cardDescription}>Submit a ticket or report an issue. Our engineering team is on standby to assist with hardware interfacing errors or calculation engine faults.</p>
                         
-                        <div className={styles.formSectionBlock}>
-                            <label className={styles.sectionLabel}>What kind of issue is this?</label>
-                            <div className={styles.categoryGrid}>
-                                
-                                <label className={styles.categoryCard}>
-                                    <input 
-                                        type="radio" 
-                                        name="category" 
-                                        value="simulation" 
-                                        checked={category === 'simulation'}
-                                        onChange={() => setCategory('simulation')}
-                                    />
-                                    <div className={styles.cardContent}>
-                                        <span className={styles.catIcon}>⚙️</span>
-                                        <span className={styles.catText}>Simulation</span>
-                                    </div>
-                                </label>
+                        <Link href="/support/hub" style={{ textDecoration: 'none', marginTop: 'auto' }}>
+                            <button style={{ 
+                                width: '100%', 
+                                background: 'linear-gradient(135deg, var(--secondary-color), #23005c)',
+                                color: 'white', padding: '14px', borderRadius: '12px', border: 'none',
+                                fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                                justifyContent: 'center', gap: '10px', boxShadow: '0 4px 15px rgba(0, 99, 151, 0.3)',
+                                transition: 'transform 0.2s'
+                            }}>
+                                Open New Ticket
+                                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                            </button>
+                        </Link>
+                    </div>
 
-                                <label className={styles.categoryCard}>
-                                    <input 
-                                        type="radio" 
-                                        name="category" 
-                                        value="content_error"
-                                        checked={category === 'content_error'}
-                                        onChange={() => setCategory('content_error')}
-                                    />
-                                    <div className={styles.cardContent}>
-                                        <span className={styles.catIcon}>📝</span>
-                                        <span className={styles.catText}>Content/Typo</span>
-                                    </div>
-                                </label>
-
-                                <label className={styles.categoryCard}>
-                                    <input 
-                                        type="radio" 
-                                        name="category" 
-                                        value="ui_issue"
-                                        checked={category === 'ui_issue'}
-                                        onChange={() => setCategory('ui_issue')}
-                                    />
-                                    <div className={styles.cardContent}>
-                                        <span className={styles.catIcon}>🐛</span>
-                                        <span className={styles.catText}>Bug/UI</span>
-                                    </div>
-                                </label>
-
-                                <label className={styles.categoryCard}>
-                                    <input 
-                                        type="radio" 
-                                        name="category" 
-                                        value="feature_request"
-                                        checked={category === 'feature_request'}
-                                        onChange={() => setCategory('feature_request')}
-                                    />
-                                    <div className={styles.cardContent}>
-                                        <span className={styles.catIcon}>💡</span>
-                                        <span className={styles.catText}>Idea</span>
-                                    </div>
-                                </label>
-
+                    {/* Path 2: Platform Guide */}
+                    <div className={`${styles.bentoCard} ${styles.span7}`}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                            <div className={styles.cardIconBox} style={{ color: 'var(--secondary-color)', background: 'rgba(var(--secondary-color-rgb), 0.1)' }}>
+                                <span className="material-symbols-outlined">menu_book</span>
                             </div>
+                            <span style={{ 
+                                background: 'var(--bg-secondary)', padding: '6px 14px', 
+                                borderRadius: '20px', fontSize: '0.75rem', color: 'var(--text-muted)',
+                                fontWeight: '600', border: '1px solid var(--border-color)'
+                            }}>
+                                v2.4 Documentation
+                            </span>
+                        </div>
+                        <h2 className={styles.cardTitle}>Platform Guide</h2>
+                        <p className={styles.cardDescription} style={{ maxWidth: '90%' }}>Interactive walkthrough of features. Master the oscilloscope modules, circuit mapping tools, and data export pipelines.</p>
+                        
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '2rem' }}>
+                            <a href="#" style={{ textDecoration: 'none' }}>
+                                <div style={{ 
+                                    padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)',
+                                    display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.95rem',
+                                    fontWeight: '600', color: 'var(--text-color)', transition: 'all 0.2s',
+                                    background: 'var(--bg-color)'
+                                }}>
+                                    <span className="material-symbols-outlined" style={{ color: 'var(--secondary-color)', fontSize: '22px' }}>speed</span>
+                                    Oscilloscope Basics
+                                </div>
+                            </a>
+                            <a href="#" style={{ textDecoration: 'none' }}>
+                                <div style={{ 
+                                    padding: '14px', borderRadius: '12px', border: '1px solid var(--border-color)',
+                                    display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.95rem',
+                                    fontWeight: '600', color: 'var(--text-color)', transition: 'all 0.2s',
+                                    background: 'var(--bg-color)'
+                                }}>
+                                    <span className="material-symbols-outlined" style={{ color: 'var(--secondary-color)', fontSize: '22px' }}>cable</span>
+                                    Circuit Wiring Logic
+                                </div>
+                            </a>
                         </div>
 
-                        <div className={styles.formRow}>
-                            <div className={styles.inputGroup}>
-                                <label htmlFor="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" placeholder="E.g., Graph not plotting in Exp 4" required suppressHydrationWarning />
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <label htmlFor="severity">Severity</label>
-                                <div className={styles.selectWrapper}>
-                                    <select id="severity" name="severity" required defaultValue="medium" suppressHydrationWarning>
-                                        <option value="low">Low (Minor typo)</option>
-                                        <option value="medium">Medium (UI glitch)</option>
-                                        <option value="high">High (Sim broken)</option>
-                                        <option value="critical">Critical (Site down/Data loss)</option>
-                                    </select>
+                        <button 
+                            onClick={handleOpenGuide}
+                            style={{ 
+                                width: 'fit-content', background: 'var(--bg-color)', 
+                                border: '1px solid var(--border-color)', color: 'var(--secondary-color)',
+                                padding: '12px 24px', borderRadius: '12px', fontWeight: '700', cursor: 'pointer',
+                                display: 'flex', alignItems: 'center', gap: '10px', transition: 'all 0.2s'
+                            }}>
+                            Launch Interactive Guide
+                            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>explore</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* FAQ Section */}
+                <section style={{ marginTop: '4rem', padding: '3.5rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem' }}>
+                        <span className="material-symbols-outlined" style={{ color: 'var(--secondary-color)', fontSize: '32px' }}>lightbulb</span>
+                        <h3 style={{ fontSize: '1.8rem', fontWeight: '800', margin: 0, color: 'var(--primary-color)' }}>Quick Tips & FAQs</h3>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+                        {faqs.map(faq => (
+                            <div key={faq.q} style={{ display: 'flex', gap: '1.5rem' }}>
+                                <div style={{ 
+                                    width: '44px', height: '44px', borderRadius: '12px', 
+                                    background: 'var(--bg-color)', border: '1px solid var(--border-color)',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+                                }}>
+                                    <span className="material-symbols-outlined" style={{ fontSize: '24px', color: 'var(--secondary-color)' }}>{faq.icon}</span>
+                                </div>
+                                <div>
+                                    <h4 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '8px', color: 'var(--primary-color)' }}>{faq.q}</h4>
+                                    <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: 0 }}>{faq.a}</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="context-url">Context URL <span className={styles.optionalTag}>Optional</span></label>
-                            <div className={styles.urlInputWrapper}>
-                                <span className={styles.urlPrefix}>bhilaeelabs.in/</span>
-                                <input type="text" id="context-url" name="contextUrl" placeholder="lab/devices-and-circuits/experiment/4" suppressHydrationWarning />
-                            </div>
-                        </div>
-
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="message">Detailed Description</label>
-                            <textarea id="message" name="message" rows="6" placeholder="What steps led to this issue? What did you expect to happen?" required></textarea>
-                        </div>
-
-                        <div className={styles.formFooter}>
-                            <button type="submit" className={styles.submitBtn} disabled={isSubmitting} suppressHydrationWarning>
-                                {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
-                                {!isSubmitting && (
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                    </svg>
-                                )}
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-
-                <aside className={styles.hubSidebar}>
-                    
-                    <div className={styles.utilityCard}>
-                        <h3 className={styles.utilityTitle}>Before you submit</h3>
-                        <ul className={styles.checklist}>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                Check if the simulator type is correctly set.
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                Hard refresh (Ctrl+F5) the page.
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                Include the experiment URL if applicable.
-                            </li>
-                        </ul>
+                        ))}
                     </div>
-
-                    <div className={`${styles.utilityCard} ${styles.contactCard}`}>
-                        <div className={styles.contactAvatar}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <div>
-                            <h3 className={styles.utilityTitle} style={{ marginBottom: '0.2rem' }}>Direct Email</h3>
-                            <a href="mailto:support@bhilaeelabs.in" className={styles.emailLink}>support@bhilaeelabs.in</a>
-                        </div>
-                    </div>
-
-                    <div className={`${styles.utilityCard} ${styles.githubCard}`}>
-                        <h3 className={styles.utilityTitle}>We are Open Source</h3>
-                        <p className={styles.utilityDesc}>Want to fix it yourself? Open a pull request or view the source code.</p>
-                        <a href="https://github.com/RavikantiAkshay/basic-lab-guide" target="_blank" rel="noopener noreferrer" className={styles.githubBtn}>
-                            View Repository ↗
-                        </a>
-                    </div>
-
-                </aside>
-
-            </div>
-        </main>
+                </section>
+            </main>
+        </div>
     );
 }

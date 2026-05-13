@@ -149,6 +149,23 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-card-label:hover {
+  color: var(--secondary-color);
+}
+
+.nav-card-label-arrow {
+  font-size: 1rem;
+  opacity: 0.4;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-card-label:hover .nav-card-label-arrow {
+  transform: translate(2px, -2px);
+  opacity: 1;
 }
 
 .nav-card-links {

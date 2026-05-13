@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CardNav from './CardNav';
+import Footer from './Footer';
 import PlatformGuideModal from './PlatformGuideModal';
 
 const ZONES = [
@@ -9,6 +10,7 @@ const ZONES = [
         id: 'labs',
         name: 'Labs',
         icon: '⚡',
+        href: '/',
         items: [
             { label: 'All Course Labs', icon: '🧪', href: '/' },
         ],
@@ -17,6 +19,7 @@ const ZONES = [
         id: 'workspace',
         name: 'Workspace',
         icon: '📂',
+        href: '/workspace',
         items: [
             { label: 'Note Readings', icon: '📝', href: '/readings' },
             { label: 'Saved Observations', icon: '📊', href: '/observations' },
@@ -28,6 +31,7 @@ const ZONES = [
         id: 'resources',
         name: 'Resources',
         icon: '📚',
+        href: '/resources',
         items: [
             { label: 'Circuit Diagram Gallery', icon: '🖼️', href: '/gallery' },
             { label: 'Viva & Glossary Prep', icon: '🧠', href: '/glossary' },
@@ -38,6 +42,7 @@ const ZONES = [
         id: 'classroom',
         name: 'Classroom',
         icon: '🏫',
+        href: '/classroom',
         items: [
             { label: 'Classroom Features', icon: '📋', href: null, comingSoon: true },
         ],
@@ -46,8 +51,9 @@ const ZONES = [
         id: 'support',
         name: 'Support',
         icon: '💬',
+        href: '/support',
         items: [
-            { label: 'Support Hub', icon: '🛟', href: '/support' },
+            { label: 'Support Hub', icon: '🛟', href: '/support/hub' },
             { label: 'Platform Guide', icon: '🔭', href: null, action: 'openGuide' },
         ],
     },
@@ -60,6 +66,13 @@ const ZONES = [
 export default function AppShell({ children }) {
     const [isGuideOpen, setIsGuideOpen] = useState(false);
 
+    // Listen for global guide triggers
+    useEffect(() => {
+        const handleOpenGuide = () => setIsGuideOpen(true);
+        window.addEventListener('open-platform-guide', handleOpenGuide);
+        return () => window.removeEventListener('open-platform-guide', handleOpenGuide);
+    }, []);
+
     return (
         <div className="app-wrapper">
             <CardNav 
@@ -69,6 +82,7 @@ export default function AppShell({ children }) {
             <main className="main-content">
                 {children}
             </main>
+            <Footer />
             <PlatformGuideModal
                 isOpen={isGuideOpen}
                 onClose={() => setIsGuideOpen(false)}

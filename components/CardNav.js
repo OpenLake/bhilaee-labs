@@ -143,7 +143,7 @@ const CardNav = ({ items, onOpenGuide }) => {
             <span className="logo-text">Bhilai EE Labs</span>
           </Link>
 
-          <div className="nav-right">
+          <div className="nav-right" suppressHydrationWarning>
             <ThemeToggle />
             <UserProfileMenu />
             
@@ -153,6 +153,7 @@ const CardNav = ({ items, onOpenGuide }) => {
               role="button"
               aria-label={isExpanded ? 'Close menu' : 'Open menu'}
               tabIndex={0}
+              suppressHydrationWarning
             >
               <div className="hamburger-line" />
               <div className="hamburger-line" />
@@ -168,9 +169,9 @@ const CardNav = ({ items, onOpenGuide }) => {
               className="nav-card"
               ref={setCardRef(idx)}
             >
-              <div className="nav-card-label">
-                <span>{zone.icon}</span> {zone.name}
-              </div>
+              <Link href={zone.href} className="nav-card-label">
+                <span>{zone.icon}</span> {zone.name} <GoArrowUpRight className="nav-card-label-arrow" />
+              </Link>
               <div className="nav-card-links">
                 {zone.items.map((lnk, i) => {
                   if (lnk.comingSoon) {
