@@ -199,6 +199,15 @@ const CardNav = ({ items, onOpenGuide }) => {
                     );
                   }
 
+                  if (lnk.isExternal) {
+                    return (
+                      <a key={i} href={lnk.href} className="nav-card-link" target="_blank" rel="noopener noreferrer">
+                        <span className="nav-card-link-icon">{lnk.icon}</span>
+                        {lnk.label}
+                      </a>
+                    );
+                  }
+
                   return (
                     <Link key={i} href={lnk.href} className="nav-card-link">
                       <span className="nav-card-link-icon">{lnk.icon}</span>

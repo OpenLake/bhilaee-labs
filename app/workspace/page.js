@@ -71,7 +71,6 @@ export default function WorkspacePage() {
                                 <span 
                                     className="material-symbols-outlined" 
                                     style={{ 
-                                        color: 'var(--secondary-color)',
                                         fontVariationSettings: card.fillIcon ? "'FILL' 1" : "'FILL' 0"
                                     }}
                                 >

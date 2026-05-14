@@ -7,6 +7,7 @@ import { getAllExperiments } from '@/data/labs';
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import styles from '@/app/preferences/Preferences.module.css';
 import Link from 'next/link';
+import WorkspaceSidebar from '@/components/WorkspaceSidebar';
 
 export default function StarredPage() {
     const { user, loading: authLoading } = useAuth();
@@ -72,57 +73,66 @@ export default function StarredPage() {
 
     if (authLoading || loading) {
         return (
-            <div className={styles.container}>
-                <div className={styles.loadingState}>Loading your bookmarks...</div>
-            </div>
+            <>
+                <WorkspaceSidebar activeTab="starred" />
+                <div className={styles.container}>
+                    <div className={styles.loadingState}>Loading your bookmarks...</div>
+                </div>
+            </>
         );
     }
 
     if (!user) {
         return (
-            <div className={styles.container}>
-                <div className={styles.authPrompt}>
-                    <h2>Please Log In</h2>
-                    <p>You need to be logged in to view your cloud-synced starred experiments.</p>
+            <>
+                <WorkspaceSidebar activeTab="starred" />
+                <div className={styles.container}>
+                    <div className={styles.authPrompt}>
+                        <h2>Please Log In</h2>
+                        <p>You need to be logged in to view your cloud-synced starred experiments.</p>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 
     return (
-        <div className={styles.container}>
-            <nav className={styles.breadcrumb}>
-                <Link href="/">← Back to Home</Link>
-                <span> / Starred Experiments</span>
-            </nav>
-            <header className={styles.header} data-tour="starred-page">
-                <div className={styles.titleWrapper}>
-                    <h1 className={styles.title}>Starred Experiments</h1>
-                    <span className={styles.countBadge}>{starredItems.length}</span>
-                </div>
-                <p className={styles.subtitle}>Experiments you've bookmarked for quick access</p>
-            </header>
-
-            {starredItems.length > 0 ? (
-                <div className={styles.dashboardGrid}>
-                    {starredItems.map((exp) => (
-                        <DashboardCard 
-                            key={`${exp.labId}-${exp.id}`} 
-                            exp={exp} 
-                            userId={user.id}
-                            onUnstar={handleUnstar}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div className={styles.emptyState}>
-                    <div className={styles.emptyIconWrapper}>
-                        <span className={styles.emptyIcon}>⭐</span>
+        <>
+            <WorkspaceSidebar activeTab="starred" />
+            <div className={styles.container}>
+                <nav className={styles.breadcrumb}>
+                    <Link href="/">← Back to Home</Link>
+                    <span> / Starred Experiments</span>
+                </nav>
+                <header className={styles.header} data-tour="starred-page">
+                    <div className={styles.titleWrapper}>
+                        <h1 className={styles.title}>Starred Experiments</h1>
+                        <span className={styles.countBadge}>{starredItems.length}</span>
                     </div>
-                    <h3>No bookmarks yet</h3>
-                    <p>Click the star icon on any experiment to save it here for quick access.</p>
-                </div>
-            )}
-        </div>
+                    <p className={styles.subtitle}>Experiments you've bookmarked for quick access</p>
+                </header>
+
+                {starredItems.length > 0 ? (
+                    <div className={styles.dashboardGrid}>
+                        {starredItems.map((exp) => (
+                            <DashboardCard 
+                                key={`${exp.labId}-${exp.id}`} 
+                                exp={exp} 
+                                userId={user.id}
+                                onUnstar={handleUnstar}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className={styles.emptyState}>
+                        <div className={styles.emptyIconWrapper}>
+                            <span className={styles.emptyIcon}>⭐</span>
+                        </div>
+                        <h3>No bookmarks yet</h3>
+                        <p>Click the star icon on any experiment to save it here for quick access.</p>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }

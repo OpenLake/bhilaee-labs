@@ -58,7 +58,7 @@ export default function ClassroomPage() {
                 <div className={styles.bentoGrid}>
                     {categories.map((card) => (
                         <Link key={card.id} href={`/classroom/${card.id}`} className={`${styles.bentoCard} ${styles.span4}`}>
-                            <div className={styles.cardIconBox} style={{ color: card.footerColor || 'var(--secondary-color)' }}>
+                            <div className={styles.cardIconBox} style={card.footerColor ? { color: card.footerColor } : {}}>
                                 <span className="material-symbols-outlined" style={{ fontVariationSettings: card.fillIcon ? "'FILL' 1" : "'FILL' 0" }}>
                                     {card.icon}
                                 </span>

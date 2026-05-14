@@ -35,6 +35,8 @@ const ZONES = [
         items: [
             { label: 'Circuit Diagram Gallery', icon: '🖼️', href: '/gallery' },
             { label: 'Viva & Glossary Prep', icon: '🧠', href: '/glossary' },
+            { label: 'Experiment Manuals', icon: '📄', href: null, comingSoon: true },
+            { label: 'Available Simulations', icon: '🎮', href: 'https://simulator.bhilaee.openlake.in/gallery.html', isExternal: true },
             { label: 'Formula Sheet', icon: '📐', href: null, comingSoon: true },
         ],
     },

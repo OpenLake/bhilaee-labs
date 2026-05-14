@@ -66,7 +66,7 @@ export default function SupportPage() {
                         }}>
                             <span className="material-symbols-outlined" style={{ fontSize: '150px', color: 'var(--primary-color)' }}>engineering</span>
                         </div>
-                        <div className={styles.cardIconBox} style={{ color: 'var(--secondary-color)', background: 'rgba(var(--secondary-color-rgb), 0.1)' }}>
+                        <div className={styles.cardIconBox}>
                             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>confirmation_number</span>
                         </div>
                         <h2 className={styles.cardTitle}>Support Hub</h2>
@@ -90,7 +90,7 @@ export default function SupportPage() {
                     {/* Path 2: Platform Guide */}
                     <div className={`${styles.bentoCard} ${styles.span7}`}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-                            <div className={styles.cardIconBox} style={{ color: 'var(--secondary-color)', background: 'rgba(var(--secondary-color-rgb), 0.1)' }}>
+                            <div className={styles.cardIconBox}>
                                 <span className="material-symbols-outlined">menu_book</span>
                             </div>
                             <span style={{ 
