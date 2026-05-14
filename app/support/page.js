@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import HubSidebar from '@/components/HubSidebar';
+import SpotlightCard from '@/components/SpotlightCard';
 import styles from '../hub-layout.module.css';
 
 export default function SupportPage() {
@@ -59,7 +60,7 @@ export default function SupportPage() {
 
                 <div className={styles.bentoGrid}>
                     {/* Path 1: Support Hub */}
-                    <div className={`${styles.bentoCard} ${styles.span5}`}>
+                    <SpotlightCard className={`${styles.bentoCard} ${styles.span5}`}>
                         <div style={{ 
                             position: 'absolute', top: '0', right: '0', 
                             padding: '24px', opacity: 0.05, pointerEvents: 'none' 
@@ -85,10 +86,10 @@ export default function SupportPage() {
                                 <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
                             </button>
                         </Link>
-                    </div>
+                    </SpotlightCard>
 
                     {/* Path 2: Platform Guide */}
-                    <div className={`${styles.bentoCard} ${styles.span7}`}>
+                    <SpotlightCard className={`${styles.bentoCard} ${styles.span7}`}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                             <div className={styles.cardIconBox}>
                                 <span className="material-symbols-outlined">menu_book</span>
@@ -140,7 +141,7 @@ export default function SupportPage() {
                             Launch Interactive Guide
                             <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>explore</span>
                         </button>
-                    </div>
+                    </SpotlightCard>
                 </div>
 
                 {/* FAQ Section */}

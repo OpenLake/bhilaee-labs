@@ -7,21 +7,22 @@ export default function ThemeHandler() {
     const { profile, loading } = useAuth();
 
     useEffect(() => {
-        // 1. Determine theme (Auth Profile > LocalStorage > Default: Dark)
+        // 1. Determine theme (LocalStorage > Auth Profile > Default: Dark)
         let theme = 'dark';
 
-        if (profile?.theme) {
-            theme = profile.theme;
-        } else {
-            try {
-                const savedApp = localStorage.getItem('appSettings');
-                if (savedApp) {
-                    const parsed = JSON.parse(savedApp);
-                    if (parsed.theme) theme = parsed.theme;
+        try {
+            const savedApp = localStorage.getItem('appSettings');
+            if (savedApp) {
+                const parsed = JSON.parse(savedApp);
+                if (parsed.theme) {
+                    theme = parsed.theme;
                 }
-            } catch (e) {
-                console.warn("ThemeHandler: Failed to read local theme", e);
+            } else if (profile?.theme) {
+                theme = profile.theme;
             }
+        } catch (e) {
+            console.warn("ThemeHandler: Failed to read local theme", e);
+            if (profile?.theme) theme = profile.theme;
         }
 
         // 2. Apply theme

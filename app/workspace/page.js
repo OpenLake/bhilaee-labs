@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import HubSidebar from '@/components/HubSidebar';
+import SpotlightCard from '@/components/SpotlightCard';
 import styles from '../hub-layout.module.css';
 
 export default function WorkspacePage() {
@@ -66,7 +67,12 @@ export default function WorkspacePage() {
                 {/* Dashboard Grid */}
                 <div className={styles.bentoGrid}>
                     {dashboardCards.map((card) => (
-                        <Link key={card.id} href={card.href} className={`${styles.bentoCard} ${styles.span6}`}>
+                        <SpotlightCard 
+                            key={card.id} 
+                            as={Link} 
+                            href={card.href} 
+                            className={`${styles.bentoCard} ${styles.span6}`}
+                        >
                             <div className={styles.cardIconBox}>
                                 <span 
                                     className="material-symbols-outlined" 
@@ -84,7 +90,7 @@ export default function WorkspacePage() {
                                 <span className={styles.footerText}>Open Section</span>
                                 <span className="material-symbols-outlined">arrow_forward</span>
                             </div>
-                        </Link>
+                        </SpotlightCard>
                     ))}
                 </div>
             </main>

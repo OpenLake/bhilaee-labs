@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import HubSidebar from '@/components/HubSidebar';
+import SpotlightCard from '@/components/SpotlightCard';
 import styles from '../hub-layout.module.css';
 
 export default function ResourcesPage() {
@@ -69,13 +70,12 @@ export default function ResourcesPage() {
                 <div className={styles.bentoGrid}>
                     {resources.map((item, idx) => {
                         const isExternal = item.isExternal;
-                        const CardComponent = isExternal ? 'a' : Link;
                         const cardProps = isExternal 
-                            ? { href: item.href, target: "_blank", rel: "noopener noreferrer" }
-                            : { href: item.href };
+                            ? { href: item.href, target: "_blank", rel: "noopener noreferrer", as: 'a' }
+                            : { href: item.href, as: Link };
 
                         return (
-                            <CardComponent 
+                            <SpotlightCard 
                                 key={item.id} 
                                 {...cardProps}
                                 className={`${styles.bentoCard} ${idx === 0 ? styles.span8 : styles.span4}`}
@@ -121,7 +121,7 @@ export default function ResourcesPage() {
                                         {isExternal ? 'open_in_new' : 'arrow_forward'}
                                     </span>
                                 </div>
-                            </CardComponent>
+                            </SpotlightCard>
                         );
                     })}
                 </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import HubSidebar from '@/components/HubSidebar';
+import SpotlightCard from '@/components/SpotlightCard';
 import styles from '../hub-layout.module.css';
 
 export default function ClassroomPage() {
@@ -57,7 +58,12 @@ export default function ClassroomPage() {
 
                 <div className={styles.bentoGrid}>
                     {categories.map((card) => (
-                        <Link key={card.id} href={`/classroom/${card.id}`} className={`${styles.bentoCard} ${styles.span4}`}>
+                        <SpotlightCard 
+                            key={card.id} 
+                            as={Link} 
+                            href={`/classroom/${card.id}`} 
+                            className={`${styles.bentoCard} ${styles.span4}`}
+                        >
                             <div className={styles.cardIconBox} style={card.footerColor ? { color: card.footerColor } : {}}>
                                 <span className="material-symbols-outlined" style={{ fontVariationSettings: card.fillIcon ? "'FILL' 1" : "'FILL' 0" }}>
                                     {card.icon}
@@ -70,7 +76,7 @@ export default function ClassroomPage() {
                                 <span className={styles.footerText} style={{ color: card.footerColor }}>{card.footer}</span>
                                 <span className="material-symbols-outlined">arrow_forward</span>
                             </div>
-                        </Link>
+                        </SpotlightCard>
                     ))}
                 </div>
 

@@ -168,16 +168,17 @@ export default function ThemeToggle({
       setIsDark(!isDark);
       document.documentElement.setAttribute("data-theme", nextTheme);
       
-      // Update persistent storage asynchronously
+      // Update persistent storage
       if (user) {
         updateProfile(user.id, { theme: nextTheme });
-      } else {
-        try {
-            const savedApp = JSON.parse(localStorage.getItem('appSettings') || '{}');
-            savedApp.theme = nextTheme;
-            localStorage.setItem('appSettings', JSON.stringify(savedApp));
-        } catch { }
       }
+      
+      // Always update localStorage as a local cache to prevent flickering
+      try {
+          const savedApp = JSON.parse(localStorage.getItem('appSettings') || '{}');
+          savedApp.theme = nextTheme;
+          localStorage.setItem('appSettings', JSON.stringify(savedApp));
+      } catch { }
       
       window.dispatchEvent(new Event('preferencesUpdated'));
     };
