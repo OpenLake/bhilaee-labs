@@ -27,23 +27,28 @@
 
 /* Breadcrumb */
 .breadcrumb {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
 }
 
-.breadcrumb a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.breadcrumb a:hover {
-    opacity: 0.8;
-}
-
-.breadcrumb span {
+.breadcrumbLink {
     color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+    color: var(--secondary-color);
+}
+
+.breadcrumbActive {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ================================

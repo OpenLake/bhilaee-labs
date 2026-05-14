@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Gallery.module.css';
 import circuitRegistry from '@/data/experiments/circuit_registry.json';
 
@@ -30,11 +29,14 @@ export default function CircuitGallery() {
         <div className={styles.galleryContainer}>
             <header className={styles.galleryHeader}>
                 <nav className={styles.breadcrumb}>
-                    <Link href="/">← Back to Home</Link>
-                    <span> / Circuit Diagram Gallery</span>
+                    <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <Link href="/resources" className={styles.breadcrumbLink}>Resources</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <span className={styles.breadcrumbActive}>Circuit Diagram Gallery</span>
                 </nav>
-                <h1>Circuit Diagram Gallery</h1>
-                <p>Browse through our extensive library of experimental setups and circuit connections.</p>
+                <h1 className={styles.title}>Circuit Diagram Gallery</h1>
+                <p className={styles.description}>Browse through our extensive library of experimental setups and circuit connections.</p>
             </header>
 
             <section className={styles.filterSection}>

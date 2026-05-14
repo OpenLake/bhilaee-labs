@@ -188,8 +188,11 @@ export default function NoteReadingsClient() {
 
             <div className={styles.notesContainer}>
                 <nav className={styles.breadcrumb}>
-                    <Link href="/">← Home</Link>
-                    <span> / Note Readings</span>
+                    <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <Link href="/workspace" className={styles.breadcrumbLink}>Workspace</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <span className={styles.breadcrumbActive}>Note Readings</span>
                 </nav>
 
                 <header className={styles.header}>

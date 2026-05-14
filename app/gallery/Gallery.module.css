@@ -14,32 +14,28 @@
 
 .breadcrumb {
     align-self: flex-start;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
+    margin-bottom: 1.5rem;
 }
 
-.galleryHeader h1,
-.galleryHeader p {
-    text-align: center;
-}
-
-.breadcrumb a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    transition: opacity 0.2s;
-    font-weight: 500;
-}
-
-.breadcrumb a:hover {
-    opacity: 0.8;
-}
-
-.breadcrumb span {
+.breadcrumbLink {
     color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+    color: var(--secondary-color);
+}
+
+.breadcrumbActive {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .galleryHeader h1 {

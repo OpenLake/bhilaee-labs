@@ -101,8 +101,11 @@ export default function StarredPage() {
             <WorkspaceSidebar activeTab="starred" />
             <div className={styles.container}>
                 <nav className={styles.breadcrumb}>
-                    <Link href="/">← Back to Home</Link>
-                    <span> / Starred Experiments</span>
+                    <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <Link href="/workspace" className={styles.breadcrumbLink}>Workspace</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <span className={styles.breadcrumbActive}>Starred Experiments</span>
                 </nav>
                 <header className={styles.header} data-tour="starred-page">
                     <div className={styles.titleWrapper}>

@@ -90,8 +90,11 @@ export default function HistoryPage() {
             <WorkspaceSidebar activeTab="history" />
             <div className={styles.container} data-tour="history-page">
                 <nav className={styles.breadcrumb}>
-                    <Link href="/">← Back to Home</Link>
-                    <span> / Recently Viewed</span>
+                    <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <Link href="/workspace" className={styles.breadcrumbLink}>Workspace</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <span className={styles.breadcrumbActive}>Recently Viewed</span>
                 </nav>
                 <header className={styles.header} data-tour="history-page">
                     <div className={styles.titleWrapper}>

@@ -141,8 +141,11 @@ export default function ObservationsPage() {
             <WorkspaceSidebar activeTab="observations" />
             <div className={preferencesStyles.container} data-tour="observations-page">
                 <nav className={preferencesStyles.breadcrumb}>
-                    <Link href="/">← Back to Home</Link>
-                    <span> / Saved Observations</span>
+                    <Link href="/" className={preferencesStyles.breadcrumbLink}>Bhilaee Hub</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <Link href="/workspace" className={preferencesStyles.breadcrumbLink}>Workspace</Link>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                    <span className={preferencesStyles.breadcrumbActive}>Saved Observations</span>
                 </nav>
                 <header className={preferencesStyles.header} data-tour="observations-page">
                     <h1 className={preferencesStyles.title}>Saved Observations</h1>

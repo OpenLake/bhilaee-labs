@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getAllExperiments } from '@/data/labs';
+import BorderGlow from '@/components/BorderGlow';
 import styles from './Glossary.module.css';
 
 export default function GlossaryPage({ initialTerms }) {
@@ -51,10 +51,13 @@ export default function GlossaryPage({ initialTerms }) {
 
             <header className={styles.header}>
                 <div className={styles.headerContent}>
-            <nav className={styles.breadcrumb}>
-                <Link href="/">← Back to Home</Link>
-                <span> / Viva & Glossary Prep</span>
-            </nav>
+                    <nav className={styles.breadcrumb}>
+                        <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
+                        <span className="material-symbols-outlined" style={{ fontSize: '16px', color: 'var(--text-muted)' }}>chevron_right</span>
+                        <Link href="/resources" className={styles.breadcrumbLink}>Resources</Link>
+                        <span className="material-symbols-outlined" style={{ fontSize: '16px', color: 'var(--text-muted)' }}>chevron_right</span>
+                        <span className={styles.breadcrumbActive}>Viva & Glossary Prep</span>
+                    </nav>
                     <h1 className={styles.title}>🧠 Viva & Glossary Prep</h1>
                     <p className={styles.subtitle}>
                         Master your electrical engineering terminology. Search, review, and test your knowledge.
@@ -114,10 +117,16 @@ export default function GlossaryPage({ initialTerms }) {
                                         const hideDefinition = flashcardMode && !isRevealed;
 
                                         return (
-                                            <div 
+                                            <BorderGlow 
                                                 key={termId} 
                                                 className={`${styles.termCard} ${flashcardMode ? styles.interactiveCard : ''} ${hideDefinition ? styles.hiddenDef : ''}`}
                                                 onClick={() => flashcardMode && toggleReveal(termId)}
+                                                animated={true}
+                                                borderRadius={16}
+                                                glowRadius={30}
+                                                edgeSensitivity={40}
+                                                colors={['#c084fc', '#38bdf8', '#818cf8']}
+                                                backgroundColor="var(--card-bg)"
                                             >
                                                 <div className={styles.termHeader}>
                                                     <h3 className={styles.termName}>{item.term}</h3>
@@ -137,7 +146,7 @@ export default function GlossaryPage({ initialTerms }) {
                                                         <p className={styles.termDefinition}>{item.definition}</p>
                                                     )}
                                                 </div>
-                                            </div>
+                                            </BorderGlow>
                                         );
                                     })}
                                 </div>

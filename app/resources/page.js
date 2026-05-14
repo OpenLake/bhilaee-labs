@@ -57,7 +57,7 @@ export default function ResourcesPage() {
             <main className={styles.contentContainer}>
                 <header className={styles.header}>
                     <nav className={styles.breadcrumb}>
-                        <Link href="/" className={styles.breadcrumbLink}>Lab Hub</Link>
+                        <Link href="/" className={styles.breadcrumbLink}>Bhilaee Hub</Link>
                         <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
                         <span className={styles.breadcrumbActive}>Resources</span>
                     </nav>
