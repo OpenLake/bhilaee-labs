@@ -5,7 +5,7 @@
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   font-family: 'Inter', sans-serif;
-  background: #111;
+  background: var(--bg-color);
   margin: 2rem auto;
   border: 1px solid var(--border-color);
 }
@@ -15,7 +15,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #23005c;
+  background: var(--bg-secondary);
 }
 
 .palette:hover > #faq-center-node {
@@ -32,71 +32,105 @@
 }
 
 /* 
-   SYMMETRICAL RECTANGLE CLIP-PATH 
-   All pieces meet perfectly at the 50% 50% coordinate.
+   APPLICATION COLORING STYLES:
+   Using a cohesive Blue/Indigo/Violet palette aligned with Bhilaee Hub theme.
 */
-#faq-color4 { background: #BA55D3; clip-path: polygon(0% 0%, 100% 0%, 50% 50%, 50% 50%); }
-#faq-color2 { background: #8A2BE2; clip-path: polygon(50% 50%, 50% 50%, 100% 100%, 0% 100%); }
-#faq-color1 { background: #4B0082; clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 50% 50%); }
-#faq-color3 { background: #9932CC; clip-path: polygon(0% 0%, 50% 50%, 50% 50%, 0% 100%); }
 
+/* Top Triangle (Violet) */
+#faq-color4 {
+  background: #8b5cf6;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 50%, 50% 50%);
+}
+
+/* Bottom Triangle (Indigo) */
+#faq-color2 {
+  background: #6366f1;
+  clip-path: polygon(50% 50%, 50% 50%, 100% 100%, 0% 100%);
+}
+
+/* Right Triangle (Royal Blue) */
+#faq-color1 {
+  background: #2563eb;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 50% 50%);
+}
+
+/* Left Triangle (Sky Blue) */
+#faq-color3 {
+  background: #0ea5e9;
+  clip-path: polygon(0% 0%, 50% 50%, 50% 50%, 0% 100%);
+}
+
+/* Expansion Hover */
 .faq-color:hover {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%) !important;
   z-index: 100;
   transition: clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease, z-index 0s step-start;
 }
 
-/* 
-   MATHEMATICAL SYMMETRY FOR LABELS:
-   We use a uniform 40px inset for all bases.
-   We ensure 'justify-content: center' is applied consistently across both axes.
-*/
+/* Preview Labels - Precise Centering and Symmetry */
 .faq-preview-base {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px; /* Uniform gap for symmetry */
   color: white;
   transition: all 0.3s ease;
   z-index: 5;
   pointer-events: none;
 }
 
-/* Horizontal Symmetry (Top/Bottom) */
+/* Top: Icon ABOVE text (toward center) */
 #faq-color4 .faq-preview-base { 
   top: 40px; 
   left: 0; 
   width: 100%; 
-}
-#faq-color2 .faq-preview-base { 
-  bottom: 40px; 
-  left: 0; 
-  width: 100%; 
+  flex-direction: column-reverse; /* Put icon below text? No, icon ABOVE means toward tip. */
+  /* For Top Piece: Base is at y=0. Tip is at y=250. 'Above' text (toward tip) means larger Y. */
 }
 
-/* Vertical Symmetry (Sides) - Re-calculated for 800x450 aspect ratio */
-#faq-color1 .faq-preview-base { 
-  right: 40px; 
-  top: 0; 
-  height: 100%; 
-  rotate: -90deg; 
+/* Base-relative logic: Icon should always be closer to the center (the tip) than the text. */
+
+/* Top (Base at top) */
+#faq-color4 .faq-preview-base {
+  top: 35px;
+  left: 0;
+  width: 100%;
 }
-#faq-color3 .faq-preview-base { 
-  left: 40px; 
-  top: 0; 
-  height: 100%; 
-  rotate: 90deg; 
+
+/* Bottom (Base at bottom) */
+#faq-color2 .faq-preview-base {
+  bottom: 35px;
+  left: 0;
+  width: 100%;
+  flex-direction: column-reverse; /* Icon is 'above' text in world space (toward center) */
+}
+
+/* Right (Base at right) */
+#faq-color1 .faq-preview-base {
+  right: 35px;
+  top: 0;
+  height: 100%;
+  rotate: -90deg;
+  flex-direction: column-reverse; /* Icon is 'above' text toward center */
+}
+
+/* Left (Base at left) */
+#faq-color3 .faq-preview-base {
+  left: 35px;
+  top: 0;
+  height: 100%;
+  rotate: 90deg;
+  flex-direction: column-reverse; /* Icon is 'above' text toward center */
 }
 
 .faq-color:hover .faq-preview-base {
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.8);
 }
 
-/* Content */
+/* Expanded Content */
 .faq-expanded-content {
   width: 100%;
   height: 100%;
@@ -116,17 +150,21 @@
   transform: scale(1);
 }
 
-.faq-icon-small { font-size: 2.2rem !important; }
+.faq-icon-small { 
+  font-size: 2.4rem !important; 
+  display: block;
+}
+
 .faq-icon-large { font-size: 4.5rem !important; margin-bottom: 1.5rem; }
 
 .faq-question-small {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 800;
   margin: 0;
   text-transform: uppercase;
-  max-width: 200px;
+  max-width: 180px;
   line-height: 1.2;
-  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .faq-question-large {
@@ -143,13 +181,13 @@
   opacity: 0.9;
 }
 
-/* Center Node */
+/* Center Node - Adjusted for Visibility */
 #faq-center-node {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80px;
-  height: 80px;
+  width: 82px;
+  height: 82px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: white;
@@ -160,15 +198,16 @@
   box-shadow: 0 4px 30px rgba(0,0,0,0.5);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
+  border: 4px solid var(--secondary-color); /* Add brand border for visibility */
 }
 
 #faq-node-text::after {
   content: "FAQ";
   font-weight: 900;
   font-size: 1.2rem;
-  color: #1a1a1a;
+  color: var(--secondary-color); /* Use app secondary color for text visibility */
   letter-spacing: 2px;
 }
 
-[data-theme='dark'] .faq-palette-container { background: #0d0d15; }
-[data-theme='dark'] #faq-center-node { background: #1a1a2e; }
+[data-theme='dark'] .faq-palette-container { background: #0a0a0a; border-color: #1a1a1a; }
+[data-theme='dark'] #faq-center-node { background: #111; }
