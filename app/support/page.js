@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import HubSidebar from '@/components/HubSidebar';
 import SpotlightCard from '@/components/SpotlightCard';
+import FAQPalette from '@/components/FAQPalette';
 import styles from '../hub-layout.module.css';
 
 export default function SupportPage() {
@@ -145,28 +146,17 @@ export default function SupportPage() {
                 </div>
 
                 {/* FAQ Section */}
-                <section style={{ marginTop: '4rem', padding: '3.5rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '24px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem' }}>
+                <section style={{ marginTop: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '3rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1.5rem' }}>
                         <span className="material-symbols-outlined" style={{ color: 'var(--secondary-color)', fontSize: '32px' }}>lightbulb</span>
                         <h3 style={{ fontSize: '1.8rem', fontWeight: '800', margin: 0, color: 'var(--primary-color)' }}>Quick Tips & FAQs</h3>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-                        {faqs.map(faq => (
-                            <div key={faq.q} style={{ display: 'flex', gap: '1.5rem' }}>
-                                <div style={{ 
-                                    width: '44px', height: '44px', borderRadius: '12px', 
-                                    background: 'var(--bg-color)', border: '1px solid var(--border-color)',
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
-                                }}>
-                                    <span className="material-symbols-outlined" style={{ fontSize: '24px', color: 'var(--secondary-color)' }}>{faq.icon}</span>
-                                </div>
-                                <div>
-                                    <h4 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '8px', color: 'var(--primary-color)' }}>{faq.q}</h4>
-                                    <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: 0 }}>{faq.a}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    
+                    <FAQPalette faqs={faqs} />
+                    
+                    <p style={{ marginTop: '2rem', color: 'var(--text-muted)', fontSize: '0.9rem', textAlign: 'center' }}>
+                        Can't find what you're looking for? Hover over the quadrants to reveal detailed solutions.
+                    </p>
                 </section>
             </main>
         </div>
