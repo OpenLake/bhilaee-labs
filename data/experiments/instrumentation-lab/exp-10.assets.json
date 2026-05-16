@@ -1,0 +1,27 @@
+{
+  "exp10-scientech2308-kit-setup": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-10/exp10-scientech2308-kit-setup.png",
+    "description": "Figure 1: Pressure Transducer Experimental Kit Setup (Scientech 2308)."
+  },
+  "exp10-diff-amp-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-10/exp10-diff-amp-circuit.png",
+    "description": "Figure 2: Circuit Diagram for Differential Amplifier with Pressure Transducer."
+  },
+  "exp10-v2i-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-10/exp10-v2i-circuit.png",
+    "description": "Figure 3: Circuit Diagram for Voltage to Current Conversion (4–20 mA)."
+  },
+  "exp10-diff-pressure-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-10/exp10-diff-pressure-circuit.png",
+    "description": "Figure 4: Circuit Diagram for Pressure Measurement using Differential Transducer."
+  },
+  "exp10-onoff-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-10/exp10-onoff-circuit.png",
+    "description": "Figure 5: Circuit Diagram for On/Off Pressure Control System."
+  }
+}
