@@ -545,10 +545,10 @@
         },
         {
           "id": "9",
-          "title": "Experiment 9",
+          "title": "Study of Flow Rate with Magnetic Flow Meter",
           "fileName": "exp-9.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "10",

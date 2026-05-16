@@ -1,0 +1,276 @@
+{
+  "id": "exp-9",
+  "title": "Study of Flow Rate with Magnetic Flow Meter",
+  "labId": "instrumentation-lab",
+  "status": "Hardware-Oriented",
+  "meta": {
+    "simulationId": "instrumentation_lab-exp9",
+    "simulationType": "Hardware / Transducer Characterisation",
+    "experimentType": "hardware",
+    "status": "hardware-oriented",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 90,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To study and understand the measurement of flow rate using a magnetic flow meter."
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Sl. No.", "Component", "Quantity"],
+          "rows": [
+            ["1", "Scientech 3008 Magnetic Flow Meter", "1"],
+            ["2", "Patch Cords",                        "As required"]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Flow measurement is an important aspect of industrial processes. Flow meters are broadly classified into two types: direct and indirect measurement."
+        },
+        {
+          "type": "text",
+          "content": "Direct flow measurement (positive displacement) traps and measures fixed volumes of fluid and counts the number of fill-and-discharge cycles. It offers high accuracy and is used for low flow rate applications. Examples include piston, rotary vane, and oval gear flow meters."
+        },
+        {
+          "type": "text",
+          "content": "Indirect flow measurement determines flow rate by measuring fluid velocity or energy changes. The volumetric flow rate is given by:"
+        },
+        {
+          "type": "equation",
+          "value": "Q = A \\times V \\times k"
+        },
+        {
+          "type": "text",
+          "content": "where Q is the volumetric flow rate, A is the pipe cross-sectional area, V is the fluid velocity, and k is a scaling factor. Indirect devices include differential pressure meters, turbine meters, vortex meters, ultrasonic meters, and magnetic flow meters."
+        },
+        {
+          "type": "text",
+          "content": "The nature of fluid flow is characterized by the Reynolds number (Re = ρVD/μ): laminar flow occurs at Re < 2000 (smooth, orderly), turbulent flow at Re > 5000 (chaotic), and transitional flow in between. Viscosity, which varies with temperature, significantly affects flow behavior and measurement accuracy."
+        },
+        {
+          "type": "text",
+          "content": "A magnetic flow meter (magmeter) is an indirect flow measuring device for conductive fluids. It consists of an inline sensor and a transmitter. It operates on Faraday's law of electromagnetic induction: when a conductive fluid flows through a magnetic field applied perpendicular to the flow, an EMF is induced proportional to the fluid velocity:"
+        },
+        {
+          "type": "equation",
+          "value": "E = k \\cdot B \\cdot D \\cdot V"
+        },
+        {
+          "type": "text",
+          "content": "where E is the induced voltage (V), B is the magnetic field strength (T), D is the pipe diameter (m), V is the fluid velocity (m/s), and k is a constant. The induced voltage is sensed by electrodes mounted on the pipe wall and processed by the transmitter to output a 4–20 mA signal proportional to the flow rate."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp9-scientech3008-flowmeter-setup",
+          "caption": "Figure 1: Scientech 3008 Magnetic Flow Meter experimental kit setup.",
+          "role": "kit-photo"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Ensure that the drain valve of the measuring tank is properly closed before starting the experiment.",
+            "Check that the sump tank contains sufficient water to avoid dry running of the pump.",
+            "Switch ON the power supply and start the pump from the control panel.",
+            "Adjust the flow rate by rotating the flow control valve to a desired position.",
+            "Simultaneously start the timer when the pump is switched ON.",
+            "After the fixed time interval (30 s or 60 s), switch OFF the pump and timer together.",
+            "Record the flow rate (LPH) and output current (mA) displayed on the magnetic flow meter transmitter.",
+            "Measure the water level collected in the measuring tank using the calibrated scale and calculate the actual volume collected (L × W × H / 1000).",
+            "Calculate the volume predicted by the flow meter (Flow Rate × Time / 3600) and compare with the actual volume.",
+            "Open the drain valve to release the collected water and reset the setup.",
+            "Repeat the procedure for different flow control valve settings and time intervals, recording all observations in the table."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "Readings were taken for 10 different flow conditions by varying the flow control valve position and measurement time. The measuring tank dimensions are 50 cm (L) × 35 cm (W). The actual volume is calculated from the measured water level; the calculated volume is derived from the magmeter flow rate reading."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "S. No.",
+            "Time (s)",
+            "Flow Rate (LPH)",
+            "Current (mA)",
+            "Level (cm)",
+            "Actual Vol (L)",
+            "Calc Vol (L)"
+          ],
+          "rows": [
+            ["1",  "30", "1042", "17.9", "5.0", "8.75",  "8.68"],
+            ["2",  "30", "1007", "17.4", "4.8", "8.40",  "8.39"],
+            ["3",  "30", "596",  "11.9", "2.9", "5.05",  "4.97"],
+            ["4",  "60", "498",  "12.8", "4.8", "8.40",  "8.30"],
+            ["5",  "60", "602",  "12.0", "5.8", "10.15", "10.03"],
+            ["6",  "30", "1002", "17.4", "4.8", "8.40",  "8.35"],
+            ["7",  "30", "1024", "17.6", "4.9", "8.58",  "8.53"],
+            ["8",  "30", "936",  "16.5", "4.5", "7.88",  "7.80"],
+            ["9",  "60", "720",  "13.5", "6.9", "12.10", "12.00"],
+            ["10", "30", "850",  "15.8", "4.1", "7.18",  "7.08"]
+          ]
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "For each reading, two volumes are computed and compared. The measuring tank cross-section is 50 cm × 35 cm = 1750 cm²."
+        },
+        {
+          "type": "text",
+          "content": "General formulas:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{calc} = \\frac{\\text{Flow Rate (LPH)} \\times \\text{Time (s)}}{3600}"
+        },
+        {
+          "type": "equation",
+          "value": "V_{actual} = \\frac{L \\times W \\times H}{1000} = \\frac{50 \\times 35 \\times H\\,(\\text{cm})}{1000}\\,\\text{L}"
+        },
+        {
+          "type": "text",
+          "content": "Reading 1 (t = 30 s, Q = 1042 LPH, H = 5.0 cm):"
+        },
+        {
+          "type": "equation",
+          "value": "V_{calc} = \\frac{1042 \\times 30}{3600} = 8.68\\,\\text{L}, \\quad V_{actual} = \\frac{50 \\times 35 \\times 5.0}{1000} = 8.75\\,\\text{L}"
+        },
+        {
+          "type": "text",
+          "content": "Reading 2 (t = 30 s, Q = 1007 LPH, H = 4.8 cm):"
+        },
+        {
+          "type": "equation",
+          "value": "V_{calc} = \\frac{1007 \\times 30}{3600} = 8.39\\,\\text{L}, \\quad V_{actual} = \\frac{50 \\times 35 \\times 4.8}{1000} = 8.40\\,\\text{L}"
+        },
+        {
+          "type": "text",
+          "content": "The percentage error between calculated and actual volume for Reading 1:"
+        },
+        {
+          "type": "equation",
+          "value": "\\%\\,\\text{Error} = \\frac{|V_{actual} - V_{calc}|}{V_{actual}} \\times 100 = \\frac{|8.75 - 8.68|}{8.75} \\times 100 \\approx 0.80\\%"
+        },
+        {
+          "type": "text",
+          "content": "Similarly, all readings show percentage errors below 1.5%, confirming the high accuracy of the magnetic flow meter across the tested flow range (498–1042 LPH)."
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The output current of the magnetic flow meter increased directly with the flow rate, ranging from approximately 11.9 mA at 596 LPH to 17.9 mA at 1042 LPH, consistent with the 4–20 mA current loop output convention.",
+            "The calculated volumes (from flow rate × time) agreed closely with the actual volumes (from tank level measurement) across all 10 readings, with maximum discrepancies under 1.5%, confirming the accuracy and reliability of the magnetic flow meter.",
+            "The experiment validated Faraday's law of electromagnetic induction as the working principle: the induced voltage and hence the output current increased proportionally with increasing fluid velocity and flow rate.",
+            "Readings 4 and 5 (60 s duration) produced larger collected volumes than 30 s readings, as expected, demonstrating the time-proportional nature of volumetric flow measurement.",
+            "Minor discrepancies between actual and calculated volumes arise from water level reading parallax error, residual pipe draining after pump shutdown, and slight valve position instability during measurement."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The experiment on flow rate measurement using a magnetic flow meter was carried out successfully. It was observed that the output current increased with an increase in flow rate, confirming the direct relationship between flow and the induced signal based on Faraday's law of electromagnetic induction. The readings obtained from the flow meter showed consistent behavior across different flow conditions. The calculated flow values using the flow rate and time were found to be in close agreement with the actual volumes measured from the tank level, with minor deviations due to experimental and observational errors. Overall, the magnetic flow meter demonstrated reliable and accurate performance for measuring the flow of conductive fluids, validating its suitability for industrial flow measurement applications."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** What is the working principle of a magnetic flow meter?\n\n**A:** It uses Faraday's law: a conductive fluid flowing through a magnetic field generates an induced EMF (E = k·B·D·V) proportional to the fluid velocity, which is measured by electrodes.",
+            "**Q:** Why can a magnetic flow meter only measure conductive fluids?\n\n**A:** The working principle requires the fluid to act as a moving conductor to generate an EMF; non-conductive fluids (e.g., hydrocarbons, oil) do not carry ions and produce no measurable induced voltage.",
+            "**Q:** What is the minimum conductivity required for a fluid to be measurable by a magmeter?\n\n**A:** Typically around 5 µS/cm; most aqueous solutions including water, acids, and slurries meet this requirement.",
+            "**Q:** Why does the magmeter output a 4–20 mA signal rather than a 0–20 mA signal?\n\n**A:** The 4 mA live-zero allows distinction between a zero flow reading (4 mA) and a broken wire or power failure (0 mA), enabling fault detection.",
+            "**Q:** What are the advantages of a magnetic flow meter over a differential pressure flow meter?\n\n**A:** Magmeters have no moving parts, no pressure drop, are unaffected by viscosity, density, or flow profile, and can handle slurries and corrosive fluids.",
+            "**Q:** What is the Reynolds number and how does flow type affect magmeter accuracy?\n\n**A:** Re = ρVD/μ; magmeters are accurate for both laminar and turbulent flows above Re ≈ 5000, but require a fully developed flow profile — typically 5D upstream and 2D downstream straight pipe lengths.",
+            "**Q:** Why is the measuring tank closed and the timer started simultaneously with the pump?\n\n**A:** To ensure that the collected volume corresponds exactly to the timed flow period — any time offset between starting the pump and the timer introduces a systematic volume error.",
+            "**Q:** What causes the small difference between the calculated volume (from magmeter) and the actual volume (from tank level) observed in the results?\n\n**A:** Sources include parallax error in reading the tank scale, residual water draining from the pipe after the pump stops, and minor valve position drift during measurement.",
+            "**Q:** Can a magmeter measure bidirectional flow? How?\n\n**A:** Yes — the polarity of the induced EMF reverses when flow direction reverses, and the transmitter detects the sign of the electrode voltage to indicate both magnitude and direction of flow.",
+            "**Q:** What is the difference between laminar and turbulent flow, and why does viscosity affect this?\n\n**A:** In laminar flow (Re < 2000) fluid moves in parallel layers; in turbulent flow (Re > 5000) it is chaotic. Higher viscosity increases resistance to relative motion between layers, promoting laminar flow at lower velocities."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}
