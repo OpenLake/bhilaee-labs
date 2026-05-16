@@ -1,0 +1,151 @@
+.manualsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.manualCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    height: 100%;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.manualCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--secondary-color);
+}
+
+.manualCard.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.iconBox {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(52, 152, 219, 0.1);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.courseCode {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.expNumber {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    font-family: monospace;
+    font-weight: 700;
+}
+
+.labCategory {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.manualTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.5;
+    flex: 1;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.cardFooter {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cardFooter .arrow {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+}
+
+.manualCard:hover .cardFooter .arrow {
+    transform: translateX(4px);
+}
+
+/* Controls Header */
+.controlsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.selectDropdown {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.downloadAllBtn {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}

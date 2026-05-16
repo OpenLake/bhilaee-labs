@@ -37,8 +37,8 @@ export default function ResourcesPage() {
             description: "Download detailed laboratory manuals with step-by-step procedures and expected results.",
             icon: "description",
             id: "manuals",
-            comingSoon: true,
-            href: "#"
+            action: "Browse Manuals",
+            href: "/manuals"
         },
         {
             title: "Formula Sheet",
