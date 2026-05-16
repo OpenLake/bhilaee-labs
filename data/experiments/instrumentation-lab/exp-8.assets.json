@@ -1,0 +1,32 @@
+{
+  "exp8-capacitive-pressure-transducer-diagram": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-capacitive-pressure-transducer-diagram.png",
+    "description": "Figure 1: Capacitive pressure transducer internal structure."
+  },
+  "exp8-scientech2308m-setup": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-scientech2308m-setup.png",
+    "description": "Figure 2: Experimental setup of the Scientech 2308M Platform."
+  },
+  "exp8-pressure-transducer-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-pressure-transducer-circuit.png",
+    "description": "Figure 3: Circuit diagram of the pressure transducer setup."
+  },
+  "exp8-load-cell-circuit": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-load-cell-circuit.png",
+    "description": "Figure 4: Circuit diagram of the load cell setup."
+  },
+  "exp8-pressure-vs-output-plot": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-pressure-vs-output-plot.png",
+    "description": "Figure 5: Pressure (psi) vs Transducer Output (mA) characteristic curve."
+  },
+  "exp8-load-cell-output-plot": {
+    "type": "image",
+    "path": "/assets/labs/instrumentation-lab/exp-8/exp8-load-cell-output-plot.png",
+    "description": "Figure 6: Load Cell Characteristics — Weight (g) vs Output Voltage (V)."
+  }
+}
