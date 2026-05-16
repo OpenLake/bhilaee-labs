@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import HubSidebar from '@/components/HubSidebar';
 import styles from '../hub-layout.module.css';
 import manualStyles from './Manuals.module.css';
@@ -13,6 +14,11 @@ export default function ManualsPage() {
     const [manuals, setManuals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedLab, setSelectedLab] = useState('All Modules');
+    const [searchQuery, setSearchQuery] = useState('');
+    
+    // Animation states
+    const [showFolder, setShowFolder] = useState(true);
+    const [folderOpen, setFolderOpen] = useState(false);
 
     // Generate comprehensive manual data natively from the central registry
     // This bypasses the database completely so you don't have to run SQL scripts.
@@ -63,14 +69,39 @@ export default function ManualsPage() {
 
     useEffect(() => {
         setLoading(true);
-        // Load data synchronously from registry
         let filteredData = registryManuals;
+        
         if (selectedLab !== 'All Modules') {
-            filteredData = registryManuals.filter(m => m.lab_category === selectedLab);
+            filteredData = filteredData.filter(m => m.lab_category === selectedLab);
         }
+        
+        if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase();
+            filteredData = filteredData.filter(m => 
+                m.title.toLowerCase().includes(q) || 
+                m.course_code.toLowerCase().includes(q) || 
+                m.experiment_number.toLowerCase().includes(q)
+            );
+        }
+        
         setManuals(filteredData);
         setLoading(false);
-    }, [selectedLab, registryManuals]);
+    }, [selectedLab, searchQuery, registryManuals]);
+
+    // Handle cinematic intro animation
+    useEffect(() => {
+        // Wait a beat, then open folder
+        const t1 = setTimeout(() => {
+            setFolderOpen(true);
+        }, 600);
+        
+        // After folder opens, hide it and let cards burst out
+        const t2 = setTimeout(() => {
+            setShowFolder(false);
+        }, 1100);
+
+        return () => { clearTimeout(t1); clearTimeout(t2); };
+    }, []);
 
     const getPublicUrl = (path) => {
         if (!path) return "#";
@@ -110,56 +141,113 @@ export default function ManualsPage() {
                                 <option key={lab} value={lab}>{lab}</option>
                             ))}
                         </select>
-                        <button className={manualStyles.downloadAllBtn}>
-                            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>download</span>
-                            Download All
-                        </button>
+                        
+                        <div className={manualStyles.searchBox}>
+                            <span className="material-symbols-outlined" style={{ fontSize: '18px', color: 'var(--text-muted)' }}>search</span>
+                            <input 
+                                type="text" 
+                                placeholder="Search manuals..." 
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
 
                 {loading ? (
                     <div style={{ padding: '2rem', color: 'var(--text-muted)' }}>Loading manuals...</div>
                 ) : (
-                    <div className={manualStyles.manualsGrid}>
-                        {manuals.map((manual) => {
-                            const isAvailable = manual.has_pdf;
-                            return (
-                                <Link 
-                                    key={manual.id} 
-                                    href={isAvailable ? getPublicUrl(manual.file_path) : '#'}
-                                    target={isAvailable ? "_blank" : "_self"}
-                                    rel="noopener noreferrer"
-                                    className={`${manualStyles.manualCard} ${!isAvailable ? manualStyles.disabled : ''}`}
-                                    onClick={(e) => !isAvailable && e.preventDefault()}
+                    <>
+                        <AnimatePresence mode="wait">
+                            {showFolder && (
+                                <motion.div
+                                    key="folder-anim"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 2, filter: "blur(10px)" }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    style={{ 
+                                        display: 'flex', 
+                                        justifyContent: 'center', 
+                                        alignItems: 'center', 
+                                        height: '400px', 
+                                        width: '100%' 
+                                    }}
                                 >
-                                    <div className={manualStyles.cardHeader}>
-                                        <div className={manualStyles.iconBox}>
-                                            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
-                                                {isAvailable ? 'picture_as_pdf' : 'description'}
-                                            </span>
-                                        </div>
-                                        <div className={manualStyles.headerRight}>
-                                            <div className={manualStyles.courseCode}>{manual.course_code}</div>
-                                            <div className={manualStyles.expNumber}>{manual.experiment_number}</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <h3 className={manualStyles.manualTitle} title={manual.title}>
-                                        {manual.title}
-                                    </h3>
-                                    
-                                    <div className={manualStyles.cardFooter}>
-                                        <span>{isAvailable ? 'MANUAL VIEW' : 'UNAVAILABLE'}</span>
-                                        {isAvailable && (
-                                            <span className={`material-symbols-outlined ${manualStyles.arrow}`}>
-                                                arrow_forward
-                                            </span>
-                                        )}
-                                    </div>
-                                </Link>
-                            )
-                        })}
-                    </div>
+                                    <motion.span 
+                                        className="material-symbols-outlined"
+                                        animate={folderOpen ? { scale: [1, 1.2, 1], rotate: [0, -5, 5, 0] } : {}}
+                                        transition={{ duration: 0.3 }}
+                                        style={{ fontSize: '150px', color: 'var(--secondary-color)', textShadow: '0 0 40px rgba(var(--secondary-color-rgb), 0.3)' }}
+                                    >
+                                        {folderOpen ? 'folder_open' : 'folder'}
+                                    </motion.span>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {!showFolder && (
+                            <motion.div 
+                                className={manualStyles.manualsGrid}
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.04, delayChildren: 0.1 }
+                                    }
+                                }}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                {manuals.map((manual) => {
+                                    const isAvailable = manual.has_pdf;
+                                    return (
+                                        <motion.div 
+                                            key={manual.id}
+                                            variants={{
+                                                hidden: { opacity: 0, scale: 0.2, y: 100 },
+                                                show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 200, damping: 20 } }
+                                            }}
+                                            style={{ display: 'block', height: '100%' }}
+                                        >
+                                            <Link 
+                                                href={isAvailable ? getPublicUrl(manual.file_path) : '#'}
+                                                target={isAvailable ? "_blank" : "_self"}
+                                                rel="noopener noreferrer"
+                                                className={`${manualStyles.manualCard} ${!isAvailable ? manualStyles.disabled : ''}`}
+                                                onClick={(e) => !isAvailable && e.preventDefault()}
+                                            >
+                                                <div className={manualStyles.cardHeader}>
+                                                    <div className={manualStyles.iconBox}>
+                                                        <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+                                                            {isAvailable ? 'picture_as_pdf' : 'description'}
+                                                        </span>
+                                                    </div>
+                                                    <div className={manualStyles.headerRight}>
+                                                        <div className={manualStyles.courseCode}>{manual.course_code}</div>
+                                                        <div className={manualStyles.expNumber}>{manual.experiment_number}</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <h3 className={manualStyles.manualTitle} title={manual.title}>
+                                                    {manual.title}
+                                                </h3>
+                                                
+                                                <div className={manualStyles.cardFooter}>
+                                                    <span>{isAvailable ? 'MANUAL VIEW' : 'UNAVAILABLE'}</span>
+                                                    {isAvailable && (
+                                                        <span className={`material-symbols-outlined ${manualStyles.arrow}`}>
+                                                            arrow_forward
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </Link>
+                                        </motion.div>
+                                    )
+                                })}
+                            </motion.div>
+                        )}
+                    </>
                 )}
             </main>
         </div>
