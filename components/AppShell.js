@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import CardNav from './CardNav';
 import Footer from './Footer';
 import PlatformGuideModal from './PlatformGuideModal';
@@ -67,6 +68,8 @@ const ZONES = [
  */
 export default function AppShell({ children }) {
     const [isGuideOpen, setIsGuideOpen] = useState(false);
+    const pathname = usePathname();
+    const isLoginPage = pathname === '/login';
 
     // Listen for global guide triggers
     useEffect(() => {
@@ -77,14 +80,16 @@ export default function AppShell({ children }) {
 
     return (
         <div className="app-wrapper">
-            <CardNav 
-                items={ZONES} 
-                onOpenGuide={() => setIsGuideOpen(true)} 
-            />
-            <main className="main-content">
+            {!isLoginPage && (
+                <CardNav 
+                    items={ZONES} 
+                    onOpenGuide={() => setIsGuideOpen(true)} 
+                />
+            )}
+            <main className={isLoginPage ? "main-content login-page-full" : "main-content"}>
                 {children}
             </main>
-            <Footer />
+            {!isLoginPage && <Footer />}
             <PlatformGuideModal
                 isOpen={isGuideOpen}
                 onClose={() => setIsGuideOpen(false)}
